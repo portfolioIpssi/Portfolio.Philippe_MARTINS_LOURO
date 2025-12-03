@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Philippe Martins Louro - Portfolio</title>
+  <style>
+    :root{
+      --bg:#060606;
+      --panel:#0f0f0f;
+      --green:#00ff00;
+      --muted:#00aa00;
+      --glass: rgba(0,255,0,0.06);
+      --accent: #07140a;
+      --radius:8px;
+      --mono: 'Courier New', monospace;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{
+      font-family:var(--mono);
+      background:linear-gradient(180deg,var(--bg),#040404 60%);
+      color:var(--green);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      overflow-y:auto;
+    }
+
+    /* Top taskbar */
+    .taskbar{
+      position:fixed;top:0;left:0;right:0;height:64px;
+      background:linear-gradient(180deg,#141414 0%,#0d0d0d 100%);
+      border-bottom:2px solid var(--green);
+      display:flex;align-items:center;justify-content:space-between;padding:10px 18px;
+      z-index:50;
+      box-shadow:0 6px 30px rgba(0,255,0,0.05);
+    }
+    .logo{font-weight:700;font-size:1.25rem;color:var(--green);text-shadow:0 0 10px rgba(0,255,0,0.12)}
+    .nav-menu{display:flex;gap:8px;align-items:center}
+    .nav-btn{
+      background:transparent;border:1px solid rgba(0,255,0,0.12);
+      color:var(--green);padding:8px 12px;border-radius:6px;cursor:pointer;font-size:0.9rem;
+      transition:all .18s;backdrop-filter: blur(2px);
+    }
+    .nav-btn:hover{background:var(--green);color:#000;box-shadow:0 0 12px rgba(0,255,0,0.25)}
+    .nav-btn.active{background:var(--green);color:#000}
+
+    /* Terminal welcome screen */
+    #terminal-screen{
+      position:fixed;inset:0;background:#000;display:flex;flex-direction:column;align-items:center;justify-content:center;
+      z-index:200;transition:opacity .4s ease;gap:18px;padding:24px;
+    }
+    #terminal-screen.hidden{opacity:0;pointer-events:none}
+    .terminal-text{font-size:1.15rem;text-align:center;max-width:880px;line-height:1.45;color:var(--green)}
+    .cursor{display:inline-block;width:12px;height:18px;background:var(--green);margin-left:6px;animation:blink 1s steps(2) infinite}
+    @keyframes blink{0%,50%{opacity:1}51%,100%{opacity:0}}
+    .enter-hint{font-size:0.95rem;color:var(--muted);animation:pulse 2s infinite}
+    @keyframes pulse{0%,100%{opacity:.6}50%{opacity:1}}
+
+    /* Main container */
+    .main-container{
+      max-width:1150px;margin:94px auto 60px;padding:20px;
+    }
+
+    .window{
+      background:linear-gradient(180deg,var(--panel),#0b0b0b);
+      border:1px solid rgba(0,255,0,0.06);
+      box-shadow:0 8px 30px rgba(0,255,0,0.03);
+      border-radius:var(--radius);
+      overflow:hidden;display:none;animation:slideIn .35s ease;
+    }
+    .window.active{display:block}
+    @keyframes slideIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+    .window-header{display:flex;justify-content:space-between;align-items:center;padding:12px 18px;border-bottom:1px solid rgba(0,255,0,0.04)}
+    .window-title{font-weight:700;color:var(--green)}
+    .window-controls{display:flex;gap:6px}
+    .dot{width:12px;height:12px;border-radius:50%;border:1px solid var(--green);}
+
+    .window-content{padding:22px;color:var(--green);line-height:1.5}
+
+    h1,h2,h3{color:var(--green);text-shadow:0 0 8px rgba(0,255,0,0.04)}
+    h1{font-size:2rem;margin-bottom:12px}
+    h2{font-size:1.4rem;margin-bottom:10px;border-bottom:2px solid rgba(0,255,0,0.06);padding-bottom:8px}
+    h3{font-size:1rem;margin-top:14px}
+
+    p,li{font-size:0.95rem}
+    ul{margin-left:18px;margin-bottom:12px}
+    .muted{color:var(--muted)}
+
+    /* Project grid */
+    .project-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;margin-top:12px}
+    .project-card{background:linear-gradient(180deg,#080808,#111111);border-left:4px solid var(--green);padding:16px;border-radius:8px}
+    .project-img{height:150px;border:1px dashed rgba(0,255,0,0.06);display:flex;align-items:center;justify-content:center;font-size:3rem;margin-bottom:10px}
+    .project-tech{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+    .tech-tag{background:var(--green);color:#000;padding:4px 8px;border-radius:6px;font-size:0.8rem}
+
+    /* responsive pdf viewer */
+    .pdf-area{display:flex;gap:16px;flex-wrap:wrap}
+    .pdf-preview{flex:1 1 560px;border:1px solid rgba(0,255,0,0.06);min-height:420px;background:#030303}
+    .pdf-actions{width:260px;min-width:220px;background:var(--glass);padding:14px;border-radius:8px;border:1px solid rgba(0,255,0,0.03)}
+
+    a.link{color:var(--green);text-decoration:underline}
+    .btn{display:inline-block;padding:8px 12px;border-radius:6px;border:1px solid rgba(0,255,0,0.12);background:transparent;color:var(--green);cursor:pointer}
+    .btn.primary{background:var(--green);color:#000}
+    .small{font-size:0.85rem;color:var(--muted);margin-top:8px;display:block}
+
+    /* timeline + table */
+    .timeline{margin-top:12px}
+    .timeline-item{margin-bottom:14px;padding-left:16px;border-left:2px solid rgba(0,255,0,0.04)}
+    table{width:100%;border-collapse:collapse;margin-top:10px}
+    table td, table th{padding:8px;border:1px dashed rgba(0,255,0,0.04);text-align:left}
+    th{background:rgba(0,255,0,0.03)}
+
+    /* contact grid */
+    .contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-top:12px}
+    .contact-item{background:linear-gradient(180deg,#070707,#0f0f0f);padding:14px;border-radius:8px;border:1px solid rgba(0,255,0,0.03);text-align:center}
+
+    /* small screens */
+    @media (max-width:820px){
+      .taskbar{padding:8px}
+      .main-container{margin-top:86px;padding:12px}
+      .pdf-actions{width:100%}
+      .pdf-area{flex-direction:column}
+    }
+  </style>
+</head>
+<body>
+  <!-- Terminal welcome -->
+  <div id="terminal-screen" role="dialog" aria-label="Ecran d'accueil">
+    <div class="terminal-text">
+      &gt; Initialisation du système...<br>
+      &gt; Connexion établie<br>
+      &gt; Chargement du portfolio de <strong>Philippe Martins Louro</strong>...<br><br>
+      <span class="cursor" aria-hidden="true"></span>
+    </div>
+    <div class="enter-hint">[ Appuyez sur <strong>ENTRÉE</strong> pour accéder au portfolio ]</div>
+  </div>
+
+  <!-- Top taskbar -->
+  <div class="taskbar">
+    <div class="logo">PHILIPPE.MARTINS</div>
+    <div class="nav-menu" role="navigation" aria-label="Menu">
+      <button class="nav-btn" data-page="presentation">Présentation</button>
+      <button class="nav-btn" data-page="projets">Mes Projets</button>
+      <button class="nav-btn" data-page="veille">Veille Tech</button>
+      <button class="nav-btn" data-page="stage">Rapport de Stage</button>
+      <button class="nav-btn" data-page="synthese">Tableau de synthèse</button>
+      <button class="nav-btn" data-page="competences">Compétences</button>
+      <button class="nav-btn" data-page="contact">Contact</button>
+    </div>
+  </div>
+
+  <main class="main-container" role="main">
+  <!-- Présentation -->
+    <section id="presentation" class="window active" aria-labelledby="pres-title">
+      <div class="window-header">
+        <div class="window-title" id="pres-title">~/présentation</div>
+        <div class="window-controls"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+      </div>
+      <div class="window-content">
+        <h2>Présentation</h2>
+        <p><strong>Je m'appelle Philippe Martins Louro</strong>, j’ai 18 ans et je suis actuellement en première année de <strong>BTS SIO (Services Informatiques aux Organisations)</strong>, option <strong>SISR</strong> (Solutions d’Infrastructure, Systèmes et Réseaux) à l’école IPSSI de Marne-la-Vallée.</p>
+
+        <p>Sérieux, curieux et motivé, je me forme aux métiers de l’administration système et réseau. J’ai acquis des compétences solides en environnements Windows et Linux (Debian), en virtualisation via VMware, en configuration de routeurs et de commutateurs Cisco, ainsi qu’en scripting PowerShell. J’ai également des bases en développement web avec HTML, CSS, PHP et Visual Studio.</p>
+
+        <h3>Expérience</h3>
+        <p>Dans le cadre de ma première année de BTS, j’ai effectué un stage de huit semaines au sein de la <strong>Direction des Systèmes d’Information de la Mairie de Chelles</strong>. Cette expérience m’a permis de participer au déploiement de postes de travail, à la gestion du parc informatique, à l’installation de logiciels, à la configuration des accès utilisateurs et à la documentation des procédures techniques.</p>
+
+        <h3>Objectif</h3>
+        <p>Je suis actuellement à la recherche d’une <strong>alternance à partir de septembre 2025</strong> (1 semaine entreprise / 1 semaine école) afin de renforcer mes compétences sur le terrain et contribuer à des projets concrets en systèmes et réseaux.</p>
+
+        <h3>Centres d'intérêt</h3>
+        <p>Originaire de Vaires-sur-Marne (77360), je m’intéresse également au sport, au cinéma de science-fiction et à la découverte de nouvelles cultures. Mon parcours sportif (handball) m’a permis de développer l’esprit d’équipe et une capacité d’adaptation.</p>
+
+       <h3>CV</h3>
+<p class="small">Votre CV peut être visualisé ci-dessous. Placez votre fichier <code>cv.pdf</code> dans le même dossier que le portfolio.</p>
+
+<div class="pdf-area">
+  <div class="pdf-preview" id="cv-preview">
+    <iframe id="cv-iframe" src="cv.pdf" title="Prévisualisation CV" style="width:100%;height:100%;border:0"></iframe>
+  </div>
+
+  <aside class="pdf-actions">
+    <p><a id="cv-download" class="btn primary" href="cv.pdf" download="cv.pdf">⬇️ Télécharger CV (PDF)</a></p>
+  </aside>
+</div>
+
+      </div>
+    </section>
+
+    <!-- Projets -->
+    <section id="projets" class="window" aria-labelledby="proj-title">
+      <div class="window-header">
+        <div class="window-title" id="proj-title">~/projets</div>
+        <div class="window-controls"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+      </div>
+      <div class="window-content">
+        <h2>Mes Projets</h2>
+
+        <div class="project-grid">
+         <!-- Projet Bibliothèque SLAM -->
+<article class="project-card" id="proj-biblio">
+    <div class="project-img">📚</div>
+    <h3>Projet Bibliothèque (SLAM)</h3>
+    <p><strong>Contexte :</strong> Réalisé dans le cadre de mon BTS SIO, option SLAM.</p>
+    <p><strong>Travail réalisé :</strong></p>
+    <ul>
+        <li>Création d’un site web responsive en HTML / CSS / PHP</li>
+        <li>Intégration d’une base de données MySQL (gestion des livres, prêts, utilisateurs)</li>
+        <li>Fonctions : authentification, recherche, emprunt/retour, rôle administrateur</li>
+    </ul>
+    <p>
+        <a id="biblio-download" class="btn" href="projet_bibliotheque.zip" download>⬇️ Télécharger .zip</a>
+    </p>
+</article>
+
+
+
+          <!-- Projet SISR -->
+          <article class="project-card" id="proj-sisr">
+            <div class="project-img">🖧</div>
+            <h3>Projet SISR - Infrastructure IT pour 480 visiteurs médicaux</h3>
+            <p><strong>Mission :</strong> Équiper une entreprise pharmaceutique d'une infrastructure réseau sécurisée et évolutive.</p>
+
+            <h4>Le défi</h4>
+            <p>NovaTech devait équiper <strong>480 visiteurs médicaux</strong> avec des ordinateurs portables et créer un réseau segmenté par services.</p>
+
+            <h4>Contraintes</h4>
+            <ul>
+              <li>Budget serré : 299 €/poste</li>
+              <li>Mobilité constante des utilisateurs</li>
+              <li>Sécurité des données médicales</li>
+              <li>Gestion centralisée du parc</li>
+            </ul>
+
+            <h4>Notre solution</h4>
+            <p><strong>Choix du matériel</strong> — Dell Latitude 3490 : Core i5, 16 Go RAM, SSD 512 Go, 8h autonomie, Windows 11 Pro, 299 € TTC.</p>
+
+            <h4>Architecture réseau</h4>
+            <p>Conception d'un réseau à <strong>12 VLANs</strong> (extrait) :</p>
+            <ul>
+              <li>Direction — VLAN 20 (15 postes)</li>
+              <li>Commercial — VLAN 60 (25 postes)</li>
+              <li>Laboratoire — VLAN 70 (25 postes)</li>
+              <li>Visiteurs — VLAN 150 (60 postes)</li>
+              <li>Serveurs — VLAN 300 (55 postes)</li>
+            </ul>
+
+            <h4>Sécurité & Déploiement</h4>
+            <ul>
+              <li>VPN obligatoire pour les accès distants</li>
+              <li>Profils utilisateurs : Pro / Technique / Personnel</li>
+              <li>Antivirus centralisé (Bitdefender)</li>
+              <li>Sauvegarde OneDrive + serveur local</li>
+              <li>Masterisation & déploiement automatisé (nomenclature : <code>Aspirine-001</code>...)</li>
+            </ul>
+
+            <h4>Résultats</h4>
+            <ul>
+              <li>480 postes déployés et sécurisés</li>
+              <li>12 VLANs isolés</li>
+              <li>Budget respecté : 299 €/poste</li>
+              <li>0 incident depuis le déploiement</li>
+              <li>Extensibilité : +50 postes ajouté facilement</li>
+            </ul>
+              <a id="biblio-download" class="btn" href="Projet-Sisr.zip" download>⬇️ Télécharger .zip</a>
+            </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Veille Technologique -->
+    <section id="veille" class="window" aria-labelledby="veille-title">
+      <div class="window-header">
+        <div class="window-title" id="veille-title">~/veille_technologique</div>
+        <div class="window-controls"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+      </div>
+      <div class="window-content">
+        <h2>Veille Technologique — NASLE</h2>
+        <p><strong>NASLE</strong> est un logiciel développé par <em>Nepsis Engineering</em>, conçu comme un assistant pour les opérateurs de vidéoprotection. Il utilise l'IA pour analyser des flux vidéo et détecter des situations spécifiques.</p>
+
+        <h3>Public cible & modules</h3>
+        <p>Principalement destiné aux Centres de Supervision Urbaine (CSU) pour la prévention d'incivilités et d'agressions. Utile aussi pour les services d'urbanisme et les entreprises accueillant du public.</p>
+        <p>Le logiciel comporte deux modules : <strong>Violence</strong> et <strong>Smart City</strong>.</p>
+
+        <h3>Module « Violence » — Fonctions clés</h3>
+        <div class="timeline">
+          <div class="timeline-item">
+            <strong>Violence et personnes à terre — v1.0</strong>
+            <p>Détecte actes d'agression potentiels et personnes au sol (caméras fixes & PTZ). Temps de cycle ~1s pour ~100 caméras. Taux de reconnaissance &gt;90%. Faux positifs : <10 / million (≈0.5/caméra/24h).</p>
+          </div>
+
+          <div class="timeline-item">
+            <strong>Incendie — v1.0</strong>
+            <p>Détection des départs de feu, déclenchée toutes les 60 cycles (~1 minute).</p>
+          </div>
+
+          <div class="timeline-item">
+            <strong>Groupe > N personnes — v1.0</strong>
+            <p>Détecte groupes, alertes configurables par caméra et plage horaire (analyse toutes les minutes).</p>
+          </div>
+
+          <div class="timeline-item">
+            <strong>Présence d'armes — v1.1</strong>
+            <p>Recherche d'armes sur une liste de caméras (1 caméra toutes les 5s). Détection dépend de la visibilité de l'arme.</p>
+          </div>
+        </div>
+
+        <h3>Module « Smart City » — Fonctions</h3>
+        <table>
+          <thead><tr><th>Fonction</th><th>Version</th><th>Notes / Limitations</th></tr></thead>
+          <tbody>
+            <tr><td>Comptage des personnes</td><td>1.0</td><td>Analyse toutes les 60 cycles (1 min). Intégration horaires & alertes. Caméras fixes & PTZ.</td></tr>
+            <tr><td>Stationnement dangereux</td><td>1.0</td><td>Détecte véhicules arrêtés ≥ 3 min (zones définies par l'utilisateur).</td></tr>
+            <tr><td>Véhicules "ventouses"</td><td>1.0</td><td>Détection véhicules immobiles ≥ 7 jours.</td></tr>
+            <tr><td>Dépôts sauvages V1 / V2</td><td>1.1</td><td>Détection d'objets incongrus (ex: matelas). Zones paramétrables.</td></tr>
+            <tr><td>Mesure du trafic piétons</td><td>1.0</td><td>Limité à 10 caméras simultanées; compte sur 10 minutes par ligne définie.</td></tr>
+          </tbody>
+        </table>
+
+        <h3>IHM & exploitation</h3>
+        <ul>
+          <li>Écran principal : carte des caméras + dock alertes (violence, incendie, comptage)</li>
+          <li>Menu : gestion caméras, réglages, historique, déconnexion</li>
+          <li>Acquittement des alertes, historique (14 jours), filtres par date/type/caméra</li>
+          <li>Ajout caméras : URL, identifiant, nom, type (fixe/PTZ), coordonnées GPS</li>
+          <li>Menu Réglage : éditeur de zones, réglages alertes, éditeur de tâches</li>
+        </ul>
+
+        <h3>Limitations & support</h3>
+        <p>Certaines fonctions limitées aux caméras fixes; temps de cycle sur certaines détections (ex : 1 caméra/5s pour armes). Support Nepsis Engineering : Lun-Ven 09:00-17:00. NASLE = outil d'aide à la décision (pas une preuve juridique).</p>
+
+        <h3>Aperçu & téléchargement (PDF)</h3>
+        <div class="pdf-area" aria-hidden="false">
+          <div class="pdf-preview" id="veille-preview">
+            <!-- iframe preview -->
+            <iframe id="veille-iframe" src="veille technologique.pdf" title="Veille Technologique - Aperçu" style="width:100%;height:100%;border:0"></iframe>
+          </div>
+          <aside class="pdf-actions">
+            <p class="small">Fichier par défaut : <code>veille_technologique.pdf</code></p>
+            <p><a id="veille-download" class="btn primary" href="veille technologique.pdf" download>🔍 Ouvrir / Télécharger PDF</a></p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- Rapport de Stage -->
+    <section id="stage" class="window" aria-labelledby="stage-title">
+      <div class="window-header">
+        <div class="window-title" id="stage-title">~/rapport_stage</div>
+        <div class="window-controls"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+      </div>
+      <div class="window-content">
+        <h2>Rapport de Stage</h2>
+        <p><strong>Stage :</strong> 8 semaines – DSI Mairie de Chelles</p>
+        <h3>Missions</h3>
+        <ul>
+          <li>Déploiement de postes de travail</li>
+          <li>Gestion du parc informatique</li>
+          <li>Installation et configuration de logiciels</li>
+          <li>Configuration des accès utilisateurs</li>
+          <li>Rédaction et mise à jour des procédures techniques</li>
+        </ul>
+
+        <h3>Compétences acquises</h3>
+        <p>Administration Windows / Linux, gestion du parc, processus de déploiement et documentation.</p>
+
+        <h3>Rapport de stage</h3>
+<p class="small"><h3>Rapport de stage</h3>
+<p class="small">Votre Rapport de stage peut être visualisé ci-dessous. Placez votre fichier <code>Rapport de stage.pdf</code> dans le même dossier que le portfolio.</p>
+
+<p></p>Voici mon rppaort de stage <code>Rapport de stage.pdf</code> dans le même dossier que le portfolio.</p>
+
+<div class="pdf-area">
+  <div class="pdf-preview" id="cv-preview">
+    <iframe id="cv-iframe" src="Rapport de stage.pdf" title="Prévisualisation CV" style="width:100%;height:100%;border:0"></iframe>
+  </div>
+
+  <aside class="pdf-actions">
+    <p><a id="cv-download" class="btn primary" href="Rapport de stage.pdf" download="Rapport de stage.pdf">⬇️ Télécharger CV (PDF)</a></p>
+
+  </aside>
+</div>
+
+      </div>
+    </section>
+
+    <!-- Tableau de synthèse -->
+    <section id="synthese" class="window" aria-labelledby="synth-title">
+      <div class="window-header">
+        <div class="window-title" id="synth-title">~/tableau_de_synthèse</div>
+        <div class="window-controls"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+      </div>
+      <div class="window-content">
+        <h2>Tableau de synthèse</h2>
+        <p>Résumé rapide de compétences et projets — utilisation : attachez un PDF <code>tableau_synthese.pdf</code> si nécessaire.</p>
+
+        <table>
+          <thead><tr><th>Item</th><th>Description</th><th>Statut</th></tr></thead>
+          <tbody>
+            <tr><td>Formation</td><td>BTS SIO - option SISR</td><td>En cours</td></tr>
+            <tr><td>Projet SLAM</td><td>Application gestion bibliothèque (HTML/CSS/PHP + MySQL)</td><td>Terminé</td></tr>
+            <tr><td>Projet SISR</td><td>Infra 480 postes, VLAN, sécurité</td><td>Terminé</td></tr>
+            <tr><td>Stage</td><td>DSI Mairie de Chelles - déploiement</td><td>Terminé</td></tr>
+             <tr><td>ALternace</td><td>DSI Mairie de Bagnolet - déploiement</td><td>En cours</td></tr>
+          </tbody>
+        </table>
+
+        <h3>Rapport de stage</h3>
+<p class="small"><h3>Rapport de stage</h3>
+<p class="small">Votre Rapport de stage peut être visualisé ci-dessous. Placez votre fichier <code>8-1 - BTS SIO - 2025 - Tableau de synthese.pdf</code> dans le même dossier que le portfolio.</p>
+
+<p></p>Voici mon rppaort de stage <code>8-1 - BTS SIO - 2025 - Tableau de synthese.pdf</code> dans le même dossier que le portfolio.</p>
+
+<div class="pdf-area">
+  <div class="pdf-preview" id="cv-preview">
+    <iframe id="cv-iframe" src="8-1 - BTS SIO - 2025 - Tableau de synthese.pdf" title="Prévisualisation CV" style="width:100%;height:100%;border:0"></iframe>
+  </div>
+
+  <aside class="pdf-actions">
+    <p><a id="cv-download" class="btn primary" href="8-1 - BTS SIO - 2025 - Tableau de synthese.pdf" download="8-1 - BTS SIO - 2025 - Tableau de synthese.pdf">⬇️ Télécharger CV (PDF)</a></p>
+
+      </div>
+    </section>
+
+    <!-- Compétences -->
+    <section id="competences" class="window" aria-labelledby="comp-title">
+      <div class="window-header">
+        <div class="window-title" id="comp-title">~/competences</div>
+        <div class="window-controls"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+      </div>
+      <div class="window-content">
+        <h2>Compétences Techniques</h2>
+        <div class="skills-marquee" style="margin-bottom:12px">
+          <div class="muted">Python • JavaScript • PHP • Linux • Windows • VMware • Cisco • PowerShell • MySQL • Docker • Git</div>
+        </div>
+
+        <h3>Langages</h3>
+        <p>Python, JavaScript, PHP, html, css, languge d'assemblage (en cours)</p>
+
+        <h3>Frameworks & outils</h3>
+        <p>Proxmox, VMware</p>
+
+        <h3>Réseau & Système</h3>
+        <p>Configuration routeurs/switches Cisco, VLAN, Active Directory, déploiement d'images, VPN, sécurité</p>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="window" aria-labelledby="contact-title">
+      <div class="window-header">
+        <div class="window-title" id="contact-title">~/contact</div>
+        <div class="window-controls"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+      </div>
+      <div class="window-content">
+        <h2>Contact</h2>
+        <div class="contact-grid">
+          <div class="contact-item">
+            <div class="contact-icon">📧</div>
+            <h3>Email</h3>
+            <p>martinslourophilippe@gmail.com</p>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">💼</div>
+            <h3>LinkedIn</h3>
+            <p><a class="link" href="https://www.linkedin.com/in/philippe-martins-louro-31a974345/" target="_blank" rel="noopener">Profil LinkedIn</a></p>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">📱</div>
+            <h3>Téléphone</h3>
+            <p>07 81 50 17 54</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    // Terminal Enter handling
+    const terminal = document.getElementById('terminal-screen');
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && !terminal.classList.contains('hidden')) {
+        terminal.classList.add('hidden');
+        // set default active tab to presentation
+        activateButton(document.querySelector('.nav-btn[data-page="presentation"]'));
+      }
+    });
+
+    // Navigation
+    const navButtons = document.querySelectorAll('.nav-btn');
+    const windows = document.querySelectorAll('.window');
+
+    function activateButton(btn){
+      if(!btn) return;
+      navButtons.forEach(b=>b.classList.remove('active'));
+      windows.forEach(w=>w.classList.remove('active'));
+      btn.classList.add('active');
+      const page = btn.getAttribute('data-page');
+      const target = document.getElementById(page);
+      if(target) target.classList.add('active');
+      // scroll top
+      window.scrollTo({top:0,behavior:'smooth'});
+    }
+
+    navButtons.forEach(btn=>{
+      btn.addEventListener('click', ()=>activateButton(btn));
+    });
+
+    // Default: set presentation active on load
+    window.addEventListener('load', ()=>{
+      const def = document.querySelector('.nav-btn[data-page="presentation"]');
+      if(def) activateButton(def);
+    });
+
+    // Helper to wire file inputs to update download links (local preview)
+    function wireFileInputs(){
+      document.querySelectorAll('input[type="file"][data-target]').forEach(input=>{
+        input.addEventListener('change', (ev)=>{
+          const file = ev.target.files[0];
+          const targetId = input.getAttribute('data-target');
+          if(!file || !targetId) return;
+          const blobUrl = URL.createObjectURL(file);
+          const link = document.getElementById(targetId);
+          if(link){
+            link.href = blobUrl;
+            // set download attribute to original filename
+            link.download = file.name;
+            // small visual feedback
+            link.textContent = "⬇️ Télécharger (" + file.name + ")";
+          }
+        });
+      });
+
+      // specific ones for veille, rapport, synth
+      const veilleInput = document.getElementById('veille-file');
+      if(veilleInput){
+        veilleInput.addEventListener('change', e=>{
+          const f = e.target.files[0];
+          if(!f) return;
+          const u = URL.createObjectURL(f);
+          document.getElementById('veille-iframe').src = u;
+          const vd = document.getElementById('veille-download');
+          vd.href = u; vd.download = f.name; vd.textContent = '🔍 Ouvrir / Télécharger ('+f.name+')';
+        });
+      }
+
+      const rapportInput = document.getElementById('rapport-file');
+      if(rapportInput){
+        rapportInput.addEventListener('change', e=>{
+          const f = e.target.files[0];
+          if(!f) return;
+          const u = URL.createObjectURL(f);
+          const rd = document.getElementById('rapport-download');
+          rd.href = u; rd.download = f.name; rd.textContent = '⬇️ Télécharger ('+f.name+')';
+        });
+      }
+
+      const synthInput = document.getElementById('synth-file');
+      if(synthInput){
+        synthInput.addEventListener('change', e=>{
+          const f = e.target.files[0];
+          if(!f) return;
+          const u = URL.createObjectURL(f);
+          const sd = document.getElementById('synth-download');
+          sd.href = u; sd.download = f.name; sd.textContent = '⬇️ Télécharger ('+f.name+')';
+        });
+      }
+
+      // biblio + sisr inputs handled by generic handler (data-target)
+    }
+
+    wireFileInputs();
+
+    // Accessibility: allow Enter on nav buttons
+    navButtons.forEach(btn=>{
+      btn.addEventListener('keyup', (e)=>{ if(e.key==='Enter') activateButton(btn); });
+    });
+  </script>
+</body>
+</html>
