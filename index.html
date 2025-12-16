@@ -30,6 +30,27 @@
       --mono: 'JetBrains Mono', 'Courier New', monospace;
     }
 
+    /* Light theme variables */
+    [data-theme="light"] {
+      --bg: #f8fafc;
+      --bg-secondary: #f1f5f9;
+      --panel: #ffffff;
+      --panel-hover: #f8fafc;
+      --primary: #059669;
+      --primary-dim: #047857;
+      --primary-glow: rgba(5, 150, 105, 0.15);
+      --accent: #0284c7;
+      --accent-dim: #0369a1;
+      --text: #0f172a;
+      --text-dim: #334155;
+      --text-muted: #64748b;
+      --border: rgba(15, 23, 42, 0.1);
+      --border-bright: rgba(5, 150, 105, 0.3);
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.1);
+      --shadow-glow: 0 0 20px var(--primary-glow);
+    }
+
     * {
       box-sizing: border-box;
       margin: 0;
@@ -72,6 +93,7 @@
       transform: scale(0.98);
     }
 
+    /* Typing animation for terminal text */
     .terminal-text {
       font-size: 1.15rem;
       text-align: center;
@@ -79,6 +101,15 @@
       line-height: 1.8;
       color: var(--primary);
       text-shadow: 0 0 10px var(--primary-glow);
+    }
+    
+    .typing-line {
+      opacity: 0;
+      animation: fadeInLine 0.3s ease forwards;
+    }
+    
+    @keyframes fadeInLine {
+      to { opacity: 1; }
     }
 
     .cursor {
@@ -128,6 +159,11 @@
       z-index: 100;
       box-shadow: var(--shadow-md);
     }
+    
+    /* Light theme navbar background */
+    [data-theme="light"] .navbar {
+      background: rgba(255, 255, 255, 0.9);
+    }
 
     .logo {
       font-weight: 700;
@@ -146,6 +182,25 @@
       gap: 8px;
       align-items: center;
       flex-wrap: wrap;
+    }
+
+    /* Theme toggle button */
+    .theme-toggle {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-dim);
+      padding: 10px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1.2rem;
+      transition: all 0.2s ease;
+      margin-left: 12px;
+    }
+    
+    .theme-toggle:hover {
+      background: var(--panel-hover);
+      border-color: var(--border-bright);
+      transform: rotate(15deg);
     }
 
     .nav-btn {
@@ -210,6 +265,7 @@
       }
     }
 
+    /* Parallax effect for window headers */
     .window-header {
       display: flex;
       justify-content: space-between;
@@ -217,6 +273,23 @@
       padding: 16px 24px;
       border-bottom: 1px solid var(--border);
       background: rgba(0, 0, 0, 0.2);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .window-header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, var(--primary-glow), transparent);
+      transition: left 0.6s ease;
+    }
+    
+    .window:hover .window-header::before {
+      left: 100%;
     }
 
     .window-title {
@@ -553,6 +626,112 @@
       transform: rotate(-45deg) translate(7px, -7px);
     }
 
+    /* Skills progress bars */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin-top: 24px;
+    }
+    
+    .skill-item {
+      background: linear-gradient(135deg, var(--panel) 0%, var(--bg-secondary) 100%);
+      padding: 20px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+    }
+    
+    .skill-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    
+    .skill-name {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+    
+    .skill-level {
+      font-size: 0.85rem;
+      color: var(--accent);
+      font-weight: 600;
+    }
+    
+    .skill-bar-bg {
+      height: 8px;
+      background: var(--bg);
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    
+    .skill-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
+      border-radius: 10px;
+      transition: width 1s ease;
+      width: 0;
+      box-shadow: 0 0 10px var(--primary-glow);
+    }
+    
+    .skill-bar-fill.animate {
+      animation: fillBar 1.5s ease forwards;
+    }
+    
+    @keyframes fillBar {
+      to { width: var(--skill-width); }
+    }
+
+    /* Achievement badges */
+    .badges-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 16px;
+      margin-top: 24px;
+    }
+    
+    .badge-item {
+      background: linear-gradient(135deg, var(--panel) 0%, var(--bg-secondary) 100%);
+      padding: 20px;
+      border-radius: var(--radius);
+      border: 2px solid var(--border);
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    
+    .badge-item:hover {
+      transform: translateY(-6px) scale(1.05);
+      border-color: var(--primary);
+      box-shadow: var(--shadow-md), var(--shadow-glow);
+    }
+    
+    .badge-icon {
+      font-size: 2.5rem;
+      margin-bottom: 8px;
+      display: block;
+      filter: grayscale(0.3);
+      transition: filter 0.3s ease;
+    }
+    
+    .badge-item:hover .badge-icon {
+      filter: grayscale(0);
+    }
+    
+    .badge-title {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+    
+    .badge-subtitle {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
     /* Responsive design */
     @media (max-width: 968px) {
       .navbar {
@@ -577,6 +756,11 @@
         max-height: 0;
         overflow: hidden;
         transition: max-height 0.3s ease;
+      }
+      
+      /* Light theme mobile menu */
+      [data-theme="light"] .nav-menu {
+        background: rgba(255, 255, 255, 0.98);
       }
 
       .nav-menu.active {
@@ -611,6 +795,15 @@
 
       h2 {
         font-size: 1.5rem;
+      }
+      
+      /* Responsive adjustments for skills and badges */
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .badges-grid {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
       }
     }
 
@@ -649,16 +842,40 @@
     ::-webkit-scrollbar-thumb:hover {
       background: var(--primary-dim);
     }
+    
+    /* Skip to content link for accessibility */
+    .skip-link {
+      position: absolute;
+      top: -40px;
+      left: 0;
+      background: var(--primary);
+      color: var(--bg);
+      padding: 8px 16px;
+      text-decoration: none;
+      border-radius: 0 0 8px 0;
+      z-index: 300;
+      font-weight: 600;
+    }
+    
+    .skip-link:focus {
+      top: 0;
+    }
+
+    /* Focus visible styles for accessibility */
+    *:focus-visible {
+      outline: 2px solid var(--primary);
+      outline-offset: 2px;
+    }
   </style>
 </head>
 <body>
+  <!-- Skip to content link -->
+  <a href="#main-content" class="skip-link">Aller au contenu principal</a>
+
   <!-- Terminal welcome screen -->
   <div id="terminal-screen" role="dialog" aria-label="Ecran d'accueil">
-    <div class="terminal-text">
-      &gt; Initialisation du système...<br>
-      &gt; Connexion établie<br>
-      &gt; Chargement du portfolio de <strong>Philippe Martins Louro</strong>...<br><br>
-      <span class="cursor" aria-hidden="true"></span>
+    <div class="terminal-text" id="terminal-text">
+      <!-- Lines will be added dynamically via JavaScript -->
     </div>
     <div class="enter-hint">[ Appuyez sur <strong>ENTRÉE</strong> pour accéder au portfolio ]</div>
   </div>
@@ -666,15 +883,23 @@
   <!-- Navigation bar -->
   <nav class="navbar">
     <div class="logo">PHILIPPE<span class="logo-accent">.MARTINS</span></div>
-    <div class="hamburger" id="hamburger" aria-label="Menu">
-      <span></span>
-      <span></span>
-      <span></span>
+    <div style="display: flex; align-items: center;">
+      <div class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <!-- Theme toggle button -->
+      <button class="theme-toggle" id="theme-toggle" aria-label="Changer le thème" title="Changer le thème">
+        🌙
+      </button>
     </div>
     <div class="nav-menu" id="nav-menu" role="navigation" aria-label="Menu principal">
       <button class="nav-btn" data-page="presentation">Présentation</button>
       <button class="nav-btn" data-page="projets">Projets</button>
       <button class="nav-btn" data-page="veille">Veille Tech</button>
+      <!-- Ajout du bouton navigation alternance -->
+      <button class="nav-btn" data-page="alternance">Alternance</button>
       <button class="nav-btn" data-page="stage">Stage</button>
       <button class="nav-btn" data-page="synthese">Synthèse</button>
       <button class="nav-btn" data-page="competences">Compétences</button>
@@ -682,7 +907,7 @@
     </div>
   </nav>
 
-  <main class="main-container" role="main">
+  <main class="main-container" role="main" id="main-content">
     <!-- Présentation -->
     <section id="presentation" class="window active" aria-labelledby="pres-title">
       <div class="window-header">
@@ -758,7 +983,7 @@
               <li>Fonctions : authentification, recherche, emprunt/retour, rôle administrateur</li>
             </ul>
             <p>
-              <a class="btn primary" href="Projet-Slam.zip" download>⬇️ Télécharger .zip</a>
+              <a class="btn primary" href="projet_bibliotheque.zip" download>⬇️ Télécharger .zip</a>
             </p>
           </article>
 
@@ -921,6 +1146,118 @@
       </div>
     </section>
 
+    <!-- Nouvelle section Alternance après Veille Tech -->
+    <!-- Alternance -->
+    <section id="alternance" class="window" aria-labelledby="alternance-title">
+      <div class="window-header">
+        <div class="window-title" id="alternance-title">alternance</div>
+        <div class="window-controls">
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+        </div>
+      </div>
+      <div class="window-content">
+        <h2>Alternance - DSI Mairie de Bagnolet</h2>
+        <p><strong>Période :</strong> Actuellement en deuxième année de BTS SIO (2024-2025)</p>
+        <p><strong>Poste :</strong> Technicien informatique en alternance au sein de la Direction des Systèmes d'Information</p>
+
+        <h3>Missions principales</h3>
+        
+        <div class="timeline">
+          <div class="timeline-item">
+            <strong>Déploiement d'images système avec Clonezilla Live Server</strong>
+            <p>Mise en place d'une solution de <strong>déploiement massif par réseau</strong> pour le parc informatique de la mairie. Utilisation de <strong>Clonezilla Live Server</strong> en mode multicast pour cloner simultanément plusieurs postes de travail.</p>
+            <ul>
+              <li>Configuration du serveur DRBL (Diskless Remote Boot in Linux) pour le démarrage PXE</li>
+              <li>Création et optimisation d'images système Windows 10 et Windows 11</li>
+              <li>Déploiement réseau simultané sur 10 à 20 postes en parallèle</li>
+              <li>Gain de temps considérable : 2h pour 20 postes vs 8h en méthode traditionnelle</li>
+            </ul>
+          </div>
+
+          <div class="timeline-item">
+            <strong>Migration Windows 10 vers Windows 11 avec PDQ Deploy</strong>
+            <p>Participation au projet de <strong>migration massive</strong> du parc informatique de Windows 10 vers Windows 11, en anticipation de la <strong>fin du support de Windows 10 (octobre 2025)</strong>.</p>
+            <ul>
+              <li>Audit du parc existant : vérification de la compatibilité matérielle (TPM 2.0, Secure Boot)</li>
+              <li>Utilisation de <strong>PDQ Deploy</strong> pour automatiser les mises à niveau à distance</li>
+              <li>Création de packages de déploiement personnalisés avec pré-configurations</li>
+              <li>Tests de migration sur environnement pilote avant déploiement général</li>
+              <li>Support utilisateur post-migration et résolution des problèmes de compatibilité</li>
+              <li>Documentation complète des procédures pour les futurs déploiements</li>
+            </ul>
+            <p><strong>Contexte :</strong> Microsoft mettra fin au support de Windows 10 le 14 octobre 2025. Au-delà de cette date, les PC sous Windows 10 ne recevront plus de mises à jour de sécurité, ce qui nécessite une migration anticipée pour maintenir la sécurité du parc informatique.</p>
+          </div>
+
+          <div class="timeline-item">
+            <strong>Réponse aux besoins et support utilisateurs</strong>
+            <p>Gestion quotidienne des demandes d'assistance technique et des incidents signalés par les agents municipaux.</p>
+            <ul>
+              <li>Résolution des problèmes matériels et logiciels (connexion réseau, imprimantes, accès logiciels)</li>
+              <li>Configuration et paramétrage de nouveaux postes utilisateurs</li>
+              <li>Gestion des comptes Active Directory (création, modification, réinitialisation de mots de passe)</li>
+              <li>Installation et mise à jour des applications métiers spécifiques à la mairie</li>
+              <li>Formation des utilisateurs aux bonnes pratiques informatiques</li>
+            </ul>
+          </div>
+
+          <div class="timeline-item">
+            <strong>Maintenance et gestion du parc informatique</strong>
+            <p>Suivi et entretien du parc informatique de la mairie (plus de 300 postes de travail).</p>
+            <ul>
+              <li>Inventaire et mise à jour de la base de données du matériel</li>
+              <li>Maintenance préventive et corrective des équipements</li>
+              <li>Remplacement et recyclage du matériel obsolète</li>
+              <li>Gestion des stocks de pièces de rechange et consommables</li>
+            </ul>
+          </div>
+        </div>
+
+        <h3>Compétences développées</h3>
+        <ul>
+          <li><strong>Déploiement système :</strong> Clonezilla Live Server, PXE, multicast, création d'images optimisées</li>
+          <li><strong>Automatisation :</strong> PDQ Deploy, scripting PowerShell pour automatisation de tâches</li>
+          <li><strong>Migration OS :</strong> Windows 10 → 11, audit de compatibilité, gestion de projet</li>
+          <li><strong>Support utilisateur :</strong> Helpdesk, ticketing, formation, communication technique</li>
+          <li><strong>Administration système :</strong> Active Directory, gestion des droits, GPO</li>
+          <li><strong>Gestion de parc :</strong> Inventaire, maintenance, documentation</li>
+        </ul>
+
+        <h3>Technologies utilisées</h3>
+        <div class="project-grid" style="margin-top: 20px;">
+          <article class="project-card">
+            <div class="project-img">💽</div>
+            <h4>Clonezilla Live Server</h4>
+            <p>Solution open-source pour le clonage et le déploiement massif d'images système par réseau (multicast)</p>
+          </article>
+
+          <article class="project-card">
+            <div class="project-img">🚀</div>
+            <h4>PDQ Deploy</h4>
+            <p>Outil professionnel de déploiement et d'installation de logiciels à distance sur le réseau d'entreprise</p>
+          </article>
+
+          <article class="project-card">
+            <div class="project-img">🪟</div>
+            <h4>Windows 10/11</h4>
+            <p>Systèmes d'exploitation Microsoft - Migration anticipée avant fin de support Windows 10 (oct. 2025)</p>
+          </article>
+
+          <article class="project-card">
+            <div class="project-img">🔧</div>
+            <h4>Active Directory</h4>
+            <p>Gestion centralisée des utilisateurs, groupes, permissions et politiques de sécurité (GPO)</p>
+          </article>
+        </div>
+
+        <h3>Bilan de l'alternance</h3>
+        <p>Cette alternance m'a permis d'acquérir une <strong>expérience concrète et professionnelle</strong> dans un environnement d'administration système et réseau en collectivité territoriale. J'ai développé mes compétences techniques en déploiement automatisé, migration système et support utilisateur, tout en apprenant à gérer des projets d'envergure avec des contraintes de temps et de sécurité importantes.</p>
+        
+        <p>La participation au projet de migration Windows 10 vers Windows 11 m'a particulièrement formé à la <strong>gestion de changement</strong> dans un environnement de production, où la continuité de service est primordiale.</p>
+      </div>
+    </section>
+
     <!-- Rapport de Stage -->
     <section id="stage" class="window" aria-labelledby="stage-title">
       <div class="window-header">
@@ -1043,26 +1380,184 @@
       <div class="window-content">
         <h2>Compétences Techniques</h2>
 
-        <h3>Langages & Scripting</h3>
-        <p>Python, JavaScript, PHP, HTML, CSS, PowerShell, Langage d'assemblage (en cours d'apprentissage)</p>
+        <!-- Visual skill bars -->
+        <h3>Systèmes & Réseaux</h3>
+        <div class="skills-grid">
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">Windows Server / AD</span>
+              <span class="skill-level">90%</span>
+            </div>
+            <div class="skill-bar-bg">
+              <div class="skill-bar-fill" style="--skill-width: 90%"></div>
+            </div>
+          </div>
+          
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">Linux (Debian)</span>
+              <span class="skill-level">85%</span>
+            </div>
+            <div class="skill-bar-bg">
+              <div class="skill-bar-fill" style="--skill-width: 85%"></div>
+            </div>
+          </div>
+          
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">Cisco (Routeurs/Switches)</span>
+              <span class="skill-level">80%</span>
+            </div>
+            <div class="skill-bar-bg">
+              <div class="skill-bar-fill" style="--skill-width: 80%"></div>
+            </div>
+          </div>
+          
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">VMware / Proxmox</span>
+              <span class="skill-level">85%</span>
+            </div>
+            <div class="skill-bar-bg">
+              <div class="skill-bar-fill" style="--skill-width: 85%"></div>
+            </div>
+          </div>
+          
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">VPN & Sécurité réseau</span>
+              <span class="skill-level">75%</span>
+            </div>
+            <div class="skill-bar-bg">
+              <div class="skill-bar-fill" style="--skill-width: 75%"></div>
+            </div>
+          </div>
+          
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">Déploiement (WDS/MDT)</span>
+              <span class="skill-level">88%</span>
+            </div>
+            <div class="skill-bar-bg">
+              <div class="skill-bar-fill" style="--skill-width: 88%"></div>
+            </div>
+          </div>
+        </div>
 
-        <h3>Virtualisation & Infrastructure</h3>
-        <p>Proxmox, VMware ESXi, configuration et gestion de machines virtuelles</p>
+        <h3 style="margin-top: 32px;">Développement & Scripting</h3>
+        <div class="skills-grid">
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">PowerShell</span>
+              <span class="skill-level">80%</span>
+            </div>
+            <div class="skill-bar-bg">
+              <div class="skill-bar-fill" style="--skill-width: 80%"></div>
+            </div>
+          </div>
+          
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">Python</span>
+              <span class="skill-level">70%</span>
+            </div>
+            <div class="skill-bar-bg">
+              <div class="skill-bar-fill" style="--skill-width: 70%"></div>
+            </div>
+          </div>
+          
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">HTML / CSS / PHP</span>
+              <span class="skill-level">75%</span>
+            </div>
+            <div class="skill-bar-bg">
+              <div class="skill-bar-fill" style="--skill-width: 75%"></div>
+            </div>
+          </div>
+          
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">MySQL</span>
+              <span class="skill-level">78%</span>
+            </div>
+            <div class="skill-bar-bg">
+              <div class="skill-bar-fill" style="--skill-width: 78%"></div>
+            </div>
+          </div>
+          
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">Git / Docker</span>
+              <span class="skill-level">65%</span>
+            </div>
+            <div class="skill-bar-bg">
+              <div class="skill-bar-fill" style="--skill-width: 65%"></div>
+            </div>
+          </div>
+          
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">JavaScript</span>
+              <span class="skill-level">68%</span>
+            </div>
+            <div class="skill-bar-bg">
+              <div class="skill-bar-fill" style="--skill-width: 68%"></div>
+            </div>
+          </div>
+        </div>
 
-        <h3>Réseau & Systèmes</h3>
-        <ul>
-          <li>Configuration routeurs et switches Cisco (VLAN, routage)</li>
-          <li>Active Directory : gestion utilisateurs, GPO, déploiement</li>
-          <li>Déploiement d'images système (WDS, MDT)</li>
-          <li>Configuration VPN et sécurité réseau</li>
-          <li>Administration Windows Server et Linux (Debian)</li>
-        </ul>
-
-        <h3>Bases de données</h3>
-        <p>MySQL, conception et gestion de bases de données relationnelles</p>
-
-        <h3>Outils & Technologies</h3>
-        <p>Git, Docker, Visual Studio, gestion de parc informatique (GLPI)</p>
+        <!-- Achievement badges section -->
+        <h3 style="margin-top: 32px;">Réalisations & Certifications</h3>
+        <div class="badges-grid">
+          <div class="badge-item">
+            <span class="badge-icon">🎓</span>
+            <div class="badge-title">BTS SIO SISR</div>
+            <div class="badge-subtitle">En cours</div>
+          </div>
+          
+          <div class="badge-item">
+            <span class="badge-icon">💼</span>
+            <div class="badge-title">Alternance</div>
+            <div class="badge-subtitle">Mairie Bagnolet</div>
+          </div>
+          
+          <div class="badge-item">
+            <span class="badge-icon">🏢</span>
+            <div class="badge-title">Stage</div>
+            <div class="badge-subtitle">8 semaines</div>
+          </div>
+          
+          <div class="badge-item">
+            <span class="badge-icon">📦</span>
+            <div class="badge-title">480 Postes</div>
+            <div class="badge-subtitle">Déployés</div>
+          </div>
+          
+          <div class="badge-item">
+            <span class="badge-icon">🌐</span>
+            <div class="badge-title">12 VLANs</div>
+            <div class="badge-subtitle">Configurés</div>
+          </div>
+          
+          <div class="badge-item">
+            <span class="badge-icon">🔒</span>
+            <div class="badge-title">Sécurité</div>
+            <div class="badge-subtitle">VPN & RLS</div>
+          </div>
+          
+          <div class="badge-item">
+            <span class="badge-icon">📚</span>
+            <div class="badge-title">Projet Biblio</div>
+            <div class="badge-subtitle">PHP/MySQL</div>
+          </div>
+          
+          <div class="badge-item">
+            <span class="badge-icon">🤖</span>
+            <div class="badge-title">IA NASLE</div>
+            <div class="badge-subtitle">Veille Tech</div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -1104,12 +1599,58 @@
   </main>
 
   <script>
+    const terminalLines = [
+      '&gt; Initialisation du système...',
+      '&gt; Connexion établie',
+      '&gt; Chargement du portfolio de <strong>Philippe Martins Louro</strong>...',
+      '<br>'
+    ];
+    
+    const terminalTextEl = document.getElementById('terminal-text');
+    let lineIndex = 0;
+    
+    function typeNextLine() {
+      if (lineIndex < terminalLines.length) {
+        const line = document.createElement('div');
+        line.className = 'typing-line';
+        line.innerHTML = terminalLines[lineIndex];
+        line.style.animationDelay = `${lineIndex * 0.5}s`;
+        terminalTextEl.appendChild(line);
+        lineIndex++;
+        setTimeout(typeNextLine, 500);
+      } else {
+        const cursor = document.createElement('span');
+        cursor.className = 'cursor';
+        cursor.setAttribute('aria-hidden', 'true');
+        terminalTextEl.appendChild(cursor);
+      }
+    }
+    
+    typeNextLine();
+
     // Terminal Enter handling
     const terminal = document.getElementById('terminal-screen');
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' && !terminal.classList.contains('hidden')) {
         terminal.classList.add('hidden');
+        setTimeout(animateSkills, 400);
       }
+    });
+
+    const themeToggle = document.getElementById('theme-toggle');
+    const html = document.documentElement;
+    
+    // Load saved theme
+    const savedTheme = localStorage.getItem('portfolio-theme') || 'dark';
+    html.setAttribute('data-theme', savedTheme);
+    themeToggle.textContent = savedTheme === 'dark' ? '🌙' : '☀️';
+    
+    themeToggle.addEventListener('click', () => {
+      const currentTheme = html.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', newTheme);
+      themeToggle.textContent = newTheme === 'dark' ? '🌙' : '☀️';
+      localStorage.setItem('portfolio-theme', newTheme);
     });
 
     // Hamburger menu
@@ -1137,6 +1678,9 @@
       
       if (target) {
         target.classList.add('active');
+        if (page === 'competences') {
+          setTimeout(animateSkills, 200);
+        }
       }
       
       // Close mobile menu
@@ -1166,11 +1710,41 @@
 
     // Close mobile menu when clicking outside
     document.addEventListener('click', (e) => {
-      if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
+      if (!navMenu.contains(e.target) && !hamburger.contains(e.target) && e.target !== themeToggle) {
         hamburger.classList.remove('active');
         navMenu.classList.remove('active');
       }
     });
+
+    let skillsAnimated = false;
+    function animateSkills() {
+      if (skillsAnimated) return;
+      const skillBars = document.querySelectorAll('.skill-bar-fill');
+      skillBars.forEach((bar, index) => {
+        setTimeout(() => {
+          bar.style.width = bar.style.getPropertyValue('--skill-width');
+        }, index * 100);
+      });
+      skillsAnimated = true;
+    }
+    
+    const observerOptions = {
+      threshold: 0.3,
+      rootMargin: '0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && entry.target.id === 'competences') {
+          animateSkills();
+        }
+      });
+    }, observerOptions);
+    
+    const competencesSection = document.getElementById('competences');
+    if (competencesSection) {
+      observer.observe(competencesSection);
+    }
   </script>
 </body>
 </html>
