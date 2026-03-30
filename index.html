@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Philippe Martins Louro - Portfolio Professionnel</title>
-  <meta name="description" content="Portfolio professionnel de Philippe Martins Louro. Découvrez mes projets, expériences et compétences en administration système et réseaux informatiques.">
+  <title>Philippe Martins Louro - Portfolio Professionnel | Admin Système & Réseaux</title>
+  <meta name="description" content="Portfolio professionnel de Philippe Martins Louro. BTS SIO SISR. Découvrez mes projets, expériences professionnelles, compétences en administration système, réseaux et infrastructure informatique.">
   
   <style>
     :root {
@@ -14,6 +14,7 @@
       --secondary: #ec4899;
       --accent: #06b6d4;
       --success: #10b981;
+      --warning: #f59e0b;
       
       --bg-light: #ffffff;
       --bg-gray: #f9fafb;
@@ -64,7 +65,7 @@
       justify-content: space-between;
       padding: 0 50px;
       z-index: 100;
-      border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+      border-bottom: 2px solid rgba(99, 102, 241, 0.1);
     }
 
     .logo {
@@ -77,6 +78,12 @@
       display: flex;
       align-items: center;
       gap: 10px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .logo:hover {
+      transform: scale(1.05);
     }
 
     .logo::before {
@@ -107,11 +114,26 @@
       font-size: 0.9rem;
       font-weight: 600;
       transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .nav-btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(236, 72, 153, 0.1));
+      transform: translateX(-100%);
+      transition: transform 0.3s ease;
     }
 
     .nav-btn:hover {
       color: var(--primary);
       background: rgba(99, 102, 241, 0.1);
+    }
+
+    .nav-btn:hover::before {
+      transform: translateX(0);
     }
 
     .nav-btn.active {
@@ -208,6 +230,18 @@
       z-index: 0;
     }
 
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -30%;
+      left: -10%;
+      width: 400px;
+      height: 400px;
+      background: linear-gradient(135deg, rgba(6, 182, 212, 0.1), rgba(236, 72, 153, 0.1));
+      border-radius: 50%;
+      z-index: 0;
+    }
+
     .hero-content {
       position: relative;
       z-index: 1;
@@ -299,11 +333,9 @@
       transition: var(--transition);
     }
 
-    .dot:hover {
-      background: var(--primary);
-      transform: scale(1.3);
-      box-shadow: var(--shadow);
-    }
+    .dot:nth-child(1):hover { background: #fbbf24; }
+    .dot:nth-child(2):hover { background: #f59e0b; }
+    .dot:nth-child(3):hover { background: #ef4444; }
 
     .window-content {
       padding: 50px;
@@ -382,10 +414,26 @@
       text-decoration: none;
       font-weight: 600;
       transition: var(--transition);
+      position: relative;
+    }
+
+    a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      transition: width 0.3s ease;
     }
 
     a:hover {
       color: var(--secondary);
+    }
+
+    a:hover::after {
+      width: 100%;
     }
 
     .grid {
@@ -460,12 +508,28 @@
       text-align: center;
       border: 1.5px solid rgba(99, 102, 241, 0.15);
       transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .stat-box::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(236, 72, 153, 0.1));
+      opacity: 0;
+      transition: opacity 0.3s ease;
     }
 
     .stat-box:hover {
       transform: translateY(-8px);
       box-shadow: var(--shadow-lg);
       border-color: var(--primary);
+    }
+
+    .stat-box:hover::before {
+      opacity: 1;
     }
 
     .stat-number {
@@ -476,12 +540,16 @@
       -webkit-text-fill-color: transparent;
       background-clip: text;
       margin-bottom: 8px;
+      position: relative;
+      z-index: 1;
     }
 
     .stat-label {
       font-size: 0.9rem;
       color: var(--text-medium);
       font-weight: 700;
+      position: relative;
+      z-index: 1;
     }
 
     .timeline {
@@ -605,6 +673,7 @@
       border-radius: 10px;
       overflow: hidden;
       border: 1px solid rgba(99, 102, 241, 0.1);
+      position: relative;
     }
 
     .skill-fill {
@@ -614,6 +683,21 @@
       width: 0;
       animation: fillSkill 1.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
       box-shadow: 0 0 15px rgba(99, 102, 241, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .skill-fill::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      animation: shimmer 2s infinite;
+    }
+
+    @keyframes shimmer {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
     }
 
     @keyframes fillSkill {
@@ -669,12 +753,28 @@
       text-align: center;
       transition: var(--transition);
       cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .achievement::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      opacity: 0;
+      transition: opacity 0.3s ease;
     }
 
     .achievement:hover {
       transform: translateY(-10px);
       box-shadow: var(--shadow-lg);
       border-color: var(--primary);
+    }
+
+    .achievement-inner {
+      position: relative;
+      z-index: 1;
     }
 
     .achievement-icon {
@@ -711,6 +811,18 @@
       transition: var(--transition);
       text-decoration: none;
       font-size: 0.95rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+      transform: translateX(-100%);
+      transition: transform 0.4s ease;
+      z-index: -1;
     }
 
     .btn:hover {
@@ -718,8 +830,20 @@
       box-shadow: var(--shadow-lg);
     }
 
+    .btn:hover::before {
+      transform: translateX(0);
+    }
+
     .btn-secondary {
       background: linear-gradient(135deg, var(--secondary), #d4358c);
+      color: white;
+    }
+
+    .btn-secondary::before {
+      background: linear-gradient(135deg, #d4358c, var(--secondary));
+    }
+
+    .btn-secondary:hover {
       color: white;
     }
 
@@ -805,6 +929,14 @@
       flex-direction: column;
       gap: 18px;
       box-shadow: var(--shadow);
+    }
+
+    .highlight-box {
+      background: linear-gradient(135deg, rgba(236, 72, 153, 0.08), rgba(6, 182, 212, 0.08));
+      border: 1.5px solid rgba(236, 72, 153, 0.15);
+      padding: 24px;
+      border-radius: 12px;
+      margin: 20px 0;
     }
 
     .footer {
@@ -970,6 +1102,18 @@
 
     .search-result:hover {
       background: var(--bg-gray);
+    }
+
+    .breadcrumb {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 30px;
+      font-size: 0.9rem;
+      color: var(--text-medium);
+    }
+
+    .breadcrumb a {
+      color: var(--primary);
     }
 
     @media (max-width: 768px) {
@@ -1139,6 +1283,9 @@
         <button class="nav-btn" data-page="projets">Projets</button>
         <button class="nav-btn" data-page="alternance">Expérience</button>
         <button class="nav-btn" data-page="competences">Compétences</button>
+        <button class="nav-btn" data-page="veille">Veille Tech</button>
+        <button class="nav-btn" data-page="stage">Stage</button>
+        <button class="nav-btn" data-page="synthese">Synthèse</button>
         <button class="nav-btn" data-page="contact">Contact</button>
       </div>
 
@@ -1153,7 +1300,7 @@
   <div id="search-modal" class="modal">
     <div class="modal-content">
       <button class="modal-close">&times;</button>
-      <h2>Rechercher</h2>
+      <h2>🔍 Rechercher</h2>
       <input type="text" id="search-input" placeholder="Entrez un mot-clé..." style="width: 100%; padding: 12px; margin: 16px 0; border: 1.5px solid rgba(99, 102, 241, 0.2); border-radius: 8px; font-size: 0.95rem;">
       <div id="search-results" class="search-results"></div>
     </div>
@@ -1167,10 +1314,10 @@
       <div class="hero-content">
         <h1>Bienvenue ! 👋</h1>
         <p class="hero-subtitle">Je suis Philippe Martins Louro</p>
-        <p>Étudiant passionné en <strong>BTS SIO option SISR</strong>, spécialisé en administration système et réseaux informatiques. Actuellement en alternance à la Mairie de Bagnolet, gérant l'infrastructure informatique d'une collectivité territoriale.</p>
+        <p>Étudiant passionné en <strong>BTS SIO option SISR</strong>, spécialisé en administration système et réseaux informatiques. Actuellement en alternance à la Mairie de Bagnolet, gérant l'infrastructure informatique d'une collectivité territoriale avec 300+ postes.</p>
         <div class="hero-cta">
-          <a href="#projets" class="btn">Voir mes projets</a>
-          <a href="#contact" class="btn btn-outline">Me contacter</a>
+          <a href="#projets" class="btn">📊 Voir mes projets</a>
+          <a href="#contact" class="btn btn-outline">📧 Me contacter</a>
         </div>
       </div>
     </section>
@@ -1178,7 +1325,7 @@
     <!-- ========== PRESENTATION ========== -->
     <section id="presentation" class="window active">
       <div class="window-header">
-        <div class="window-title">📋 À Propos</div>
+        <div class="window-title">📋 Accueil</div>
         <div class="window-controls">
           <span class="dot"></span>
           <span class="dot"></span>
@@ -1186,7 +1333,7 @@
         </div>
       </div>
       <div class="window-content">
-        <h2>Qui suis-je ?</h2>
+        <h2>À Propos de Moi</h2>
         <p>Je m'appelle <strong>Philippe Martins Louro</strong>, j'ai <strong>19 ans</strong> et je suis actuellement en deuxième année de <strong>BTS SIO</strong>, option <strong>SISR</strong> (Solutions d'Infrastructure, Systèmes et Réseaux) à l'école <strong>IPSSI</strong> de Marne-la-Vallée.</p>
 
         <p>Sérieux, curieux et motivé, je me forme aux métiers de l'<strong>administration système et réseau</strong>. J'ai acquis des compétences solides en environnements <strong>Windows et Linux</strong>, en <strong>virtualisation</strong>, en <strong>configuration de réseaux Cisco</strong> et en <strong>automatisation</strong>.</p>
@@ -1216,23 +1363,281 @@
         <h3>🎯 Mes Forces</h3>
         <div class="achievements-grid">
           <div class="achievement">
-            <div class="achievement-icon">⚡</div>
-            <div class="achievement-value">Autonome</div>
-            <div class="achievement-label">Je prends des initiatives</div>
+            <div class="achievement-inner">
+              <div class="achievement-icon">⚡</div>
+              <div class="achievement-value">Autonome</div>
+              <div class="achievement-label">Je prends des initiatives</div>
+            </div>
           </div>
           <div class="achievement">
-            <div class="achievement-icon">🎯</div>
-            <div class="achievement-value">Rigoureux</div>
-            <div class="achievement-label">Attention aux détails</div>
+            <div class="achievement-inner">
+              <div class="achievement-icon">🎯</div>
+              <div class="achievement-value">Rigoureux</div>
+              <div class="achievement-label">Attention aux détails</div>
+            </div>
           </div>
           <div class="achievement">
-            <div class="achievement-icon">💡</div>
-            <div class="achievement-value">Créatif</div>
-            <div class="achievement-label">Trouve des solutions</div>
+            <div class="achievement-inner">
+              <div class="achievement-icon">💡</div>
+              <div class="achievement-value">Créatif</div>
+              <div class="achievement-label">Trouve des solutions</div>
+            </div>
           </div>
           <div class="achievement">
-            <div class="achievement-icon">👥</div>
-            <div class="achievement-value">Teamplayer</div>
-            <div class="achievement-label">Travaille bien en équipe</div>
-          *
-
+            <div class="achievement-inner">
+              <div class="achievement-icon">👥</div>
+              <div class="achievement-value">Teamplayer</div>
+              <div class="achievement-label">Travaille bien en équipe</div>
+            </div>
+          </div>
+        </div>
+
+        <h3>📅 Mon Parcours</h3>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-title">🎓 BTS SIO en cours</div>
+            <div class="timeline-meta">
+              <span class="timeline-date">2023 - 2025</span>
+              <span class="timeline-tag">IPSSI Marne-la-Vallée</span>
+            </div>
+            <p>Formation complète en informatique avec spécialisation en infrastructure et réseaux. Apprentissage des meilleures pratiques du secteur à travers des projets concrets et une expérience professionnelle en alternance.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-title">💼 Alternance DSI en cours</div>
+            <div class="timeline-meta">
+              <span class="timeline-date">2024 - 2025</span>
+              <span class="timeline-tag">Mairie de Bagnolet</span>
+            </div>
+            <p>Technicien Informatique en alternance à la Direction des Systèmes d'Information. Gestion complète de l'infrastructure informatique, déploiement de postes, migration Windows, et support utilisateur pour 300+ collaborateurs.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-title">📚 Stage de formation</div>
+            <div class="timeline-meta">
+              <span class="timeline-date">2023</span>
+              <span class="timeline-tag">Mairie de Chelles</span>
+            </div>
+            <p>8 semaines de stage en première année dans une collectivité territoriale. Déploiement de postes, gestion du parc informatique, et configuration des accès utilisateurs dans un environnement professionnel.</p>
+          </div>
+        </div>
+
+        <h3>🌍 Origines & Intérêts</h3>
+        <p>Je suis originaire de Vaires-sur-Marne (77360) en Île-de-France. Au-delà de l'informatique, je suis passionné par le sport (pratique du handball en compétition), le cinéma de science-fiction et la découverte de nouvelles cultures. Ces expériences m'ont appris le travail en équipe, la persévérance et l'adaptabilité.</p>
+      </div>
+    </section>
+
+    <!-- ========== PROJETS ========== -->
+    <section id="projets" class="window">
+      <div class="window-header">
+        <div class="window-title">🚀 Projets</div>
+        <div class="window-controls">
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+        </div>
+      </div>
+      <div class="window-content">
+        <h2>Mes Projets Majeurs</h2>
+
+        <h3>1️⃣ Infrastructure pour 480 Postes (SISR)</h3>
+        <p>Un projet majeur de conception d'infrastructure informatique pour une grande entreprise. Déploiement de <strong>480 postes de travail</strong> sécurisés avec un réseau hautement segmenté.</p>
+        
+        <div class="grid">
+          <div class="card">
+            <div class="card-icon">🎯</div>
+            <div class="card-title">Le Défi</div>
+            <div class="card-desc">Équiper 480 visiteurs médicaux avec des postes sécurisés, budget limité (299€/poste), et réseau segmenté par services.</div>
+          </div>
+          <div class="card">
+            <div class="card-icon">⚙️</div>
+            <div class="card-title">Notre Solution</div>
+            <div class="card-desc">12 VLANs pour segmenter le réseau, gestion centralisée via Active Directory, déploiement automatisé et sécurité renforcée.</div>
+          </div>
+          <div class="card">
+            <div class="card-icon">✅</div>
+            <div class="card-title">Les Résultats</div>
+            <div class="card-desc">480 postes déployés avec succès, budget respecté, zéro incident depuis le déploiement en production.</div>
+          </div>
+        </div>
+
+        <p style="margin-top: 25px; color: var(--text-medium);"><strong>🔧 Technologies :</strong> Windows 11 Pro • Active Directory • Cisco Switches • VPN • WDS/MDT • Security</p>
+        <a href="Projet-Sisr.zip" download><button class="btn">📥 Télécharger le dossier</button></a>
+
+        <h3 style="margin-top: 45px;">2️⃣ Gestion de Bibliothèque (SLAM)</h3>
+        <p>Projet de développement web complet avec base de données pour gérer une bibliothèque en ligne avec tous les services modernes.</p>
+        
+        <div class="grid">
+          <div class="card">
+            <div class="card-icon">💻</div>
+            <div class="card-title">Frontend</div>
+            <div class="card-desc">Interface responsive et intuitive en HTML/CSS. Design moderne adapté à tous les appareils (ordinateurs, tablettes, mobiles).</div>
+          </div>
+          <div class="card">
+            <div class="card-icon">🔧</div>
+            <div class="card-title">Backend</div>
+            <div class="card-desc">Développement PHP avec sessions sécurisées et gestion complète de la logique applicative.</div>
+          </div>
+          <div class="card">
+            <div class="card-icon">🗄️</div>
+            <div class="card-title">Base de Données</div>
+            <div class="card-desc">Structure MySQL bien normalisée avec gestion d'emprunts, réservations et utilisateurs.</div>
+          </div>
+        </div>
+
+        <h4 style="margin-top: 25px;">Fonctionnalités principales :</h4>
+        <ul>
+          <li>✅ Système d'authentification sécurisé (inscription/connexion)</li>
+          <li>✅ Recherche avancée de livres par titre, auteur, genre</li>
+          <li>✅ Système d'emprunt/retour automatisé</li>
+          <li>✅ Gestion des réservations avec file d'attente</li>
+          <li>✅ Panneau d'administration complet</li>
+          <li>✅ Historique complet des emprunts</li>
+        </ul>
+
+        <a href="Projet-Slam.zip" download style="margin-top: 20px;"><button class="btn btn-secondary">📥 Télécharger le code</button></a>
+
+        <h3 style="margin-top: 45px;">3️⃣ Veille Technologique - NASLE</h3>
+        <p>Analyse approfondie d'un logiciel révolutionnaire basé sur l'<strong>Intelligence Artificielle</strong> : un système de vidéoprotection intelligente pour les villes et entreprises.</p>
+        
+        <div class="highlight-box">
+          <div class="card-icon">🤖</div>
+          <h4 style="margin-top: 0; margin-bottom: 12px;">Qu'est-ce que NASLE ?</h4>
+          <p style="margin: 0;">Logiciel de vidéoprotection nouvelle génération utilisant l'IA pour analyser les flux vidéo en temps réel et détecter automatiquement les situations dangereuses : agression, incendie, armes, regroupements suspects.</p>
+        </div>
+
+        <h4 style="margin-top: 25px;">Capacités principales :</h4>
+        <ul>
+          <li>🚨 <strong>Détection de violence</strong> : agression, bagarres, personnes à terre</li>
+          <li>🔥 <strong>Détection d'incendie</strong> : départs de feu et fumée</li>
+          <li>👥 <strong>Comptage de personnes</strong> : regroupements suspects ou dépassement de seuils</li>
+          <li>🔫 <strong>Détection d'armes</strong> : pistolets, couteaux et autres objets dangereux</li>
+          <li>📊 <strong>Comptage de trafic</strong> : analyse des mouvements piétons et véhiculaires</li>
+        </ul>
+
+        <a href="veille technologique.pdf" download style="margin-top: 20px;"><button class="btn">📄 Lire l'analyse complète</button></a>
+      </div>
+    </section>
+
+    <!-- ========== ALTERNANCE ========== -->
+    <section id="alternance" class="window">
+      <div class="window-header">
+        <div class="window-title">💼 Alternance</div>
+        <div class="window-controls">
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+        </div>
+      </div>
+      <div class="window-content">
+        <h2>Alternance - Mairie de Bagnolet DSI</h2>
+        <p>Je travaille actuellement comme <strong>Technicien Informatique en Alternance</strong> à la Direction des Systèmes d'Information (DSI) de la Mairie de Bagnolet, une collectivité territoriale importante avec 300+ utilisateurs.</p>
+
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-title">🔄 Migration Windows 10 → 11</div>
+            <div class="timeline-meta">
+              <span class="timeline-date">2024 - 2025</span>
+              <span class="timeline-tag">PDQ Deploy</span>
+              <span class="timeline-tag">Enterprise</span>
+            </div>
+            <p><strong>Mission :</strong> Migrer 300+ ordinateurs avant la fin du support Windows 10 (octobre 2025).</p>
+            <ul>
+              <li>🔍 Audit complet : compatibilité matérielle, TPM 2.0, Secure Boot</li>
+              <li>⚙️ Automatisation du déploiement avec PDQ Deploy</li>
+              <li>📦 Création de packages système optimisés</li>
+              <li>🧪 Tests pilotes sur 10 postes</li>
+              <li>📞 Support utilisateur pendant migration</li>
+              <li>📚 Documentation complète</li>
+            </ul>
+            <p style="margin-top: 15px; color: var(--success); font-weight: 700;">✅ Résultat : 300 postes migrés • 0 incident • 100% réussite</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-title">💾 Déploiement Clonezilla</div>
+            <div class="timeline-meta">
+              <span class="timeline-date">2024</span>
+              <span class="timeline-tag">Clonezilla</span>
+              <span class="timeline-tag">PXE</span>
+            </div>
+            <p><strong>Défi :</strong> Accélérer le déploiement (8h → 2h pour 20 postes).</p>
+            <ul>
+              <li>🔧 Configuration infrastructure DRBL/PXE</li>
+              <li>🖼️ Images système Windows optimisées</li>
+              <li>⚡ Déploiement multicast : 20 postes en parallèle</li>
+              <li>✅ 300+ postes déployés avec succès</li>
+            </ul>
+            <p style="margin-top: 15px; color: var(--accent); font-weight: 700;">📈 Gain : 75% réduction temps déploiement</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-title">🆘 Support Utilisateurs & Helpdesk</div>
+            <div class="timeline-meta">
+              <span class="timeline-date">Continu</span>
+              <span class="timeline-tag">Helpdesk</span>
+            </div>
+            <p>Gestion quotidienne des demandes pour 300+ agents municipaux.</p>
+            <ul>
+              <li>🔌 Problèmes réseau et connectivité</li>
+              <li>🖨️ Configuration d'imprimantes</li>
+              <li>📧 Accès aux logiciels métiers</li>
+              <li>🔐 Gestion comptes et droits d'accès</li>
+              <li>📚 Formation des nouveaux agents</li>
+            </ul>
+            <p style="margin-top: 15px; color: var(--text-medium);">⭐ 95%+ satisfaction • ⏱️ 2h temps moyen de résolution</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== COMPETENCES ========== -->
+    <section id="competences" class="window">
+      <div class="window-header">
+        <div class="window-title">🎓 Compétences</div>
+        <div class="window-controls">
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+        </div>
+      </div>
+      <div class="window-content">
+        <h2>Compétences Techniques</h2>
+
+        <h3>💻 Systèmes & Réseaux</h3>
+        
+        <div class="skill-row">
+          <div class="skill-header">
+            <div class="skill-name">Windows Server & Active Directory</div>
+            <div class="skill-percent">90%</div>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-fill" style="--skill-width: 90%"></div>
+          </div>
+          <div class="skill-description">Gestion complète des utilisateurs, GPO, DNS, DHCP, certificats et sécurité</div>
+        </div>
+
+        <div class="skill-row">
+          <div class="skill-header">
+            <div class="skill-name">Linux (Debian, Ubuntu)</div>
+            <div class="skill-percent">85%</div>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-fill" style="--skill-width: 85%"></div>
+          </div>
+          <div class="skill-description">Bash, gestion packages, services, SSH et commandes avancées</div>
+        </div>
+
+        <div class="skill-row">
+          <div class="skill-header">
+            <div class="skill-name">Cisco (Routeurs & Switches)</div>
+            <div class="skill-percent">80%</div>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-fill" style="--skill-width: 80%"></div>
+          </div>
+          <div class="skill-description">IOS, VLANs, Spanning-tree, ACL, routage statique et dynamique</div>
+        </div>
+
+        <div class="skill-row">
+          <div class="skill-header">
+            <div class="skill-name">Virtualisation (
