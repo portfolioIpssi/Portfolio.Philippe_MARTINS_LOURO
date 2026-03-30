@@ -3,8 +3,9 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Philippe Martins Louro - Portfolio Professionnel</title>
-  <meta name="description" content="Portfolio professionnel complet avec tous les projets, expériences et compétences.">
+  <title>Philippe Martins Louro - Portfolio Professionnel BTS SIO</title>
+  <meta name="description" content="Portfolio complet de Philippe Martins Louro - Étudiant BTS SIO SISR. Découvrez mes projets scolaires et personnels, mon expérience en alternance, mes compétences en administration système et réseaux informatiques.">
+  <meta name="keywords" content="BTS SIO, SISR, Portfolio, Administration Système, Réseaux, Infrastructure IT, Philippe Martins">
   
   <style>
     :root {
@@ -14,6 +15,8 @@
       --secondary: #ec4899;
       --accent: #06b6d4;
       --success: #10b981;
+      --warning: #f59e0b;
+      --danger: #ef4444;
       
       --bg-light: #ffffff;
       --bg-gray: #f9fafb;
@@ -48,36 +51,43 @@
       color: var(--text-dark);
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
     }
 
+    /* ===== NAVBAR ===== */
     .navbar {
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
       height: 80px;
-      background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(249,250,251,0.95));
+      background: linear-gradient(135deg, rgba(255,255,255,0.98), rgba(249,250,251,0.98));
       backdrop-filter: blur(10px);
       box-shadow: var(--shadow-sm);
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 0 50px;
-      z-index: 100;
+      z-index: 1000;
       border-bottom: 2px solid rgba(99, 102, 241, 0.1);
     }
 
     .logo {
-      font-size: 1.5rem;
+      font-size: 1.6rem;
       font-weight: 800;
       background: linear-gradient(135deg, var(--primary), var(--secondary));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
+      cursor: pointer;
+      transition: var(--transition);
       display: flex;
       align-items: center;
-      gap: 10px;
-      cursor: pointer;
+      gap: 8px;
+    }
+
+    .logo:hover {
+      transform: scale(1.05);
     }
 
     .logo::before {
@@ -86,16 +96,11 @@
       -webkit-text-fill-color: unset;
     }
 
-    .nav-container {
-      display: flex;
-      gap: 20px;
-      align-items: center;
-    }
-
     .nav-menu {
       display: flex;
       gap: 8px;
       flex-wrap: wrap;
+      align-items: center;
     }
 
     .nav-btn {
@@ -108,20 +113,18 @@
       font-size: 0.85rem;
       font-weight: 600;
       transition: var(--transition);
+      text-decoration: none;
+      display: inline-block;
     }
 
-    .nav-btn:hover {
-      color: var(--primary);
-      background: rgba(99, 102, 241, 0.1);
-    }
-
+    .nav-btn:hover,
     .nav-btn.active {
       color: white;
       background: linear-gradient(135deg, var(--primary), var(--primary-dark));
       box-shadow: var(--shadow);
     }
 
-    .theme-toggle, .search-btn {
+    .theme-toggle {
       background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(236, 72, 153, 0.1));
       border: 1px solid rgba(99, 102, 241, 0.2);
       width: 44px;
@@ -135,10 +138,9 @@
       justify-content: center;
     }
 
-    .theme-toggle:hover, .search-btn:hover {
+    .theme-toggle:hover {
       background: var(--primary);
       color: white;
-      border-color: var(--primary);
       transform: scale(1.1);
       box-shadow: var(--shadow);
     }
@@ -148,6 +150,7 @@
       flex-direction: column;
       gap: 6px;
       cursor: pointer;
+      z-index: 1001;
     }
 
     .hamburger span {
@@ -177,7 +180,7 @@
       height: 4px;
       background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
       width: 0%;
-      z-index: 99;
+      z-index: 999;
       box-shadow: var(--shadow);
     }
 
@@ -187,18 +190,100 @@
       padding: 0 30px;
     }
 
-    .window {
-      background: white;
+    /* ===== HERO SECTION ===== */
+    .hero {
+      background: linear-gradient(135deg, white, var(--bg-gray));
       border-radius: var(--radius);
-      overflow: hidden;
-      display: none;
-      animation: slideUp 0.5s ease;
+      padding: 80px 50px;
       margin-bottom: 50px;
       box-shadow: var(--shadow);
-      border: 1px solid rgba(99, 102, 241, 0.1);
+      position: relative;
+      overflow: hidden;
+      animation: slideDown 0.6s ease;
     }
 
-    .window.active {
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 500px;
+      height: 500px;
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(236, 72, 153, 0.1));
+      border-radius: 50%;
+      z-index: 0;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -30%;
+      left: -10%;
+      width: 400px;
+      height: 400px;
+      background: linear-gradient(135deg, rgba(6, 182, 212, 0.1), rgba(16, 185, 129, 0.1));
+      border-radius: 50%;
+      z-index: 0;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      margin-bottom: 15px;
+      line-height: 1.1;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: 900;
+      letter-spacing: -1px;
+    }
+
+    .hero-subtitle {
+      font-size: 1.4rem;
+      color: var(--secondary);
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .hero-description {
+      font-size: 1.05rem;
+      color: var(--text-medium);
+      margin-bottom: 25px;
+      line-height: 1.8;
+      max-width: 700px;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 15px;
+      margin-top: 35px;
+      flex-wrap: wrap;
+    }
+
+    /* ===== WINDOW/SECTIONS ===== */
+    .page {
+      display: none;
+      animation: slideUp 0.5s ease;
+    }
+
+    .page.active {
       display: block;
     }
 
@@ -213,6 +298,15 @@
       }
     }
 
+    .window {
+      background: white;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(99, 102, 241, 0.1);
+      margin-bottom: 50px;
+    }
+
     .window-header {
       padding: 40px;
       background: linear-gradient(135deg, rgba(99, 102, 241, 0.08), rgba(236, 72, 153, 0.08));
@@ -223,7 +317,7 @@
     }
 
     .window-title {
-      font-size: 1.8rem;
+      font-size: 2rem;
       font-weight: 800;
       background: linear-gradient(135deg, var(--primary), var(--secondary));
       -webkit-background-clip: text;
@@ -254,33 +348,25 @@
       padding: 50px;
     }
 
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 20px;
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      font-weight: 800;
-    }
-
+    /* ===== TYPOGRAPHY ===== */
     h2 {
       font-size: 2rem;
       color: var(--primary);
       margin-bottom: 20px;
       padding-bottom: 15px;
       border-bottom: 3px solid var(--accent);
+      font-weight: 800;
     }
 
     h3 {
-      font-size: 1.4rem;
+      font-size: 1.5rem;
       color: var(--secondary);
       margin: 35px 0 15px;
       font-weight: 700;
     }
 
     h4 {
-      font-size: 1.1rem;
+      font-size: 1.15rem;
       color: var(--primary);
       margin: 25px 0 12px;
       font-weight: 700;
@@ -309,6 +395,44 @@
       line-height: 1.8;
     }
 
+    code {
+      background: rgba(99, 102, 241, 0.1);
+      padding: 4px 12px;
+      border-radius: 6px;
+      color: var(--secondary);
+      font-family: 'Monaco', monospace;
+      font-size: 0.85em;
+      font-weight: 600;
+    }
+
+    a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+      transition: var(--transition);
+      position: relative;
+    }
+
+    a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      transition: width 0.3s ease;
+    }
+
+    a:hover {
+      color: var(--secondary);
+    }
+
+    a:hover::after {
+      width: 100%;
+    }
+
+    /* ===== GRIDS & CARDS ===== */
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -322,6 +446,20 @@
       border-radius: 12px;
       transition: var(--transition);
       border: 1px solid rgba(99, 102, 241, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      transform: translateX(-100%);
+      transition: transform 0.4s ease;
     }
 
     .card:hover {
@@ -330,14 +468,18 @@
       border-color: var(--primary);
     }
 
+    .card:hover::before {
+      transform: translateX(0);
+    }
+
     .card-icon {
-      font-size: 2.8rem;
+      font-size: 3rem;
       margin-bottom: 15px;
       display: inline-block;
     }
 
     .card-title {
-      font-size: 1.25rem;
+      font-size: 1.3rem;
       color: var(--primary);
       margin-bottom: 12px;
       font-weight: 700;
@@ -349,20 +491,41 @@
       line-height: 1.7;
     }
 
+    .card-meta {
+      margin-top: 15px;
+      padding-top: 15px;
+      border-top: 1px solid rgba(99, 102, 241, 0.1);
+      font-size: 0.8rem;
+      color: var(--text-light);
+    }
+
+    /* ===== STATS ===== */
     .stats-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
       gap: 24px;
       margin: 35px 0;
     }
 
     .stat-box {
       background: linear-gradient(135deg, rgba(99, 102, 241, 0.08), rgba(236, 72, 153, 0.08));
-      padding: 30px 20px;
+      padding: 32px 24px;
       border-radius: 12px;
       text-align: center;
       border: 1.5px solid rgba(99, 102, 241, 0.15);
       transition: var(--transition);
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stat-box::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(236, 72, 153, 0.1));
+      opacity: 0;
+      transition: opacity 0.3s ease;
     }
 
     .stat-box:hover {
@@ -371,26 +534,35 @@
       border-color: var(--primary);
     }
 
+    .stat-box:hover::before {
+      opacity: 1;
+    }
+
     .stat-number {
-      font-size: 2.5rem;
+      font-size: 2.8rem;
       font-weight: 900;
       background: linear-gradient(135deg, var(--primary), var(--secondary));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
       margin-bottom: 8px;
+      position: relative;
+      z-index: 1;
     }
 
     .stat-label {
       font-size: 0.9rem;
       color: var(--text-medium);
       font-weight: 700;
+      position: relative;
+      z-index: 1;
     }
 
+    /* ===== TIMELINE ===== */
     .timeline {
       margin-top: 35px;
       position: relative;
-      padding-left: 0;
+      padding-left: 40px;
     }
 
     .timeline::before {
@@ -401,18 +573,30 @@
       bottom: 0;
       width: 3px;
       background: linear-gradient(180deg, var(--primary), var(--secondary), transparent);
+      border-radius: 2px;
     }
 
     .timeline-item {
       margin-bottom: 40px;
-      padding-left: 40px;
       position: relative;
+      animation: fadeInLeft 0.6s ease forwards;
+    }
+
+    @keyframes fadeInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
     }
 
     .timeline-item::before {
       content: '';
       position: absolute;
-      left: -9px;
+      left: -49px;
       top: 2px;
       width: 18px;
       height: 18px;
@@ -420,10 +604,17 @@
       background: white;
       border: 3px solid var(--primary);
       box-shadow: 0 0 0 5px rgba(99, 102, 241, 0.1);
+      transition: var(--transition);
+    }
+
+    .timeline-item:hover::before {
+      background: var(--primary);
+      transform: scale(1.3);
+      box-shadow: var(--shadow-lg);
     }
 
     .timeline-title {
-      font-size: 1.15rem;
+      font-size: 1.2rem;
       color: var(--secondary);
       font-weight: 800;
       margin-bottom: 8px;
@@ -434,26 +625,26 @@
       gap: 12px;
       margin-bottom: 12px;
       flex-wrap: wrap;
+      font-size: 0.8rem;
     }
 
-    .timeline-date {
+    .timeline-date,
+    .timeline-tag {
       background: rgba(99, 102, 241, 0.1);
       color: var(--primary);
-      padding: 5px 12px;
+      padding: 6px 14px;
       border-radius: 20px;
-      font-size: 0.8rem;
       font-weight: 700;
+      border: 1px solid rgba(99, 102, 241, 0.2);
     }
 
     .timeline-tag {
       background: rgba(236, 72, 153, 0.1);
       color: var(--secondary);
-      padding: 5px 12px;
-      border-radius: 20px;
-      font-size: 0.8rem;
-      font-weight: 700;
+      border-color: rgba(236, 72, 153, 0.2);
     }
 
+    /* ===== SKILLS ===== */
     .skill-row {
       margin-bottom: 28px;
     }
@@ -461,25 +652,32 @@
     .skill-header {
       display: flex;
       justify-content: space-between;
-      margin-bottom: 10px;
+      align-items: center;
+      margin-bottom: 12px;
     }
 
     .skill-name {
       font-weight: 700;
       color: var(--primary);
+      font-size: 0.95rem;
     }
 
     .skill-percent {
       font-weight: 800;
       color: var(--accent);
+      font-size: 0.9rem;
+      background: rgba(6, 182, 212, 0.1);
+      padding: 4px 12px;
+      border-radius: 20px;
     }
 
     .skill-bar {
       height: 10px;
-      background: var(--bg-gray);
+      background: linear-gradient(135deg, var(--bg-gray), var(--bg-dark));
       border-radius: 10px;
       overflow: hidden;
       border: 1px solid rgba(99, 102, 241, 0.1);
+      position: relative;
     }
 
     .skill-fill {
@@ -487,13 +685,154 @@
       background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
       border-radius: 10px;
       width: 0;
-      animation: fillSkill 1.8s ease forwards;
+      animation: fillSkill 1.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+      box-shadow: 0 0 15px rgba(99, 102, 241, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .skill-fill::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      animation: shimmer 2s infinite;
+    }
+
+    @keyframes shimmer {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
     }
 
     @keyframes fillSkill {
       to { width: var(--skill-width); }
     }
 
+    .skill-categories {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 14px;
+      margin: 28px 0;
+    }
+
+    .skill-tag {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(236, 72, 153, 0.1));
+      color: var(--primary);
+      padding: 12px 16px;
+      border-radius: 8px;
+      text-align: center;
+      font-size: 0.85rem;
+      border: 1px solid rgba(99, 102, 241, 0.2);
+      font-weight: 700;
+      transition: var(--transition);
+      cursor: pointer;
+    }
+
+    .skill-tag:hover {
+      transform: translateY(-4px);
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(236, 72, 153, 0.2));
+      box-shadow: var(--shadow);
+      border-color: var(--primary);
+    }
+
+    /* ===== ACHIEVEMENTS ===== */
+    .achievement-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 18px;
+      margin: 35px 0;
+    }
+
+    .achievement {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.08), rgba(236, 72, 153, 0.08));
+      border: 1.5px solid rgba(99, 102, 241, 0.15);
+      padding: 28px 20px;
+      border-radius: 12px;
+      text-align: center;
+      transition: var(--transition);
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .achievement::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .achievement:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--primary);
+    }
+
+    .achievement-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .achievement-icon {
+      font-size: 2.5rem;
+      margin-bottom: 12px;
+      display: inline-block;
+    }
+
+    .achievement-value {
+      font-size: 2rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 6px;
+    }
+
+    .achievement-label {
+      font-size: 0.85rem;
+      color: var(--text-medium);
+      font-weight: 700;
+    }
+
+    /* ===== PROJECT TABS ===== */
+    .project-tabs {
+      display: flex;
+      gap: 10px;
+      margin: 25px 0;
+      flex-wrap: wrap;
+    }
+
+    .project-tab {
+      padding: 12px 24px;
+      background: rgba(99, 102, 241, 0.1);
+      border: 2px solid transparent;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 700;
+      color: var(--primary);
+      transition: var(--transition);
+    }
+
+    .project-tab:hover,
+    .project-tab.active {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+      border-color: var(--primary);
+    }
+
+    .project-content {
+      display: none;
+    }
+
+    .project-content.active {
+      display: block;
+      animation: slideUp 0.3s ease;
+    }
+
+    /* ===== BUTTONS ===== */
     .btn {
       display: inline-block;
       padding: 14px 32px;
@@ -506,6 +845,18 @@
       transition: var(--transition);
       text-decoration: none;
       font-size: 0.95rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+      transform: translateX(-100%);
+      transition: transform 0.4s ease;
+      z-index: -1;
     }
 
     .btn:hover {
@@ -513,8 +864,16 @@
       box-shadow: var(--shadow-lg);
     }
 
+    .btn:hover::before {
+      transform: translateX(0);
+    }
+
     .btn-secondary {
       background: linear-gradient(135deg, var(--secondary), #d4358c);
+    }
+
+    .btn-secondary::before {
+      background: linear-gradient(135deg, #d4358c, var(--secondary));
     }
 
     .btn-outline {
@@ -528,10 +887,24 @@
       color: white;
     }
 
+    .btn-small {
+      padding: 10px 20px;
+      font-size: 0.85rem;
+    }
+
+    .btn-download {
+      background: linear-gradient(135deg, var(--success), #059669);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* ===== CONTACT FORM ===== */
     .contact-form {
       background: linear-gradient(135deg, rgba(99, 102, 241, 0.05), rgba(236, 72, 153, 0.05));
       padding: 40px;
       border-radius: 12px;
+      border: 1px solid rgba(99, 102, 241, 0.15);
       margin-top: 30px;
     }
 
@@ -544,9 +917,11 @@
       margin-bottom: 10px;
       color: var(--primary);
       font-weight: 700;
+      font-size: 0.95rem;
     }
 
-    .form-input, .form-textarea {
+    .form-input,
+    .form-textarea {
       width: 100%;
       padding: 14px 18px;
       border: 1.5px solid rgba(99, 102, 241, 0.2);
@@ -557,12 +932,72 @@
       font-family: inherit;
     }
 
-    .form-input:focus, .form-textarea:focus {
+    .form-input::placeholder,
+    .form-textarea::placeholder {
+      color: var(--text-light);
+    }
+
+    .form-input:focus,
+    .form-textarea:focus {
       outline: none;
       border-color: var(--primary);
       box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+      transform: translateY(-2px);
     }
 
+    /* ===== DOWNLOAD SECTION ===== */
+    .download-section {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.08), rgba(236, 72, 153, 0.08));
+      border: 1.5px solid rgba(99, 102, 241, 0.15);
+      padding: 30px;
+      border-radius: 12px;
+      margin: 30px 0;
+    }
+
+    .download-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .download-item {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      border: 1px solid rgba(99, 102, 241, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: var(--transition);
+    }
+
+    .download-item:hover {
+      border-color: var(--primary);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .download-info {
+      flex: 1;
+    }
+
+    .download-name {
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 4px;
+    }
+
+    .download-size {
+      font-size: 0.8rem;
+      color: var(--text-light);
+    }
+
+    .download-icon {
+      font-size: 2rem;
+      margin-right: 15px;
+    }
+
+    /* ===== FOOTER ===== */
     .footer {
       background: linear-gradient(135deg, var(--primary), var(--secondary));
       color: white;
@@ -575,7 +1010,7 @@
       max-width: 1200px;
       margin: 0 auto;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 50px;
       margin-bottom: 50px;
       text-align: left;
@@ -587,6 +1022,15 @@
       text-transform: uppercase;
       letter-spacing: 1px;
       font-weight: 800;
+      font-size: 1rem;
+    }
+
+    .footer-section ul {
+      list-style: none;
+    }
+
+    .footer-section li {
+      margin-bottom: 12px;
     }
 
     .footer-section a {
@@ -594,6 +1038,10 @@
       text-decoration: none;
       font-weight: 600;
       transition: var(--transition);
+    }
+
+    .footer-section a::after {
+      display: none;
     }
 
     .footer-section a:hover {
@@ -606,6 +1054,7 @@
       font-size: 0.9rem;
     }
 
+    /* ===== BACK TO TOP ===== */
     .back-to-top {
       position: fixed;
       bottom: 40px;
@@ -617,13 +1066,13 @@
       border-radius: 50%;
       cursor: pointer;
       color: white;
-      transition: var(--transition);
       box-shadow: var(--shadow-lg);
       display: none;
       align-items: center;
       justify-content: center;
-      z-index: 50;
+      z-index: 500;
       font-size: 1.5rem;
+      transition: var(--transition);
     }
 
     .back-to-top.show {
@@ -632,8 +1081,10 @@
 
     .back-to-top:hover {
       transform: translateY(-5px);
+      box-shadow: 0 25px 60px rgba(99, 102, 241, 0.3);
     }
 
+    /* ===== RESPONSIVE ===== */
     @media (max-width: 768px) {
       .navbar {
         padding: 0 20px;
@@ -654,6 +1105,8 @@
         max-height: 0;
         overflow: hidden;
         transition: max-height 0.3s ease;
+        box-shadow: var(--shadow-sm);
+        border-bottom: 1px solid rgba(99, 102, 241, 0.1);
       }
 
       .nav-menu.active {
@@ -665,8 +1118,26 @@
         padding: 0 20px;
       }
 
+      .hero {
+        padding: 50px 30px;
+      }
+
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+
+      .window-header {
+        padding: 25px;
+        flex-direction: column;
+        gap: 15px;
+      }
+
       .window-content {
         padding: 30px 20px;
+      }
+
+      .window-title {
+        font-size: 1.4rem;
       }
 
       .grid {
@@ -677,25 +1148,11 @@
         grid-template-columns: repeat(2, 1fr);
       }
 
-      .footer-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .navbar {
-        height: 70px;
+      .achievement-grid {
+        grid-template-columns: repeat(2, 1fr);
       }
 
-      .logo {
-        font-size: 1.2rem;
-      }
-
-      .window-title {
-        font-size: 1.3rem;
-      }
-
-      .stats-grid {
+      .download-grid {
         grid-template-columns: 1fr;
       }
 
@@ -703,578 +1160,1052 @@
         width: 100%;
         text-align: center;
       }
+
+      .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .navbar {
+        height: 70px;
+        padding: 0 15px;
+      }
+
+      .logo {
+        font-size: 1.2rem;
+      }
+
+      .logo::before {
+        font-size: 1.5rem;
+      }
+
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+
+      .hero-subtitle {
+        font-size: 1.1rem;
+      }
+
+      .window-title {
+        font-size: 1.2rem;
+      }
+
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .achievement-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .skill-categories {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .project-tabs {
+        flex-direction: column;
+      }
+
+      .project-tab {
+        width: 100%;
+      }
+
+      .window-controls {
+        display: none;
+      }
     }
   </style>
 </head>
 
 <body>
-  <!-- NAVBAR -->
+  <!-- ===== NAVBAR ===== -->
   <nav class="navbar">
-    <div class="logo">Philippe Martins</div>
+    <a href="#" onclick="goHome()" class="logo">Philippe Martins</a>
     
     <div class="nav-container">
-      <div class="hamburger" id="hamburger">
+      <div class="hamburger" id="hamburger" onclick="toggleMenu()">
         <span></span>
         <span></span>
         <span></span>
       </div>
       
       <div class="nav-menu" id="nav-menu">
-        <button class="nav-btn active" data-page="presentation">📋 Accueil</button>
-        <button class="nav-btn" data-page="projets">🚀 Projets</button>
-        <button class="nav-btn" data-page="alternance">💼 Alternance</button>
-        <button class="nav-btn" data-page="stage">📚 Stage</button>
-        <button class="nav-btn" data-page="competences">🎓 Compétences</button>
-        <button class="nav-btn" data-page="veille">🔍 Veille Tech</button>
-        <button class="nav-btn" data-page="synthese">📊 Synthèse</button>
-        <button class="nav-btn" data-page="contact">✉️ Contact</button>
+        <button class="nav-btn active" onclick="showPage('home'); closeMenu()">📋 Accueil</button>
+        <button class="nav-btn" onclick="showPage('projets'); closeMenu()">🚀 Projets</button>
+        <button class="nav-btn" onclick="showPage('experience'); closeMenu()">💼 Expérience</button>
+        <button class="nav-btn" onclick="showPage('competences'); closeMenu()">🎓 Compétences</button>
+        <button class="nav-btn" onclick="showPage('veille'); closeMenu()">🔍 Veille Tech</button>
+        <button class="nav-btn" onclick="showPage('synthese'); closeMenu()">📊 Synthèse</button>
+        <button class="nav-btn" onclick="showPage('contact'); closeMenu()">✉️ Contact</button>
       </div>
 
-      <button class="theme-toggle" id="theme-toggle">🌙</button>
-      <button class="search-btn" id="search-btn">🔍</button>
+      <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
     </div>
   </nav>
 
   <div id="progress-bar" class="progress-bar"></div>
 
-  <!-- MAIN -->
+  <!-- ===== MAIN CONTAINER ===== -->
   <main class="main-container">
 
-    <!-- ACCUEIL -->
-    <section id="presentation" class="window active">
-      <div class="window-header">
-        <div class="window-title">📋 Accueil</div>
-        <div class="window-controls">
-          <span class="dot"></span>
-          <span class="dot"></span>
-          <span class="dot"></span>
-        </div>
-      </div>
-      <div class="window-content">
-        <h2>Bienvenue sur mon portfolio ! 👋</h2>
-        <p>Je m'appelle <strong>Philippe Martins Louro</strong>, j'ai 19 ans et je suis en deuxième année de <strong>BTS SIO option SISR</strong> à l'IPSSI.</p>
-        <p>Actuellement en alternance à la <strong>Mairie de Bagnolet</strong>, je gère l'infrastructure informatique d'une collectivité territoriale avec 300+ postes de travail.</p>
-
-        <h3>📊 Statistiques</h3>
-        <div class="stats-grid">
-          <div class="stat-box">
-            <div class="stat-number">300+</div>
-            <div class="stat-label">Postes gérés</div>
-          </div>
-          <div class="stat-box">
-            <div class="stat-number">5</div>
-            <div class="stat-label">Projets</div>
-          </div>
-          <div class="stat-box">
-            <div class="stat-number">15+</div>
-            <div class="stat-label">Technologies</div>
-          </div>
-          <div class="stat-box">
-            <div class="stat-number">100%</div>
-            <div class="stat-label">Engagement</div>
+    <!-- ===== PAGE: ACCUEIL ===== -->
+    <div id="home" class="page active">
+      <section class="hero">
+        <div class="hero-content">
+          <h1>Bienvenue ! 👋</h1>
+          <p class="hero-subtitle">Je suis Philippe Martins Louro</p>
+          <p class="hero-description">Étudiant passionné en <strong>BTS SIO option SISR</strong>, spécialisé en administration système et réseaux informatiques. Actuellement en alternance à la Mairie de Bagnolet, gérant l'infrastructure informatique de <strong>300+ postes</strong> et menant des projets d'infrastructure complexes.</p>
+          <div class="hero-cta">
+            <a href="#" onclick="showPage('projets')" class="btn">🚀 Voir mes projets</a>
+            <a href="#" onclick="showPage('contact')" class="btn btn-outline">📧 Me contacter</a>
+            <a href="cv.pdf" download class="btn btn-secondary">📥 Télécharger CV</a>
           </div>
         </div>
+      </section>
 
-        <h3>📅 Parcours</h3>
-        <div class="timeline">
-          <div class="timeline-item">
-            <div class="timeline-title">🎓 BTS SIO en cours</div>
-            <div class="timeline-meta">
-              <span class="timeline-date">2023 - 2025</span>
-              <span class="timeline-tag">IPSSI</span>
+      <section class="window">
+        <div class="window-header">
+          <div class="window-title">📋 À Propos</div>
+          <div class="window-controls">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+          </div>
+        </div>
+        <div class="window-content">
+          <h2>Qui suis-je ?</h2>
+          <p>Je m'appelle <strong>Philippe Martins Louro</strong>, j'ai <strong>19 ans</strong> et je suis actuellement en deuxième année de <strong>BTS SIO</strong>, option <strong>SISR</strong> (Solutions d'Infrastructure, Systèmes et Réseaux) à l'école <strong>IPSSI</strong> de Marne-la-Vallée.</p>
+
+          <p>Sérieux, curieux et motivé, je me forme aux métiers de l'<strong>administration système et réseau</strong>. J'ai acquis des compétences solides en environnements <strong>Windows et Linux</strong>, en <strong>virtualisation</strong>, en <strong>configuration de réseaux Cisco</strong> et en <strong>automatisation</strong>.</p>
+
+          <p>Au-delà de ma formation académique, j'ai une solide expérience professionnelle en <strong>alternance</strong> à la Mairie de Bagnolet, où je gère l'infrastructure informatique d'une collectivité territoriale importante.</p>
+
+          <h3>📊 Statistiques Clés</h3>
+          <div class="stats-grid">
+            <div class="stat-box">
+              <div class="stat-number">300+</div>
+              <div class="stat-label">Postes gérés</div>
             </div>
-            <p>Formation complète en informatique avec spécialisation infrastructure et réseaux.</p>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-title">💼 Alternance</div>
-            <div class="timeline-meta">
-              <span class="timeline-date">2024 - 2025</span>
-              <span class="timeline-tag">Mairie Bagnolet</span>
+            <div class="stat-box">
+              <div class="stat-number">5</div>
+              <div class="stat-label">Projets</div>
             </div>
-            <p>Technicien IT gérant 300+ postes, migration Windows, support utilisateur.</p>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-title">📚 Stage</div>
-            <div class="timeline-meta">
-              <span class="timeline-date">2023</span>
-              <span class="timeline-tag">Mairie Chelles</span>
+            <div class="stat-box">
+              <div class="stat-number">15+</div>
+              <div class="stat-label">Technologies</div>
             </div>
-            <p>Stage 8 semaines en DSI : déploiement postes, gestion parc informatique.</p>
-          </div>
-        </div>
-
-        <div style="margin-top: 40px; display: flex; gap: 15px; flex-wrap: wrap;">
-          <a href="#projets" class="btn">🚀 Voir les projets</a>
-          <a href="#contact" class="btn btn-outline">📧 Me contacter</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- PROJETS -->
-    <section id="projets" class="window">
-      <div class="window-header">
-        <div class="window-title">🚀 Mes Projets</div>
-        <div class="window-controls">
-          <span class="dot"></span>
-          <span class="dot"></span>
-          <span class="dot"></span>
-        </div>
-      </div>
-      <div class="window-content">
-        <h2>Projets Réalisés</h2>
-
-        <h3>1️⃣ Infrastructure pour 480 Postes (SISR)</h3>
-        <div class="grid">
-          <div class="card">
-            <div class="card-icon">🎯</div>
-            <div class="card-title">Le Défi</div>
-            <div class="card-desc">Équiper 480 visiteurs médicaux avec postes sécurisés, budget limité (299€/poste).</div>
-          </div>
-          <div class="card">
-            <div class="card-icon">⚙️</div>
-            <div class="card-title">Solution</div>
-            <div class="card-desc">12 VLANs segmentés, Active Directory centralisé, déploiement automatisé.</div>
-          </div>
-          <div class="card">
-            <div class="card-icon">✅</div>
-            <div class="card-title">Résultats</div>
-            <div class="card-desc">480 postes déployés, budget respecté, zéro incident depuis déploiement.</div>
-          </div>
-        </div>
-        <a href="Projet-Sisr.zip" download><button class="btn" style="margin-top: 20px;">📥 Télécharger</button></a>
-
-        <h3 style="margin-top: 40px;">2️⃣ Gestion de Bibliothèque (SLAM)</h3>
-        <div class="grid">
-          <div class="card">
-            <div class="card-icon">💻</div>
-            <div class="card-title">Frontend</div>
-            <div class="card-desc">HTML/CSS responsive pour tous les appareils.</div>
-          </div>
-          <div class="card">
-            <div class="card-icon">🔧</div>
-            <div class="card-title">Backend</div>
-            <div class="card-desc">PHP avec sessions sécurisées et logique applicative complète.</div>
-          </div>
-          <div class="card">
-            <div class="card-icon">🗄️</div>
-            <div class="card-title">Base de Données</div>
-            <div class="card-desc">MySQL normalisée avec gestion emprunts et réservations.</div>
-          </div>
-        </div>
-        <a href="Projet-Slam.zip" download><button class="btn btn-secondary" style="margin-top: 20px;">📥 Télécharger</button></a>
-
-        <h3 style="margin-top: 40px;">3️⃣ Veille Tech - NASLE (IA)</h3>
-        <p>Analyse approfondie d'un logiciel de vidéoprotection basé sur l'IA pour détection de violence, incendie, armes et anomalies.</p>
-        <a href="veille technologique.pdf" download><button class="btn" style="margin-top: 20px;">📄 Lire le rapport</button></a>
-      </div>
-    </section>
-
-    <!-- ALTERNANCE -->
-    <section id="alternance" class="window">
-      <div class="window-header">
-        <div class="window-title">💼 Alternance</div>
-        <div class="window-controls">
-          <span class="dot"></span>
-          <span class="dot"></span>
-          <span class="dot"></span>
-        </div>
-      </div>
-      <div class="window-content">
-        <h2>Alternance - Mairie de Bagnolet DSI</h2>
-        <p>Technicien Informatique en alternance gérant l'infrastructure IT d'une collectivité avec 300+ utilisateurs.</p>
-
-        <div class="timeline">
-          <div class="timeline-item">
-            <div class="timeline-title">🔄 Migration Windows 10 → 11</div>
-            <div class="timeline-meta">
-              <span class="timeline-date">2024-2025</span>
-              <span class="timeline-tag">PDQ Deploy</span>
+            <div class="stat-box">
+              <div class="stat-number">100%</div>
+              <div class="stat-label">Engagement</div>
             </div>
+          </div>
+
+          <h3>🎯 Mes Forces</h3>
+          <div class="achievement-grid">
+            <div class="achievement">
+              <div class="achievement-inner">
+                <div class="achievement-icon">⚡</div>
+                <div class="achievement-value">Autonome</div>
+                <div class="achievement-label">Je prends des initiatives</div>
+              </div>
+            </div>
+            <div class="achievement">
+              <div class="achievement-inner">
+                <div class="achievement-icon">🎯</div>
+                <div class="achievement-value">Rigoureux</div>
+                <div class="achievement-label">Attention aux détails</div>
+              </div>
+            </div>
+            <div class="achievement">
+              <div class="achievement-inner">
+                <div class="achievement-icon">💡</div>
+                <div class="achievement-value">Créatif</div>
+                <div class="achievement-label">Trouve des solutions</div>
+              </div>
+            </div>
+            <div class="achievement">
+              <div class="achievement-inner">
+                <div class="achievement-icon">👥</div>
+                <div class="achievement-value">Teamplayer</div>
+                <div class="achievement-label">Travaille bien en équipe</div>
+              </div>
+            </div>
+          </div>
+
+          <h3>📅 Mon Parcours</h3>
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-title">🎓 BTS SIO en cours</div>
+              <div class="timeline-meta">
+                <span class="timeline-date">2023 - 2025</span>
+                <span class="timeline-tag">IPSSI</span>
+              </div>
+              <p>Formation complète en informatique avec spécialisation en infrastructure et réseaux. Apprentissage des meilleures pratiques du secteur à travers des projets concrets.</p>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-title">💼 Alternance en cours</div>
+              <div class="timeline-meta">
+                <span class="timeline-date">2024 - 2025</span>
+                <span class="timeline-tag">Mairie Bagnolet</span>
+              </div>
+              <p>Technicien IT gérant 300+ postes, migration Windows, support utilisateur et déploiement d'infrastructure.</p>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-title">📚 Stage de formation</div>
+              <div class="timeline-meta">
+                <span class="timeline-date">2023</span>
+                <span class="timeline-tag">Mairie Chelles</span>
+              </div>
+              <p>8 semaines : déploiement de postes, gestion du parc informatique, configuration accès utilisateurs.</p>
+            </div>
+          </div>
+
+          <div style="margin-top: 40px; display: flex; gap: 15px; flex-wrap: wrap;">
+            <a href="#" onclick="showPage('projets')" class="btn">🚀 Voir les projets</a>
+            <a href="#" onclick="showPage('experience')" class="btn btn-outline">💼 Mon expérience</a>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ===== PAGE: PROJETS ===== -->
+    <div id="projets" class="page">
+      <section class="window">
+        <div class="window-header">
+          <div class="window-title">🚀 Mes Projets</div>
+          <div class="window-controls">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+          </div>
+        </div>
+        <div class="window-content">
+          <h2>Projets Scolaires & Personnels</h2>
+
+          <div class="project-tabs">
+            <button class="project-tab active" onclick="switchProject('scolaire')">🎓 Projets Scolaires</button>
+            <button class="project-tab" onclick="switchProject('personnel')">🎮 Projets Personnels</button>
+          </div>
+
+          <!-- PROJETS SCOLAIRES -->
+          <div id="scolaire" class="project-content active">
+            <h3>1️⃣ Infrastructure pour 480 Postes (SISR)</h3>
+            <p>Projet majeur de conception d'infrastructure informatique pour une entreprise pharmaceutique. Déploiement de <strong>480 postes</strong> sécurisés avec réseau hautement segmenté.</p>
+            
+            <div class="grid">
+              <div class="card">
+                <div class="card-icon">🎯</div>
+                <div class="card-title">Le Défi</div>
+                <div class="card-desc">Équiper 480 visiteurs médicaux avec des postes sécurisés, budget limité (299€/poste), réseau segmenté par services.</div>
+              </div>
+              <div class="card">
+                <div class="card-icon">⚙️</div>
+                <div class="card-title">Solution</div>
+                <div class="card-desc">12 VLANs pour segmenter, Active Directory centralisé, déploiement automatisé, sécurité renforcée.</div>
+              </div>
+              <div class="card">
+                <div class="card-icon">✅</div>
+                <div class="card-title">Résultats</div>
+                <div class="card-desc">480 postes déployés, budget respecté, zéro incident depuis déploiement. Projet 100% réussi.</div>
+              </div>
+            </div>
+
+            <div class="download-section">
+              <h4>📥 Télécharger le projet SISR</h4>
+              <div class="download-grid">
+                <div class="download-item">
+                  <div class="download-info">
+                    <div class="download-name">Projet SISR - Complet</div>
+                    <div class="download-size">Documentation, schémas, code (ZIP)</div>
+                  </div>
+                  <a href="Project-Sisr.zip" download class="btn btn-small btn-download">📥 ZIP</a>
+                </div>
+                <div class="download-item">
+                  <div class="download-info">
+                    <div class="download-name">Infrastructure PDF</div>
+                    <div class="download-size">Rapport technique complet</div>
+                  </div>
+                  <a href="projet infra.pdf" download class="btn btn-small btn-download">📄 PDF</a>
+                </div>
+              </div>
+            </div>
+
+            <h3 style="margin-top: 45px;">2️⃣ Gestion de Bibliothèque (SLAM)</h3>
+            <p>Projet web complet avec base de données pour gérer une bibliothèque en ligne : inscription, recherche, emprunts, réservations et administration.</p>
+            
+            <div class="grid">
+              <div class="card">
+                <div class="card-icon">💻</div>
+                <div class="card-title">Frontend</div>
+                <div class="card-desc">HTML/CSS responsive. Design moderne adapté à tous les appareils (ordinateurs, tablettes, mobiles).</div>
+              </div>
+              <div class="card">
+                <div class="card-icon">🔧</div>
+                <div class="card-title">Backend</div>
+                <div class="card-desc">PHP avec sessions sécurisées et logique applicative complète.</div>
+              </div>
+              <div class="card">
+                <div class="card-icon">🗄️</div>
+                <div class="card-title">Base de Données</div>
+                <div class="card-desc">MySQL normalisée avec emprunts, réservations et gestion utilisateurs.</div>
+              </div>
+            </div>
+
+            <h4>✨ Fonctionnalités :</h4>
             <ul>
-              <li>🔍 Audit compatibilité matérielle (TPM 2.0, Secure Boot)</li>
-              <li>⚙️ Automatisation via PDQ Deploy</li>
-              <li>📦 Création packages système</li>
-              <li>✅ 300 postes migrés • 0 incident • 100% réussite</li>
+              <li>✅ Authentification sécurisée</li>
+              <li>✅ Recherche avancée de livres</li>
+              <li>✅ Emprunt/retour automatisé</li>
+              <li>✅ Gestion des réservations</li>
+              <li>✅ Panneau d'administration</li>
+              <li>✅ Historique des emprunts</li>
             </ul>
-          </div>
 
-          <div class="timeline-item">
-            <div class="timeline-title">💾 Déploiement Clonezilla</div>
-            <div class="timeline-meta">
-              <span class="timeline-date">2024</span>
-              <span class="timeline-tag">PXE/Multicast</span>
+            <div class="download-section">
+              <h4>📥 Télécharger le projet SLAM</h4>
+              <div class="download-grid">
+                <div class="download-item">
+                  <div class="download-info">
+                    <div class="download-name">Projet SLAM - Code Source</div>
+                    <div class="download-size">HTML, PHP, MySQL, CSS</div>
+                  </div>
+                  <a href="Project-Slam.zip" download class="btn btn-small btn-download">📥 ZIP</a>
+                </div>
+              </div>
             </div>
-            <ul>
-              <li>🔧 Configuration DRBL/PXE</li>
-              <li>🖼️ Images système Windows</li>
-              <li>⚡ 20 postes en parallèle = 2h (vs 8h avant)</li>
-              <li>📈 75% réduction temps déploiement</li>
-            </ul>
           </div>
 
-          <div class="timeline-item">
-            <div class="timeline-title">🆘 Support Utilisateurs</div>
-            <div class="timeline-meta">
-              <span class="timeline-date">Continu</span>
-              <span class="timeline-tag">Helpdesk</span>
+          <!-- PROJETS PERSONNELS -->
+          <div id="personnel" class="project-content">
+            <h3>1️⃣ Jeu Minecraft en Python 🎮</h3>
+            <p>Projet personnel : développement d'un jeu de type Minecraft en Python avec moteur graphique, terrain généré procéduralement et mécanique de jeu complète.</p>
+            
+            <div class="grid">
+              <div class="card">
+                <div class="card-icon">🎮</div>
+                <div class="card-title">Gameplay</div>
+                <div class="card-desc">Exploration de terrain 3D, placement/suppression de blocs, gestion d'inventaire, déplacement caméra.</div>
+              </div>
+              <div class="card">
+                <div class="card-icon">🏗️</div>
+                <div class="card-title">Terrain</div>
+                <div class="card-desc">Génération procédurale du terrain avec Perlin Noise pour biomes variés et réalistes.</div>
+              </div>
+              <div class="card">
+                <div class="card-icon">⚙️</div>
+                <div class="card-title">Engine</div>
+                <div class="card-desc">Moteur graphique custom basé sur Pygame, rendu 3D isométrique optimisé.</div>
+              </div>
             </div>
-            <ul>
-              <li>🔌 Réseau et connectivité</li>
-              <li>🖨️ Imprimantes et logiciels</li>
-              <li>👤 Gestion comptes et droits</li>
-              <li>⭐ 95%+ satisfaction</li>
-            </ul>
+
+            <div class="download-section">
+              <h4>📥 Télécharger le projet Minecraft</h4>
+              <div class="download-grid">
+                <div class="download-item">
+                  <div class="download-info">
+                    <div class="download-name">Minecraft Python</div>
+                    <div class="download-size">Code source complet + assets</div>
+                  </div>
+                  <a href="projet minecraft.pdf" download class="btn btn-small btn-download">📄 PDF</a>
+                </div>
+              </div>
+            </div>
+
+            <h3 style="margin-top: 45px;">2️⃣ Veille Technologique - NASLE (IA)</h3>
+            <p>Analyse d'un logiciel révolutionnaire : NASLE, système de vidéoprotection intelligent basé sur l'IA pour détection de violence, incendie, armes et anomalies.</p>
+            
+            <div class="card" style="background: linear-gradient(135deg, rgba(236, 72, 153, 0.08), rgba(6, 182, 212, 0.08)); border: 1px solid rgba(236, 72, 153, 0.15); margin: 20px 0;">
+              <div class="card-icon">🤖</div>
+              <h4 style="margin-top: 0; margin-bottom: 12px;">Capacités IA :</h4>
+              <p style="margin: 0;">🚨 Détection violence • 🔥 Incendie • 👥 Comptage • 🔫 Armes • 📊 Trafic • ⚠️ Anomalies</p>
+            </div>
+
+            <div class="download-section">
+              <h4>📥 Télécharger la veille technologique</h4>
+              <div class="download-grid">
+                <div class="download-item">
+                  <div class="download-info">
+                    <div class="download-name">Veille Tech NASLE</div>
+                    <div class="download-size">Rapport d'analyse complète</div>
+                  </div>
+                  <a href="veille technologique.pdf" download class="btn btn-small btn-download">📄 PDF</a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
 
-    <!-- STAGE -->
-    <section id="stage" class="window">
-      <div class="window-header">
-        <div class="window-title">📚 Stage</div>
-        <div class="window-controls">
-          <span class="dot"></span>
-          <span class="dot"></span>
-          <span class="dot"></span>
-        </div>
-      </div>
-      <div class="window-content">
-        <h2>Stage - Mairie de Chelles DSI</h2>
-        <p><strong>Période :</strong> 8 semaines (2023) | <strong>Lieu :</strong> Mairie de Chelles - Direction des Systèmes d'Information</p>
-
-        <h3>🎯 Missions</h3>
-        <ul>
-          <li>✅ Déploiement de postes de travail complets</li>
-          <li>✅ Gestion et inventaire du parc informatique</li>
-          <li>✅ Configuration des accès utilisateurs</li>
-          <li>✅ Installation de logiciels métiers</li>
-          <li>✅ Documentation des procédures techniques</li>
-          <li>✅ Support helpdesk à 300+ utilisateurs</li>
-        </ul>
-
-        <h3>📚 Apprentissages</h3>
-        <ul>
-          <li>Déploiement efficace de postes Windows</li>
-          <li>Gestion Active Directory basique</li>
-          <li>Support utilisateur professionnel</li>
-          <li>Rigueur en environnement professionnel</li>
-          <li>Documentation technique claire</li>
-        </ul>
-
-        <h3>🏆 Compétences Acquises</h3>
-        <div class="grid">
-          <div class="card">
-            <div class="card-icon">🖥️</div>
-            <div class="card-title">Déploiement</div>
-            <div class="card-desc">Installation et configuration de postes Windows professionnels.</div>
-          </div>
-          <div class="card">
-            <div class="card-icon">📊</div>
-            <div class="card-title">Gestion Parc</div>
-            <div class="card-desc">Inventaire, suivi matériel et logiciels.</div>
-          </div>
-          <div class="card">
-            <div class="card-icon">👥</div>
-            <div class="card-title">Support</div>
-            <div class="card-desc">Assistance technique et formation utilisateurs.</div>
+    <!-- ===== PAGE: EXPERIENCE ===== -->
+    <div id="experience" class="page">
+      <section class="window">
+        <div class="window-header">
+          <div class="window-title">💼 Expérience</div>
+          <div class="window-controls">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
           </div>
         </div>
-      </div>
-    </section>
+        <div class="window-content">
+          <h2>Alternance & Stage</h2>
 
-    <!-- COMPETENCES -->
-    <section id="competences" class="window">
-      <div class="window-header">
-        <div class="window-title">🎓 Compétences</div>
-        <div class="window-controls">
-          <span class="dot"></span>
-          <span class="dot"></span>
-          <span class="dot"></span>
+          <h3>💼 Alternance - Mairie de Bagnolet DSI (2024-2025)</h3>
+          <p>Technicien Informatique en alternance gérant l'infrastructure IT d'une collectivité avec 300+ utilisateurs.</p>
+
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-title">🔄 Migration Windows 10 → 11</div>
+              <div class="timeline-meta">
+                <span class="timeline-date">2024-2025</span>
+                <span class="timeline-tag">PDQ Deploy</span>
+              </div>
+              <p><strong>Mission :</strong> Migrer 300+ ordinateurs avant fin du support Windows 10.</p>
+              <ul>
+                <li>🔍 Audit compatibilité matérielle (TPM 2.0, Secure Boot)</li>
+                <li>⚙️ Automatisation déploiement avec PDQ Deploy</li>
+                <li>📦 Création packages système optimisés</li>
+                <li>✅ 300 postes migrés • 0 incident • 100% réussite</li>
+              </ul>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-title">💾 Déploiement Clonezilla</div>
+              <div class="timeline-meta">
+                <span class="timeline-date">2024</span>
+                <span class="timeline-tag">PXE/Multicast</span>
+              </div>
+              <p><strong>Défi :</strong> Accélérer déploiement (8h → 2h pour 20 postes).</p>
+              <ul>
+                <li>🔧 Configuration DRBL/PXE</li>
+                <li>🖼️ Images Windows optimisées</li>
+                <li>⚡ 20 postes en parallèle</li>
+                <li>📈 75% réduction temps</li>
+              </ul>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-title">🆘 Support Utilisateurs</div>
+              <div class="timeline-meta">
+                <span class="timeline-date">Continu</span>
+                <span class="timeline-tag">Helpdesk</span>
+              </div>
+              <p>Gestion quotidienne des demandes pour 300+ agents municipaux.</p>
+              <ul>
+                <li>🔌 Réseau et connectivité</li>
+                <li>🖨️ Imprimantes et logiciels</li>
+                <li>👤 Comptes et droits accès</li>
+                <li>⭐ 95%+ satisfaction</li>
+              </ul>
+            </div>
+          </div>
+
+          <h3 style="margin-top: 45px;">📚 Stage - Mairie de Chelles DSI (2023)</h3>
+          <p><strong>8 semaines</strong> en première année du BTS SIO pour découvrir le monde professionnel de l'IT.</p>
+
+          <div class="grid">
+            <div class="card">
+              <div class="card-icon">🖥️</div>
+              <div class="card-title">Déploiement</div>
+              <div class="card-desc">Installation et configuration complètes de postes Windows professionnels pour la mairie.</div>
+            </div>
+            <div class="card">
+              <div class="card-icon">📊</div>
+              <div class="card-title">Gestion Parc</div>
+              <div class="card-desc">Inventaire matériel, suivi logiciels, maintenance préventive du parc informatique.</div>
+            </div>
+            <div class="card">
+              <div class="card-icon">👥</div>
+              <div class="card-title">Support</div>
+              <div class="card-desc">Assistance technique aux agents municipaux, formation utilisateurs et troubleshooting.</div>
+            </div>
+          </div>
+
+          <div class="download-section">
+            <h4>📥 Documents à télécharger</h4>
+            <div class="download-grid">
+              <div class="download-item">
+                <div class="download-info">
+                  <div class="download-name">Rapport de Stage</div>
+                  <div class="download-size">Détail complet du stage 2023</div>
+                </div>
+                <a href="Rapport de stage.pdf" download class="btn btn-small btn-download">📄 PDF</a>
+              </div>
+              <div class="download-item">
+                <div class="download-info">
+                  <div class="download-name">CV</div>
+                  <div class="download-size">Curriculum Vitae complet</div>
+                </div>
+                <a href="cv.pdf" download class="btn btn-small btn-download">📄 PDF</a>
+              </div>
+            </div>
+          </div>
+
+          <h3 style="margin-top: 45px;">🏆 Résultats Mesurables</h3>
+          <ul>
+            <li>✅ <strong>300 postes gérés</strong> avec infrastructure stable</li>
+            <li>✅ <strong>100% réussite</strong> migrations Windows</li>
+            <li>✅ <strong>95%+ satisfaction</strong> utilisateurs</li>
+            <li>✅ <strong>75% réduction temps</strong> déploiement</li>
+            <li>✅ <strong>0 incident critique</strong> depuis arrivée</li>
+            <li>✅ <strong>50+ formations</strong> dispensées aux nouveaux agents</li>
+          </ul>
         </div>
-      </div>
-      <div class="window-content">
-        <h2>Compétences Techniques</h2>
+      </section>
+    </div>
 
-        <h3>💻 Systèmes & Réseaux</h3>
-        
-        <div class="skill-row">
-          <div class="skill-header">
-            <div class="skill-name">Windows Server & Active Directory</div>
-            <div class="skill-percent">90%</div>
-          </div>
-          <div class="skill-bar">
-            <div class="skill-fill" style="--skill-width: 90%"></div>
-          </div>
-        </div>
-
-        <div class="skill-row">
-          <div class="skill-header">
-            <div class="skill-name">Linux (Debian/Ubuntu)</div>
-            <div class="skill-percent">85%</div>
-          </div>
-          <div class="skill-bar">
-            <div class="skill-fill" style="--skill-width: 85%"></div>
-          </div>
-        </div>
-
-        <div class="skill-row">
-          <div class="skill-header">
-            <div class="skill-name">Cisco Networking</div>
-            <div class="skill-percent">80%</div>
-          </div>
-          <div class="skill-bar">
-            <div class="skill-fill" style="--skill-width: 80%"></div>
-          </div>
-        </div>
-
-        <div class="skill-row">
-          <div class="skill-header">
-            <div class="skill-name">Virtualisation (VMware/Proxmox)</div>
-            <div class="skill-percent">85%</div>
-          </div>
-          <div class="skill-bar">
-            <div class="skill-fill" style="--skill-width: 85%"></div>
-          </div>
-        </div>
-
-        <div class="skill-row">
-          <div class="skill-header">
-            <div class="skill-name">Déploiement & Imaging</div>
-            <div class="skill-percent">88%</div>
-          </div>
-          <div class="skill-bar">
-            <div class="skill-fill" style="--skill-width: 88%"></div>
-          </div>
-        </div>
-
-        <h3 style="margin-top: 40px;">🔧 Scripting & Développement</h3>
-
-        <div class="skill-row">
-          <div class="skill-header">
-            <div class="skill-name">PowerShell</div>
-            <div class="skill-percent">80%</div>
-          </div>
-          <div class="skill-bar">
-            <div class="skill-fill" style="--skill-width: 80%"></div>
-          </div>
-        </div>
-
-        <div class="skill-row">
-          <div class="skill-header">
-            <div class="skill-name">Python</div>
-            <div class="skill-percent">70%</div>
-          </div>
-          <div class="skill-bar">
-            <div class="skill-fill" style="--skill-width: 70%"></div>
-          </div>
-        </div>
-
-        <div class="skill-row">
-          <div class="skill-header">
-            <div class="skill-name">HTML/CSS/PHP</div>
-            <div class="skill-percent">75%</div>
-          </div>
-          <div class="skill-bar">
-            <div class="skill-fill" style="--skill-width: 75%"></div>
-          </div>
-        </div>
-
-        <div class="skill-row">
-          <div class="skill-header">
-            <div class="skill-name">MySQL</div>
-            <div class="skill-percent">78%</div>
-          </div>
-          <div class="skill-bar">
-            <div class="skill-fill" style="--skill-width: 78%"></div>
-          </div>
-        </div>
-
-        <h3 style="margin-top: 40px;">🛠️ Outils</h3>
-        <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 20px;">
-          <span style="background: rgba(99, 102, 241, 0.1); color: var(--primary); padding: 8px 16px; border-radius: 8px; font-weight: 600; border: 1px solid rgba(99, 102, 241, 0.2);">Clonezilla</span>
-          <span style="background: rgba(99, 102, 241, 0.1); color: var(--primary); padding: 8px 16px; border-radius: 8px; font-weight: 600; border: 1px solid rgba(99, 102, 241, 0.2);">PDQ Deploy</span>
-          <span style="background: rgba(99, 102, 241, 0.1); color: var(--primary); padding: 8px 16px; border-radius: 8px; font-weight: 600; border: 1px solid rgba(99, 102, 241, 0.2);">Windows Admin</span>
-          <span style="background: rgba(99, 102, 241, 0.1); color: var(--primary); padding: 8px 16px; border-radius: 8px; font-weight: 600; border: 1px solid rgba(99, 102, 241, 0.2);">Wireshark</span>
-          <span style="background: rgba(99, 102, 241, 0.1); color: var(--primary); padding: 8px 16px; border-radius: 8px; font-weight: 600; border: 1px solid rgba(99, 102, 241, 0.2);">Git</span>
-          <span style="background: rgba(99, 102, 241, 0.1); color: var(--primary); padding: 8px 16px; border-radius: 8px; font-weight: 600; border: 1px solid rgba(99, 102, 241, 0.2);">VS Code</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- VEILLE TECH -->
-    <section id="veille" class="window">
-      <div class="window-header">
-        <div class="window-title">🔍 Veille Technologique</div>
-        <div class="window-controls">
-          <span class="dot"></span>
-          <span class="dot"></span>
-          <span class="dot"></span>
-        </div>
-      </div>
-      <div class="window-content">
-        <h2>Veille Technologique - NASLE</h2>
-        <p><strong>NASLE</strong> est un logiciel révolutionnaire de vidéoprotection basé sur l'<strong>Intelligence Artificielle</strong> développé par Nepsis Engineering.</p>
-
-        <h3>🎯 Fonctionnalités IA</h3>
-        <ul>
-          <li>🚨 <strong>Détection de violence</strong> : agressions, bagarres, personnes à terre</li>
-          <li>🔥 <strong>Détection d'incendie</strong> : départs de feu et fumée</li>
-          <li>👥 <strong>Comptage de personnes</strong> : regroupements suspects</li>
-          <li>🔫 <strong>Détection d'armes</strong> : pistolets, couteaux, objets dangereux</li>
-          <li>📊 <strong>Analyse trafic</strong> : mouvements piétons et véhiculaires</li>
-        </ul>
-
-        <h3>💡 Cas d'Usage</h3>
-        <div class="grid">
-          <div class="card">
-            <div class="card-icon">🏙️</div>
-            <div class="card-title">Villes</div>
-            <div class="card-desc">Centres de supervision urbaine, vidéoprotection publique, sécurité communes.</div>
-          </div>
-          <div class="card">
-            <div class="card-icon">🏢</div>
-            <div class="card-title">Entreprises</div>
-            <div class="card-desc">Sécurité bâtiments, surveillance sites sensibles, prévention incidents.</div>
-          </div>
-          <div class="card">
-            <div class="card-icon">🔒</div>
-            <div class="card-title">Sécurité</div>
-            <div class="card-desc">Détection automatique 24/7, alertes temps réel, enregistrement sécurisé.</div>
+    <!-- ===== PAGE: COMPETENCES ===== -->
+    <div id="competences" class="page">
+      <section class="window">
+        <div class="window-header">
+          <div class="window-title">🎓 Compétences</div>
+          <div class="window-controls">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
           </div>
         </div>
+        <div class="window-content">
+          <h2>Compétences Techniques</h2>
 
-        <a href="veille technologique.pdf" download><button class="btn" style="margin-top: 20px;">📄 Lire l'analyse complète</button></a>
-      </div>
-    </section>
+          <h3>💻 Systèmes & Réseaux</h3>
+          
+          <div class="skill-row">
+            <div class="skill-header">
+              <div class="skill-name">Windows Server & Active Directory</div>
+              <div class="skill-percent">90%</div>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-fill" style="--skill-width: 90%"></div>
+            </div>
+          </div>
 
-    <!-- SYNTHESE -->
-    <section id="synthese" class="window">
-      <div class="window-header">
-        <div class="window-title">📊 Synthèse BTS</div>
-        <div class="window-controls">
-          <span class="dot"></span>
-          <span class="dot"></span>
-          <span class="dot"></span>
+          <div class="skill-row">
+            <div class="skill-header">
+              <div class="skill-name">Linux (Debian, Ubuntu)</div>
+              <div class="skill-percent">85%</div>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-fill" style="--skill-width: 85%"></div>
+            </div>
+          </div>
+
+          <div class="skill-row">
+            <div class="skill-header">
+              <div class="skill-name">Cisco (Routeurs & Switches)</div>
+              <div class="skill-percent">80%</div>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-fill" style="--skill-width: 80%"></div>
+            </div>
+          </div>
+
+          <div class="skill-row">
+            <div class="skill-header">
+              <div class="skill-name">Virtualisation (VMware, Proxmox)</div>
+              <div class="skill-percent">85%</div>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-fill" style="--skill-width: 85%"></div>
+            </div>
+          </div>
+
+          <div class="skill-row">
+            <div class="skill-header">
+              <div class="skill-name">Déploiement & Imaging</div>
+              <div class="skill-percent">88%</div>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-fill" style="--skill-width: 88%"></div>
+            </div>
+          </div>
+
+          <h3 style="margin-top: 40px;">🔧 Scripting & Développement</h3>
+
+          <div class="skill-row">
+            <div class="skill-header">
+              <div class="skill-name">PowerShell</div>
+              <div class="skill-percent">80%</div>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-fill" style="--skill-width: 80%"></div>
+            </div>
+          </div>
+
+          <div class="skill-row">
+            <div class="skill-header">
+              <div class="skill-name">Python</div>
+              <div class="skill-percent">70%</div>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-fill" style="--skill-width: 70%"></div>
+            </div>
+          </div>
+
+          <div class="skill-row">
+            <div class="skill-header">
+              <div class="skill-name">HTML/CSS/PHP</div>
+              <div class="skill-percent">75%</div>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-fill" style="--skill-width: 75%"></div>
+            </div>
+          </div>
+
+          <div class="skill-row">
+            <div class="skill-header">
+              <div class="skill-name">MySQL</div>
+              <div class="skill-percent">78%</div>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-fill" style="--skill-width: 78%"></div>
+            </div>
+          </div>
+
+          <h3 style="margin-top: 40px;">🛠️ Outils & Logiciels</h3>
+          <div class="skill-categories">
+            <div class="skill-tag">Clonezilla</div>
+            <div class="skill-tag">PDQ Deploy</div>
+            <div class="skill-tag">Windows Admin</div>
+            <div class="skill-tag">Wireshark</div>
+            <div class="skill-tag">VirtualBox</div>
+            <div class="skill-tag">Git</div>
+            <div class="skill-tag">VS Code</div>
+            <div class="skill-tag">Cisco Packet Tracer</div>
+            <div class="skill-tag">Putty/WinSCP</div>
+            <div class="skill-tag">Group Policy</div>
+          </div>
+
+          <p style="color: #10b981; font-weight: 700; margin-top: 30px;">💡 Je mets à jour régulièrement mes compétences grâce à ma formation continue et mon expérience en alternance. Les pourcentages reflètent mon niveau pratique réel.</p>
         </div>
-      </div>
-      <div class="window-content">
-        <h2>Tableau de Synthèse</h2>
-        <p>Document officiel BTS SIO regroupant tous les projets, stages, alternance et acquis pédagogiques.</p>
+      </section>
+    </div>
 
-        <h3>📑 Contenu du Tableau</h3>
-        <ul>
-          <li>✅ Liste complète des projets SLAM et SISR</li>
-          <li>✅ Expériences professionnelles (stage + alternance)</li>
-          <li>✅ Compétences développées</li>
-          <li>✅ Atouts professionnels</li>
-          <li>✅ Résultats académiques</li>
-          <li>✅ Certifications et formations</li>
-        </ul>
-
-        <h3>🎯 Valeur Ajoutée</h3>
-        <p>Ce tableau de synthèse démontre ma progression professionnelle et mes capacités à gérer des projets informatiques en environnement réel.</p>
-
-        <a href="Tableau de synthese.pdf" download><button class="btn" style="margin-top: 20px;">📊 Télécharger le tableau</button></a>
-      </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="contact" class="window">
-      <div class="window-header">
-        <div class="window-title">✉️ Contact</div>
-        <div class="window-controls">
-          <span class="dot"></span>
-          <span class="dot"></span>
-          <span class="dot"></span>
-        </div>
-      </div>
-      <div class="window-content">
-        <h2>Me Contacter</h2>
-        <p>Vous avez une question ou une opportunité ? N'hésitez pas à me contacter !</p>
-
-        <h3>📞 Informations</h3>
-        <div class="grid">
-          <div class="card">
-            <div class="card-icon">📧</div>
-            <div class="card-title">Email</div>
-            <div class="card-desc"><a href="mailto:martinslourophilippe@gmail.com">martinslourophilippe@gmail.com</a></div>
-          </div>
-          <div class="card">
-            <div class="card-icon">💼</div>
-            <div class="card-title">LinkedIn</div>
-            <div class="card-desc"><a href="https://www.linkedin.com/in/philippe-martins-louro-31a974345/" target="_blank">Mon profil</a></div>
-          </div>
-          <div class="card">
-            <div class="card-icon">📱</div>
-            <div class="card-title">Téléphone</div>
-            <div class="card-desc"><a href="tel:+33781501754">07 81 50 17 54</a></div>
+    <!-- ===== PAGE: VEILLE TECH ===== -->
+    <div id="veille" class="page">
+      <section class="window">
+        <div class="window-header">
+          <div class="window-title">🔍 Veille Technologique</div>
+          <div class="window-controls">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
           </div>
         </div>
+        <div class="window-content">
+          <h2>NASLE - Intelligence Artificielle pour Vidéoprotection</h2>
 
-        <h3 style="margin-top: 40px;">📧 Formulaire</h3>
-        <form class="contact-form" onsubmit="return sendEmail(event)">
-          <div class="form-group">
-            <label class="form-label">Votre Nom</label>
-            <input type="text" class="form-input" required>
+          <p><strong>NASLE</strong> est un logiciel révolutionnaire de vidéoprotection nouvelle génération développé par Nepsis Engineering. Il utilise l'<strong>Intelligence Artificielle</strong> et la <strong>vision par ordinateur</strong> pour analyser les flux vidéo en temps réel et détecter automatiquement les situations dangereuses.</p>
+
+          <h3>🎯 Capacités Principales</h3>
+          <div class="grid">
+            <div class="card">
+              <div class="card-icon">🚨</div>
+              <div class="card-title">Détection Violence</div>
+              <div class="card-desc">Identification automatique des agressions, bagarres, personnes à terre, altercations physiques.</div>
+            </div>
+            <div class="card">
+              <div class="card-icon">🔥</div>
+              <div class="card-title">Détection Incendie</div>
+              <div class="card-desc">Détection précoce des départs de feu et de la fumée avant que les systèmes traditionnels ne réagissent.</div>
+            </div>
+            <div class="card">
+              <div class="card-icon">👥</div>
+              <div class="card-title">Comptage Personnes</div>
+              <div class="card-desc">Identification de regroupements suspects et dépassement de seuils de capacité configurable.</div>
+            </div>
+            <div class="card">
+              <div class="card-icon">🔫</div>
+              <div class="card-title">Détection Armes</div>
+              <div class="card-desc">Reconnaissance de pistolets, couteaux, objets dangereux et armes improvisées en temps réel.</div>
+            </div>
+            <div class="card">
+              <div class="card-icon">📊</div>
+              <div class="card-title">Analyse Trafic</div>
+              <div class="card-desc">Comptage et suivi des mouvements piétons et véhiculaires pour analyse de flux.</div>
+            </div>
+            <div class="card">
+              <div class="card-icon">⚠️</div>
+              <div class="card-title">Anomalies</div>
+              <div class="card-desc">Détection de comportements inhabituels et alertes sur événements suspects.</div>
+            </div>
           </div>
-          <div class="form-group">
-            <label class="form-label">Votre Email</label>
-            <input type="email" class="form-input" required>
+
+          <h3>💼 Cas d'Usage Professionnels</h3>
+          <ul>
+            <li>🏙️ <strong>Villes & Collectivités</strong> : Centres de supervision urbaine, vidéoprotection publique, sécurité espaces publics</li>
+            <li>🏢 <strong>Entreprises</strong> : Sécurité bâtiments, surveillance sites sensibles, prévention d'incidents</li>
+            <li>🏥 <strong>Santé & Éducation</strong> : Établissements publics, hôpitaux, universités, écoles</li>
+            <li>🏦 <strong>Finance</strong> : Banques, centres commerciaux, points de retrait</li>
+            <li>🚀 <strong>Critiques</strong> : Infrastructures critiques, centrales, aéroports, gares</li>
+          </ul>
+
+          <h3>✨ Avantages Clés</h3>
+          <ul>
+            <li>✅ <strong>Détection 24/7</strong> sans fatigue humaine</li>
+            <li>✅ <strong>Alertes temps réel</strong> permettant intervention rapide</li>
+            <li>✅ <strong>Réduction coûts</strong> surveillance humaine</li>
+            <li>✅ <strong>Enregistrements sécurisés</strong> avec métadonnées d'événements</li>
+            <li>✅ <strong>Conformité légale</strong> RGPD et normes de sécurité</li>
+            <li>✅ <strong>Machine Learning</strong> : le système s'améliore avec l'expérience</li>
+          </ul>
+
+          <h3>🤔 Impact Sociétal</h3>
+          <p>L'IA de vidéoprotection NASLE représente un progrès majeur en sécurité publique et privée. Elle permet une surveillance plus efficace, une réaction plus rapide aux incidents, et une prévention plus intelligente des crimes. Cependant, des questions éthiques sur le respect de la vie privée demeurent importantes.</p>
+
+          <div class="download-section">
+            <h4>📥 Télécharger l'analyse complète</h4>
+            <div class="download-grid">
+              <div class="download-item">
+                <div class="download-info">
+                  <div class="download-name">Veille Technologique NASLE</div>
+                  <div class="download-size">Rapport d'analyse détaillée</div>
+                </div>
+                <a href="veille technologique.pdf" download class="btn btn-small btn-download">📄 PDF</a>
+              </div>
+            </div>
           </div>
-          <div class="form-group">
-            <label class="form-label">Sujet</label>
-            <input type="text" class="form-input" required>
+        </div>
+      </section>
+    </div>
+
+    <!-- ===== PAGE: SYNTHESE ===== -->
+    <div id="synthese" class="page">
+      <section class="window">
+        <div class="window-header">
+          <div class="window-title">📊 Synthèse BTS</div>
+          <div class="window-controls">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
           </div>
-          <div class="form-group">
-            <label class="form-label">Message</label>
-            <textarea class="form-textarea" rows="5" required></textarea>
+        </div>
+        <div class="window-content">
+          <h2>Tableau de Synthèse BTS SIO</h2>
+
+          <p>Le tableau de synthèse est un document officiel du BTS SIO qui récapitule l'ensemble de mon parcours de formation, mes projets, mon expérience professionnelle et mes acquis pédagogiques.</p>
+
+          <h3>📑 Contenu du Tableau</h3>
+          <ul>
+            <li>✅ <strong>Liste complète des projets SLAM et SISR</strong> avec descriptions et résultats</li>
+            <li>✅ <strong>Expériences professionnelles</strong> : stage + alternance avec détails des missions</li>
+            <li>✅ <strong>Compétences développées</strong> par domaine (technique, interpersonnel, managérial)</li>
+            <li>✅ <strong>Atouts professionnels</strong> et points forts identifiés</li>
+            <li>✅ <strong>Résultats académiques</strong> et notation des projets</li>
+            <li>✅ <strong>Certifications</strong> et formations complémentaires suivies</li>
+            <li>✅ <strong>Bilan de compétences</strong> et évolution professionnelle</li>
+            <li>✅ <strong>Perspectives d'avenir</strong> et objectifs professionnels</li>
+          </ul>
+
+          <h3>🎯 Valeur Ajoutée</h3>
+          <p>Ce tableau de synthèse démontre ma <strong>progression professionnelle</strong> et mes capacités à <strong>gérer des projets informatiques</strong> en environnement réel. Il est un élément clé d'évaluation pour le BTS SIO et un document important à présenter aux recruteurs.</p>
+
+          <div class="download-section">
+            <h4>📥 Télécharger le tableau complet</h4>
+            <div class="download-grid">
+              <div class="download-item">
+                <div class="download-info">
+                  <div class="download-name">Tableau de Synthèse BTS SIO</div>
+                  <div class="download-size">Document PDF officiel</div>
+                </div>
+                <a href="Tableau de synthese.pdf" download class="btn btn-small btn-download">📄 PDF</a>
+              </div>
+              <div class="download-item">
+                <div class="download-info">
+                  <div class="download-name">Tableau Excel Éditable</div>
+                  <div class="download-size">Format XLSX pour modifications</div>
+                </div>
+                <a href="Tableau de synthese.xlsx" download class="btn btn-small btn-download">📊 XLSX</a>
+              </div>
+            </div>
           </div>
-          <button type="submit" class="btn">📤 Envoyer</button>
-          <p style="margin-top: 15px; font-size: 0.85rem; color: var(--text-medium);">✅ Je vous répondrai dans les 24h</p>
-        </form>
-      </div>
-    </section>
+
+          <h3 style="margin-top: 40px;">📊 Récapitulatif Global</h3>
+          <div class="stats-grid">
+            <div class="stat-box">
+              <div class="stat-number">5</div>
+              <div class="stat-label">Projets réalisés</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-number">2</div>
+              <div class="stat-label">Expériences pro</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-number">15+</div>
+              <div class="stat-label">Technologies</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-number">300+</div>
+              <div class="stat-label">Heures pratique</div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ===== PAGE: CONTACT ===== -->
+    <div id="contact" class="page">
+      <section class="window">
+        <div class="window-header">
+          <div class="window-title">✉️ Contact</div>
+          <div class="window-controls">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+          </div>
+        </div>
+        <div class="window-content">
+          <h2>Me Contacter</h2>
+          <p>Vous avez une question, une opportunité professionnelle ou vous souhaitez collaborer ? N'hésitez pas à me contacter !</p>
+
+          <h3>📞 Informations de Contact</h3>
+          <div class="grid">
+            <div class="card">
+              <div class="card-icon">📧</div>
+              <div class="card-title">Email</div>
+              <div class="card-desc"><a href="mailto:martinslourophilippe@gmail.com">martinslourophilippe@gmail.com</a></div>
+            </div>
+            <div class="card">
+              <div class="card-icon">💼</div>
+              <div class="card-title">LinkedIn</div>
+              <div class="card-desc"><a href="https://www.linkedin.com/in/philippe-martins-louro-31a974345/" target="_blank">Mon profil LinkedIn</a></div>
+            </div>
+            <div class="card">
+              <div class="card-icon">📱</div>
+              <div class="card-title">Téléphone</div>
+              <div class="card-desc"><a href="tel:+33781501754">07 81 50 17 54</a></div>
+            </div>
+            <div class="card">
+              <div class="card-icon">🐙</div>
+              <div class="card-title">GitHub</div>
+              <div class="card-desc"><a href="https://github.com/portfolioIpssi" target="_blank">portfolioIpssi</a></div>
+            </div>
+            <div class="card">
+              <div class="card-icon">📍</div>
+              <div class="card-title">Localisation</div>
+              <div class="card-desc">Vaires-sur-Marne (77) - Île-de-France</div>
+            </div>
+            <div class="card">
+              <div class="card-icon">🏫</div>
+              <div class="card-title">Formation</div>
+              <div class="card-desc">BTS SIO SISR - IPSSI Marne-la-Vallée</div>
+            </div>
+          </div>
+
+          <h3 style="margin-top: 40px;">��� Formulaire de Contact</h3>
+          <form class="contact-form" onsubmit="handleSubmit(event)">
+            <div class="form-group">
+              <label class="form-label">Votre Nom</label>
+              <input type="text" class="form-input" placeholder="Entrez votre nom" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Votre Email</label>
+              <input type="email" class="form-input" placeholder="Entrez votre email" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Sujet</label>
+              <input type="text" class="form-input" placeholder="Sujet du message" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Message</label>
+              <textarea class="form-textarea" rows="6" placeholder="Votre message..." required></textarea>
+            </div>
+
+            <button type="submit" class="btn">📤 Envoyer le message</button>
+            <p style="margin-top: 15px; font-size: 0.85rem; color: var(--text-medium);">✅ Je vous répondrai dans les 24 heures</p>
+          </form>
+
+          <div class="download-section" style="margin-top: 40px;">
+            <h4>📥 Tous mes documents</h4>
+            <div class="download-grid">
+              <div class="download-item">
+                <div class="download-info">
+                  <div class="download-name">CV Complet</div>
+                  <div class="download-size">Curriculum Vitae PDF</div>
+                </div>
+                <a href="cv.pdf" download class="btn btn-small btn-download">📄 PDF</a>
+              </div>
+              <div class="download-item">
+                <div class="download-info">
+                  <div class="download-name">Rapport de Stage</div>
+                  <div class="download-size">Détail stage 2023</div>
+                </div>
+                <a href="Rapport de stage.pdf" download class="btn btn-small btn-download">📄 PDF</a>
+              </div>
+              <div class="download-item">
+                <div class="download-info">
+                  <div class="download-name">Tableau Synthèse</div>
+                  <div class="download-size">Synthèse BTS SIO</div>
+                </div>
+                <a href="Tableau de synthese.pdf" download class="btn btn-small btn-download">📄 PDF</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
 
   </main>
 
-  <!-- FOOTER -->
+  <!-- ===== FOOTER ===== -->
   <footer class="footer">
     <div class="footer-grid">
       <div class="footer-section">
         <h3>Navigation</h3>
-        <ul style="list-style: none;">
-          <li><a href="#presentation">Accueil</a></li>
-          <li><a href="#projets">Projets</a></li>
-          <li><a href="#alternance">Alternance</a></li>
-          <li><a href="#competences">Compétences</a></li>
+        <ul>
+          <li><a href="#" onclick="showPage('home')">Accueil</a></li>
+          <li><a href="#" onclick="showPage('projets')">Projets</a></li>
+          <li><a href="#" onclick="showPage('experience')">Expérience</a></li>
+          <li><a href="#" onclick="showPage('competences')">Compétences</a></li>
+          <li><a href="#" onclick="showPage('contact')">Contact</a></li>
         </ul>
       </div>
+      
       <div class="footer-section">
-        <h3>Contact</h3>
-        <ul style="list-style: none;">
+        <h3>Contact Direct</h3>
+        <ul>
           <li><a href="mailto:martinslourophilippe@gmail.com">📧 Email</a></li>
           <li><a href="https://www.linkedin.com/in/philippe-martins-louro-31a974345/" target="_blank">💼 LinkedIn</a></li>
           <li><a href="https://github.com/portfolioIpssi" target="_blank">🐙 GitHub</a></li>
+          <li><a href="tel:+33781501754">📱 Téléphone</a></li>
         </ul>
       </div>
+
       <div class="footer-section">
         <h3>Documents</h3>
-        <ul style="list-style: none;">
-          <li><a href="cv.pdf" download>📄 CV</a></li>
-          <li><a href="veille technologique.pdf" download>📊 Veille</a></li>
-          <li><a href="Tableau de synthese.pdf" download>📋 Synthèse</a></li>
+        <ul>
+          <li><a href="cv.pdf" download>📄 CV PDF</a></li>
+          <li><a href="Rapport de stage.pdf" download>📋 Rapport Stage</a></li>
+          <li><a href="Tableau de synthese.pdf" download>📊 Synthèse BTS</a></li>
+          <li><a href="veille technologique.pdf" download>🔍 Veille Tech</a></li>
         </ul>
       </div>
     </div>
+    
     <div class="footer-bottom">
       <p>&copy; 2026 Philippe Martins Louro - Tous droits réservés</p>
-      <p>Dernière mise à jour : Mars 2026</p>
+      <p>Portfolio v2.0 | Dernière mise à jour : Mars 2026</p>
     </div>
   </footer>
 
-  <button class="back-to-top" id="back-to-top">⬆️</button>
+  <!-- BACK TO TOP -->
+  <button class="back-to-top" id="back-to-top" onclick="backToTop()">⬆️</button>
 
+  <!-- JAVASCRIPT -->
   <script>
     // Navigation
-    const navBt
+    function showPage(pageId) {
+      // Hide all pages
+      const pages = document.querySelectorAll('.page');
+      pages.forEach(page => page.classList.remove('active'));
+      
+      // Show selected page
+      document.getElementById(pageId).classList.add('active');
+      
+      // Update nav buttons
+      const navBtns = document.querySelectorAll('.nav-btn');
+      navBtns.forEach(btn => btn.classList.remove('active'));
+      
+      // Scroll to top
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      
+      // Close mobile menu
+      closeMenu();
+    }
+
+    function goHome() {
+      showPage('home');
+    }
+
+    // Mobile menu
+    function toggleMenu() {
+      document.getElementById('hamburger').classList.toggle('active');
+      document.getElementById('nav-menu').classList.toggle('active');
+    }
+
+    function closeMenu() {
+      document.getElementById('hamburger').classList.remove('active');
+      document.getElementById('nav-menu').classList.remove('active');
+    }
+
+    // Project tabs
+    function switchProject(projectType) {
+      document.querySelectorAll('.project-tab').forEach(tab => tab.classList.remove('active'));
+      document.querySelectorAll('.project-content').forEach(content => content.classList.remove('active'));
+      
+      event.target.classList.add('active');
+      document.getElementById(projectType).classList.add('active');
+    }
+
+    // Progress bar
+    window.addEventListener('scroll', () => {
+      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrolled = (window.scrollY / scrollHeight) * 100;
+      document.getElementById('progress-bar').style.width = scrolled + '%';
+    });
+
+    // Back to top
+    const backToTopBtn = document.getElementById('back-to-top');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 500) {
+        backToTopBtn.classList.add('show');
+      } else {
+        backToTopBtn.classList.remove('show');
+      }
+    });
+
+    function backToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Theme toggle
+    function toggleTheme() {
+      const theme = localStorage.getItem('theme') === 'dark' ? 'light' : 'dark';
+      localStorage.setItem('theme', theme);
+      document.documentElement.setAttribute('data-theme', theme);
+      document.querySelector('.theme-toggle').textContent = theme === 'light' ? '🌙' : '☀️';
+    }
+
+    // Form submit
+    function handleSubmit(event) {
+      event.preventDefault();
+      alert('Merci pour votre message ! Je vous recontacterai très bientôt.');
+      event.target.reset();
+    }
+
+    // Initialize theme
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    document.querySelector('.theme-toggle').textContent = savedTheme === 'light' ? '🌙' : '☀️';
+
+    // Trigger animations on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    });
+
+    document.querySelectorAll('.card, .stat-box, .skill-row').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(20px)';
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>
