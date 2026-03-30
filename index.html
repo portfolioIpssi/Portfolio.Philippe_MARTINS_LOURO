@@ -5,10 +5,8 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Philippe Martins Louro - Portfolio Professionnel</title>
   <meta name="description" content="Portfolio professionnel de Philippe Martins Louro. Découvrez mes projets, expériences et compétences en administration système et réseaux informatiques.">
-  <meta name="keywords" content="BTS SIO, SISR, Administration Système, Réseaux, Portfolio, Philippe Martins">
   
   <style>
-    /* ===== VARIABLES ===== */
     :root {
       --primary: #6366f1;
       --primary-light: #818cf8;
@@ -16,7 +14,6 @@
       --secondary: #ec4899;
       --accent: #06b6d4;
       --success: #10b981;
-      --warning: #f59e0b;
       
       --bg-light: #ffffff;
       --bg-gray: #f9fafb;
@@ -34,7 +31,6 @@
       --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    /* ===== RESET ===== */
     * {
       margin: 0;
       padding: 0;
@@ -54,7 +50,6 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* ===== NAVBAR PREMIUM ===== */
     .navbar {
       position: fixed;
       top: 0;
@@ -82,7 +77,6 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      letter-spacing: -0.5px;
     }
 
     .logo::before {
@@ -113,23 +107,11 @@
       font-size: 0.9rem;
       font-weight: 600;
       transition: var(--transition);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .nav-btn::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(236, 72, 153, 0.1));
-      transform: translateX(-100%);
-      transition: transform 0.3s ease;
     }
 
     .nav-btn:hover {
       color: var(--primary);
       background: rgba(99, 102, 241, 0.1);
-      transform: translateX(0);
     }
 
     .nav-btn.active {
@@ -187,7 +169,6 @@
       transform: rotate(-45deg) translate(8px, -8px);
     }
 
-    /* ===== PROGRESS BAR ===== */
     .progress-bar {
       position: fixed;
       top: 79px;
@@ -199,14 +180,12 @@
       box-shadow: var(--shadow);
     }
 
-    /* ===== MAIN CONTAINER ===== */
     .main-container {
       max-width: 1200px;
       margin: 120px auto 100px;
       padding: 0 30px;
     }
 
-    /* ===== HERO SECTION ===== */
     .hero {
       background: linear-gradient(135deg, white, var(--bg-gray));
       border-radius: var(--radius);
@@ -262,7 +241,6 @@
       flex-wrap: wrap;
     }
 
-    /* ===== CARDS/WINDOWS ===== */
     .window {
       background: white;
       border-radius: var(--radius);
@@ -331,7 +309,6 @@
       padding: 50px;
     }
 
-    /* ===== TYPOGRAPHY ===== */
     h1 {
       font-size: 2.5rem;
       margin-bottom: 20px;
@@ -348,18 +325,6 @@
       margin-bottom: 20px;
       padding-bottom: 15px;
       border-bottom: 3px solid var(--accent);
-      position: relative;
-    }
-
-    h2::after {
-      content: '';
-      position: absolute;
-      bottom: -3px;
-      left: 0;
-      width: 80px;
-      height: 3px;
-      background: linear-gradient(90deg, var(--primary), var(--secondary));
-      border-radius: 2px;
     }
 
     h3 {
@@ -417,29 +382,12 @@
       text-decoration: none;
       font-weight: 600;
       transition: var(--transition);
-      position: relative;
-    }
-
-    a::after {
-      content: '';
-      position: absolute;
-      bottom: -2px;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: linear-gradient(90deg, var(--primary), var(--secondary));
-      transition: width 0.3s ease;
     }
 
     a:hover {
       color: var(--secondary);
     }
 
-    a:hover::after {
-      width: 100%;
-    }
-
-    /* ===== GRIDS ===== */
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -498,15 +446,6 @@
       line-height: 1.7;
     }
 
-    .card-meta {
-      margin-top: 15px;
-      padding-top: 15px;
-      border-top: 1px solid rgba(99, 102, 241, 0.1);
-      font-size: 0.85rem;
-      color: var(--text-light);
-    }
-
-    /* ===== STATS ===== */
     .stats-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
@@ -521,27 +460,12 @@
       text-align: center;
       border: 1.5px solid rgba(99, 102, 241, 0.15);
       transition: var(--transition);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .stat-box::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(236, 72, 153, 0.1));
-      opacity: 0;
-      transition: opacity 0.3s ease;
     }
 
     .stat-box:hover {
       transform: translateY(-8px);
       box-shadow: var(--shadow-lg);
       border-color: var(--primary);
-    }
-
-    .stat-box:hover::before {
-      opacity: 1;
     }
 
     .stat-number {
@@ -552,19 +476,14 @@
       -webkit-text-fill-color: transparent;
       background-clip: text;
       margin-bottom: 8px;
-      position: relative;
-      z-index: 1;
     }
 
     .stat-label {
       font-size: 0.9rem;
       color: var(--text-medium);
       font-weight: 700;
-      position: relative;
-      z-index: 1;
     }
 
-    /* ===== TIMELINE ===== */
     .timeline {
       margin-top: 35px;
       position: relative;
@@ -654,7 +573,6 @@
       font-weight: 700;
     }
 
-    /* ===== SKILLS ===== */
     .skill-row {
       margin-bottom: 28px;
     }
@@ -687,7 +605,6 @@
       border-radius: 10px;
       overflow: hidden;
       border: 1px solid rgba(99, 102, 241, 0.1);
-      position: relative;
     }
 
     .skill-fill {
@@ -697,21 +614,6 @@
       width: 0;
       animation: fillSkill 1.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
       box-shadow: 0 0 15px rgba(99, 102, 241, 0.3);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .skill-fill::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-      animation: shimmer 2s infinite;
-    }
-
-    @keyframes shimmer {
-      0% { transform: translateX(-100%); }
-      100% { transform: translateX(100%); }
     }
 
     @keyframes fillSkill {
@@ -752,7 +654,6 @@
       border-color: var(--primary);
     }
 
-    /* ===== ACHIEVEMENTS ===== */
     .achievements-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
@@ -768,29 +669,12 @@
       text-align: center;
       transition: var(--transition);
       cursor: pointer;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .achievement::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      opacity: 0;
-      transition: opacity 0.3s ease;
-      z-index: 0;
     }
 
     .achievement:hover {
       transform: translateY(-10px);
       box-shadow: var(--shadow-lg);
       border-color: var(--primary);
-    }
-
-    .achievement-inner {
-      position: relative;
-      z-index: 1;
     }
 
     .achievement-icon {
@@ -815,7 +699,6 @@
       font-weight: 700;
     }
 
-    /* ===== BUTTONS ===== */
     .btn {
       display: inline-block;
       padding: 14px 32px;
@@ -828,18 +711,6 @@
       transition: var(--transition);
       text-decoration: none;
       font-size: 0.95rem;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .btn::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
-      transform: translateX(-100%);
-      transition: transform 0.4s ease;
-      z-index: -1;
     }
 
     .btn:hover {
@@ -847,17 +718,9 @@
       box-shadow: var(--shadow-lg);
     }
 
-    .btn:hover::before {
-      transform: translateX(0);
-    }
-
     .btn-secondary {
       background: linear-gradient(135deg, var(--secondary), #d4358c);
       color: white;
-    }
-
-    .btn-secondary::before {
-      background: linear-gradient(135deg, #d4358c, var(--secondary));
     }
 
     .btn-outline {
@@ -872,7 +735,6 @@
       border-color: var(--primary);
     }
 
-    /* ===== CONTACT FORM ===== */
     .contact-form {
       background: linear-gradient(135deg, rgba(99, 102, 241, 0.05), rgba(236, 72, 153, 0.05));
       padding: 40px;
@@ -915,7 +777,6 @@
       transform: translateY(-2px);
     }
 
-    /* ===== PDF AREA ===== */
     .pdf-area {
       display: flex;
       gap: 24px;
@@ -946,7 +807,6 @@
       box-shadow: var(--shadow);
     }
 
-    /* ===== FOOTER ===== */
     .footer {
       background: linear-gradient(135deg, var(--primary), var(--secondary));
       color: white;
@@ -1010,7 +870,6 @@
       margin-bottom: 8px;
     }
 
-    /* ===== BACK TO TOP ===== */
     .back-to-top {
       position: fixed;
       bottom: 40px;
@@ -1040,7 +899,6 @@
       display: flex;
     }
 
-    /* ===== SEARCH MODAL ===== */
     .modal {
       position: fixed;
       inset: 0;
@@ -1114,7 +972,6 @@
       background: var(--bg-gray);
     }
 
-    /* ===== RESPONSIVE ===== */
     @media (max-width: 768px) {
       .navbar {
         padding: 0 20px;
@@ -1221,10 +1078,6 @@
         font-size: 1.2rem;
       }
 
-      .logo::before {
-        font-size: 1.5rem;
-      }
-
       .hero {
         padding: 40px 20px;
       }
@@ -1312,10 +1165,9 @@
     <!-- ========== HERO ========== -->
     <section class="hero">
       <div class="hero-content">
-        <h1>Bonjour ! 👋</h1>
+        <h1>Bienvenue ! 👋</h1>
         <p class="hero-subtitle">Je suis Philippe Martins Louro</p>
-        <p>Étudiant passionné en <strong>BTS SIO option SISR</strong>, spécialisé en administration système et réseaux informatiques. J'aime concevoir des solutions d'infrastructure robustes et automatiser les déploiements.</p>
-        <p style="color: var(--text-light); font-size: 0.95rem;">Décourez mes projets, mon expérience professionnelle et mes compétences techniques ci-dessous. 👇</p>
+        <p>Étudiant passionné en <strong>BTS SIO option SISR</strong>, spécialisé en administration système et réseaux informatiques. Actuellement en alternance à la Mairie de Bagnolet, gérant l'infrastructure informatique d'une collectivité territoriale.</p>
         <div class="hero-cta">
           <a href="#projets" class="btn">Voir mes projets</a>
           <a href="#contact" class="btn btn-outline">Me contacter</a>
@@ -1326,7 +1178,7 @@
     <!-- ========== PRESENTATION ========== -->
     <section id="presentation" class="window active">
       <div class="window-header">
-        <div class="window-title">📋 À Propos de Moi</div>
+        <div class="window-title">📋 À Propos</div>
         <div class="window-controls">
           <span class="dot"></span>
           <span class="dot"></span>
@@ -1334,12 +1186,14 @@
         </div>
       </div>
       <div class="window-content">
-        <h3>Qui suis-je ?</h3>
-        <p>Je m'appelle Philippe Martins Louro et j'ai 19 ans. Je suis actuellement en deuxième année de <strong>BTS SIO (Services Informatiques aux Organisations)</strong>, option <strong>SISR</strong> (Solutions d'Infrastructure, Systèmes et Réseaux) à l'école <strong>IPSSI</strong> de Marne-la-Vallée.</p>
+        <h2>Qui suis-je ?</h2>
+        <p>Je m'appelle <strong>Philippe Martins Louro</strong>, j'ai <strong>19 ans</strong> et je suis actuellement en deuxième année de <strong>BTS SIO</strong>, option <strong>SISR</strong> (Solutions d'Infrastructure, Systèmes et Réseaux) à l'école <strong>IPSSI</strong> de Marne-la-Vallée.</p>
 
-        <p>Sérieux, curieux et motivé, je me forme aux métiers de l'administration système et réseau. Au-delà de ma formation académique, j'ai acquis une solide expérience professionnelle en <strong>alternance</strong> à la Mairie de Bagnolet, où j'ai géré l'infrastructure informatique d'une collectivité territoriale.</p>
+        <p>Sérieux, curieux et motivé, je me forme aux métiers de l'<strong>administration système et réseau</strong>. J'ai acquis des compétences solides en environnements <strong>Windows et Linux</strong>, en <strong>virtualisation</strong>, en <strong>configuration de réseaux Cisco</strong> et en <strong>automatisation</strong>.</p>
 
-        <h3>Mon Parcours</h3>
+        <p>Au-delà de ma formation académique, j'ai une solide expérience professionnelle en <strong>alternance</strong> à la Mairie de Bagnolet, où je gère l'infrastructure informatique d'une collectivité territoriale importante.</p>
+
+        <h3>📊 Statistiques Clés</h3>
         <div class="stats-grid">
           <div class="stat-box">
             <div class="stat-number">300+</div>
@@ -1359,250 +1213,26 @@
           </div>
         </div>
 
-        <h3>Mes Forces</h3>
+        <h3>🎯 Mes Forces</h3>
         <div class="achievements-grid">
           <div class="achievement">
-            <div class="achievement-inner">
-              <div class="achievement-icon">⚡</div>
-              <div class="achievement-value">Autonome</div>
-              <div class="achievement-label">Je prends des initiatives</div>
-            </div>
+            <div class="achievement-icon">⚡</div>
+            <div class="achievement-value">Autonome</div>
+            <div class="achievement-label">Je prends des initiatives</div>
           </div>
           <div class="achievement">
-            <div class="achievement-inner">
-              <div class="achievement-icon">🎯</div>
-              <div class="achievement-value">Rigoureux</div>
-              <div class="achievement-label">Je soigne les détails</div>
-            </div>
+            <div class="achievement-icon">🎯</div>
+            <div class="achievement-value">Rigoureux</div>
+            <div class="achievement-label">Attention aux détails</div>
           </div>
           <div class="achievement">
-            <div class="achievement-inner">
-              <div class="achievement-icon">💡</div>
-              <div class="achievement-value">Créatif</div>
-              <div class="achievement-label">Je trouve des solutions</div>
-            </div>
+            <div class="achievement-icon">💡</div>
+            <div class="achievement-value">Créatif</div>
+            <div class="achievement-label">Trouve des solutions</div>
           </div>
           <div class="achievement">
-            <div class="achievement-inner">
-              <div class="achievement-icon">👥</div>
-              <div class="achievement-value">Teamplayer</div>
-              <div class="achievement-label">Je travaille bien en équipe</div>
-            </div>
-          </div>
-        </div>
-
-        <h3>Ma Chronologie</h3>
-        <div class="timeline">
-          <div class="timeline-item">
-            <div class="timeline-title">📚 BTS SIO (En cours)</div>
-            <div class="timeline-meta">
-              <span class="timeline-date">2023 - 2025</span>
-              <span class="timeline-tag">IPSSI Marne-la-Vallée</span>
-            </div>
-            <p>Formation complète en informatique avec une spécialisation en infrastructure et réseaux. Apprentissage des meilleures pratiques du secteur à travers des projets concrets et une expérience en alternance.</p>
-          </div>
-
-          <div class="timeline-item">
-            <div class="timeline-title">💼 Alternance (En cours)</div>
-            <div class="timeline-meta">
-              <span class="timeline-date">2024 - 2025</span>
-              <span class="timeline-tag">Mairie de Bagnolet DSI</span>
-            </div>
-            <p>Technicien Informatique en alternance à la Direction des Systèmes d'Information. Gestion complète de l'infrastructure informatique, déploiement de postes, migration Windows 10→11, et support utilisateur pour 300+ collaborateurs.</p>
-          </div>
-
-          <div class="timeline-item">
-            <div class="timeline-title">📖 Stage de Formation</div>
-            <div class="timeline-meta">
-              <span class="timeline-date">2023</span>
-              <span class="timeline-tag">Mairie de Chelles DSI</span>
-            </div>
-            <p>8 semaines en première année dans une collectivité territoriale. Déploiement de postes, gestion du parc informatique, et configuration des accès utilisateurs dans un environnement professionnel.</p>
-          </div>
-        </div>
-
-        <h3>Origines & Intérêts</h3>
-        <p>Je suis originaire de Vaires-sur-Marne (77360) en Île-de-France. Au-delà de l'informatique, je suis passionné par le sport (j'ai pratiqué le handball en compétition), le cinéma de science-fiction et la découverte de nouvelles cultures. Ces expériences m'ont appris le travail en équipe, la persévérance et l'adaptabilité.</p>
-      </div>
-    </section>
-
-    <!-- ========== PROJETS ========== -->
-    <section id="projets" class="window">
-      <div class="window-header">
-        <div class="window-title">🚀 Mes Projets</div>
-        <div class="window-controls">
-          <span class="dot"></span>
-          <span class="dot"></span>
-          <span class="dot"></span>
-        </div>
-      </div>
-      <div class="window-content">
-        <p>Voici les projets importants que j'ai réalisés durant ma formation et mon expérience professionnelle.</p>
-
-        <h3>Projet 1 : Infrastructure pour 480 Postes</h3>
-        <p>Un projet majeur de conception d'infrastructure informatique pour une grande entreprise pharmaceutique. Déploiement de <strong>480 postes de travail</strong> sécurisés avec un réseau hautement segmenté.</p>
-        
-        <div class="grid">
-          <div class="card">
-            <div class="card-icon">🎯</div>
-            <div class="card-title">Le Défi</div>
-            <div class="card-desc">Équiper 480 visiteurs médicaux avec des postes de travail sécurisés, fiables et bien organisés, avec un budget limité (299€/poste).</div>
-          </div>
-          <div class="card">
-            <div class="card-icon">⚙️</div>
-            <div class="card-title">Notre Solution</div>
-            <div class="card-desc">Création d'une infrastructure avec 12 VLANs pour segmenter le réseau, gestion centralisée via Active Directory, et déploiement automatisé des postes.</div>
-          </div>
-          <div class="card">
-            <div class="card-icon">✅</div>
-            <div class="card-title">Les Résultats</div>
-            <div class="card-desc">480 postes déployés avec succès, budget respecté exactement, zéro incident depuis le déploiement en production.</div>
-          </div>
-        </div>
-
-        <p style="margin-top: 30px;"><strong>Technologies utilisées :</strong> Windows 11 Pro • Active Directory • Cisco Switches • VPN/Firewalls • WDS/MDT</p>
-        <a href="Projet-Sisr.zip" download><button class="btn">📥 Télécharger le dossier complet</button></a>
-
-        <h3 style="margin-top: 45px;">Projet 2 : Gestion de Bibliothèque (Application Web)</h3>
-        <p>Un projet de développement web dans le cadre de ma formation SLAM. Application complète avec base de données pour gérer une bibliothèque en ligne.</p>
-        
-        <div class="grid">
-          <div class="card">
-            <div class="card-icon">💻</div>
-            <div class="card-title">Frontend</div>
-            <div class="card-desc">Interface web responsive et intuitive en HTML et CSS. Design moderne adapté à tous les appareils (ordinateurs, tablettes, mobiles).</div>
-          </div>
-          <div class="card">
-            <div class="card-icon">🔧</div>
-            <div class="card-title">Backend</div>
-            <div class="card-desc">Backend en PHP avec sessions sécurisées. Gestion complète de la logique applicative et des interactions avec la base de données.</div>
-          </div>
-          <div class="card">
-            <div class="card-icon">🗄️</div>
-            <div class="card-title">Base de Données</div>
-            <div class="card-desc">Structure MySQL bien normalisée. Gestion des utilisateurs, des livres, des emprunts et des réservations avec intégrité des données.</div>
-          </div>
-        </div>
-
-        <h4 style="margin-top: 25px;">Fonctionnalités principales :</h4>
-        <ul>
-          <li>✅ Système d'authentification sécurisé (inscription/connexion)</li>
-          <li>✅ Recherche avancée de livres par titre, auteur, genre</li>
-          <li>✅ Système d'emprunt et retour de livres automatisé</li>
-          <li>✅ Gestion des réservations avec file d'attente</li>
-          <li>✅ Panneau d'administration pour les bibliothécaires</li>
-          <li>✅ Historique complet des emprunts de chaque utilisateur</li>
-        </ul>
-
-        <a href="Projet-Slam.zip" download style="margin-top: 20px;"><button class="btn btn-secondary">📥 Télécharger le code source</button></a>
-
-        <h3 style="margin-top: 45px;">Projet 3 : Veille Technologique - NASLE</h3>
-        <p>Analyse approfondie d'un logiciel révolutionnaire basé sur l'Intelligence Artificielle : <strong>NASLE</strong>, un système de vidéoprotection intelligente.</p>
-        
-        <div class="card" style="background: linear-gradient(135deg, rgba(236, 72, 153, 0.08), rgba(6, 182, 212, 0.08)); border: 1px solid rgba(236, 72, 153, 0.15);">
-          <div class="card-icon">🤖</div>
-          <div class="card-title">C'est quoi NASLE ?</div>
-          <div class="card-desc">NASLE est un logiciel de vidéoprotection nouvelle génération développé par Nepsis Engineering. Il utilise l'IA et la vision par ordinateur pour analyser les flux vidéo en temps réel et détecter automatiquement les situations dangereuses ou anormales.</div>
-        </div>
-
-        <h4 style="margin-top: 25px;">Capacités principales :</h4>
-        <ul>
-          <li>🚨 <strong>Détection de violence</strong> : agression, bagarres, personnes à terre</li>
-          <li>🔥 <strong>Détection d'incendie</strong> : départs de feu et fumée</li>
-          <li>👥 <strong>Comptage de personnes</strong> : regroupements suspects ou dépassement de seuils</li>
-          <li>🔫 <strong>Détection d'armes</strong> : pistolets, couteaux et autres objets dangereux</li>
-          <li>📊 <strong>Comptage de trafic</strong> : analyse des mouvements piétons et véhiculaires</li>
-        </ul>
-
-        <a href="veille technologique.pdf" download style="margin-top: 20px;"><button class="btn">📄 Lire l'analyse complète (PDF)</button></a>
-      </div>
-    </section>
-
-    <!-- ========== EXPERIENCE ========== -->
-    <section id="alternance" class="window">
-      <div class="window-header">
-        <div class="window-title">💼 Expérience Professionnelle</div>
-        <div class="window-controls">
-          <span class="dot"></span>
-          <span class="dot"></span>
-          <span class="dot"></span>
-        </div>
-      </div>
-      <div class="window-content">
-        <h3>Alternance Actuelle : Mairie de Bagnolet DSI</h3>
-        <p>Je suis actuellement <strong>Technicien Informatique en Alternance</strong> à la <strong>Direction des Systèmes d'Information</strong> (DSI) de la Mairie de Bagnolet, une collectivité territoriale importante d'Île-de-France. Je travaille sur des projets d'infrastructure informatique à grande échelle.</p>
-
-        <div class="timeline">
-          <div class="timeline-item">
-            <div class="timeline-title">🔄 Migration Windows 10 → Windows 11</div>
-            <div class="timeline-meta">
-              <span class="timeline-date">2024 - 2025</span>
-              <span class="timeline-tag">PDQ Deploy</span>
-              <span class="timeline-tag">Automatisation</span>
-              <span class="timeline-tag">Enterprise</span>
-            </div>
-            <p><strong>Contexte :</strong> Microsoft mettra fin au support de Windows 10 le 14 octobre 2025. La mairie devait migrer l'ensemble de son parc informatique avant cette date limite. C'est un projet critique impactant 300+ utilisateurs.</p>
-            
-            <h4 style="margin-top: 15px;">Mes actions :</h4>
-            <ul>
-              <li>🔍 <strong>Audit complet du parc</strong> : vérification de la compatibilité matérielle (TPM 2.0, Secure Boot, RAM, stockage)</li>
-              <li>⚙️ <strong>Automatisation du déploiement</strong> : configuration de PDQ Deploy pour des mises à jour sans intervention manuelle</li>
-              <li>📦 <strong>Création de packages</strong> : préparation des images système optimisées avec les logiciels nécessaires</li>
-              <li>🧪 <strong>Tests pilotes</strong> : migration test sur 10 postes avant déploiement général</li>
-              <li>📞 <strong>Support utilisateur</strong> : assistance 24/7 pendant la migration</li>
-              <li>📚 <strong>Documentation</strong> : guides complets pour les futures migrations</li>
-            </ul>
-
-            <p style="margin-top: 15px;"><strong>Résultats :</strong> ✅ 300 postes migrés • ✅ 0 incident critique • ✅ 100% de réussite • ✅ Gain de temps : 70% plus rapide qu'une migration manuelle</p>
-          </div>
-
-          <div class="timeline-item">
-            <div class="timeline-title">💾 Déploiement Clonezilla Live Server</div>
-            <div class="timeline-meta">
-              <span class="timeline-date">2024</span>
-              <span class="timeline-tag">Clonezilla</span>
-              <span class="timeline-tag">PXE</span>
-              <span class="timeline-tag">Multicast</span>
-            </div>
-            <p><strong>Défi :</strong> Accélérer le déploiement de nouveaux postes qui était très long en méthode traditionnelle (8 heures pour 20 postes).</p>
-            
-            <h4 style="margin-top: 15px;">La solution :</h4>
-            <ul>
-              <li>🔧 Configuration d'une infrastructure DRBL/PXE pour le démarrage réseau des postes</li>
-              <li>🖼️ Création d'images système Windows 10/11 optimisées et prêtes à l'emploi</li>
-              <li>⚡ Déploiement multicast permettant 20 postes en parallèle en seulement 2h</li>
-              <li>✅ 300+ postes déployés avec succès</li>
-              <li>📈 Gain : 75% de réduction du temps de déploiement</li>
-            </ul>
-
-            <p style="margin-top: 15px;"><strong>Impact :</strong> Les nouvelles recrues sont équipées bien plus rapidement, l'infrastructure est plus efficace et évolutive.</p>
-          </div>
-
-          <div class="timeline-item">
-            <div class="timeline-title">🆘 Support Utilisateurs & Helpdesk</div>
-            <div class="timeline-meta">
-              <span class="timeline-date">Continu</span>
-              <span class="timeline-tag">Support</span>
-              <span class="timeline-tag">Troubleshooting</span>
-            </div>
-            <p>Gestion quotidienne des demandes et des incidents pour 300+ agents municipaux à travers plusieurs bâtiments et services.</p>
-            
-            <h4 style="margin-top: 15px;">Types de demandes :</h4>
-            <ul>
-              <li>🔌 Problèmes réseau et connectivité</li>
-              <li>🖨️ Configuration et dépannage d'imprimantes</li>
-              <li>📧 Accès aux logiciels métiers</li>
-              <li>🔐 Gestion des comptes utilisateurs et des droits d'accès</li>
-              <li>📚 Formation des nouveaux agents aux outils informatiques</li>
-              <li>📊 Gestion et inventaire du parc informatique</li>
-            </ul>
-
-            <p style="margin-top: 15px;"><strong>Taux de satisfaction :</strong> 95%+ • <strong>Temps moyen de résolution :</strong> 2 heures</p>
-          </div>
-        </div>
-
-        <h3 style="margin-top: 40px;">Compétences Acquises</h3>
-        <div class="grid">
-          <div class="card">
-            <div class="card-icon">🎯</div>
-            <div class="card-title">Infrastructure</div
+            <div class="achievement-icon">👥</div>
+            <div class="achievement-value">Teamplayer</div>
+            <div class="achievement-label">Travaille bien en équipe</div>
+          *
+
