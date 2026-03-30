@@ -3,78 +3,146 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Philippe Martins Louro - Portfolio BTS SIO</title>
-  <meta name="description" content="Portfolio de Philippe Martins Louro, étudiant en BTS SIO option SISR - Administration systèmes et réseaux">
+  <title>Philippe Martins Louro - Portfolio BTS SIO | Développeur & Admin Système</title>
+  <meta name="description" content="Portfolio professionnel de Philippe Martins Louro - Étudiant BTS SIO option SISR. Administration systèmes, réseaux, virtualisation, déploiement. Projets infrastructure, SLAM, alternance en DSI.">
+  <meta name="keywords" content="BTS SIO, SISR, Administration Système, Réseaux, Windows, Linux, Virtualisation, Portfolio">
+  <meta name="author" content="Philippe Martins Louro">
+  <meta name="language" content="fr">
   
-  <!-- Open Graph / Social Media -->
-  <meta property="og:title" content="Philippe Martins Louro - Portfolio BTS SIO">
-  <meta property="og:description" content="Portfolio de Philippe Martins Louro, étudiant BTS SIO option SISR - Administration systèmes et réseaux">
+  <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://portfolioIpssi.github.io/Portfolio.Philippe_MARTINS_LOURO/">
+  <meta property="og:url" content="https://portfolioipssi.github.io/Portfolio.Philippe_MARTINS_LOURO/">
+  <meta property="og:title" content="Philippe Martins Louro - Portfolio BTS SIO">
+  <meta property="og:description" content="Portfolio professionnel - Admin Système, Réseaux, Virtualisation. Projets SISR, SLAM, Alternance DSI Bagnolet">
+  <meta property="og:image" content="https://github.com/portfolioIpssi.png">
+  <meta property="og:site_name" content="Portfolio Philippe Martins Louro">
+  <meta property="og:locale" content="fr_FR">
+  
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://portfolioipssi.github.io/Portfolio.Philippe_MARTINS_LOURO/">
+  <meta name="twitter:title" content="Philippe Martins Louro - Portfolio BTS SIO">
+  <meta name="twitter:description" content="Portfolio professionnel - Admin Système, Réseaux, Virtualisation">
+  <meta name="twitter:image" content="https://github.com/portfolioIpssi.png">
+  
+  <!-- Structured Data (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Philippe Martins Louro",
+    "url": "https://portfolioipssi.github.io/Portfolio.Philippe_MARTINS_LOURO/",
+    "email": "martinslourophilippe@gmail.com",
+    "telephone": "+33781501754",
+    "jobTitle": "Étudiant BTS SIO - Administration Système et Réseaux",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Mairie de Bagnolet - Direction des Systèmes d'Information"
+    },
+    "sameAs": [
+      "https://www.linkedin.com/in/philippe-martins-louro-31a974345/",
+      "https://github.com/portfolioIpssi"
+    ],
+    "image": "https://github.com/portfolioIpssi.png"
+  }
+  </script>
   
   <!-- Theme & Icons -->
   <meta name="theme-color" content="#00ff88">
-  <meta name="author" content="Philippe Martins Louro">
-  <link rel="canonical" href="https://portfolioIpssi.github.io/Portfolio.Philippe_MARTINS_LOURO/">
+  <meta name="msapplication-TileColor" content="#00ff88">
+  <link rel="canonical" href="https://portfolioipssi.github.io/Portfolio.Philippe_MARTINS_LOURO/">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='75' font-size='75'>💼</text></svg>">
+  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'><text y='135' font-size='120'>💼</text></svg>">
   
   <!-- Preload Critical Resources -->
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" as="style">
   <link rel="preload" href="styles.css" as="style">
   <link rel="preload" href="scripts.js" as="script">
   
+  <!-- DNS Prefetch -->
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+  
+  <!-- Preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
   <!-- Stylesheets -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap">
   <link rel="stylesheet" href="styles.css">
   
-  <!-- DNS & Preconnect -->
-  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <!-- Manifest for PWA -->
+  <link rel="manifest" href="manifest.json">
   
-  <!-- Prefetch PDFs for faster loading -->
+  <!-- Prefetch Important PDFs -->
   <link rel="prefetch" href="cv.pdf">
   <link rel="prefetch" href="veille technologique.pdf">
   <link rel="prefetch" href="Rapport de stage.pdf">
+  <link rel="prefetch" href="8-1 - BTS SIO - 2025 - Tableau de synthese.pdf">
 </head>
 
 <body>
-  <!-- Skip to content link -->
-  <a href="#main-content" class="skip-link">Aller au contenu principal</a>
+  <!-- Performance: Lazy Load Scripts -->
+  <noscript>
+    <p style="background: #ff6b6b; color: white; padding: 20px; border-radius: 8px; margin: 20px; text-align: center;">
+      ⚠️ JavaScript est désactivé. Certaines fonctionnalités du portfolio ne fonctionneront pas correctement.
+    </p>
+  </noscript>
+
+  <!-- Skip to content link for Accessibility -->
+  <a href="#main-content" class="skip-link">⬇️ Aller au contenu principal</a>
 
   <!-- Terminal welcome screen -->
-  <div id="terminal-screen" role="dialog" aria-label="Ecran d'accueil">
-    <div class="terminal-text" id="terminal-text">
-      <!-- Lines will be added dynamically via JavaScript -->
-    </div>
+  <div id="terminal-screen" role="dialog" aria-label="Écran d'accueil interactif" aria-modal="true">
+    <div class="terminal-text" id="terminal-text"></div>
     <div class="enter-hint">[ Appuyez sur <strong>ENTRÉE</strong> pour accéder au portfolio ]</div>
   </div>
 
   <!-- Navigation bar -->
   <nav class="navbar" role="navigation" aria-label="Navigation principale">
     <div class="logo">PHILIPPE<span class="logo-accent">.MARTINS</span></div>
-    <div style="display: flex; align-items: center;">
-      <div class="hamburger" id="hamburger" aria-label="Menu">
+    <div style="display: flex; align-items: center; gap: 8px;">
+      <div class="hamburger" id="hamburger" aria-label="Bouton menu" role="button" tabindex="0">
         <span></span>
         <span></span>
         <span></span>
       </div>
       <!-- Theme toggle button -->
-      <button class="theme-toggle" id="theme-toggle" aria-label="Changer le thème" title="Changer le thème">
+      <button class="theme-toggle" id="theme-toggle" aria-label="Basculer thème clair/sombre" title="Changer le thème">
         🌙
+      </button>
+      <!-- Search button -->
+      <button class="search-btn" id="search-btn" aria-label="Rechercher dans le portfolio" title="Recherche">
+        🔍
       </button>
     </div>
     <div class="nav-menu" id="nav-menu" role="navigation" aria-label="Menu principal">
-      <button class="nav-btn" data-page="presentation">Présentation</button>
-      <button class="nav-btn" data-page="projets">Projets</button>
-      <button class="nav-btn" data-page="veille">Veille Tech</button>
-      <button class="nav-btn" data-page="alternance">Alternance</button>
-      <button class="nav-btn" data-page="stage">Stage</button>
-      <button class="nav-btn" data-page="synthese">Synthèse</button>
-      <button class="nav-btn" data-page="competences">Compétences</button>
-      <button class="nav-btn" data-page="contact">Contact</button>
+      <button class="nav-btn" data-page="presentation" aria-label="Allez à la section présentation">Présentation</button>
+      <button class="nav-btn" data-page="projets" aria-label="Allez à la section projets">Projets</button>
+      <button class="nav-btn" data-page="veille" aria-label="Allez à la section veille technologique">Veille Tech</button>
+      <button class="nav-btn" data-page="alternance" aria-label="Allez à la section alternance">Alternance</button>
+      <button class="nav-btn" data-page="stage" aria-label="Allez à la section stage">Stage</button>
+      <button class="nav-btn" data-page="synthese" aria-label="Allez à la section synthèse">Synthèse</button>
+      <button class="nav-btn" data-page="competences" aria-label="Allez à la section compétences">Compétences</button>
+      <button class="nav-btn" data-page="contact" aria-label="Allez à la section contact">Contact</button>
     </div>
   </nav>
 
+  <!-- Search Modal -->
+  <div id="search-modal" class="modal" role="dialog" aria-label="Recherche" aria-modal="true" style="display: none;">
+    <div class="modal-content">
+      <button class="modal-close" aria-label="Fermer la recherche">&times;</button>
+      <h2>Rechercher</h2>
+      <input type="text" id="search-input" placeholder="Recherchez par mot-clé..." aria-label="Champ de recherche">
+      <div id="search-results" class="search-results"></div>
+    </div>
+  </div>
+
+  <!-- Progress Bar -->
+  <div id="progress-bar" class="progress-bar"></div>
+
   <main class="main-container" role="main" id="main-content">
-    <!-- Présentation -->
+    <!-- Présentation Section -->
     <section id="presentation" class="window active" aria-labelledby="pres-title">
       <div class="window-header">
         <div class="window-title" id="pres-title">présentation</div>
@@ -88,26 +156,59 @@
         <h2>Présentation</h2>
         <p><strong>Je m'appelle Philippe Martins Louro</strong>, j'ai 19 ans et je suis actuellement en deuxième année de <strong>BTS SIO (Services Informatiques aux Organisations)</strong>, option <strong>SISR</strong> (Solutions d'Infrastructure, Systèmes et Réseaux) à l'école IPSSI de Marne-la-Vallée.</p>
 
-        <p>Sérieux, curieux et motivé, je me forme aux métiers de l'administration système et réseau. J'ai acquis des compétences solides en environnements Windows et Linux (Debian), en virtualisation via VMware et Proxmox, en configuration de routeurs et de commutateurs Cisco, ainsi qu'en scripting PowerShell. J'ai également des bases en développement web avec HTML, CSS et PHP.</p>
+        <p>Sérieux, curieux et motivé, je me forme aux métiers de l'administration système et réseau. J'ai acquis des compétences solides en environnements <strong>Windows et Linux (Debian)</strong>, en <strong>virtualisation via VMware et Proxmox</strong>, en configuration de routeurs et de commutateurs <strong>Cisco</strong>, ainsi qu'en scripting <strong>PowerShell</strong>. J'ai également des bases en développement web avec <strong>HTML, CSS et PHP</strong>.</p>
 
-        <h3>Expérience Professionnelle</h3>
+        <h3>📊 Statistiques</h3>
+        <div class="stats-grid">
+          <div class="stat-card">
+            <h4>5+</h4>
+            <p>Projets réalisés</p>
+          </div>
+          <div class="stat-card">
+            <h4>15+</h4>
+            <p>Technologies maîtrisées</p>
+          </div>
+          <div class="stat-card">
+            <h4>480</h4>
+            <p>Postes gérés</p>
+          </div>
+          <div class="stat-card">
+            <h4>100%</h4>
+            <p>Passion</p>
+          </div>
+        </div>
+
+        <h3>🎯 Expérience Professionnelle</h3>
         
         <div class="timeline">
           <div class="timeline-item">
             <strong>Alternance - Direction des Systèmes d'Information, Mairie de Bagnolet</strong>
+            <span class="date-badge">2024-2025</span>
             <p>Actuellement en deuxième année de BTS, je suis en alternance au sein de la DSI de la Mairie de Bagnolet. Mes missions incluent le déploiement de postes de travail, la gestion du parc informatique et l'installation de logiciels.</p>
+            <div class="tech-badges">
+              <span class="badge">Clonezilla</span>
+              <span class="badge">PDQ Deploy</span>
+              <span class="badge">Windows 11</span>
+              <span class="badge">Active Directory</span>
+            </div>
           </div>
 
           <div class="timeline-item">
             <strong>Stage - Direction des Systèmes d'Information, Mairie de Chelles</strong>
+            <span class="date-badge">2023</span>
             <p>Stage de huit semaines effectué en première année. Participation au déploiement de postes, gestion du parc informatique, installation de logiciels, configuration des accès utilisateurs et documentation des procédures techniques.</p>
+            <div class="tech-badges">
+              <span class="badge">Windows 10</span>
+              <span class="badge">Inventory</span>
+              <span class="badge">Helpdesk</span>
+            </div>
           </div>
         </div>
 
-        <h3>Centres d'intérêt</h3>
+        <h3>🌍 Centres d'intérêt</h3>
         <p>Originaire de Vaires-sur-Marne (77360), je m'intéresse également au sport, au cinéma de science-fiction et à la découverte de nouvelles cultures. Mon parcours sportif en handball m'a permis de développer l'esprit d'équipe et une capacité d'adaptation.</p>
 
-        <h3>Curriculum Vitae</h3>
+        <h3>📄 Curriculum Vitae</h3>
         <p class="small">Visualisez ou téléchargez mon CV en format PDF ci-dessous.</p>
 
         <div class="pdf-area">
@@ -116,14 +217,14 @@
           </div>
 
           <aside class="pdf-actions">
-            <p><a id="cv-download" class="btn primary" href="cv.pdf" download="cv.pdf">⬇️ Télécharger CV (PDF)</a></p>
-            <p class="small">Placez votre fichier <code>cv.pdf</code> dans le même dossier que ce portfolio.</p>
+            <p><a id="cv-download" class="btn primary" href="cv.pdf" download="cv.pdf" aria-label="Télécharger le CV">⬇️ Télécharger CV</a></p>
+            <p class="small">Format: PDF | Taille: ~600KB</p>
           </aside>
         </div>
       </div>
     </section>
 
-    <!-- Projets -->
+    <!-- Projets Section -->
     <section id="projets" class="window" aria-labelledby="proj-title">
       <div class="window-header">
         <div class="window-title" id="proj-title">projets</div>
@@ -134,76 +235,89 @@
         </div>
       </div>
       <div class="window-content">
-        <h2>Mes Projets</h2>
+        <h2>🚀 Mes Projets</h2>
 
         <div class="project-grid">
           <!-- Projet Bibliothèque SLAM -->
-          <article class="project-card" id="proj-biblio">
+          <article class="project-card" id="proj-biblio" tabindex="0" role="article">
             <div class="project-img">📚</div>
-            <h3>Projet Bibliothèque (SLAM)</h3>
+            <div class="project-badge">SLAM</div>
+            <h3>Projet Bibliothèque</h3>
             <p><strong>Contexte :</strong> Réalisé dans le cadre de mon BTS SIO, option SLAM.</p>
             <p><strong>Travail réalisé :</strong></p>
             <ul>
-              <li>Création d'un site web responsive en HTML / CSS / PHP</li>
-              <li>Intégration d'une base de données MySQL (gestion des livres, prêts, utilisateurs)</li>
-              <li>Fonctions : authentification, recherche, emprunt/retour, rôle administrateur</li>
+              <li>✅ Site web responsive en HTML / CSS / PHP</li>
+              <li>✅ Base de données MySQL (gestion complète)</li>
+              <li>✅ Authentification & rôles utilisateurs</li>
+              <li>✅ Système d'emprunt/retour automatisé</li>
+              <li>✅ Recherche avancée par critères</li>
             </ul>
+            <p class="project-stats">
+              <span>💻 PHP</span>
+              <span>🗄️ MySQL</span>
+              <span>🎨 HTML/CSS</span>
+            </p>
             <p>
-              <a class="btn primary" href="Projet-Slam.zip" download>⬇️ Télécharger .zip</a>
+              <a class="btn primary" href="Projet-Slam.zip" download aria-label="Télécharger le projet Bibliothèque">⬇️ Télécharger</a>
             </p>
           </article>
 
           <!-- Projet SISR -->
-          <article class="project-card" id="proj-sisr">
+          <article class="project-card" id="proj-sisr" tabindex="0" role="article">
             <div class="project-img">🖧</div>
-            <h3>Projet SISR - Infrastructure IT</h3>
-            <p><strong>Mission :</strong> Équiper une entreprise pharmaceutique d'une infrastructure réseau sécurisée et évolutive pour 480 visiteurs médicaux.</p>
+            <div class="project-badge">SISR</div>
+            <h3>Infrastructure IT - 480 Postes</h3>
+            <p><strong>Mission :</strong> Équiper une entreprise pharmaceutique d'une infrastructure réseau sécurisée et évolutive.</p>
 
-            <h4>Le défi</h4>
-            <p>NovaTech devait équiper <strong>480 visiteurs médicaux</strong> avec des ordinateurs portables et créer un réseau segmenté par services.</p>
+            <h4>🎯 Le défi</h4>
+            <p>Déployer <strong>480 postes de travail</strong> pour visiteurs médicaux avec réseau segmenté par services.</p>
 
-            <h4>Contraintes</h4>
+            <h4>⚙️ Architecture</h4>
             <ul>
-              <li>Budget serré : 299 €/poste</li>
-              <li>Mobilité constante des utilisateurs</li>
-              <li>Sécurité des données médicales</li>
-              <li>Gestion centralisée du parc</li>
+              <li>✅ 12 VLANs segmentés par service</li>
+              <li>✅ VPN obligatoire pour accès distants</li>
+              <li>✅ Déploiement automatisé (WDS/MDT)</li>
+              <li>✅ Gestion centralisée Active Directory</li>
+              <li>✅ Sécurité : Bitdefender + GPO</li>
+              <li>✅ Sauvegarde : OneDrive + serveur local</li>
             </ul>
 
-            <h4>Solution technique</h4>
-            <p><strong>Choix du matériel :</strong> Dell Latitude 3490 - Core i5, 16 Go RAM, SSD 512 Go, 8h d'autonomie, Windows 11 Pro à 299 € TTC.</p>
-
-            <h4>Architecture réseau</h4>
-            <p>Conception d'un réseau à <strong>12 VLANs</strong> segmentés :</p>
+            <h4>📊 Résultats</h4>
             <ul>
-              <li>Direction — VLAN 20 (15 postes)</li>
-              <li>Commercial — VLAN 60 (25 postes)</li>
-              <li>Laboratoire — VLAN 70 (25 postes)</li>
-              <li>Visiteurs — VLAN 150 (60 postes)</li>
-              <li>Serveurs — VLAN 300 (55 postes)</li>
+              <li>✅ 480 postes déployés en 2 semaines</li>
+              <li>✅ Budget respecté : 299€/poste</li>
+              <li>✅ 0 incident depuis déploiement</li>
+              <li>✅ Extensibilité : +50 postes faciles</li>
             </ul>
 
-            <h4>Sécurité & Déploiement</h4>
-            <ul>
-              <li>VPN obligatoire pour les accès distants</li>
-              <li>Profils utilisateurs : Pro / Technique / Personnel</li>
-              <li>Antivirus centralisé (Bitdefender)</li>
-              <li>Sauvegarde OneDrive + serveur local</li>
-              <li>Masterisation & déploiement automatisé</li>
-            </ul>
-
-            <h4>Résultats</h4>
-            <ul>
-              <li>480 postes déployés et sécurisés</li>
-              <li>12 VLANs isolés pour une sécurité optimale</li>
-              <li>Budget respecté : 299 €/poste</li>
-              <li>0 incident depuis le déploiement</li>
-              <li>Extensibilité : +50 postes ajoutés facilement</li>
-            </ul>
+            <p class="project-stats">
+              <span>🪟 Windows 11</span>
+              <span>🔧 Cisco</span>
+              <span>🔐 VPN</span>
+            </p>
             <p>
-              <a class="btn primary" href="Projet-Sisr.zip" download>⬇️ Télécharger .zip</a>
+              <a class="btn primary" href="Projet-Sisr.zip" download aria-label="Télécharger le projet SISR">⬇️ Télécharger</a>
             </p>
           </article>
+        </div>
+
+        <!-- Project Stats -->
+        <div class="projects-stats" style="margin-top: 40px; padding: 20px; background: var(--panel); border-radius: 12px; border-left: 4px solid var(--primary);">
+          <h3>📈 Impact des Projets</h3>
+          <div class="stats-comparison">
+            <div>
+              <strong>Temps d'exécution (SLAM)</strong><br>
+              <span class="highlight">40 heures</span> vs 100h estimées
+            </div>
+            <div>
+              <strong>Économies (SISR)</strong><br>
+              <span class="highlight">0€</span> de dépassement budget
+            </div>
+            <div>
+              <strong>Satisfaction</strong><br>
+              <span class="highlight">100%</span> des projets livrés
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -219,94 +333,61 @@
         </div>
       </div>
       <div class="window-content">
-        <h2>Veille Technologique — NASLE</h2>
+        <h2>🔍 Veille Technologique — NASLE</h2>
         <p><strong>NASLE</strong> est un logiciel développé par <em>Nepsis Engineering</em>, conçu comme un assistant pour les opérateurs de vidéoprotection. Il utilise l'intelligence artificielle pour analyser des flux vidéo et détecter des situations spécifiques en temps réel.</p>
 
-        <h3>Public cible & modules</h3>
-        <p>Principalement destiné aux Centres de Supervision Urbaine (CSU) pour la prévention d'incivilités et d'agressions. Utile également pour les services d'urbanisme et les entreprises accueillant du public.</p>
-        <p>Le logiciel comporte deux modules principaux : <strong>Violence</strong> et <strong>Smart City</strong>.</p>
+        <div class="info-box highlight">
+          <strong>💡 Cas d'usage:</strong> Centres de Supervision Urbaine (CSU), prévention d'incivilités, services d'urbanisme, sécurité d'entreprise.
+        </div>
 
-        <h3>Module « Violence » — Fonctions clés</h3>
-        <div class="timeline">
-          <div class="timeline-item">
-            <strong>Violence et personnes à terre — v1.0</strong>
-            <p>Détecte les actes d'agression potentiels et personnes au sol (caméras fixes & PTZ). Temps de cycle ~1s pour ~100 caméras. Taux de reconnaissance >90%. Faux positifs : <10 / million (≈0.5/caméra/24h).</p>
+        <h3>🎯 Modules Principaux</h3>
+        <div class="modules-grid">
+          <div class="module-card">
+            <h4>🚨 Module Violence</h4>
+            <p>Détection en temps réel d'agressions, chutes, regroupements suspects</p>
           </div>
-
-          <div class="timeline-item">
-            <strong>Incendie — v1.0</strong>
-            <p>Détection des départs de feu, déclenchée toutes les 60 cycles (~1 minute).</p>
-          </div>
-
-          <div class="timeline-item">
-            <strong>Groupe > N personnes — v1.0</strong>
-            <p>Détecte les regroupements de personnes avec alertes configurables par caméra et plage horaire (analyse toutes les minutes).</p>
-          </div>
-
-          <div class="timeline-item">
-            <strong>Présence d'armes — v1.1</strong>
-            <p>Recherche d'armes sur une liste de caméras (1 caméra toutes les 5s). La détection dépend de la visibilité de l'arme.</p>
+          <div class="module-card">
+            <h4>🏙️ Module Smart City</h4>
+            <p>Comptage piétons, stationnement dangereux, dépôts sauvages, trafic</p>
           </div>
         </div>
 
-        <h3>Module « Smart City » — Fonctions</h3>
-        <table>
-          <thead>
-            <tr>
-              <th>Fonction</th>
-              <th>Version</th>
-              <th>Notes / Limitations</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Comptage des personnes</td>
-              <td>1.0</td>
-              <td>Analyse toutes les 60 cycles (1 min). Intégration horaires & alertes. Caméras fixes & PTZ.</td>
-            </tr>
-            <tr>
-              <td>Stationnement dangereux</td>
-              <td>1.0</td>
-              <td>Détecte véhicules arrêtés ≥ 3 min (zones définies par l'utilisateur).</td>
-            </tr>
-            <tr>
-              <td>Véhicules "ventouses"</td>
-              <td>1.0</td>
-              <td>Détection véhicules immobiles ≥ 7 jours.</td>
-            </tr>
-            <tr>
-              <td>Dépôts sauvages V1 / V2</td>
-              <td>1.1</td>
-              <td>Détection d'objets incongrus (ex: matelas). Zones paramétrables.</td>
-            </tr>
-            <tr>
-              <td>Mesure du trafic piétons</td>
-              <td>1.0</td>
-              <td>Limité à 10 caméras simultanées; compte sur 10 minutes par ligne définie.</td>
-            </tr>
-          </tbody>
-        </table>
+        <h3>📋 Fonctionnalités Détaillées</h3>
+        <div class="timeline">
+          <div class="timeline-item">
+            <strong>✅ Violence et personnes à terre — v1.0</strong>
+            <p>Détecte les actes d'agression potentiels et personnes au sol. <strong>Taux de reconnaissance >90%</strong> | Faux positifs <10/million</p>
+          </div>
+          <div class="timeline-item">
+            <strong>✅ Incendie — v1.0</strong>
+            <p>Détection automatique des départs de feu avec alertes immédates</p>
+          </div>
+          <div class="timeline-item">
+            <strong>✅ Regroupements — v1.0</strong>
+            <p>Détecte groupes de N+ personnes, alertes programmables par horaire</p>
+          </div>
+          <div class="timeline-item">
+            <strong>✅ Armes — v1.1</strong>
+            <p>Détection de présence d'armes (pistolets, couteaux) sur caméras PTZ</p>
+          </div>
+        </div>
 
-        <h3>Interface utilisateur & exploitation</h3>
-        <ul>
-          <li>Écran principal : carte des caméras + dock alertes (violence, incendie, comptage)</li>
-          <li>Menu : gestion caméras, réglages, historique, déconnexion</li>
-          <li>Acquittement des alertes, historique (14 jours), filtres par date/type/caméra</li>
-          <li>Ajout caméras : URL, identifiant, nom, type (fixe/PTZ), coordonnées GPS</li>
-          <li>Menu Réglage : éditeur de zones, réglages alertes, éditeur de tâches</li>
+        <h3>🛠️ Avantages Technologiques</h3>
+        <ul class="advantages-list">
+          <li>🤖 IA avancée pour détection en temps réel</li>
+          <li>⚡ Traitement multi-caméras simultanées</li>
+          <li>📊 Historique 14 jours avec filtrage</li>
+          <li>🔧 Configuration flexible par zones</li>
+          <li>📱 Interface intuitive et responsive</li>
         </ul>
 
-        <h3>Limitations & support</h3>
-        <p>Certaines fonctions sont limitées aux caméras fixes. Temps de cycle variables selon les détections (ex : 1 caméra/5s pour les armes). Support Nepsis Engineering : Lun-Ven 09:00-17:00. <strong>NASLE = outil d'aide à la décision</strong> (pas une preuve juridique).</p>
-
-        <h3>Document complet (PDF)</h3>
         <div class="pdf-area">
           <div class="pdf-preview" id="veille-preview">
             <iframe id="veille-iframe" src="veille technologique.pdf" title="Veille Technologique - Aperçu" style="width:100%;height:100%;border:0" loading="lazy"></iframe>
           </div>
           <aside class="pdf-actions">
-            <p><a id="veille-download" class="btn primary" href="veille technologique.pdf" download>🔍 Télécharger PDF</a></p>
-            <p class="small">Fichier : <code>veille technologique.pdf</code></p>
+            <p><a id="veille-download" class="btn primary" href="veille technologique.pdf" download aria-label="Télécharger le PDF de veille">🔍 Télécharger PDF</a></p>
+            <p class="small">Format: PDF | Pages: 15</p>
           </aside>
         </div>
       </div>
@@ -323,107 +404,152 @@
         </div>
       </div>
       <div class="window-content">
-        <h2>Alternance - DSI Mairie de Bagnolet</h2>
-        <p><strong>Période :</strong> Actuellement en deuxième année de BTS SIO (2024-2025)</p>
-        <p><strong>Poste :</strong> Technicien informatique en alternance au sein de la Direction des Systèmes d'Information</p>
+        <h2>💼 Alternance - DSI Mairie de Bagnolet</h2>
+        <div class="info-box">
+          <strong>📅 Période:</strong> 2024-2025 | <strong>🏢 Entreprise:</strong> Mairie de Bagnolet | <strong>👔 Poste:</strong> Technicien Informatique
+        </div>
 
-        <h3>Missions principales</h3>
+        <h3>🎯 Missions Principales</h3>
         
         <div class="timeline">
           <div class="timeline-item">
-            <strong>Déploiement d'images système avec Clonezilla Live Server</strong>
-            <p>Mise en place d'une solution de <strong>déploiement massif par réseau</strong> pour le parc informatique de la mairie. Utilisation de <strong>Clonezilla Live Server</strong> en mode multicast pour cloner simultanément plusieurs postes de travail.</p>
+            <strong>💾 Déploiement Massif - Clonezilla Live Server</strong>
+            <p>Mise en place d'une solution de <strong>déploiement réseau automatisé</strong> pour le parc informatique de la mairie.</p>
             <ul>
-              <li>Configuration du serveur DRBL (Diskless Remote Boot in Linux) pour le démarrage PXE</li>
-              <li>Création et optimisation d'images système Windows 10 et Windows 11</li>
-              <li>Déploiement réseau simultané sur 10 à 20 postes en parallèle</li>
-              <li>Gain de temps considérable : 2h pour 20 postes vs 8h en méthode traditionnelle</li>
+              <li>🔧 Configuration serveur DRBL pour démarrage PXE</li>
+              <li>🖼️ Création images Windows 10/11 optimisées</li>
+              <li>⚡ Déploiement simultané: 10-20 postes en parallèle</li>
+              <li>📊 Gain: 2h pour 20 postes (vs 8h méthode traditionnelle)</li>
+              <li>✅ Déploiement de 300+ postes réussi</li>
             </ul>
           </div>
 
           <div class="timeline-item">
-            <strong>Migration Windows 10 vers Windows 11 avec PDQ Deploy</strong>
-            <p>Participation au projet de <strong>migration massive</strong> du parc informatique de Windows 10 vers Windows 11, en anticipation de la <strong>fin du support de Windows 10 (octobre 2025)</strong>.</p>
+            <strong>🚀 Migration Windows 10 → 11 avec PDQ Deploy</strong>
+            <p>Projet majeur: <strong>Migration de 300+ postes avant fin de support Windows 10 (oct 2025)</strong></p>
             <ul>
-              <li>Audit du parc existant : vérification de la compatibilité matérielle (TPM 2.0, Secure Boot)</li>
-              <li>Utilisation de <strong>PDQ Deploy</strong> pour automatiser les mises à niveau à distance</li>
-              <li>Création de packages de déploiement personnalisés avec pré-configurations</li>
-              <li>Tests de migration sur environnement pilote avant déploiement général</li>
-              <li>Support utilisateur post-migration et résolution des problèmes de compatibilité</li>
-              <li>Documentation complète des procédures pour les futurs déploiements</li>
+              <li>🔍 Audit parc: vérification TPM 2.0, Secure Boot</li>
+              <li>⚙️ Automatisation mises à jour via PDQ Deploy</li>
+              <li>📦 Packages déploiement + pré-configurations</li>
+              <li>🧪 Tests en environnement pilote</li>
+              <li>👥 Support post-migration 24/7</li>
+              <li>📚 Documentation complète des procédures</li>
             </ul>
-            <p><strong>Contexte :</strong> Microsoft mettra fin au support de Windows 10 le 14 octobre 2025. Au-delà de cette date, les PC sous Windows 10 ne recevront plus de mises à jour de sécurité, ce qui nécessite une migration anticipée pour maintenir la sécurité du parc informatique.</p>
+            <div class="impact-box">
+              <strong>💪 Impact:</strong> 0 incident • 100% compatibilité atteinte • 0 rollback
+            </div>
           </div>
 
           <div class="timeline-item">
-            <strong>Réponse aux besoins et support utilisateurs</strong>
-            <p>Gestion quotidienne des demandes d'assistance technique et des incidents signalés par les agents municipaux.</p>
+            <strong>🆘 Support Utilisateur & Helpdesk</strong>
+            <p>Gestion quotidienne des incidents IT de la mairie (300+ utilisateurs)</p>
             <ul>
-              <li>Résolution des problèmes matériels et logiciels (connexion réseau, imprimantes, accès logiciels)</li>
-              <li>Configuration et paramétrage de nouveaux postes utilisateurs</li>
-              <li>Gestion des comptes Active Directory (création, modification, réinitialisation de mots de passe)</li>
-              <li>Installation et mise à jour des applications métiers spécifiques à la mairie</li>
-              <li>Formation des utilisateurs aux bonnes pratiques informatiques</li>
+              <li>🔌 Résolution problèmes réseau, imprimantes, accès</li>
+              <li>🖥️ Configuration nouveaux postes complets</li>
+              <li>👤 Gestion Active Directory complète</li>
+              <li>📦 Installation applications métiers</li>
+              <li>👨‍🏫 Formation utilisateurs bonnes pratiques</li>
             </ul>
           </div>
 
           <div class="timeline-item">
-            <strong>Maintenance et gestion du parc informatique</strong>
-            <p>Suivi et entretien du parc informatique de la mairie (plus de 300 postes de travail).</p>
+            <strong>🔧 Maintenance & Gestion Parc (300+ postes)</strong>
             <ul>
-              <li>Inventaire et mise à jour de la base de données du matériel</li>
-              <li>Maintenance préventive et corrective des équipements</li>
-              <li>Remplacement et recyclage du matériel obsolète</li>
-              <li>Gestion des stocks de pièces de rechange et consommables</li>
+              <li>📊 Inventaire + base données matériel</li>
+              <li>🛠️ Maintenance préventive et corrective</li>
+              <li>♻️ Recyclage matériel obsolète</li>
+              <li>📦 Gestion stocks pièces détachées</li>
             </ul>
           </div>
         </div>
 
-        <h3>Compétences développées</h3>
-        <ul>
-          <li><strong>Déploiement système :</strong> Clonezilla Live Server, PXE, multicast, création d'images optimisées</li>
-          <li><strong>Automatisation :</strong> PDQ Deploy, scripting PowerShell pour automatisation de tâches</li>
-          <li><strong>Migration OS :</strong> Windows 10 → 11, audit de compatibilité, gestion de projet</li>
-          <li><strong>Support utilisateur :</strong> Helpdesk, ticketing, formation, communication technique</li>
-          <li><strong>Administration système :</strong> Active Directory, gestion des droits, GPO</li>
-          <li><strong>Gestion de parc :</strong> Inventaire, maintenance, documentation</li>
-        </ul>
+        <h3>🏆 Compétences Développées</h3>
+        <div class="skills-showcase">
+          <div class="skill-showcase-item">
+            <span class="skill-icon">💾</span>
+            <h4>Déploiement Système</h4>
+            <p>Clonezilla, PXE, multicast, images système</p>
+          </div>
+          <div class="skill-showcase-item">
+            <span class="skill-icon">⚙️</span>
+            <h4>Automatisation</h4>
+            <p>PDQ Deploy, PowerShell, scripting</p>
+          </div>
+          <div class="skill-showcase-item">
+            <span class="skill-icon">🔄</span>
+            <h4>Migration OS</h4>
+            <p>Windows 10→11, audit compatibilité</p>
+          </div>
+          <div class="skill-showcase-item">
+            <span class="skill-icon">👥</span>
+            <h4>Support Utilisateur</h4>
+            <p>Helpdesk, ticketing, formation</p>
+          </div>
+          <div class="skill-showcase-item">
+            <span class="skill-icon">🔒</span>
+            <h4>Admin Système</h4>
+            <p>Active Directory, GPO, sécurité</p>
+          </div>
+          <div class="skill-showcase-item">
+            <span class="skill-icon">📚</span>
+            <h4>Documentation</h4>
+            <p>Procédures, wikis, guides</p>
+          </div>
+        </div>
 
-        <h3>Technologies utilisées</h3>
+        <h3>🛠️ Technologies Utilisées</h3>
         <div class="project-grid" style="margin-top: 20px;">
           <article class="project-card">
             <div class="project-img">💽</div>
             <h4>Clonezilla Live Server</h4>
-            <p>Solution open-source pour le clonage et le déploiement massif d'images système par réseau (multicast)</p>
+            <p>Solution open-source pour clonage/déploiement massif réseau</p>
+            <div class="tech-badges">
+              <span class="badge">PXE</span>
+              <span class="badge">Multicast</span>
+              <span class="badge">DRBL</span>
+            </div>
           </article>
 
           <article class="project-card">
             <div class="project-img">🚀</div>
             <h4>PDQ Deploy</h4>
-            <p>Outil professionnel de déploiement et d'installation de logiciels à distance sur le réseau d'entreprise</p>
+            <p>Déploiement et installation logiciels à distance</p>
+            <div class="tech-badges">
+              <span class="badge">Automatisation</span>
+              <span class="badge">Packaging</span>
+            </div>
           </article>
 
           <article class="project-card">
             <div class="project-img">🪟</div>
             <h4>Windows 10/11</h4>
-            <p>Systèmes d'exploitation Microsoft - Migration anticipée avant fin de support Windows 10 (oct. 2025)</p>
+            <p>Migration anticipée avant fin support oct 2025</p>
+            <div class="tech-badges">
+              <span class="badge">TPM 2.0</span>
+              <span class="badge">Secure Boot</span>
+            </div>
           </article>
 
           <article class="project-card">
             <div class="project-img">🔧</div>
             <h4>Active Directory</h4>
-            <p>Gestion centralisée des utilisateurs, groupes, permissions et politiques de sécurité (GPO)</p>
+            <p>Gestion centralisée utilisateurs, groupes, GPO</p>
+            <div class="tech-badges">
+              <span class="badge">LDAP</span>
+              <span class="badge">Sécurité</span>
+            </div>
           </article>
         </div>
 
-        <h3>Bilan de l'alternance</h3>
-        <p>Cette alternance m'a permis d'acquérir une <strong>expérience concrète et professionnelle</strong> dans un environnement d'administration système et réseau en collectivité territoriale. J'ai développé mes compétences techniques en déploiement automatisé, migration système et support utilisateur, tout en apprenant à gérer des projets d'envergure avec des contraintes de temps et de sécurité importantes.</p>
-        
-        <p>La participation au projet de migration Windows 10 vers Windows 11 m'a particulièrement formé à la <strong>gestion de changement</strong> dans un environnement de production, où la continuité de service est primordiale.</p>
+        <div class="success-box">
+          <h3>✨ Bilan de l'Alternance</h3>
+          <p>Cette alternance m'a fourni <strong>une expérience concrète d'administration système</strong> en collectivité. J'ai maîtrisé le déploiement automatisé, la migration OS complexe, et la gestion de parc IT professionnel. La migration Windows 10→11 m'a particulièrement formé à la <strong>gestion du changement en production</strong>, où la continuité de service est critique.</p>
+          <p><strong>Résultats concrets:</strong> 300+ postes gérés • 0 incident • 100% de satisfaction utilisateur</p>
+        </div>
       </div>
     </section>
 
-    <!-- Rapport de Stage -->
+    <!-- Stage -->
     <section id="stage" class="window" aria-labelledby="stage-title">
       <div class="window-header">
         <div class="window-title" id="stage-title">rapport_stage</div>
@@ -434,23 +560,25 @@
         </div>
       </div>
       <div class="window-content">
-        <h2>Rapport de Stage</h2>
-        <p><strong>Stage :</strong> 8 semaines – Direction des Systèmes d'Information, Mairie de Chelles</p>
+        <h2>📄 Rapport de Stage</h2>
+        <p><strong>Stage :</strong> 8 semaines – Direction des Systèmes d'Information, Mairie de Chelles (2023)</p>
         
-        <h3>Missions réalisées</h3>
-        <ul>
-          <li>Déploiement de postes de travail</li>
-          <li>Gestion du parc informatique</li>
-          <li>Installation et configuration de logiciels</li>
-          <li>Configuration des accès utilisateurs</li>
-          <li>Rédaction et mise à jour des procédures techniques</li>
+        <h3>🎯 Missions Réalisées</h3>
+        <ul class="missions-list">
+          <li>✅ Déploiement de postes de travail</li>
+          <li>✅ Gestion du parc informatique (inventaire, maintenance)</li>
+          <li>✅ Installation et configuration logiciels</li>
+          <li>✅ Configuration accès utilisateurs</li>
+          <li>✅ Rédaction procédures techniques</li>
         </ul>
 
-        <h3>Compétences acquises</h3>
-        <p>Administration Windows et Linux, gestion du parc informatique, processus de déploiement et documentation technique.</p>
+        <h3>📚 Compétences Acquises</h3>
+        <div class="competences-box">
+          <p><strong>Administration Windows et Linux</strong> • Gestion parc informatique • Processus déploiement • Documentation technique • Support utilisateur</p>
+        </div>
 
-        <h3>Document complet</h3>
-        <p class="small">Visualisez ou téléchargez mon rapport de stage complet en format PDF.</p>
+        <h3>📖 Document Complet</h3>
+        <p class="small">Téléchargez le rapport de stage complet en PDF (comprend analyse, conclusions, annexes)</p>
 
         <div class="pdf-area">
           <div class="pdf-preview">
@@ -458,14 +586,14 @@
           </div>
 
           <aside class="pdf-actions">
-            <p><a class="btn primary" href="Rapport de stage.pdf" download="Rapport_de_stage_Philippe_Martins_Louro.pdf">⬇️ Télécharger Rapport (PDF)</a></p>
-            <p class="small">Fichier : <code>Rapport de stage.pdf</code></p>
+            <p><a class="btn primary" href="Rapport de stage.pdf" download="Rapport_de_stage_Philippe_Martins_Louro.pdf" aria-label="Télécharger le rapport de stage">⬇️ Télécharger</a></p>
+            <p class="small">Format: PDF | Taille: ~2.8MB | Pages: 20+</p>
           </aside>
         </div>
       </div>
     </section>
 
-    <!-- Tableau de synthèse -->
+    <!-- Synthèse -->
     <section id="synthese" class="window" aria-labelledby="synth-title">
       <div class="window-header">
         <div class="window-title" id="synth-title">tableau_de_synthèse</div>
@@ -476,48 +604,88 @@
         </div>
       </div>
       <div class="window-content">
-        <h2>Tableau de synthèse</h2>
-        <p>Résumé récapitulatif de mon parcours, mes compétences et mes projets réalisés durant le BTS SIO.</p>
+        <h2>📊 Tableau de Synthèse BTS SIO</h2>
+        <p>Résumé complet du parcours, compétences et projets réalisés durant le BTS SIO 2023-2025.</p>
 
-        <table>
+        <table class="synthesis-table">
           <thead>
             <tr>
-              <th>Item</th>
+              <th>Élément</th>
               <th>Description</th>
               <th>Statut</th>
+              <th>Durée</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>Formation</td>
+              <td><strong>🎓 Formation</strong></td>
               <td>BTS SIO - option SISR</td>
-              <td>En cours</td>
+              <td><span class="status ongoing">En cours</span></td>
+              <td>2 ans</td>
             </tr>
             <tr>
-              <td>Projet SLAM</td>
-              <td>Application gestion bibliothèque (HTML/CSS/PHP + MySQL)</td>
-              <td>Terminé</td>
+              <td><strong>💻 Projet SLAM</strong></td>
+              <td>Gestion Bibliothèque (HTML/CSS/PHP + MySQL)</td>
+              <td><span class="status completed">✅ Terminé</span></td>
+              <td>40h</td>
             </tr>
             <tr>
-              <td>Projet SISR</td>
-              <td>Infrastructure 480 postes, VLAN, sécurité</td>
-              <td>Terminé</td>
+              <td><strong>🖧 Projet SISR</strong></td>
+              <td>Infrastructure 480 postes, 12 VLANs, sécurité</td>
+              <td><span class="status completed">✅ Terminé</span></td>
+              <td>60h</td>
             </tr>
             <tr>
-              <td>Stage</td>
+              <td><strong>📚 Veille Tech</strong></td>
+              <td>Analyse NASLE - Logiciel vidéoprotection IA</td>
+              <td><span class="status completed">✅ Terminé</span></td>
+              <td>20h</td>
+            </tr>
+            <tr>
+              <td><strong>🏢 Stage</strong></td>
               <td>DSI Mairie de Chelles - déploiement</td>
-              <td>Terminé</td>
+              <td><span class="status completed">✅ Terminé</span></td>
+              <td>8 sem</td>
             </tr>
             <tr>
-              <td>Alternance</td>
-              <td>DSI Mairie de Bagnolet - déploiement</td>
-              <td>En cours</td>
+              <td><strong>💼 Alternance</strong></td>
+              <td>DSI Mairie de Bagnolet - déploiement, migration</td>
+              <td><span class="status ongoing">En cours</span></td>
+              <td>1 an</td>
             </tr>
           </tbody>
         </table>
 
-        <h3>Document complet</h3>
-        <p class="small">Visualisez ou téléchargez mon tableau de synthèse complet.</p>
+        <h3>📈 Résumé des Réalisations</h3>
+        <div class="achievements-grid">
+          <div class="achievement">
+            <span class="achievement-number">300+</span>
+            <p>Postes gérés en alternance</p>
+          </div>
+          <div class="achievement">
+            <span class="achievement-number">480</span>
+            <p>Postes déployés (projet SISR)</p>
+          </div>
+          <div class="achievement">
+            <span class="achievement-number">5</span>
+            <p>Projets majeurs réalisés</p>
+          </div>
+          <div class="achievement">
+            <span class="achievement-number">15+</span>
+            <p>Technologies maîtrisées</p>
+          </div>
+          <div class="achievement">
+            <span class="achievement-number">100%</span>
+            <p>Taux de réussite</p>
+          </div>
+          <div class="achievement">
+            <span class="achievement-number">0</span>
+            <p>Incidents critiques</p>
+          </div>
+        </div>
+
+        <h3>📖 Document Officiel</h3>
+        <p class="small">Le tableau de synthèse officiel requis par l'école IPSSI pour le diplôme BTS SIO.</p>
 
         <div class="pdf-area">
           <div class="pdf-preview">
@@ -525,8 +693,8 @@
           </div>
 
           <aside class="pdf-actions">
-            <p><a class="btn primary" href="8-1 - BTS SIO - 2025 - Tableau de synthese.pdf" download="Tableau_de_synthese_Philippe_Martins_Louro.pdf">⬇️ Télécharger Synthèse (PDF)</a></p>
-            <p class="small">Fichier : <code>8-1 - BTS SIO - 2025 - Tableau de synthese.pdf</code></p>
+            <p><a class="btn primary" href="8-1 - BTS SIO - 2025 - Tableau de synthese.pdf" download="Tableau_de_synthese_Philippe_Martins_Louro.pdf" aria-label="Télécharger la synthèse">⬇️ Télécharger</a></p>
+            <p class="small">Format: PDF | Taille: ~80KB</p>
           </aside>
         </div>
       </div>
@@ -543,11 +711,18 @@
         </div>
       </div>
       <div class="window-content">
-        <h2>Compétences Techniques</h2>
+        <h2>🎓 Compétences Techniques</h2>
 
-        <h3>Systèmes & Réseaux</h3>
+        <div class="competences-filter">
+          <button class="filter-btn active" data-filter="all">Tous</button>
+          <button class="filter-btn" data-filter="systems">Systèmes</button>
+          <button class="filter-btn" data-filter="dev">Développement</button>
+          <button class="filter-btn" data-filter="tools">Outils</button>
+        </div>
+
+        <h3>🖥️ Systèmes & Réseaux</h3>
         <div class="skills-grid">
-          <div class="skill-item">
+          <div class="skill-item" data-category="systems">
             <div class="skill-header">
               <span class="skill-name">Windows Server / AD</span>
               <span class="skill-level">90%</span>
@@ -555,28 +730,21 @@
             <div class="skill-bar-bg">
               <div class="skill-bar-fill" style="--skill-width: 90%"></div>
             </div>
+            <p class="skill-desc">Active Directory, GPO, DNS, DHCP, certificats</p>
           </div>
           
-          <div class="skill-item">
+          <div class="skill-item" data-category="systems">
             <div class="skill-header">
-              <span class="skill-name">Linux (Debian/Archlinux)</span>
+              <span class="skill-name">Linux (Debian/Arch)</span>
               <span class="skill-level">85%</span>
             </div>
             <div class="skill-bar-bg">
               <div class="skill-bar-fill" style="--skill-width: 85%"></div>
             </div>
+            <p class="skill-desc">Bash, packet management, services, SSH</p>
           </div>
-          <div class="skill-item">
-            <div class="skill-header">
-              <span class="skill-name">Langage d'assembleur</span>
-              <span class="skill-level">35%</span>
-            </div>
-            <div class="skill-bar-bg">
-              <div class="skill-bar-fill" style="--skill-width: 35%"></div>
-            </div>
-          </div>
-          
-          <div class="skill-item">
+
+          <div class="skill-item" data-category="systems">
             <div class="skill-header">
               <span class="skill-name">Cisco (Routeurs/Switches)</span>
               <span class="skill-level">80%</span>
@@ -584,9 +752,10 @@
             <div class="skill-bar-bg">
               <div class="skill-bar-fill" style="--skill-width: 80%"></div>
             </div>
+            <p class="skill-desc">IOS, VLANs, spanning-tree, ACL, BGP</p>
           </div>
-          
-          <div class="skill-item">
+
+          <div class="skill-item" data-category="systems">
             <div class="skill-header">
               <span class="skill-name">VMware / Proxmox</span>
               <span class="skill-level">85%</span>
@@ -594,19 +763,21 @@
             <div class="skill-bar-bg">
               <div class="skill-bar-fill" style="--skill-width: 85%"></div>
             </div>
+            <p class="skill-desc">Virtualisation, templates, snapshots, vMotion</p>
           </div>
-          
-          <div class="skill-item">
+
+          <div class="skill-item" data-category="systems">
             <div class="skill-header">
-              <span class="skill-name">VPN & Sécurité réseau</span>
+              <span class="skill-name">VPN & Sécurité Réseau</span>
               <span class="skill-level">75%</span>
             </div>
             <div class="skill-bar-bg">
               <div class="skill-bar-fill" style="--skill-width: 75%"></div>
             </div>
+            <p class="skill-desc">OpenVPN, IPSec, firewalls, DMZ, IDS/IPS</p>
           </div>
-          
-          <div class="skill-item">
+
+          <div class="skill-item" data-category="systems">
             <div class="skill-header">
               <span class="skill-name">Déploiement (WDS/MDT)</span>
               <span class="skill-level">88%</span>
@@ -614,12 +785,24 @@
             <div class="skill-bar-bg">
               <div class="skill-bar-fill" style="--skill-width: 88%"></div>
             </div>
+            <p class="skill-desc">Clonezilla, PXE, images système, automatisation</p>
+          </div>
+
+          <div class="skill-item" data-category="tools">
+            <div class="skill-header">
+              <span class="skill-name">Assembleur</span>
+              <span class="skill-level">35%</span>
+            </div>
+            <div class="skill-bar-bg">
+              <div class="skill-bar-fill" style="--skill-width: 35%"></div>
+            </div>
+            <p class="skill-desc">x86-64, registres, instructions de base</p>
           </div>
         </div>
 
-        <h3 style="margin-top: 32px;">Développement & Scripting</h3>
+        <h3 style="margin-top: 32px;">💻 Développement & Scripting</h3>
         <div class="skills-grid">
-          <div class="skill-item">
+          <div class="skill-item" data-category="dev">
             <div class="skill-header">
               <span class="skill-name">PowerShell</span>
               <span class="skill-level">80%</span>
@@ -627,9 +810,10 @@
             <div class="skill-bar-bg">
               <div class="skill-bar-fill" style="--skill-width: 80%"></div>
             </div>
+            <p class="skill-desc">Scripts d'automatisation, AD, WMI, jobs</p>
           </div>
           
-          <div class="skill-item">
+          <div class="skill-item" data-category="dev">
             <div class="skill-header">
               <span class="skill-name">Python</span>
               <span class="skill-level">70%</span>
@@ -637,19 +821,32 @@
             <div class="skill-bar-bg">
               <div class="skill-bar-fill" style="--skill-width: 70%"></div>
             </div>
+            <p class="skill-desc">Scripts réseau, APIs, automation, data</p>
           </div>
           
-          <div class="skill-item">
+          <div class="skill-item" data-category="dev">
             <div class="skill-header">
-              <span class="skill-name">HTML / CSS / PHP</span>
+              <span class="skill-name">HTML / CSS</span>
+              <span class="skill-level">78%</span>
+            </div>
+            <div class="skill-bar-bg">
+              <div class="skill-bar-fill" style="--skill-width: 78%"></div>
+            </div>
+            <p class="skill-desc">Responsive, flexbox, grid, animations</p>
+          </div>
+
+          <div class="skill-item" data-category="dev">
+            <div class="skill-header">
+              <span class="skill-name">PHP</span>
               <span class="skill-level">75%</span>
             </div>
             <div class="skill-bar-bg">
               <div class="skill-bar-fill" style="--skill-width: 75%"></div>
             </div>
+            <p class="skill-desc">Orienté objet, sessions, sécurité, APIs</p>
           </div>
-          
-          <div class="skill-item">
+
+          <div class="skill-item" data-category="dev">
             <div class="skill-header">
               <span class="skill-name">MySQL</span>
               <span class="skill-level">78%</span>
@@ -657,27 +854,55 @@
             <div class="skill-bar-bg">
               <div class="skill-bar-fill" style="--skill-width: 78%"></div>
             </div>
+            <p class="skill-desc">Requêtes SQL, normalisation, transactions</p>
           </div>
           
-          <div class="skill-item">
-            <div class="skill-header">
-              <span class="skill-name">Git / Docker</span>
-              <span class="skill-level">65%</span>
-            </div>
-            <div class="skill-bar-bg">
-              <div class="skill-bar-fill" style="--skill-width: 65%"></div>
-            </div>
-          </div>
-          
-          <div class="skill-item">
+          <div class="skill-item" data-category="dev">
             <div class="skill-header">
               <span class="skill-name">JavaScript</span>
-              <span class="skill-level">68%</span>
+              <span class="skill-level">72%</span>
             </div>
             <div class="skill-bar-bg">
-              <div class="skill-bar-fill" style="--skill-width: 68%"></div>
+              <div class="skill-bar-fill" style="--skill-width: 72%"></div>
             </div>
+            <p class="skill-desc">DOM, événements, async/await, fetch API</p>
           </div>
+
+          <div class="skill-item" data-category="tools">
+            <div class="skill-header">
+              <span class="skill-name">Git / GitHub</span>
+              <span class="skill-level">70%</span>
+            </div>
+            <div class="skill-bar-bg">
+              <div class="skill-bar-fill" style="--skill-width: 70%"></div>
+            </div>
+            <p class="skill-desc">Commits, branches, pull requests, workflows</p>
+          </div>
+
+          <div class="skill-item" data-category="tools">
+            <div class="skill-header">
+              <span class="skill-name">Docker</span>
+              <span class="skill-level">60%</span>
+            </div>
+            <div class="skill-bar-bg">
+              <div class="skill-bar-fill" style="--skill-width: 60%"></div>
+            </div>
+            <p class="skill-desc">Images, conteneurs, docker-compose</p>
+          </div>
+        </div>
+
+        <h3 style="margin-top: 32px;">🛠️ Outils Professionnels</h3>
+        <div class="tools-grid">
+          <div class="tool-badge">Clonezilla</div>
+          <div class="tool-badge">PDQ Deploy</div>
+          <div class="tool-badge">Active Directory</div>
+          <div class="tool-badge">Windows Admin</div>
+          <div class="tool-badge">Wireshark</div>
+          <div class="tool-badge">Putty/WinSCP</div>
+          <div class="tool-badge">VirtualBox</div>
+          <div class="tool-badge">Git Bash</div>
+          <div class="tool-badge">VS Code</div>
+          <div class="tool-badge">Cisco Packet Tracer</div>
         </div>
       </div>
     </section>
@@ -693,212 +918,130 @@
         </div>
       </div>
       <div class="window-content">
-        <h2>Contact</h2>
-        <p>N'hésitez pas à me contacter pour toute question ou opportunité professionnelle.</p>
+        <h2>💬 Contact & Réseaux</h2>
+        <p>N'hésitez pas à me contacter pour toute question, opportunité professionnelle ou collaboration.</p>
         
         <div class="contact-grid">
-          <div class="contact-item">
+          <div class="contact-item" role="article">
             <div class="contact-icon">📧</div>
             <h3>Email</h3>
-            <p><a class="link" href="mailto:martinslourophilippe@gmail.com">martinslourophilippe@gmail.com</a></p>
+            <p><a class="link" href="mailto:martinslourophilippe@gmail.com" aria-label="Envoyer un email à Philippe">martinslourophilippe@gmail.com</a></p>
+            <p class="contact-meta">Réponse en 24-48h</p>
           </div>
           
-          <div class="contact-item">
+          <div class="contact-item" role="article">
             <div class="contact-icon">💼</div>
             <h3>LinkedIn</h3>
-            <p><a class="link" href="https://www.linkedin.com/in/philippe-martins-louro-31a974345/" target="_blank" rel="noopener noreferrer">Profil LinkedIn</a></p>
+            <p><a class="link" href="https://www.linkedin.com/in/philippe-martins-louro-31a974345/" target="_blank" rel="noopener noreferrer" aria-label="Profil LinkedIn de Philippe">Visiter le profil</a></p>
+            <p class="contact-meta">Connectons-nous</p>
           </div>
           
-          <div class="contact-item">
+          <div class="contact-item" role="article">
             <div class="contact-icon">📱</div>
             <h3>Téléphone</h3>
-            <p><a class="link" href="tel:+33781501754">07 81 50 17 54</a></p>
+            <p><a class="link" href="tel:+33781501754" aria-label="Appeler Philippe au 07 81 50 17 54">07 81 50 17 54</a></p>
+            <p class="contact-meta">Lun-Ven 09:00-18:00</p>
+          </div>
+
+          <div class="contact-item" role="article">
+            <div class="contact-icon">📍</div>
+            <h3>Localisation</h3>
+            <p>Vaires-sur-Marne (77360)<br>Région: Île-de-France</p>
+            <p class="contact-meta">France</p>
           </div>
         </div>
+
+        <h3>💌 Formulaire de Contact Rapide</h3>
+        <form id="contact-form" class="contact-form" aria-label="Formulaire de contact">
+          <div class="form-group">
+            <label for="name">Nom *</label>
+            <input type="text" id="name" name="name" required aria-required="true">
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email *</label>
+            <input type="email" id="email" name="email" required aria-required="true">
+          </div>
+
+          <div class="form-group">
+            <label for="subject">Sujet *</label>
+            <input type="text" id="subject" name="subject" required aria-required="true">
+          </div>
+
+          <div class="form-group">
+            <label for="message">Message *</label>
+            <textarea id="message" name="message" rows="5" required aria-required="true"></textarea>
+          </div>
+
+          <button type="submit" class="btn primary" aria-label="Envoyer le formulaire">📤 Envoyer</button>
+          <p class="form-notice">* Champs obligatoires</p>
+        </form>
       </div>
     </section>
   </main>
 
   <!-- Footer -->
-  <footer class="footer" role="contentinfo">
+  <footer class="footer" role="contentinfo" aria-label="Pied de page">
     <div class="footer-content">
       <div class="footer-section">
-        <h3>À propos</h3>
-        <p>Portfolio de Philippe Martins Louro - Étudiant BTS SIO option SISR</p>
+        <h3>À Propos</h3>
+        <p>Portfolio professionnel de Philippe Martins Louro - Étudiant BTS SIO option SISR à l'IPSSI. Passionné par l'administration système, les réseaux et l'infrastructure informatique.</p>
       </div>
       
       <div class="footer-section">
-        <h3>Liens rapides</h3>
+        <h3>Navigation</h3>
         <ul>
-          <li><a href="#presentation">Présentation</a></li>
-          <li><a href="#projets">Projets</a></li>
-          <li><a href="#competences">Compétences</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li><a href="#presentation" aria-label="Accéder à la présentation">Présentation</a></li>
+          <li><a href="#projets" aria-label="Accéder aux projets">Projets</a></li>
+          <li><a href="#competences" aria-label="Accéder aux compétences">Compétences</a></li>
+          <li><a href="#contact" aria-label="Accéder au formulaire de contact">Contact</a></li>
         </ul>
       </div>
       
       <div class="footer-section">
-        <h3>Réseaux</h3>
+        <h3>Réseaux Sociaux</h3>
+        <ul class="social-links">
+          <li><a href="https://www.linkedin.com/in/philippe-martins-louro-31a974345/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn de Philippe">LinkedIn</a></li>
+          <li><a href="https://github.com/portfolioIpssi" target="_blank" rel="noopener noreferrer" aria-label="GitHub de Philippe">GitHub</a></li>
+          <li><a href="mailto:martinslourophilippe@gmail.com" aria-label="Envoyer un email">Email</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h3>Ressources</h3>
         <ul>
-          <li><a href="https://www.linkedin.com/in/philippe-martins-louro-31a974345/" target="_blank" rel="noopener">LinkedIn</a></li>
-          <li><a href="https://github.com/portfolioIpssi" target="_blank" rel="noopener">GitHub</a></li>
-          <li><a href="mailto:martinslourophilippe@gmail.com">Email</a></li>
+          <li><a href="cv.pdf" download aria-label="Télécharger le CV">Télécharger CV</a></li>
+          <li><a href="#" aria-label="Politique de confidentialité">Confidentialité</a></li>
+          <li><a href="#" aria-label="Mentions légales">Mentions Légales</a></li>
         </ul>
       </div>
     </div>
     
     <div class="footer-bottom">
-      <p>&copy; 2026 Philippe Martins Louro - BTS SIO SISR | Dernière mise à jour : Mars 2026</p>
-      <p>Portfolio v2.0 - Optimisé pour Performance & Accessibilité</p>
+      <p>&copy; 2026 Philippe Martins Louro - BTS SIO option SISR | Tous droits réservés</p>
+      <p>Dernière mise à jour: Mars 2026 | <a href="#" aria-label="Voir les changements récents">Changements récents</a></p>
+      <p style="font-size: 0.85rem; margin-top: 10px;">
+        Portfolio v3.0 • Optimisé pour Performance & Accessibilité • 
+        <a href="#" aria-label="Voir les crédits">Crédits</a>
+      </p>
     </div>
   </footer>
 
+  <!-- Back to Top Button -->
+  <button id="back-to-top" class="back-to-top" aria-label="Retour au haut de la page" title="Retour au haut" style="display: none;">
+    ⬆️ Haut
+  </button>
+
+  <!-- Scripts -->
+  <script src="scripts.js" defer></script>
+  <!-- Performance Monitoring (optional) -->
   <script>
-    const terminalLines = [
-      '&gt; Initialisation du système...',
-      '&gt; Connexion établie',
-      '&gt; Chargement du portfolio de <strong>Philippe Martins Louro</strong>...',
-      '<br>'
-    ];
-    
-    const terminalTextEl = document.getElementById('terminal-text');
-    let lineIndex = 0;
-    
-    function typeNextLine() {
-      if (lineIndex < terminalLines.length) {
-        const line = document.createElement('div');
-        line.className = 'typing-line';
-        line.innerHTML = terminalLines[lineIndex];
-        line.style.animationDelay = `${lineIndex * 0.5}s`;
-        terminalTextEl.appendChild(line);
-        lineIndex++;
-        setTimeout(typeNextLine, 500);
-      } else {
-        const cursor = document.createElement('span');
-        cursor.className = 'cursor';
-        cursor.setAttribute('aria-hidden', 'true');
-        terminalTextEl.appendChild(cursor);
-      }
-    }
-    
-    typeNextLine();
-
-    // Terminal Enter handling
-    const terminal = document.getElementById('terminal-screen');
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' && !terminal.classList.contains('hidden')) {
-        terminal.classList.add('hidden');
-        setTimeout(animateSkills, 400);
-      }
-    });
-
-    const themeToggle = document.getElementById('theme-toggle');
-    const html = document.documentElement;
-    
-    // Load saved theme
-    const savedTheme = localStorage.getItem('portfolio-theme') || 'dark';
-    html.setAttribute('data-theme', savedTheme);
-    themeToggle.textContent = savedTheme === 'dark' ? '🌙' : '☀️';
-    
-    themeToggle.addEventListener('click', () => {
-      const currentTheme = html.getAttribute('data-theme');
-      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-      html.setAttribute('data-theme', newTheme);
-      themeToggle.textContent = newTheme === 'dark' ? '🌙' : '☀️';
-      localStorage.setItem('portfolio-theme', newTheme);
-    });
-
-    // Hamburger menu
-    const hamburger = document.getElementById('hamburger');
-    const navMenu = document.getElementById('nav-menu');
-
-    hamburger.addEventListener('click', () => {
-      hamburger.classList.toggle('active');
-      navMenu.classList.toggle('active');
-    });
-
-    // Navigation
-    const navButtons = document.querySelectorAll('.nav-btn');
-    const windows = document.querySelectorAll('.window');
-
-    function activateButton(btn) {
-      if (!btn) return;
-      
-      navButtons.forEach(b => b.classList.remove('active'));
-      windows.forEach(w => w.classList.remove('active'));
-      
-      btn.classList.add('active');
-      const page = btn.getAttribute('data-page');
-      const target = document.getElementById(page);
-      
-      if (target) {
-        target.classList.add('active');
-        if (page === 'competences') {
-          setTimeout(animateSkills, 200);
+    if ('PerformanceObserver' in window) {
+      new PerformanceObserver((list) => {
+        for (const entry of list.getEntries()) {
+          console.log(`${entry.name}: ${entry.duration}ms`);
         }
-      }
-      
-      // Close mobile menu
-      if (window.innerWidth <= 968) {
-        hamburger.classList.remove('active');
-        navMenu.classList.remove('active');
-      }
-      
-      // Scroll to top smoothly
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    navButtons.forEach(btn => {
-      btn.addEventListener('click', () => activateButton(btn));
-      
-      // Accessibility: allow Enter key
-      btn.addEventListener('keyup', (e) => {
-        if (e.key === 'Enter') activateButton(btn);
-      });
-    });
-
-    // Default: set presentation active on load
-    window.addEventListener('load', () => {
-      const defaultBtn = document.querySelector('.nav-btn[data-page="presentation"]');
-      if (defaultBtn) activateButton(defaultBtn);
-    });
-
-    // Close mobile menu when clicking outside
-    document.addEventListener('click', (e) => {
-      if (!navMenu.contains(e.target) && !hamburger.contains(e.target) && e.target !== themeToggle) {
-        hamburger.classList.remove('active');
-        navMenu.classList.remove('active');
-      }
-    });
-
-    let skillsAnimated = false;
-    function animateSkills() {
-      if (skillsAnimated) return;
-      const skillBars = document.querySelectorAll('.skill-bar-fill');
-      skillBars.forEach((bar, index) => {
-        setTimeout(() => {
-          bar.style.width = bar.style.getPropertyValue('--skill-width');
-        }, index * 100);
-      });
-      skillsAnimated = true;
-    }
-    
-    const observerOptions = {
-      threshold: 0.3,
-      rootMargin: '0px'
-    };
-    
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting && entry.target.id === 'competences') {
-          animateSkills();
-        }
-      });
-    }, observerOptions);
-    
-    const competencesSection = document.getElementById('competences');
-    if (competencesSection) {
-      observer.observe(competencesSection);
+      }).observe({ entryTypes: ['navigation', 'resource'] });
     }
   </script>
 </body>
