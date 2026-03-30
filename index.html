@@ -4,10 +4,11 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Philippe Martins Louro - Portfolio Professionnel</title>
-  <meta name="description" content="Portfolio professionnel de Philippe Martins Louro. Découvrez mes projets, expériences et compétences dans un design moderne et épuré.">
+  <meta name="description" content="Portfolio professionnel de Philippe Martins Louro. Découvrez mes projets, expériences et compétences en administration système et réseaux informatiques.">
+  <meta name="keywords" content="BTS SIO, SISR, Administration Système, Réseaux, Portfolio, Philippe Martins">
   
   <style>
-    /* ===== VARIABLES COULEURS ===== */
+    /* ===== VARIABLES ===== */
     :root {
       --primary: #6366f1;
       --primary-light: #818cf8;
@@ -15,6 +16,7 @@
       --secondary: #ec4899;
       --accent: #06b6d4;
       --success: #10b981;
+      --warning: #f59e0b;
       
       --bg-light: #ffffff;
       --bg-gray: #f9fafb;
@@ -26,6 +28,7 @@
       
       --shadow: 0 10px 30px rgba(99, 102, 241, 0.1);
       --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.08);
+      --shadow-lg: 0 20px 50px rgba(99, 102, 241, 0.15);
       
       --radius: 16px;
       --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -51,87 +54,22 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* ===== WELCOME SCREEN ===== */
-    #terminal-screen {
-      position: fixed;
-      inset: 0;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
-      gap: 40px;
-      transition: opacity 0.6s ease;
-    }
-
-    #terminal-screen.hidden {
-      opacity: 0;
-      pointer-events: none;
-    }
-
-    .terminal-text {
-      font-size: 2.5rem;
-      text-align: center;
-      max-width: 600px;
-      color: white;
-      line-height: 1.8;
-      font-weight: 700;
-      letter-spacing: -0.5px;
-    }
-
-    .typing-line {
-      opacity: 0;
-      animation: fadeIn 0.4s ease forwards;
-    }
-
-    @keyframes fadeIn {
-      to { opacity: 1; }
-    }
-
-    .cursor {
-      display: inline-block;
-      width: 4px;
-      height: 1.2em;
-      background: white;
-      margin: 0 4px;
-      animation: blink 1s steps(2) infinite;
-    }
-
-    @keyframes blink {
-      0%, 50% { opacity: 1; }
-      51%, 100% { opacity: 0; }
-    }
-
-    .enter-hint {
-      font-size: 1rem;
-      color: white;
-      animation: bounce 2s ease-in-out infinite;
-      padding: 16px 32px;
-      border: 2px solid white;
-      border-radius: 50px;
-      font-weight: 600;
-    }
-
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
-
-    /* ===== NAVBAR ===== */
+    /* ===== NAVBAR PREMIUM ===== */
     .navbar {
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
       height: 80px;
-      background: white;
+      background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(249,250,251,0.95));
+      backdrop-filter: blur(10px);
       box-shadow: var(--shadow-sm);
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 0 50px;
       z-index: 100;
+      border-bottom: 1px solid rgba(99, 102, 241, 0.1);
     }
 
     .logo {
@@ -141,6 +79,16 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      letter-spacing: -0.5px;
+    }
+
+    .logo::before {
+      content: '⚙️';
+      font-size: 1.8rem;
+      -webkit-text-fill-color: unset;
     }
 
     .nav-container {
@@ -166,33 +114,50 @@
       font-weight: 600;
       transition: var(--transition);
       position: relative;
+      overflow: hidden;
+    }
+
+    .nav-btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(236, 72, 153, 0.1));
+      transform: translateX(-100%);
+      transition: transform 0.3s ease;
     }
 
     .nav-btn:hover {
       color: var(--primary);
       background: rgba(99, 102, 241, 0.1);
+      transform: translateX(0);
     }
 
     .nav-btn.active {
       color: white;
-      background: var(--primary);
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      box-shadow: var(--shadow);
     }
 
     .theme-toggle, .search-btn {
-      background: var(--bg-gray);
-      border: none;
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(236, 72, 153, 0.1));
+      border: 1px solid rgba(99, 102, 241, 0.2);
       width: 44px;
       height: 44px;
       border-radius: 10px;
       cursor: pointer;
       font-size: 1.1rem;
       transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .theme-toggle:hover, .search-btn:hover {
       background: var(--primary);
       color: white;
+      border-color: var(--primary);
       transform: scale(1.1);
+      box-shadow: var(--shadow);
     }
 
     .hamburger {
@@ -205,7 +170,7 @@
     .hamburger span {
       width: 25px;
       height: 3px;
-      background: var(--primary);
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
       border-radius: 2px;
       transition: var(--transition);
     }
@@ -225,12 +190,13 @@
     /* ===== PROGRESS BAR ===== */
     .progress-bar {
       position: fixed;
-      top: 0;
+      top: 79px;
       left: 0;
       height: 4px;
       background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
       width: 0%;
-      z-index: 9998;
+      z-index: 99;
+      box-shadow: var(--shadow);
     }
 
     /* ===== MAIN CONTAINER ===== */
@@ -240,6 +206,62 @@
       padding: 0 30px;
     }
 
+    /* ===== HERO SECTION ===== */
+    .hero {
+      background: linear-gradient(135deg, white, var(--bg-gray));
+      border-radius: var(--radius);
+      padding: 80px 50px;
+      margin-bottom: 50px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 500px;
+      height: 500px;
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(236, 72, 153, 0.1));
+      border-radius: 50%;
+      z-index: 0;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 700px;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 15px;
+      line-height: 1.2;
+    }
+
+    .hero-subtitle {
+      font-size: 1.3rem;
+      color: var(--secondary);
+      font-weight: 700;
+      margin-bottom: 15px;
+    }
+
+    .hero p {
+      font-size: 1.05rem;
+      color: var(--text-medium);
+      margin-bottom: 20px;
+      line-height: 1.8;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 15px;
+      margin-top: 30px;
+      flex-wrap: wrap;
+    }
+
     /* ===== CARDS/WINDOWS ===== */
     .window {
       background: white;
@@ -247,8 +269,9 @@
       overflow: hidden;
       display: none;
       animation: slideUp 0.5s ease;
-      margin-bottom: 40px;
+      margin-bottom: 50px;
       box-shadow: var(--shadow);
+      border: 1px solid rgba(99, 102, 241, 0.1);
     }
 
     .window.active {
@@ -268,17 +291,20 @@
 
     .window-header {
       padding: 40px;
-      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(236, 72, 153, 0.1));
-      border-bottom: 1px solid #e5e7eb;
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.08), rgba(236, 72, 153, 0.08));
+      border-bottom: 2px solid rgba(99, 102, 241, 0.1);
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
 
     .window-title {
-      font-size: 1.5rem;
+      font-size: 1.8rem;
       font-weight: 800;
-      color: var(--primary);
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
     .window-controls {
@@ -290,7 +316,7 @@
       width: 12px;
       height: 12px;
       border-radius: 50%;
-      background: #e5e7eb;
+      background: rgba(99, 102, 241, 0.2);
       cursor: pointer;
       transition: var(--transition);
     }
@@ -298,6 +324,7 @@
     .dot:hover {
       background: var(--primary);
       transform: scale(1.3);
+      box-shadow: var(--shadow);
     }
 
     .window-content {
@@ -321,27 +348,41 @@
       margin-bottom: 20px;
       padding-bottom: 15px;
       border-bottom: 3px solid var(--accent);
+      position: relative;
+    }
+
+    h2::after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      width: 80px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      border-radius: 2px;
     }
 
     h3 {
       font-size: 1.4rem;
       color: var(--secondary);
-      margin: 30px 0 15px;
+      margin: 35px 0 15px;
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
+      font-weight: 700;
     }
 
     h4 {
       font-size: 1.1rem;
       color: var(--primary);
-      margin: 20px 0 10px;
+      margin: 25px 0 12px;
+      font-weight: 700;
     }
 
     p {
       color: var(--text-medium);
-      font-size: 0.95rem;
-      margin-bottom: 15px;
+      font-size: 0.98rem;
+      margin-bottom: 18px;
       line-height: 1.8;
     }
 
@@ -351,23 +392,24 @@
     }
 
     ul, ol {
-      margin-left: 25px;
+      margin-left: 30px;
       margin-bottom: 20px;
     }
 
     li {
-      margin-bottom: 10px;
+      margin-bottom: 12px;
       color: var(--text-medium);
       line-height: 1.8;
     }
 
     code {
-      background: var(--bg-gray);
-      padding: 4px 10px;
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(236, 72, 153, 0.1));
+      padding: 4px 12px;
       border-radius: 6px;
       color: var(--secondary);
       font-family: 'Monaco', monospace;
       font-size: 0.85em;
+      font-weight: 600;
     }
 
     a {
@@ -375,41 +417,76 @@
       text-decoration: none;
       font-weight: 600;
       transition: var(--transition);
+      position: relative;
+    }
+
+    a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      transition: width 0.3s ease;
     }
 
     a:hover {
       color: var(--secondary);
     }
 
+    a:hover::after {
+      width: 100%;
+    }
+
     /* ===== GRIDS ===== */
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 25px;
-      margin: 30px 0;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 28px;
+      margin: 35px 0;
     }
 
     .card {
-      background: var(--bg-gray);
-      padding: 30px;
+      background: linear-gradient(135deg, var(--bg-light), var(--bg-gray));
+      padding: 35px;
       border-radius: 12px;
       transition: var(--transition);
-      border: 1px solid transparent;
+      border: 1px solid rgba(99, 102, 241, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      transform: translateX(-100%);
+      transition: transform 0.4s ease;
     }
 
     .card:hover {
       transform: translateY(-8px);
-      box-shadow: var(--shadow);
+      box-shadow: var(--shadow-lg);
       border-color: var(--primary);
     }
 
+    .card:hover::before {
+      transform: translateX(0);
+    }
+
     .card-icon {
-      font-size: 2.5rem;
+      font-size: 2.8rem;
       margin-bottom: 15px;
+      display: inline-block;
     }
 
     .card-title {
-      font-size: 1.2rem;
+      font-size: 1.25rem;
       color: var(--primary);
       margin-bottom: 12px;
       font-weight: 700;
@@ -417,48 +494,79 @@
 
     .card-desc {
       color: var(--text-medium);
-      font-size: 0.9rem;
+      font-size: 0.95rem;
       line-height: 1.7;
+    }
+
+    .card-meta {
+      margin-top: 15px;
+      padding-top: 15px;
+      border-top: 1px solid rgba(99, 102, 241, 0.1);
+      font-size: 0.85rem;
+      color: var(--text-light);
     }
 
     /* ===== STATS ===== */
     .stats-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 20px;
-      margin: 30px 0;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 24px;
+      margin: 35px 0;
     }
 
     .stat-box {
-      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(236, 72, 153, 0.1));
-      padding: 25px 20px;
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.08), rgba(236, 72, 153, 0.08));
+      padding: 32px 24px;
       border-radius: 12px;
       text-align: center;
-      border: 1px solid rgba(99, 102, 241, 0.2);
+      border: 1.5px solid rgba(99, 102, 241, 0.15);
       transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stat-box::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(236, 72, 153, 0.1));
+      opacity: 0;
+      transition: opacity 0.3s ease;
     }
 
     .stat-box:hover {
-      transform: translateY(-5px);
-      box-shadow: var(--shadow);
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--primary);
+    }
+
+    .stat-box:hover::before {
+      opacity: 1;
     }
 
     .stat-number {
-      font-size: 2.2rem;
-      font-weight: 800;
-      color: var(--primary);
+      font-size: 2.5rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
       margin-bottom: 8px;
+      position: relative;
+      z-index: 1;
     }
 
     .stat-label {
-      font-size: 0.85rem;
+      font-size: 0.9rem;
       color: var(--text-medium);
-      font-weight: 600;
+      font-weight: 700;
+      position: relative;
+      z-index: 1;
     }
 
     /* ===== TIMELINE ===== */
     .timeline {
-      margin-top: 30px;
+      margin-top: 35px;
       position: relative;
       padding-left: 0;
     }
@@ -469,13 +577,14 @@
       left: 0;
       top: 0;
       bottom: 0;
-      width: 2px;
-      background: linear-gradient(180deg, var(--primary), var(--secondary));
+      width: 3px;
+      background: linear-gradient(180deg, var(--primary), var(--secondary), transparent);
+      border-radius: 2px;
     }
 
     .timeline-item {
-      margin-bottom: 35px;
-      padding-left: 35px;
+      margin-bottom: 40px;
+      padding-left: 40px;
       position: relative;
       animation: fadeInLeft 0.6s ease forwards;
     }
@@ -494,168 +603,222 @@
     .timeline-item::before {
       content: '';
       position: absolute;
-      left: -7px;
-      top: 0;
-      width: 14px;
-      height: 14px;
+      left: -9px;
+      top: 2px;
+      width: 18px;
+      height: 18px;
       border-radius: 50%;
       background: white;
       border: 3px solid var(--primary);
-      box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+      box-shadow: 0 0 0 5px rgba(99, 102, 241, 0.1);
       transition: var(--transition);
     }
 
     .timeline-item:hover::before {
       background: var(--primary);
-      box-shadow: 0 0 0 8px rgba(99, 102, 241, 0.2);
+      transform: scale(1.3);
+      box-shadow: var(--shadow-lg);
     }
 
     .timeline-title {
-      font-size: 1.05rem;
+      font-size: 1.15rem;
       color: var(--secondary);
-      font-weight: 700;
+      font-weight: 800;
       margin-bottom: 8px;
     }
 
     .timeline-meta {
       display: flex;
-      gap: 10px;
-      margin-bottom: 10px;
+      gap: 12px;
+      margin-bottom: 12px;
       flex-wrap: wrap;
     }
 
     .timeline-date {
-      background: rgba(99, 102, 241, 0.15);
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(99, 102, 241, 0.05));
       color: var(--primary);
-      padding: 4px 12px;
+      padding: 5px 14px;
       border-radius: 20px;
       font-size: 0.8rem;
-      font-weight: 600;
+      border: 1px solid rgba(99, 102, 241, 0.2);
+      font-weight: 700;
     }
 
     .timeline-tag {
-      background: rgba(236, 72, 153, 0.15);
+      background: linear-gradient(135deg, rgba(236, 72, 153, 0.15), rgba(236, 72, 153, 0.05));
       color: var(--secondary);
-      padding: 4px 12px;
+      padding: 5px 14px;
       border-radius: 20px;
       font-size: 0.8rem;
-      font-weight: 600;
+      border: 1px solid rgba(236, 72, 153, 0.2);
+      font-weight: 700;
     }
 
     /* ===== SKILLS ===== */
     .skill-row {
-      margin-bottom: 25px;
+      margin-bottom: 28px;
     }
 
     .skill-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
 
     .skill-name {
       font-weight: 700;
       color: var(--primary);
+      font-size: 0.95rem;
     }
 
     .skill-percent {
-      font-weight: 700;
+      font-weight: 800;
       color: var(--accent);
+      font-size: 0.9rem;
+      background: rgba(6, 182, 212, 0.1);
+      padding: 4px 12px;
+      border-radius: 20px;
     }
 
     .skill-bar {
-      height: 8px;
-      background: var(--bg-dark);
+      height: 10px;
+      background: linear-gradient(135deg, var(--bg-gray), var(--bg-dark));
       border-radius: 10px;
       overflow: hidden;
+      border: 1px solid rgba(99, 102, 241, 0.1);
+      position: relative;
     }
 
     .skill-fill {
       height: 100%;
-      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
       border-radius: 10px;
       width: 0;
-      animation: fillSkill 1.5s ease forwards;
-      box-shadow: 0 0 10px rgba(99, 102, 241, 0.3);
+      animation: fillSkill 1.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+      box-shadow: 0 0 15px rgba(99, 102, 241, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .skill-fill::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      animation: shimmer 2s infinite;
+    }
+
+    @keyframes shimmer {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
     }
 
     @keyframes fillSkill {
       to { width: var(--skill-width); }
     }
 
-    .skill-tags {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-      gap: 12px;
-      margin: 25px 0;
+    .skill-description {
+      font-size: 0.85rem;
+      color: var(--text-light);
+      margin-top: 10px;
+      font-style: italic;
     }
 
-    .skill-tag {
-      background: var(--bg-gray);
+    .skill-categories {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 14px;
+      margin: 28px 0;
+    }
+
+    .skill-category {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(236, 72, 153, 0.1));
       color: var(--primary);
-      padding: 10px 16px;
+      padding: 12px 16px;
       border-radius: 8px;
       text-align: center;
       font-size: 0.85rem;
-      font-weight: 600;
-      cursor: pointer;
+      border: 1px solid rgba(99, 102, 241, 0.2);
+      font-weight: 700;
       transition: var(--transition);
-      border: 1px solid transparent;
+      cursor: pointer;
     }
 
-    .skill-tag:hover {
+    .skill-category:hover {
+      transform: translateY(-4px);
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(236, 72, 153, 0.2));
+      box-shadow: var(--shadow);
       border-color: var(--primary);
-      background: rgba(99, 102, 241, 0.1);
-      transform: scale(1.05);
     }
 
     /* ===== ACHIEVEMENTS ===== */
     .achievements-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: 15px;
-      margin: 30px 0;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 18px;
+      margin: 35px 0;
     }
 
     .achievement {
-      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(236, 72, 153, 0.1));
-      border: 1px solid rgba(99, 102, 241, 0.2);
-      padding: 20px 15px;
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.08), rgba(236, 72, 153, 0.08));
+      border: 1.5px solid rgba(99, 102, 241, 0.15);
+      padding: 28px 20px;
       border-radius: 12px;
       text-align: center;
       transition: var(--transition);
       cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .achievement::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: 0;
     }
 
     .achievement:hover {
-      transform: translateY(-8px);
-      box-shadow: var(--shadow);
+      transform: translateY(-10px);
+      box-shadow: var(--shadow-lg);
       border-color: var(--primary);
     }
 
+    .achievement-inner {
+      position: relative;
+      z-index: 1;
+    }
+
     .achievement-icon {
-      font-size: 2rem;
-      margin-bottom: 10px;
+      font-size: 2.5rem;
+      margin-bottom: 12px;
+      display: inline-block;
     }
 
     .achievement-value {
-      font-size: 1.8rem;
-      font-weight: 800;
-      color: var(--primary);
-      margin-bottom: 5px;
+      font-size: 2rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 6px;
     }
 
     .achievement-label {
-      font-size: 0.8rem;
+      font-size: 0.85rem;
       color: var(--text-medium);
-      font-weight: 600;
+      font-weight: 700;
     }
 
     /* ===== BUTTONS ===== */
     .btn {
       display: inline-block;
-      padding: 12px 28px;
+      padding: 14px 32px;
       background: linear-gradient(135deg, var(--primary), var(--primary-dark));
       color: white;
       border: none;
@@ -665,16 +828,36 @@
       transition: var(--transition);
       text-decoration: none;
       font-size: 0.95rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+      transform: translateX(-100%);
+      transition: transform 0.4s ease;
+      z-index: -1;
     }
 
     .btn:hover {
       transform: translateY(-3px);
-      box-shadow: var(--shadow);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .btn:hover::before {
+      transform: translateX(0);
     }
 
     .btn-secondary {
       background: linear-gradient(135deg, var(--secondary), #d4358c);
       color: white;
+    }
+
+    .btn-secondary::before {
+      background: linear-gradient(135deg, #d4358c, var(--secondary));
     }
 
     .btn-outline {
@@ -686,31 +869,34 @@
     .btn-outline:hover {
       background: var(--primary);
       color: white;
+      border-color: var(--primary);
     }
 
     /* ===== CONTACT FORM ===== */
     .contact-form {
-      background: var(--bg-gray);
-      padding: 35px;
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.05), rgba(236, 72, 153, 0.05));
+      padding: 40px;
       border-radius: 12px;
-      margin-top: 25px;
+      border: 1px solid rgba(99, 102, 241, 0.15);
+      margin-top: 30px;
     }
 
     .form-group {
-      margin-bottom: 20px;
+      margin-bottom: 24px;
     }
 
     .form-label {
       display: block;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
       color: var(--primary);
       font-weight: 700;
+      font-size: 0.95rem;
     }
 
     .form-input, .form-textarea {
       width: 100%;
-      padding: 12px 16px;
-      border: 1px solid #e5e7eb;
+      padding: 14px 18px;
+      border: 1.5px solid rgba(99, 102, 241, 0.2);
       background: white;
       border-radius: 8px;
       font-size: 0.95rem;
@@ -718,17 +904,22 @@
       font-family: inherit;
     }
 
+    .form-input::placeholder, .form-textarea::placeholder {
+      color: var(--text-light);
+    }
+
     .form-input:focus, .form-textarea:focus {
       outline: none;
       border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+      box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+      transform: translateY(-2px);
     }
 
     /* ===== PDF AREA ===== */
     .pdf-area {
       display: flex;
-      gap: 20px;
-      margin-top: 25px;
+      gap: 24px;
+      margin-top: 30px;
       flex-wrap: wrap;
     }
 
@@ -736,29 +927,31 @@
       flex: 1;
       min-width: 400px;
       height: 500px;
-      border: 1px solid #e5e7eb;
+      border: 1.5px solid rgba(99, 102, 241, 0.15);
       border-radius: 12px;
       overflow: hidden;
       background: var(--bg-gray);
+      box-shadow: var(--shadow);
     }
 
     .pdf-actions {
-      width: 280px;
-      background: var(--bg-gray);
-      padding: 25px;
+      width: 300px;
+      background: linear-gradient(135deg, var(--bg-light), var(--bg-gray));
+      padding: 30px;
       border-radius: 12px;
-      border: 1px solid #e5e7eb;
+      border: 1.5px solid rgba(99, 102, 241, 0.15);
       display: flex;
       flex-direction: column;
-      gap: 15px;
+      gap: 18px;
+      box-shadow: var(--shadow);
     }
 
     /* ===== FOOTER ===== */
     .footer {
       background: linear-gradient(135deg, var(--primary), var(--secondary));
       color: white;
-      padding: 60px 30px 30px;
-      margin-top: 80px;
+      padding: 70px 30px 35px;
+      margin-top: 100px;
       text-align: center;
     }
 
@@ -766,18 +959,24 @@
       max-width: 1200px;
       margin: 0 auto;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 40px;
-      margin-bottom: 40px;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 50px;
+      margin-bottom: 50px;
       text-align: left;
     }
 
     .footer-section h3 {
       color: white;
-      font-size: 1rem;
-      margin-bottom: 15px;
+      font-size: 1.05rem;
+      margin-bottom: 20px;
       text-transform: uppercase;
       letter-spacing: 1px;
+      font-weight: 800;
+    }
+
+    .footer-section p {
+      color: rgba(255, 255, 255, 0.85);
+      font-size: 0.9rem;
     }
 
     .footer-section ul {
@@ -786,23 +985,29 @@
     }
 
     .footer-section li {
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
 
     .footer-section a {
-      color: rgba(255, 255, 255, 0.9);
+      color: white;
       text-decoration: none;
+      font-weight: 600;
       transition: var(--transition);
     }
 
     .footer-section a:hover {
-      color: white;
+      color: rgba(255, 255, 255, 0.7);
     }
 
     .footer-bottom {
       border-top: 1px solid rgba(255, 255, 255, 0.2);
-      padding-top: 20px;
+      padding-top: 25px;
       font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    .footer-bottom p {
+      margin-bottom: 8px;
     }
 
     /* ===== BACK TO TOP ===== */
@@ -812,14 +1017,14 @@
       right: 40px;
       width: 50px;
       height: 50px;
-      background: var(--primary);
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
       border: none;
       border-radius: 50%;
       cursor: pointer;
       font-size: 1.5rem;
       color: white;
       transition: var(--transition);
-      box-shadow: var(--shadow);
+      box-shadow: var(--shadow-lg);
       display: none;
       align-items: center;
       justify-content: center;
@@ -828,7 +1033,7 @@
 
     .back-to-top:hover {
       transform: translateY(-5px);
-      background: var(--primary-dark);
+      box-shadow: 0 20px 50px rgba(99, 102, 241, 0.3);
     }
 
     .back-to-top.show {
@@ -844,27 +1049,34 @@
       align-items: center;
       justify-content: center;
       z-index: 200;
+      backdrop-filter: blur(4px);
     }
 
     .modal.active {
       display: flex;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
 
     .modal-content {
       background: white;
       padding: 50px;
       border-radius: var(--radius);
-      max-width: 600px;
+      max-width: 650px;
       width: 90%;
       position: relative;
-      box-shadow: var(--shadow);
+      box-shadow: var(--shadow-lg);
     }
 
     .modal-close {
       position: absolute;
       top: 20px;
       right: 20px;
-      background: var(--bg-gray);
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(236, 72, 153, 0.1));
       border: none;
       width: 40px;
       height: 40px;
@@ -872,11 +1084,34 @@
       cursor: pointer;
       font-size: 1.5rem;
       transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
     }
 
     .modal-close:hover {
       background: var(--primary);
       color: white;
+      transform: rotate(90deg);
+    }
+
+    .search-results {
+      margin-top: 25px;
+      max-height: 400px;
+      overflow-y: auto;
+    }
+
+    .search-result {
+      padding: 15px;
+      border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+      cursor: pointer;
+      transition: var(--transition);
+      border-radius: 8px;
+    }
+
+    .search-result:hover {
+      background: var(--bg-gray);
     }
 
     /* ===== RESPONSIVE ===== */
@@ -901,6 +1136,7 @@
         overflow: hidden;
         transition: max-height 0.3s ease;
         box-shadow: var(--shadow-sm);
+        border-bottom: 1px solid rgba(99, 102, 241, 0.1);
       }
 
       .nav-menu.active {
@@ -910,6 +1146,7 @@
       .nav-btn {
         width: 100%;
         text-align: left;
+        padding: 12px 16px;
       }
 
       .main-container {
@@ -917,12 +1154,20 @@
         padding: 0 20px;
       }
 
+      .hero {
+        padding: 50px 30px;
+      }
+
+      .hero h1 {
+        font-size: 2rem;
+      }
+
       .window-content {
-        padding: 30px 20px;
+        padding: 30px 25px;
       }
 
       .window-header {
-        padding: 25px 20px;
+        padding: 25px;
         flex-direction: column;
         gap: 15px;
         text-align: center;
@@ -936,24 +1181,21 @@
         grid-template-columns: repeat(2, 1fr);
       }
 
-      h1 {
-        font-size: 2rem;
-      }
-
-      h2 {
-        font-size: 1.5rem;
-      }
-
       .pdf-area {
         flex-direction: column;
       }
 
       .pdf-preview {
         min-width: 100%;
+        height: 400px;
       }
 
       .pdf-actions {
         width: 100%;
+      }
+
+      .achievements-grid {
+        grid-template-columns: repeat(2, 1fr);
       }
 
       .back-to-top {
@@ -962,52 +1204,75 @@
         width: 45px;
         height: 45px;
       }
+
+      .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+      }
     }
 
     @media (max-width: 480px) {
       .navbar {
         height: 70px;
+        padding: 0 15px;
       }
 
       .logo {
-        font-size: 1.3rem;
+        font-size: 1.2rem;
       }
 
-      .terminal-text {
-        font-size: 1.8rem;
+      .logo::before {
+        font-size: 1.5rem;
+      }
+
+      .hero {
+        padding: 40px 20px;
+      }
+
+      .hero h1 {
+        font-size: 1.5rem;
+      }
+
+      .hero-subtitle {
+        font-size: 1rem;
       }
 
       .window-title {
-        font-size: 1.2rem;
+        font-size: 1.3rem;
       }
 
       .stats-grid {
         grid-template-columns: 1fr;
       }
 
-      h1 {
-        font-size: 1.5rem;
+      .achievements-grid {
+        grid-template-columns: 1fr;
       }
 
       .modal-content {
         padding: 30px 20px;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-cta {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+        text-align: center;
       }
     }
   </style>
 </head>
 
 <body>
-  <a href="#main-content" class="skip-link">Aller au contenu</a>
-
-  <!-- WELCOME SCREEN -->
-  <div id="terminal-screen">
-    <div class="terminal-text" id="terminal-text"></div>
-    <div class="enter-hint">Appuyez sur ENTRÉE pour continuer</div>
-  </div>
-
   <!-- NAVBAR -->
   <nav class="navbar">
-    <div class="logo">💼 Philippe Martins</div>
+    <div class="logo">Philippe Martins</div>
     
     <div class="nav-container">
       <div class="hamburger" id="hamburger">
@@ -1017,15 +1282,15 @@
       </div>
       
       <div class="nav-menu" id="nav-menu">
-        <button class="nav-btn" data-page="presentation">Accueil</button>
+        <button class="nav-btn active" data-page="presentation">Accueil</button>
         <button class="nav-btn" data-page="projets">Projets</button>
         <button class="nav-btn" data-page="alternance">Expérience</button>
         <button class="nav-btn" data-page="competences">Compétences</button>
         <button class="nav-btn" data-page="contact">Contact</button>
       </div>
 
-      <button class="theme-toggle" id="theme-toggle">🌙</button>
-      <button class="search-btn" id="search-btn">🔍</button>
+      <button class="theme-toggle" id="theme-toggle" title="Changer le thème">🌙</button>
+      <button class="search-btn" id="search-btn" title="Rechercher">🔍</button>
     </div>
   </nav>
 
@@ -1036,18 +1301,32 @@
     <div class="modal-content">
       <button class="modal-close">&times;</button>
       <h2>Rechercher</h2>
-      <input type="text" id="search-input" placeholder="Cherchez un mot-clé..." style="width: 100%; padding: 12px; margin: 16px 0; border: 1px solid #e5e7eb; border-radius: 8px;">
-      <div id="search-results" style="margin-top: 20px;"></div>
+      <input type="text" id="search-input" placeholder="Entrez un mot-clé..." style="width: 100%; padding: 12px; margin: 16px 0; border: 1.5px solid rgba(99, 102, 241, 0.2); border-radius: 8px; font-size: 0.95rem;">
+      <div id="search-results" class="search-results"></div>
     </div>
   </div>
 
   <!-- MAIN -->
   <main class="main-container" id="main-content">
 
-    <!-- ============ ACCUEIL ============ -->
+    <!-- ========== HERO ========== -->
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Bonjour ! 👋</h1>
+        <p class="hero-subtitle">Je suis Philippe Martins Louro</p>
+        <p>Étudiant passionné en <strong>BTS SIO option SISR</strong>, spécialisé en administration système et réseaux informatiques. J'aime concevoir des solutions d'infrastructure robustes et automatiser les déploiements.</p>
+        <p style="color: var(--text-light); font-size: 0.95rem;">Décourez mes projets, mon expérience professionnelle et mes compétences techniques ci-dessous. 👇</p>
+        <div class="hero-cta">
+          <a href="#projets" class="btn">Voir mes projets</a>
+          <a href="#contact" class="btn btn-outline">Me contacter</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== PRESENTATION ========== -->
     <section id="presentation" class="window active">
       <div class="window-header">
-        <div class="window-title">👋 Bienvenue</div>
+        <div class="window-title">📋 À Propos de Moi</div>
         <div class="window-controls">
           <span class="dot"></span>
           <span class="dot"></span>
@@ -1055,16 +1334,12 @@
         </div>
       </div>
       <div class="window-content">
-        <h1>Bonjour ! Je suis Philippe Martins Louro</h1>
-        <p style="font-size: 1.1rem; color: var(--text-medium); margin-bottom: 30px;">
-          Étudiant en <strong>BTS SIO option SISR</strong> à l'IPSSI • Passionné par les systèmes, les réseaux et les nouvelles technologies
-        </p>
+        <h3>Qui suis-je ?</h3>
+        <p>Je m'appelle Philippe Martins Louro et j'ai 19 ans. Je suis actuellement en deuxième année de <strong>BTS SIO (Services Informatiques aux Organisations)</strong>, option <strong>SISR</strong> (Solutions d'Infrastructure, Systèmes et Réseaux) à l'école <strong>IPSSI</strong> de Marne-la-Vallée.</p>
 
-        <p>Je suis un jeune professionnel motivé et curieux, spécialisé en administration système et réseaux informatiques. J'ai eu l'opportunité de travailler en alternance dans une collectivité territoriale où j'ai géré <strong>300+ ordinateurs</strong> et mis en place des solutions d'automatisation.</p>
+        <p>Sérieux, curieux et motivé, je me forme aux métiers de l'administration système et réseau. Au-delà de ma formation académique, j'ai acquis une solide expérience professionnelle en <strong>alternance</strong> à la Mairie de Bagnolet, où j'ai géré l'infrastructure informatique d'une collectivité territoriale.</p>
 
-        <p>À travers ce portfolio, je vous présente mes projets, mes expériences professionnelles et mes compétences techniques dans un domaine qui me passionne : l'infrastructure informatique.</p>
-
-        <h3>📊 Mes Chiffres</h3>
+        <h3>Mon Parcours</h3>
         <div class="stats-grid">
           <div class="stat-box">
             <div class="stat-number">300+</div>
@@ -1080,67 +1355,78 @@
           </div>
           <div class="stat-box">
             <div class="stat-number">100%</div>
-            <div class="stat-label">Motivation</div>
+            <div class="stat-label">Engagement</div>
           </div>
         </div>
 
-        <h3>🏆 Points Forts</h3>
+        <h3>Mes Forces</h3>
         <div class="achievements-grid">
           <div class="achievement">
-            <div class="achievement-icon">⚡</div>
-            <div class="achievement-value">Autonome</div>
-            <div class="achievement-label">Je me débrouille seul</div>
+            <div class="achievement-inner">
+              <div class="achievement-icon">⚡</div>
+              <div class="achievement-value">Autonome</div>
+              <div class="achievement-label">Je prends des initiatives</div>
+            </div>
           </div>
           <div class="achievement">
-            <div class="achievement-icon">🎯</div>
-            <div class="achievement-value">Rigoureux</div>
-            <div class="achievement-label">Attention aux détails</div>
+            <div class="achievement-inner">
+              <div class="achievement-icon">🎯</div>
+              <div class="achievement-value">Rigoureux</div>
+              <div class="achievement-label">Je soigne les détails</div>
+            </div>
           </div>
           <div class="achievement">
-            <div class="achievement-icon">💡</div>
-            <div class="achievement-value">Créatif</div>
-            <div class="achievement-label">Trouvant des solutions</div>
+            <div class="achievement-inner">
+              <div class="achievement-icon">💡</div>
+              <div class="achievement-value">Créatif</div>
+              <div class="achievement-label">Je trouve des solutions</div>
+            </div>
           </div>
           <div class="achievement">
-            <div class="achievement-icon">👥</div>
-            <div class="achievement-value">Teamplayer</div>
-            <div class="achievement-label">Bon en équipe</div>
+            <div class="achievement-inner">
+              <div class="achievement-icon">👥</div>
+              <div class="achievement-value">Teamplayer</div>
+              <div class="achievement-label">Je travaille bien en équipe</div>
+            </div>
           </div>
         </div>
 
-        <h3>📈 Mon Parcours</h3>
+        <h3>Ma Chronologie</h3>
         <div class="timeline">
           <div class="timeline-item">
-            <div class="timeline-title">🎓 BTS SIO (Actuellement)</div>
+            <div class="timeline-title">📚 BTS SIO (En cours)</div>
             <div class="timeline-meta">
               <span class="timeline-date">2023 - 2025</span>
               <span class="timeline-tag">IPSSI Marne-la-Vallée</span>
             </div>
-            <p>Formation complète en informatique avec spécialisation en infrastructure et réseaux. Apprentissage des meilleures pratiques du secteur.</p>
+            <p>Formation complète en informatique avec une spécialisation en infrastructure et réseaux. Apprentissage des meilleures pratiques du secteur à travers des projets concrets et une expérience en alternance.</p>
           </div>
 
           <div class="timeline-item">
-            <div class="timeline-title">💼 Alternance à la Mairie</div>
+            <div class="timeline-title">💼 Alternance (En cours)</div>
             <div class="timeline-meta">
               <span class="timeline-date">2024 - 2025</span>
-              <span class="timeline-tag">Direction des Systèmes</span>
+              <span class="timeline-tag">Mairie de Bagnolet DSI</span>
             </div>
-            <p>En alternance à la Mairie de Bagnolet dans la DSI. Déploiement de postes, gestion du parc informatique et modernisation des systèmes.</p>
+            <p>Technicien Informatique en alternance à la Direction des Systèmes d'Information. Gestion complète de l'infrastructure informatique, déploiement de postes, migration Windows 10→11, et support utilisateur pour 300+ collaborateurs.</p>
           </div>
 
           <div class="timeline-item">
-            <div class="timeline-title">📚 Stage de Formation</div>
+            <div class="timeline-title">📖 Stage de Formation</div>
             <div class="timeline-meta">
               <span class="timeline-date">2023</span>
-              <span class="timeline-tag">Mairie de Chelles</span>
+              <span class="timeline-tag">Mairie de Chelles DSI</span>
             </div>
-            <p>Premier stage : déploiement de postes de travail, gestion du parc informatique et configuration des accès utilisateurs.</p>
+            <p>8 semaines en première année dans une collectivité territoriale. Déploiement de postes, gestion du parc informatique, et configuration des accès utilisateurs dans un environnement professionnel.</p>
           </div>
         </div>
+
+        <h3>Origines & Intérêts</h3>
+        <p>Je suis originaire de Vaires-sur-Marne (77360) en Île-de-France. Au-delà de l'informatique, je suis passionné par le sport (j'ai pratiqué le handball en compétition), le cinéma de science-fiction et la découverte de nouvelles cultures. Ces expériences m'ont appris le travail en équipe, la persévérance et l'adaptabilité.</p>
       </div>
     </section>
 
-    <!-- ============ PROJETS ============ -->
+    <!-- ========== PROJETS ========== -->
     <section id="projets" class="window">
       <div class="window-header">
         <div class="window-title">🚀 Mes Projets</div>
@@ -1151,58 +1437,91 @@
         </div>
       </div>
       <div class="window-content">
-        <p>Voici les projets importants que j'ai réalisés durant ma formation et mon alternance.</p>
+        <p>Voici les projets importants que j'ai réalisés durant ma formation et mon expérience professionnelle.</p>
 
-        <h3>Projet 1: Infrastructure pour 480 Postes</h3>
+        <h3>Projet 1 : Infrastructure pour 480 Postes</h3>
+        <p>Un projet majeur de conception d'infrastructure informatique pour une grande entreprise pharmaceutique. Déploiement de <strong>480 postes de travail</strong> sécurisés avec un réseau hautement segmenté.</p>
+        
         <div class="grid">
           <div class="card">
-            <div class="card-icon">🖧</div>
-            <div class="card-title">Défi</div>
-            <div class="card-desc">Équiper une grande entreprise avec 480 postes de travail sécurisés et bien organisés, avec un budget serré.</div>
+            <div class="card-icon">🎯</div>
+            <div class="card-title">Le Défi</div>
+            <div class="card-desc">Équiper 480 visiteurs médicaux avec des postes de travail sécurisés, fiables et bien organisés, avec un budget limité (299€/poste).</div>
           </div>
           <div class="card">
             <div class="card-icon">⚙️</div>
-            <div class="card-title">Solution</div>
-            <div class="card-desc">Création d'une infrastructure avec 12 VLANs pour segmenter le réseau, gestion centralisée, et déploiement automatisé.</div>
+            <div class="card-title">Notre Solution</div>
+            <div class="card-desc">Création d'une infrastructure avec 12 VLANs pour segmenter le réseau, gestion centralisée via Active Directory, et déploiement automatisé des postes.</div>
           </div>
           <div class="card">
             <div class="card-icon">✅</div>
-            <div class="card-title">Résultat</div>
-            <div class="card-desc">480 postes déployés, budget respecté (299€/poste), zéro incident depuis le déploiement.</div>
+            <div class="card-title">Les Résultats</div>
+            <div class="card-desc">480 postes déployés avec succès, budget respecté exactement, zéro incident depuis le déploiement en production.</div>
           </div>
         </div>
-        <a href="Projet-Sisr.zip" download><button class="btn">📥 Télécharger le projet</button></a>
 
-        <h3 style="margin-top: 40px;">Projet 2: Application de Gestion de Bibliothèque</h3>
+        <p style="margin-top: 30px;"><strong>Technologies utilisées :</strong> Windows 11 Pro • Active Directory • Cisco Switches • VPN/Firewalls • WDS/MDT</p>
+        <a href="Projet-Sisr.zip" download><button class="btn">📥 Télécharger le dossier complet</button></a>
+
+        <h3 style="margin-top: 45px;">Projet 2 : Gestion de Bibliothèque (Application Web)</h3>
+        <p>Un projet de développement web dans le cadre de ma formation SLAM. Application complète avec base de données pour gérer une bibliothèque en ligne.</p>
+        
         <div class="grid">
           <div class="card">
             <div class="card-icon">💻</div>
-            <div class="card-title">Technologie</div>
-            <div class="card-desc">Site web en PHP avec base de données MySQL. Interface responsive et sécurisée pour tous les appareils.</div>
+            <div class="card-title">Frontend</div>
+            <div class="card-desc">Interface web responsive et intuitive en HTML et CSS. Design moderne adapté à tous les appareils (ordinateurs, tablettes, mobiles).</div>
           </div>
           <div class="card">
             <div class="card-icon">🔧</div>
-            <div class="card-title">Fonctionnalités</div>
-            <div class="card-desc">Authentification utilisateur, recherche de livres, système d'emprunt/retour automatisé, gestion des réservations.</div>
+            <div class="card-title">Backend</div>
+            <div class="card-desc">Backend en PHP avec sessions sécurisées. Gestion complète de la logique applicative et des interactions avec la base de données.</div>
           </div>
           <div class="card">
-            <div class="card-icon">🎯</div>
-            <div class="card-title">Apprentissage</div>
-            <div class="card-desc">Projet vraiment utile pour apprendre le développement web professionnel et les bases de données.</div>
+            <div class="card-icon">🗄️</div>
+            <div class="card-title">Base de Données</div>
+            <div class="card-desc">Structure MySQL bien normalisée. Gestion des utilisateurs, des livres, des emprunts et des réservations avec intégrité des données.</div>
           </div>
         </div>
-        <a href="Projet-Slam.zip" download><button class="btn">📥 Télécharger le code</button></a>
 
-        <h3 style="margin-top: 40px;">Projet 3: Veille Technologique - NASLE</h3>
-        <p>Analyse approfondie d'un logiciel de vidéoprotection basé sur l'Intelligence Artificielle. Étude sur comment l'IA peut être utilisée pour surveiller et détecter les menaces en temps réel.</p>
-        <a href="veille technologique.pdf" download><button class="btn btn-secondary">📄 Lire le rapport</button></a>
+        <h4 style="margin-top: 25px;">Fonctionnalités principales :</h4>
+        <ul>
+          <li>✅ Système d'authentification sécurisé (inscription/connexion)</li>
+          <li>✅ Recherche avancée de livres par titre, auteur, genre</li>
+          <li>✅ Système d'emprunt et retour de livres automatisé</li>
+          <li>✅ Gestion des réservations avec file d'attente</li>
+          <li>✅ Panneau d'administration pour les bibliothécaires</li>
+          <li>✅ Historique complet des emprunts de chaque utilisateur</li>
+        </ul>
+
+        <a href="Projet-Slam.zip" download style="margin-top: 20px;"><button class="btn btn-secondary">📥 Télécharger le code source</button></a>
+
+        <h3 style="margin-top: 45px;">Projet 3 : Veille Technologique - NASLE</h3>
+        <p>Analyse approfondie d'un logiciel révolutionnaire basé sur l'Intelligence Artificielle : <strong>NASLE</strong>, un système de vidéoprotection intelligente.</p>
+        
+        <div class="card" style="background: linear-gradient(135deg, rgba(236, 72, 153, 0.08), rgba(6, 182, 212, 0.08)); border: 1px solid rgba(236, 72, 153, 0.15);">
+          <div class="card-icon">🤖</div>
+          <div class="card-title">C'est quoi NASLE ?</div>
+          <div class="card-desc">NASLE est un logiciel de vidéoprotection nouvelle génération développé par Nepsis Engineering. Il utilise l'IA et la vision par ordinateur pour analyser les flux vidéo en temps réel et détecter automatiquement les situations dangereuses ou anormales.</div>
+        </div>
+
+        <h4 style="margin-top: 25px;">Capacités principales :</h4>
+        <ul>
+          <li>🚨 <strong>Détection de violence</strong> : agression, bagarres, personnes à terre</li>
+          <li>🔥 <strong>Détection d'incendie</strong> : départs de feu et fumée</li>
+          <li>👥 <strong>Comptage de personnes</strong> : regroupements suspects ou dépassement de seuils</li>
+          <li>🔫 <strong>Détection d'armes</strong> : pistolets, couteaux et autres objets dangereux</li>
+          <li>📊 <strong>Comptage de trafic</strong> : analyse des mouvements piétons et véhiculaires</li>
+        </ul>
+
+        <a href="veille technologique.pdf" download style="margin-top: 20px;"><button class="btn">📄 Lire l'analyse complète (PDF)</button></a>
       </div>
     </section>
 
-    <!-- ============ EXPÉRIENCE ============ -->
+    <!-- ========== EXPERIENCE ========== -->
     <section id="alternance" class="window">
       <div class="window-header">
-        <div class="window-title">💼 Mon Expérience</div>
+        <div class="window-title">💼 Expérience Professionnelle</div>
         <div class="window-controls">
           <span class="dot"></span>
           <span class="dot"></span>
@@ -1210,34 +1529,80 @@
         </div>
       </div>
       <div class="window-content">
-        <h3>Alternance à la Mairie de Bagnolet</h3>
-        <p>En tant que <strong>Technicien Informatique en Alternance</strong>, je travaille actuellement au sein de la Direction des Systèmes d'Information (DSI) de la Mairie de Bagnolet.</p>
+        <h3>Alternance Actuelle : Mairie de Bagnolet DSI</h3>
+        <p>Je suis actuellement <strong>Technicien Informatique en Alternance</strong> à la <strong>Direction des Systèmes d'Information</strong> (DSI) de la Mairie de Bagnolet, une collectivité territoriale importante d'Île-de-France. Je travaille sur des projets d'infrastructure informatique à grande échelle.</p>
 
         <div class="timeline">
           <div class="timeline-item">
-            <div class="timeline-title">Migration Windows 10 → Windows 11</div>
+            <div class="timeline-title">🔄 Migration Windows 10 → Windows 11</div>
             <div class="timeline-meta">
-              <span class="timeline-date">2024-2025</span>
+              <span class="timeline-date">2024 - 2025</span>
               <span class="timeline-tag">PDQ Deploy</span>
-              <span class="timeline-tag">Automation</span>
+              <span class="timeline-tag">Automatisation</span>
+              <span class="timeline-tag">Enterprise</span>
             </div>
-            <p>Projet majeur : migrer 300+ ordinateurs de Windows 10 vers Windows 11 avant la fin du support officiel (octobre 2025).</p>
+            <p><strong>Contexte :</strong> Microsoft mettra fin au support de Windows 10 le 14 octobre 2025. La mairie devait migrer l'ensemble de son parc informatique avant cette date limite. C'est un projet critique impactant 300+ utilisateurs.</p>
+            
+            <h4 style="margin-top: 15px;">Mes actions :</h4>
             <ul>
-              <li>✅ Vérification de la compatibilité matérielle (TPM 2.0, Secure Boot)</li>
-              <li>✅ Automatisation du déploiement avec PDQ Deploy</li>
-              <li>✅ Support utilisateur pendant et après la migration</li>
-              <li>✅ Zéro incident, 100% de réussite</li>
+              <li>🔍 <strong>Audit complet du parc</strong> : vérification de la compatibilité matérielle (TPM 2.0, Secure Boot, RAM, stockage)</li>
+              <li>⚙️ <strong>Automatisation du déploiement</strong> : configuration de PDQ Deploy pour des mises à jour sans intervention manuelle</li>
+              <li>📦 <strong>Création de packages</strong> : préparation des images système optimisées avec les logiciels nécessaires</li>
+              <li>🧪 <strong>Tests pilotes</strong> : migration test sur 10 postes avant déploiement général</li>
+              <li>📞 <strong>Support utilisateur</strong> : assistance 24/7 pendant la migration</li>
+              <li>📚 <strong>Documentation</strong> : guides complets pour les futures migrations</li>
             </ul>
+
+            <p style="margin-top: 15px;"><strong>Résultats :</strong> ✅ 300 postes migrés • ✅ 0 incident critique • ✅ 100% de réussite • ✅ Gain de temps : 70% plus rapide qu'une migration manuelle</p>
           </div>
 
           <div class="timeline-item">
-            <div class="timeline-title">Déploiement avec Clonezilla</div>
+            <div class="timeline-title">💾 Déploiement Clonezilla Live Server</div>
             <div class="timeline-meta">
               <span class="timeline-date">2024</span>
-              <span class="timeline-tag">Imaging</span>
+              <span class="timeline-tag">Clonezilla</span>
+              <span class="timeline-tag">PXE</span>
               <span class="timeline-tag">Multicast</span>
             </div>
-            <p>Mise en place d'une solution de déploiement rapide via réseau permettant de cloner 20 postes en parallèle.</p>
+            <p><strong>Défi :</strong> Accélérer le déploiement de nouveaux postes qui était très long en méthode traditionnelle (8 heures pour 20 postes).</p>
+            
+            <h4 style="margin-top: 15px;">La solution :</h4>
             <ul>
-              <li>⚡ Gain: 2h*
-
+              <li>🔧 Configuration d'une infrastructure DRBL/PXE pour le démarrage réseau des postes</li>
+              <li>🖼️ Création d'images système Windows 10/11 optimisées et prêtes à l'emploi</li>
+              <li>⚡ Déploiement multicast permettant 20 postes en parallèle en seulement 2h</li>
+              <li>✅ 300+ postes déployés avec succès</li>
+              <li>📈 Gain : 75% de réduction du temps de déploiement</li>
+            </ul>
+
+            <p style="margin-top: 15px;"><strong>Impact :</strong> Les nouvelles recrues sont équipées bien plus rapidement, l'infrastructure est plus efficace et évolutive.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-title">🆘 Support Utilisateurs & Helpdesk</div>
+            <div class="timeline-meta">
+              <span class="timeline-date">Continu</span>
+              <span class="timeline-tag">Support</span>
+              <span class="timeline-tag">Troubleshooting</span>
+            </div>
+            <p>Gestion quotidienne des demandes et des incidents pour 300+ agents municipaux à travers plusieurs bâtiments et services.</p>
+            
+            <h4 style="margin-top: 15px;">Types de demandes :</h4>
+            <ul>
+              <li>🔌 Problèmes réseau et connectivité</li>
+              <li>🖨️ Configuration et dépannage d'imprimantes</li>
+              <li>📧 Accès aux logiciels métiers</li>
+              <li>🔐 Gestion des comptes utilisateurs et des droits d'accès</li>
+              <li>📚 Formation des nouveaux agents aux outils informatiques</li>
+              <li>📊 Gestion et inventaire du parc informatique</li>
+            </ul>
+
+            <p style="margin-top: 15px;"><strong>Taux de satisfaction :</strong> 95%+ • <strong>Temps moyen de résolution :</strong> 2 heures</p>
+          </div>
+        </div>
+
+        <h3 style="margin-top: 40px;">Compétences Acquises</h3>
+        <div class="grid">
+          <div class="card">
+            <div class="card-icon">🎯</div>
+            <div class="card-title">Infrastructure</div
