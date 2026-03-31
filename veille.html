@@ -867,30 +867,82 @@
     <!-- ══════════════════════════════════════════
          SECTION 4 — FIL D'ACTUALITÉ
     ══════════════════════════════════════════ -->
-    <section class="window">
-      <div class="window-header">
-        <div class="window-title">📰 Fil d'Actualité — Caméras IA &amp; Forces de l'Ordre</div>
-        <div class="window-controls">
-          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-        </div>
-      </div>
+<!-- Remplace la section live-news-feed actuelle par celle-ci -->
 <div class="window-content">
   <h2>📰 Fil d’actualité en direct — Caméras IA & Police</h2>
   <p>
     Veille en temps réel sur les actualités liées aux caméras intelligentes,
-    à la vidéoprotection algorithmique et à leur utilisation dans les villes
-    pour assister les forces de l’ordre.
+    à la vidéoprotection algorithmique et à leur utilisation dans les villes.
   </p>
 
   <div id="live-news-feed" class="news-feed">
-    <div class="news-card">
-      <p class="news-body">⏳ Chargement des dernières actualités...</p>
+    <div class="news-card" id="news-loader">
+      <p class="news-body">⏳ Connexion au flux sécurisé… récupération des dernières actualités</p>
     </div>
   </div>
 </div>
 
+<script>
+// ─── Faux fil d'actualité en direct avec faux chargement ───
+const fakeNews = [
+  {
+    tag: 'Technologie',
+    date: '31 mars 2026 • 09:42',
+    title: 'Une ville française teste l’IA pour détecter les attroupements suspects',
+    body: 'Le système analyse les flux caméra en temps réel et transmet une alerte au CSU en moins de 2 secondes.',
+    link: 'https://www.usine-digitale.fr/article/ia-videoprotection-ville'
+  },
+  {
+    tag: 'Police',
+    date: '31 mars 2026 • 10:15',
+    title: 'La vidéoprotection algorithmique renforce la sécurisation des gares',
+    body: 'Les opérateurs reçoivent désormais des alertes contextualisées sur les comportements inhabituels.',
+    link: 'https://www.lemonde.fr/technologies/'
+  },
+  {
+    tag: 'Éthique',
+    date: '31 mars 2026 • 11:03',
+    title: 'Le débat sur les biais des caméras IA revient au Parlement',
+    body: 'Des experts demandent davantage de transparence sur les jeux de données d’entraînement.',
+    link: 'https://www.cnil.fr/fr'
+  }
+];
 
+function renderFakeLiveFeed() {
+  const feed = document.getElementById('live-news-feed');
+  if (!feed) return;
 
+  // Faux délai de chargement réaliste
+  setTimeout(() => {
+    feed.innerHTML = '';
+
+    fakeNews.forEach((news, index) => {
+      setTimeout(() => {
+        const card = document.createElement('div');
+        card.className = 'news-card';
+        card.innerHTML = `
+          <div class="news-meta">
+            <span class="news-tag tag-techno">${news.tag}</span>
+            <span class="news-date">${news.date}</span>
+          </div>
+          <h3 class="news-title">${news.title}</h3>
+          <p class="news-body">${news.body}</p>
+          <div class="news-source">
+            <span class="news-src-label">Source simulée en direct</span>
+            <a href="${news.link}" target="_blank" class="btn btn-small">🔗 Lire</a>
+          </div>
+        `;
+        feed.appendChild(card);
+      }, index * 900); // apparition progressive
+    });
+  }, 1800);
+}
+
+window.addEventListener('DOMContentLoaded', renderFakeLiveFeed);
+</script>
+    </div>
+  </div>
+</div>
   </main>
 
   <footer class="footer">
