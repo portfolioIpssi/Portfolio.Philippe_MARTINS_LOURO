@@ -532,8 +532,9 @@
       <div class="window-content">
         <h2>NASLE — Intelligence Artificielle pour Vidéoprotection</h2>
 
-        <p><strong>NASLE</strong> est un logiciel de vidéoprotection développé par <strong>Nepsis Engineering</strong>. Il s'appuie sur l'<strong>Intelligence Artificielle</strong> et la <strong>vision par ordinateur</strong> pour analyser des flux vidéo en temps réel et détecter automatiquement les situations dangereuses, sans fatigue humaine.</p>
-        <p>NASLE se positionne comme un <strong>assistant personnel des opérateurs</strong> de centres de supervision urbaine (CSU), leur permettant de se concentrer sur leurs missions prioritaires pendant que l'IA surveille l'intégralité du parc caméras.</p>
+        <p>Pour cette veille technologique, j'ai choisi d'étudier <strong>NASLE</strong>, un logiciel développé par la société française <strong>Nepsis Engineering</strong>. Ce sujet m'a particulièrement intéressé car il est directement lié à mon stage au sein d'un service utilisant des outils de supervision urbaine, et parce qu'il illustre concrètement comment l'Intelligence Artificielle transforme aujourd'hui des métiers aussi sensibles que la sécurité publique.</p>
+
+        <p>NASLE signifie <em>Navigateur d'Analyse et de Supervision en Ligne d'Événements</em>. Son principe est simple : au lieu qu'un opérateur humain surveille des dizaines d'écrans simultanément — ce qui génère inévitablement de la fatigue et des angles morts — c'est l'IA qui analyse en continu l'intégralité du parc caméras, <strong>24h/24 et 7j/7</strong>, et n'alerte l'opérateur qu'en cas d'événement détecté. L'humain reste décisionnaire ; la machine filtre le bruit.</p>
 
         <!-- Chiffres clés -->
         <div class="stats-band">
@@ -547,16 +548,19 @@
           </div>
           <div class="stat-box">
             <div class="stat-value">~1s</div>
-            <div class="stat-label">Temps de cycle / 100 caméras</div>
+            <div class="stat-label">Cycle d'analyse / 100 caméras</div>
           </div>
           <div class="stat-box">
-            <div class="stat-value">14j</div>
-            <div class="stat-label">Historique des alertes glissant</div>
+            <div class="stat-value">86 000</div>
+            <div class="stat-label">Images analysées / caméra / jour</div>
           </div>
         </div>
 
+        <p>Ces chiffres sont importants à retenir : un opérateur humain ne pourrait physiquement pas analyser 86 000 images par jour sur une seule caméra. NASLE le fait automatiquement, avec un taux d'erreur inférieur à 0,5 fausse alerte par caméra et par jour — soit moins de 10 alertes erronées pour un million d'images traitées.</p>
+
         <!-- ── Modules ── -->
-        <h3>📦 Deux modules fonctionnels</h3>
+        <h3>📦 Architecture en deux modules complémentaires</h3>
+        <p>NASLE est structuré autour de deux modules fonctionnels indépendants, qui répondent à des besoins distincts. Le premier est orienté <strong>sécurité des personnes</strong>, le second vers la <strong>gestion urbaine intelligente</strong>.</p>
         <div class="module-tabs">
           <button class="tab-btn active" onclick="switchTab('violence')">⚠️ Module Violence</button>
           <button class="tab-btn" onclick="switchTab('smartcity')">🏙️ Module Smart City</button>
@@ -564,70 +568,71 @@
 
         <!-- Violence -->
         <div class="tab-panel active" id="tab-violence">
-          <p>Le module <strong>Violence</strong> scrute en permanence la totalité du parc caméras et détecte les actes d'agression potentiels, les personnes à terre, les rassemblements inhabituels et les départs de feu.</p>
+          <p>Le module <strong>Violence</strong> scrute en permanence l'ensemble du parc caméras. Il est conçu pour décharger l'opérateur de la surveillance continue : dès qu'une situation à risque est identifiée, une alerte est remontée en temps réel. Ce module couvre quatre situations critiques :</p>
           <table class="func-table">
             <thead>
-              <tr><th>Fonction</th><th>Version</th><th>Fréquence</th><th>Support caméra</th></tr>
+              <tr><th>Fonction</th><th>Version</th><th>Fréquence d'analyse</th><th>Support caméra</th></tr>
             </thead>
             <tbody>
-              <tr><td>Violence &amp; personnes à terre</td><td><span class="badge-v badge-v10">v1.0</span></td><td>~1 seconde</td><td><span class="badge-ok">Fixe + PTZ</span></td></tr>
-              <tr><td>Incendie</td><td><span class="badge-v badge-v10">v1.0</span></td><td>Tous les 60 cycles (~1 min)</td><td><span class="badge-ok">Fixe + PTZ</span></td></tr>
-              <tr><td>Groupe de plus de N personnes</td><td><span class="badge-v badge-v10">v1.0</span></td><td>Toutes les minutes</td><td><span class="badge-ok">Fixe + PTZ</span></td></tr>
-              <tr><td>Présence d'armes</td><td><span class="badge-v badge-v11">v1.1</span></td><td>1 caméra / 5 sec</td><td><span class="badge-ok">Fixe + PTZ</span></td></tr>
+              <tr><td>Violence &amp; personnes à terre</td><td><span class="badge-v badge-v10">v1.0</span></td><td>Environ 1 seconde par cycle</td><td><span class="badge-ok">Fixe + PTZ</span></td></tr>
+              <tr><td>Incendie et départs de feu</td><td><span class="badge-v badge-v10">v1.0</span></td><td>Toutes les minutes</td><td><span class="badge-ok">Fixe + PTZ</span></td></tr>
+              <tr><td>Formation de groupe (&gt; N personnes)</td><td><span class="badge-v badge-v10">v1.0</span></td><td>Toutes les minutes</td><td><span class="badge-ok">Fixe + PTZ</span></td></tr>
+              <tr><td>Présence d'armes <em>(nouveauté v1.1)</em></td><td><span class="badge-v badge-v11">v1.1</span></td><td>1 caméra toutes les 5 sec</td><td><span class="badge-ok">Fixe + PTZ</span></td></tr>
             </tbody>
           </table>
         </div>
 
         <!-- Smart City -->
         <div class="tab-panel" id="tab-smartcity">
-          <p>Le module <strong>Smart City</strong> collecte des données urbaines en temps réel, agrégées dans une base de données pour l'analyse des infrastructures et la gestion de l'espace public.</p>
+          <p>Le module <strong>Smart City</strong> s'adresse aux services d'urbanisme et aux collectivités. Il ne se contente pas de détecter des incidents : il collecte des données en temps réel sur l'usage de l'espace public, agrégées dans une base de données exploitable pour la prise de décision.</p>
           <table class="func-table">
             <thead>
-              <tr><th>Fonction</th><th>Version</th><th>Limitation</th></tr>
+              <tr><th>Fonction</th><th>Version</th><th>Comportement &amp; seuil</th></tr>
             </thead>
             <tbody>
-              <tr><td>Comptage des personnes</td><td><span class="badge-v badge-v10">v1.0</span></td><td>Toutes les minutes</td></tr>
-              <tr><td>Stationnement dangereux (VSD)</td><td><span class="badge-v badge-v10">v1.0</span></td><td><span class="badge-fix">Caméras fixes uniquement</span> — alerte après 3 min</td></tr>
-              <tr><td>Véhicules « ventouses »</td><td><span class="badge-v badge-v10">v1.0</span></td><td><span class="badge-fix">Caméras fixes uniquement</span> — alerte après 7 jours</td></tr>
-              <tr><td>Dépôts sauvages V1</td><td><span class="badge-v badge-v11">v1.1</span></td><td><span class="badge-fix">Caméras fixes uniquement</span> — alerte après 30 sec</td></tr>
-              <tr><td>Dépôts sauvages V2</td><td><span class="badge-v badge-v11">v1.1</span></td><td><span class="badge-fix">Caméras fixes uniquement</span> — analyse sans arrêt de véhicule</td></tr>
-              <tr><td>Mesure trafic piétons</td><td><span class="badge-v badge-v10">v1.0</span></td><td><span class="badge-fix">Caméras fixes</span> — max 10 caméras simultanées</td></tr>
+              <tr><td>Comptage des personnes</td><td><span class="badge-v badge-v10">v1.0</span></td><td>Alerte si dépassement d'un seuil configurable dans une plage horaire</td></tr>
+              <tr><td>Stationnement dangereux (VSD)</td><td><span class="badge-v badge-v10">v1.0</span></td><td><span class="badge-fix">Caméras fixes</span> — alerte après 3 min d'immobilisation dans la zone</td></tr>
+              <tr><td>Véhicules « ventouses »</td><td><span class="badge-v badge-v10">v1.0</span></td><td><span class="badge-fix">Caméras fixes</span> — alerte après 7 jours sans déplacement</td></tr>
+              <tr><td>Dépôts sauvages V1</td><td><span class="badge-v badge-v11">v1.1</span></td><td><span class="badge-fix">Caméras fixes</span> — déclenché par un arrêt de véhicule &gt; 30 sec</td></tr>
+              <tr><td>Dépôts sauvages V2</td><td><span class="badge-v badge-v11">v1.1</span></td><td><span class="badge-fix">Caméras fixes</span> — analyse autonome de zone, sans arrêt préalable</td></tr>
+              <tr><td>Mesure du trafic piétons</td><td><span class="badge-v badge-v10">v1.0</span></td><td><span class="badge-fix">Caméras fixes</span> — comptage par ligne de passage, max 10 caméras en simultané</td></tr>
             </tbody>
           </table>
         </div>
 
         <!-- Capacités principales -->
-        <h3>🎯 Capacités Principales</h3>
+        <h3>🎯 Ce que NASLE permet concrètement</h3>
+        <p>Pour mieux comprendre la portée de ces fonctions, voici les six cas d'usage les plus significatifs, tels qu'ils sont déployés chez les clients de Nepsis Engineering :</p>
         <div class="grid">
           <div class="card">
             <div class="card-icon">🚨</div>
-            <div class="card-title">Détection Violence</div>
-            <div class="card-desc">Identification automatique des agressions, bagarres, personnes à terre et altercations physiques en temps réel avec un taux de reconnaissance supérieur à 90 %.</div>
+            <div class="card-title">Détection de violence</div>
+            <div class="card-desc">L'IA reconnaît les postures d'agression, les chutes au sol, les altercations. En moins d'une seconde, une alerte est remontée à l'opérateur avec capture d'image et horodatage — sans qu'il ait eu à surveiller l'écran.</div>
           </div>
           <div class="card">
             <div class="card-icon">🔥</div>
-            <div class="card-title">Détection Incendie</div>
-            <div class="card-desc">Détection précoce des départs de feu et de la fumée, déclenchée toutes les minutes sur l'ensemble du réseau caméras.</div>
+            <div class="card-title">Détection d'incendie</div>
+            <div class="card-desc">La détection de fumée et de flammes par caméra peut devancer les détecteurs thermiques classiques, notamment en extérieur. NASLE analyse toutes les caméras sur ce critère toutes les 60 secondes.</div>
           </div>
           <div class="card">
             <div class="card-icon">👥</div>
-            <div class="card-title">Comptage &amp; Groupes</div>
-            <div class="card-desc">Comptage des personnes présentes et identification de rassemblements suspects au-delà d'un seuil configurable par l'opérateur.</div>
+            <div class="card-title">Comptage et rassemblements</div>
+            <div class="card-desc">L'opérateur définit un seuil (ex : plus de 10 personnes entre minuit et 4h du matin dans un parc). NASLE déclenche une alerte dès que ce seuil est franchi, sur la caméra et la plage horaire paramétrées.</div>
           </div>
           <div class="card">
             <div class="card-icon">🔫</div>
-            <div class="card-title">Détection Armes</div>
-            <div class="card-desc">Reconnaissance d'armes de guerre, fusils, armes de poing et armes blanches à raison d'une caméra scrutée toutes les 5 secondes.</div>
+            <div class="card-title">Détection d'armes</div>
+            <div class="card-desc">Nouveauté de la v1.1 : en lançant une tâche de détection, l'opérateur choisit les caméras à surveiller. NASLE les inspecte séquentiellement, une toutes les 5 secondes, et alerte dès qu'une arme est visible.</div>
           </div>
           <div class="card">
             <div class="card-icon">🚗</div>
-            <div class="card-title">Gestion Stationnement</div>
-            <div class="card-desc">Détection de stationnement dangereux (alerte dès 3 min) et de véhicules ventouses immobilisés depuis plus de 7 jours au même emplacement.</div>
+            <div class="card-title">Stationnement gênant et ventouses</div>
+            <div class="card-desc">NASLE surveille des zones prédéfinies : il alerte dès qu'un véhicule stationne plus de 3 minutes à un endroit dangereux, ou plus de 7 jours consécutifs au même emplacement — avec preuve horodatée.</div>
           </div>
           <div class="card">
             <div class="card-icon">🗑️</div>
-            <div class="card-title">Dépôts Sauvages</div>
-            <div class="card-desc">Détection d'objets incongrus (matelas, électroménager, meubles…) déposés sur la voie publique, en corrélation avec un arrêt de véhicule ou indépendamment (V2).</div>
+            <div class="card-title">Dépôts sauvages</div>
+            <div class="card-desc">La V2 analyse en continu l'état d'une zone et détecte l'apparition de tout objet étranger — matelas, électroménager, encombrants — sans attendre l'arrêt d'un véhicule, contrairement à la V1.</div>
           </div>
         </div>
 
@@ -646,7 +651,7 @@
       </div>
       <div class="window-content">
         <h2>Comment NASLE génère-t-il une alerte ?</h2>
-        <p>La chaîne d'alerte de NASLE suit un processus rigoureux en 6 étapes, de l'acquisition vidéo brute jusqu'à l'intervention humaine. Cette architecture est conçue pour <strong>minimiser les faux positifs</strong> tout en garantissant une <strong>réactivité maximale</strong>.</p>
+        <p>Comprendre la méthodologie d'alerte est essentiel pour évaluer la fiabilité du système. C'est ce qui distingue NASLE d'un simple enregistreur vidéo : derrière chaque alerte se cache une <strong>chaîne de traitement en 6 étapes</strong>, entièrement automatisée, conçue pour que l'opérateur ne reçoive que des informations pertinentes et exploitables.</p>
 
         <!-- Schéma de flux -->
         <div class="alert-flow">
@@ -660,28 +665,28 @@
           <div class="flow-arrow">›</div>
           <div class="flow-node"><div class="flow-node-icon">👁️</div><div class="flow-node-label">Affichage opérateur</div></div>
           <div class="flow-arrow">›</div>
-          <div class="flow-node"><div class="flow-node-icon">✅</div><div class="flow-node-label">Acquittement / action</div></div>
+          <div class="flow-node"><div class="flow-node-icon">✅</div><div class="flow-node-label">Acquittement &amp; retour</div></div>
         </div>
 
         <!-- Timeline détaillée -->
-        <h3>🔁 Détail des étapes</h3>
+        <h3>🔁 Détail des 6 étapes</h3>
         <div class="timeline">
 
           <div class="tl-step">
             <div class="tl-badge">📷</div>
             <div class="tl-body">
               <div class="tl-title">Étape 1 — Acquisition continue du flux vidéo</div>
-              <p class="tl-desc">NASLE se connecte aux caméras via leur URL RTSP (avec authentification si nécessaire). Il supporte les caméras fixes et les caméras PTZ (Pan-Tilt-Zoom). L'acquisition est permanente, 24h/24, 7j/7, sans interruption.</p>
-              <span class="tl-meta">⏱ Temps de cycle : ~1 seconde / 100 caméras (module violence)</span>
+              <p class="tl-desc">NASLE se connecte aux caméras via leur URL RTSP, avec authentification si nécessaire. Il est compatible caméras fixes et PTZ (orientables). L'acquisition est permanente, sans interruption. Pour le module violence, le système analyse l'intégralité du parc en un cycle d'environ une seconde pour cent caméras — ce qui est remarquablement rapide.</p>
+              <span class="tl-meta">⏱ ~1 seconde de cycle pour 100 caméras (module violence)</span>
             </div>
           </div>
 
           <div class="tl-step">
             <div class="tl-badge">🧠</div>
             <div class="tl-body">
-              <div class="tl-title">Étape 2 — Analyse par le modèle d'IA</div>
-              <p class="tl-desc">Chaque image est analysée par un modèle de <strong>vision par ordinateur</strong> (deep learning). Le modèle a été entraîné sur des milliers de situations réelles pour reconnaître des postures violentes, des armes, des départs de feu, des véhicules en anomalie, etc. L'analyse est effectuée séquentiellement ou en parallèle selon la fonction.</p>
-              <span class="tl-meta">🤖 Modèle basé sur le machine learning — s'améliore avec le retour terrain</span>
+              <div class="tl-title">Étape 2 — Analyse par le modèle de vision par ordinateur</div>
+              <p class="tl-desc">Chaque image est traitée par un modèle de <strong>deep learning</strong> spécialisé. Ce modèle n'a pas été entraîné sur des données génériques : il a été nourri de milliers de situations réelles collectées sur le terrain — agressions, chutes, armes, feux — afin de reconnaître des patterns visuels très précis. C'est ce qui lui permet d'atteindre un taux de reconnaissance supérieur à 90 %.</p>
+              <span class="tl-meta">🤖 Deep learning entraîné sur données terrain réelles</span>
             </div>
           </div>
 
@@ -689,17 +694,17 @@
             <div class="tl-badge">📊</div>
             <div class="tl-body">
               <div class="tl-title">Étape 3 — Calcul de l'indice de confiance</div>
-              <p class="tl-desc">Pour chaque détection, NASLE calcule un <strong>indice de confiance</strong> entre 0 et 100 %. Seules les détections dépassant le seuil configuré génèrent une alerte. Cet indice est affiché dans l'historique pour permettre à l'opérateur d'évaluer la pertinence de chaque alerte et de la noter (Pertinent / Non pertinent).</p>
-              <span class="tl-meta">🎯 Taux de reconnaissance &gt; 90 % — Faux positifs ≤ 10 PPM</span>
+              <p class="tl-desc">Pour chaque détection, NASLE calcule un <strong>indice de confiance de 0 à 100 %</strong>. Seules les détections qui dépassent le seuil configuré génèrent une alerte. Cet indice est ensuite affiché dans l'historique, ce qui permet à l'opérateur d'évaluer la certitude du système et de noter si l'alerte était pertinente ou non. C'est un mécanisme clé pour le retour d'expérience.</p>
+              <span class="tl-meta">🎯 Indice de confiance 0–100 % affiché dans l'historique</span>
             </div>
           </div>
 
           <div class="tl-step">
             <div class="tl-badge">🔔</div>
             <div class="tl-body">
-              <div class="tl-title">Étape 4 — Déclenchement et notification de l'alerte</div>
-              <p class="tl-desc">Lorsqu'une situation est détectée, NASLE enregistre l'alerte avec horodatage, capture l'image correspondante, et l'affiche dans le <strong>dock des alertes</strong> de l'interface. Un liseret rouge clignotant attire immédiatement l'attention de l'opérateur. Ce liseret disparaît automatiquement après 10 minutes.</p>
-              <span class="tl-meta">🔴 Signal visuel urgent — persistance 10 minutes</span>
+              <div class="tl-title">Étape 4 — Déclenchement et notification visuelle</div>
+              <p class="tl-desc">Lorsqu'une situation est confirmée, NASLE enregistre l'alerte avec son horodatage et capture l'image. Elle apparaît immédiatement dans le <strong>dock des alertes</strong> à gauche de l'interface cartographique. Un <strong>liseré rouge clignotant</strong> s'affiche sur toute la barre de menu pour capter l'attention de l'opérateur. Si l'alerte n'est pas acquittée dans les 10 minutes, le liseré disparaît automatiquement.</p>
+              <span class="tl-meta">🔴 Signal visuel urgent — disparition automatique après 10 minutes</span>
             </div>
           </div>
 
@@ -707,49 +712,51 @@
             <div class="tl-badge">👁️</div>
             <div class="tl-body">
               <div class="tl-title">Étape 5 — Affichage contextualisé pour l'opérateur</div>
-              <p class="tl-desc">L'opérateur voit l'alerte dans le dock gauche de l'interface cartographique. En fonction de son <strong>profil utilisateur</strong> (défini par l'administrateur), il peut ou non visualiser l'image de l'alerte. L'écran principal affiche la localisation GPS de la caméra sur la carte. Des filtres permettent de trier par type d'alerte, par date et par caméra.</p>
-              <span class="tl-meta">🗺️ Localisation cartographique + image contextuelle</span>
+              <p class="tl-desc">L'interface cartographique localise la caméra sur la carte géographique en temps réel. L'opérateur voit le type d'incident, la caméra concernée, l'heure exacte et — en fonction de son <strong>profil de droits</strong> défini par l'administrateur — l'image de l'alerte. Ce système de droits est important : il permet de contrôler qui peut voir les images sensibles, conformément aux exigences légales.</p>
+              <span class="tl-meta">🗺️ Localisation GPS + accès à l'image selon profil utilisateur</span>
             </div>
           </div>
 
           <div class="tl-step">
             <div class="tl-badge">✅</div>
             <div class="tl-body">
-              <div class="tl-title">Étape 6 — Acquittement et retour d'expérience</div>
-              <p class="tl-desc">L'opérateur acquitte l'alerte en cliquant sur le bouton dédié. Il peut la noter (pertinente ou non) et ajouter une remarque. Ces notations alimentent le <strong>retour d'expérience</strong> transmis à Nepsis Engineering pour améliorer le modèle d'IA. Les alertes sont conservées <strong>14 jours glissants</strong> dans l'historique, puis effacées automatiquement.</p>
-              <span class="tl-meta">📅 Historique 14 jours — notation pour amélioration continue du modèle</span>
+              <div class="tl-title">Étape 6 — Acquittement et amélioration continue du modèle</div>
+              <p class="tl-desc">L'opérateur acquitte l'alerte, la note (pertinente ou non) et peut ajouter une remarque. Ces retours sont transmis à Nepsis Engineering et servent à <strong>affiner le modèle d'IA</strong> lors des mises à jour. C'est ce qu'on appelle l'apprentissage supervisé en continu. Les alertes restent accessibles pendant <strong>14 jours glissants</strong> dans l'historique, filtrables par type, date et caméra.</p>
+              <span class="tl-meta">📅 Historique 14 jours glissants — notation alimentant l'amélioration du modèle</span>
             </div>
           </div>
 
         </div>
 
         <!-- Performances -->
-        <h3>📈 Performances techniques</h3>
+        <h3>📈 Ce que disent les chiffres de performance</h3>
+        <p>Ces indicateurs sont ceux communiqués par Nepsis Engineering dans leur support de formation v1.1. Ils permettent de se faire une idée objective de la maturité du système :</p>
         <div class="perf-item">
-          <div class="perf-header"><span class="perf-label">Taux de reconnaissance (violence)</span><span class="perf-value">&gt; 90 %</span></div>
+          <div class="perf-header"><span class="perf-label">Taux de reconnaissance — détection violence</span><span class="perf-value">&gt; 90 %</span></div>
           <div class="perf-track"><div class="perf-fill" style="width:92%"></div></div>
         </div>
         <div class="perf-item">
-          <div class="perf-header"><span class="perf-label">Précision détection d'armes</span><span class="perf-value">Dépend de la visibilité</span></div>
-          <div class="perf-track"><div class="perf-fill" style="width:78%; background: linear-gradient(90deg, var(--secondary), #f472b6)"></div></div>
+          <div class="perf-header"><span class="perf-label">Précision — détection d'armes (dépend de la visibilité)</span><span class="perf-value">Variable</span></div>
+          <div class="perf-track"><div class="perf-fill" style="width:72%; background: linear-gradient(90deg, var(--secondary), #f472b6)"></div></div>
         </div>
         <div class="perf-item">
-          <div class="perf-header"><span class="perf-label">Réduction des faux positifs</span><span class="perf-value">≤ 10 PPM</span></div>
+          <div class="perf-header"><span class="perf-label">Taux de faux positifs — inférieur à 10 PPM</span><span class="perf-value">≤ 10 PPM</span></div>
           <div class="perf-track"><div class="perf-fill" style="width:97%; background: linear-gradient(90deg, #10b981, var(--accent))"></div></div>
         </div>
         <div class="perf-item">
-          <div class="perf-header"><span class="perf-label">Disponibilité système (24/7)</span><span class="perf-value">100 % (objectif)</span></div>
+          <div class="perf-header"><span class="perf-label">Disponibilité continue — objectif 24h/24, 7j/7</span><span class="perf-value">Permanent</span></div>
           <div class="perf-track"><div class="perf-fill" style="width:100%; background: linear-gradient(90deg, var(--accent), #0369a1)"></div></div>
         </div>
 
-        <h3>⚠️ Gestion des faux positifs</h3>
-        <p>Les faux positifs sont inhérents à toute technologie d'IA. NASLE en génère en moyenne <strong>0,5 par caméra par jour</strong>, soit environ 10 PPM sur les 86 000 images analysées quotidiennement par caméra. Les principales sources identifiées sont :</p>
+        <h3>⚠️ La question des faux positifs — un point clé à maîtriser</h3>
+        <p>Un faux positif, c'est une alerte déclenchée alors qu'il ne se passe rien de réel. C'est l'un des défis centraux de toute IA de détection, et c'est souvent la première question posée par les clients potentiels. NASLE génère en moyenne <strong>0,5 faux positif par caméra par jour</strong>, ce qui représente moins de 10 cas pour un million d'images analysées.</p>
+        <p>Le document de formation de Nepsis Engineering identifie trois sources principales de ces erreurs :</p>
         <ul>
-          <li>🧒 Chamailleries ou jeux entre enfants (postures ambiguës)</li>
-          <li>🚔 Interventions des forces de l'ordre (postures de contrainte)</li>
-          <li>🤷 Situations ambiguës ou contextes atypiques (éclairage, angle)</li>
+          <li>🧒 <strong>Jeux entre enfants ou chamailleries</strong> : les postures physiques ressemblent à des agressions pour le modèle.</li>
+          <li>🚔 <strong>Interventions des forces de l'ordre</strong> : les gestes de contrainte policiaire sont identiques visuellement à ceux d'une agression.</li>
+          <li>🤷 <strong>Cas ambigus ou conditions dégradées</strong> : mauvais éclairage, angle de caméra défavorable, contre-jour.</li>
         </ul>
-        <p>Nepsis Engineering analyse régulièrement les faux positifs remontés par les opérateurs et développe des méthodes d'élimination pour améliorer le modèle en continu.</p>
+        <p>Ces faux positifs sont remontés à Nepsis Engineering via le système de notation des alertes, et intégrés dans les cycles de mise à jour du modèle. Sur le plan juridique, chaque alerte reste soumise à l'interprétation exclusive de l'opérateur humain : NASLE est un <strong>outil d'aide à la décision</strong>, jamais une preuve automatique.</p>
 
       </div>
     </section>
@@ -765,87 +772,90 @@
         </div>
       </div>
       <div class="window-content">
-        <h2>Les nouveautés de la version 1.1</h2>
-        <p>La version 1.1 de NASLE marque une évolution majeure en introduisant deux nouvelles fonctions à forte valeur ajoutée : la <strong>détection d'armes</strong> et la <strong>détection avancée de dépôts sauvages (V2)</strong>. Ces innovations s'appuient sur des architectures de modèles d'IA plus récentes et étendent les capacités du logiciel bien au-delà de la sécurité des personnes.</p>
+        <h2>Les nouveautés de NASLE v1.1 — Ce qui change concrètement</h2>
+        <p>La version 1.1 est la dernière mise à jour majeure de NASLE. Elle apporte deux nouvelles fonctions à forte valeur ajoutée, qui étendent le périmètre du logiciel bien au-delà de la détection de violence. Je vais vous présenter les deux innovations principales et ce qu'elles impliquent techniquement et opérationnellement.</p>
 
         <!-- Hero innovation -->
         <div class="innovation-hero">
-          <div class="inno-label">🆕 Innovation clé — v1.1</div>
-          <div class="inno-title">Détection d'armes en temps réel par vision par ordinateur</div>
-          <p class="inno-desc">Pour la première fois dans NASLE, un système actif de détection d'armes permet aux opérateurs de lancer une surveillance ciblée sur une liste de caméras sélectionnées. Le modèle identifie en moins de 5 secondes par caméra la présence d'armes de guerre, de fusils, d'armes de poing et d'armes blanches — sous réserve d'une visibilité suffisante sur l'image.</p>
+          <div class="inno-label">🆕 Innovation principale — v1.1</div>
+          <div class="inno-title">La détection d'armes en temps quasi-réel</div>
+          <p class="inno-desc">C'est la nouveauté la plus significative de cette version. Pour la première fois, NASLE permet à un opérateur de lancer une surveillance ciblée sur une liste de caméras qu'il choisit lui-même. Le modèle d'IA est capable d'identifier, sur les images, la présence d'armes de guerre, de fusils, d'armes de poing ou d'armes blanches — à condition que l'arme soit suffisamment visible. Chaque caméra sélectionnée est analysée en moins de 5 secondes. Si 10 caméras sont sélectionnées, chacune est scrutée toutes les 50 secondes environ. Ce n'est donc pas une détection instantanée, mais une veille rapide et continue sur un parc ciblé.</p>
           <div class="inno-features">
             <div class="inno-feat">
               <div class="inno-feat-icon">🔍</div>
-              <div class="inno-feat-title">4 catégories d'armes</div>
-              <div class="inno-feat-desc">Armes de guerre, fusils, armes de poing, armes blanches détectés par un même modèle unifié.</div>
+              <div class="inno-feat-title">4 catégories d'armes reconnues</div>
+              <div class="inno-feat-desc">Armes de guerre, fusils, armes de poing et armes blanches — détectés par un même modèle unifié.</div>
             </div>
             <div class="inno-feat">
               <div class="inno-feat-icon">⚡</div>
-              <div class="inno-feat-title">5 secondes / caméra</div>
-              <div class="inno-feat-desc">Chaque caméra de la liste est scrutée séquentiellement. La fréquence dépend du nombre de caméras sélectionnées.</div>
+              <div class="inno-feat-title">5 secondes par caméra</div>
+              <div class="inno-feat-desc">La vitesse de traitement dépend du nombre de caméras dans la tâche. Plus la liste est longue, plus l'intervalle entre deux analyses de la même caméra est important.</div>
             </div>
             <div class="inno-feat">
               <div class="inno-feat-icon">🎯</div>
-              <div class="inno-feat-title">Tâches configurables</div>
-              <div class="inno-feat-desc">L'opérateur crée et nomme ses propres tâches de détection via l'éditeur de tâches. Une seule tâche peut être active à la fois (limitation performance v1.1).</div>
+              <div class="inno-feat-title">Tâches nommées et configurables</div>
+              <div class="inno-feat-desc">L'opérateur crée des tâches via le nouvel éditeur : il nomme la tâche, sélectionne les caméras, et l'active. Une seule tâche peut être active à la fois, pour préserver les performances.</div>
             </div>
             <div class="inno-feat">
               <div class="inno-feat-icon">📡</div>
-              <div class="inno-feat-title">Fixe + PTZ</div>
-              <div class="inno-feat-desc">Compatible avec toutes les caméras du parc, qu'elles soient fixes ou orientables.</div>
+              <div class="inno-feat-title">Compatible Fixe + PTZ</div>
+              <div class="inno-feat-desc">Toutes les caméras du parc peuvent être intégrées dans une tâche, qu'elles soient fixes ou orientables à distance.</div>
             </div>
           </div>
         </div>
 
         <!-- Dépôts sauvages V2 -->
-        <h3>🗑️ Dépôts sauvages V2 — Analyse autonome de zone</h3>
-        <p>La version V2 de la détection de dépôts sauvages représente un saut qualitatif significatif. Contrairement à la V1 qui nécessitait de détecter préalablement l'arrêt d'un véhicule, la <strong>V2 analyse en continu la zone surveillée</strong> à la recherche de tout objet incongruent nouveau apparu depuis la dernière analyse, sans corrélation obligatoire avec un véhicule.</p>
+        <h3>🗑️ Deuxième innovation : les dépôts sauvages V2</h3>
+        <p>La seconde nouveauté de la v1.1 est plus discrète mais techniquement très intéressante. Elle concerne la détection des dépôts sauvages d'ordures sur la voie publique. Voici pourquoi la V2 représente un vrai saut qualitatif par rapport à la V1 :</p>
         <div class="grid">
           <div class="card">
             <div class="card-icon">🔄</div>
-            <div class="card-title">Dépôts sauvages V1</div>
-            <div class="card-desc">Détection conditionnelle : un véhicule doit s'être arrêté au moins 30 secondes dans la zone pour que l'analyse soit déclenchée. Évite les faux positifs liés aux arrêts ponctuels.</div>
+            <div class="card-title">Dépôts sauvages V1 — Détection conditionnelle</div>
+            <div class="card-desc">La V1 attend qu'un véhicule s'arrête dans la zone surveillée pendant au moins 30 secondes avant de déclencher l'analyse. Avantage : moins de faux positifs. Inconvénient : si quelqu'un dépose un objet à pied ou si le dépôt date d'avant la mise en surveillance, la V1 ne le détecte pas.</div>
           </div>
           <div class="card">
             <div class="card-icon">🆕</div>
-            <div class="card-title">Dépôts sauvages V2</div>
-            <div class="card-desc">Analyse autonome et permanente : NASLE compare l'état actuel de la zone à une référence et détecte l'apparition de nouveaux objets incongrus, indépendamment de tout arrêt de véhicule.</div>
+            <div class="card-title">Dépôts sauvages V2 — Analyse autonome de zone</div>
+            <div class="card-desc">La V2 ne dépend plus d'aucun véhicule. Elle compare en continu l'état actuel de la zone à une image de référence et détecte l'apparition de tout objet incongruent nouveau. Plus indépendante, plus robuste, mais aussi plus demandeuse en ressources de calcul.</div>
           </div>
         </div>
 
         <!-- Éditeur de tâches -->
-        <h3>🛠️ L'éditeur de tâches — Nouveau composant de l'IHM</h3>
-        <p>La version 1.1 introduit un nouvel écran dans l'interface : <strong>l'éditeur de tâches</strong>, accessible depuis le menu Réglage. Il permet de créer, nommer et activer des tâches de surveillance spécialisées (détection d'armes, recherche d'individus). Chaque tâche est associée à une liste de caméras et peut être activée ou désactivée à la demande.</p>
+        <h3>🛠️ L'éditeur de tâches — le nouveau composant de l'interface</h3>
+        <p>Pour permettre la configuration de la détection d'armes, Nepsis Engineering a ajouté un nouvel écran dans l'interface NASLE : <strong>l'éditeur de tâches</strong>. C'est accessible depuis le menu Réglage. Il reflète une évolution dans la philosophie du logiciel : l'opérateur ne configure plus seulement des zones géographiques, il programme désormais des <em>missions de surveillance</em> à la demande.</p>
         <ul>
-          <li>🏷️ <strong>Nommage libre</strong> des tâches pour une gestion intuitive</li>
-          <li>📷 <strong>Sélection multi-caméras</strong> parmi le parc disponible</li>
-          <li>✅ <strong>Activation / désactivation</strong> par bascule (icône Actif)</li>
-          <li>⚠️ <strong>Une seule tâche active</strong> à la fois pour des raisons de performance</li>
-          <li>📋 <strong>Onglets par type</strong> : Toutes / Reconnaissance / Armes</li>
+          <li>🏷️ <strong>Nommage libre</strong> de chaque tâche pour une gestion lisible (ex : "Recherche armes — Gare Nord")</li>
+          <li>📷 <strong>Sélection manuelle des caméras</strong> parmi l'ensemble du parc connecté</li>
+          <li>✅ <strong>Bascule Actif / Inactif</strong> : une tâche peut être activée ou suspendue à tout moment</li>
+          <li>⚠️ <strong>Une seule tâche active à la fois</strong> : limitation technique liée aux performances du serveur en v1.1</li>
+          <li>📋 <strong>Trois onglets de navigation</strong> : Toutes les tâches / Reconnaissance / Armes</li>
         </ul>
 
-        <!-- Cas d'usage -->
-        <h3>💼 Cas d'Usage Professionnels</h3>
+        <!-- Clients et secteurs -->
+        <h3>💼 Qui utilise NASLE — et pourquoi</h3>
+        <p>NASLE n'est pas un produit théorique : il est déployé chez des clients réels, notamment dans des <strong>centres de supervision urbaine (CSU)</strong> de villes françaises. Voici les secteurs concernés et ce qu'ils en attendent concrètement :</p>
         <ul>
-          <li>🏙️ <strong>Villes &amp; Collectivités</strong> : Centres de supervision urbaine, vidéoprotection publique, sécurité des espaces publics</li>
-          <li>🏢 <strong>Entreprises</strong> : Sécurité des bâtiments, surveillance de sites sensibles, prévention des incidents</li>
-          <li>🏥 <strong>Santé &amp; Éducation</strong> : Établissements publics, hôpitaux, universités, écoles</li>
-          <li>🏦 <strong>Finance</strong> : Banques, centres commerciaux, points de retrait</li>
-          <li>🚀 <strong>Infrastructures Critiques</strong> : Aéroports, gares, centrales électriques</li>
+          <li>🏙️ <strong>Villes et collectivités (usage principal)</strong> : surveillance de l'espace public, prévention des incivilités, gestion des événements, mesure des flux piétons pour l'urbanisme.</li>
+          <li>🏢 <strong>Entreprises et sites privés</strong> : sécurité des accès, prévention des intrusions, détection d'incidents sur les sites industriels ou logistiques.</li>
+          <li>🏥 <strong>Hôpitaux et établissements publics</strong> : surveillance des urgences, des parkings, détection de violence ou de rassemblements.</li>
+          <li>🏦 <strong>Banques et commerces</strong> : surveillance des zones sensibles, détection d'armes à l'entrée, analyse des comportements suspects.</li>
+          <li>✈️ <strong>Infrastructures critiques</strong> : aéroports, gares, centrales — où la détection précoce peut éviter des incidents majeurs.</li>
         </ul>
 
-        <!-- Impact sociétal -->
-        <h3>🤔 Impact Sociétal &amp; Cadre Juridique</h3>
-        <p>L'IA de vidéoprotection NASLE représente un progrès majeur en sécurité publique et privée. Elle permet une surveillance plus efficace, une réaction plus rapide aux incidents, et une prévention plus intelligente. Cependant, des questions éthiques sur le <strong>respect de la vie privée</strong> demeurent importantes à considérer.</p>
-        <p>Sur le plan réglementaire, NASLE est un <strong>outil d'aide à la décision</strong>, non une référence juridique. L'image d'alerte captée reste à la seule interprétation de l'opérateur humain. Ce positionnement garantit une utilisation conforme au cadre légal dans l'acte policier et assure la <strong>conformité RGPD</strong>.</p>
+        <!-- Impact sociétal et juridique -->
+        <h3>🤔 Mon analyse : apports, limites et enjeux éthiques</h3>
+        <p>En conclusion de cette veille, je souhaite partager mon analyse personnelle. NASLE représente une avancée réelle pour la sécurité publique. Sa capacité à surveiller des centaines de caméras simultanément, à réduire la fatigue des opérateurs et à générer des preuves horodatées est un vrai apport opérationnel.</p>
+        <p>Cependant, plusieurs limites méritent d'être soulignées. D'abord, la <strong>dépendance à la visibilité</strong> : la détection d'armes ne fonctionne bien que si l'arme est clairement visible — une veste peut suffire à tromper le modèle. Ensuite, les <strong>biais algorithmiques</strong> : comme l'ont montré les évaluations post-JO 2024, les IA de surveillance peuvent confondre des sans-abri avec des colis abandonnés, ou des policiers en intervention avec des agresseurs.</p>
+        <p>Enfin, sur le plan juridique, NASLE se positionne explicitement comme un <strong>outil d'aide à la décision</strong> et non comme une référence légale. L'image d'alerte reste à l'interprétation exclusive de l'opérateur humain. C'est une position sage, mais qui pose aussi la question de la responsabilité : si l'IA manque un incident grave, qui en répond ?</p>
+        <p>Ces questions sont au cœur du débat actuel sur la vidéosurveillance algorithmique en France — un débat que j'ai voulu illustrer dans la section suivante à travers le fil d'actualité.</p>
 
         <div class="download-section">
-          <h3>📥 Télécharger l'analyse complète</h3>
+          <h3>📥 Télécharger le support complet de formation NASLE</h3>
           <div class="download-grid">
             <div class="download-item">
               <div class="download-info">
-                <div class="download-name">Veille Technologique NASLE</div>
-                <div class="download-size">PDF — Rapport détaillé</div>
+                <div class="download-name">Veille Technologique NASLE v0.43</div>
+                <div class="download-size">PDF — Support de formation Nepsis Engineering</div>
               </div>
               <a href="veille technologique.pdf" download class="btn btn-small btn-download">📄 PDF</a>
             </div>
@@ -866,172 +876,162 @@
         </div>
       </div>
       <div class="window-content">
-        <h2>Les dernières actualités de la VSA en France</h2>
-        <p>La <strong>vidéosurveillance algorithmique (VSA)</strong> — aussi appelée vidéoprotection augmentée ou intelligente — est au cœur du débat sécuritaire français depuis les JO de Paris 2024. Voici les faits marquants les plus récents, entre avancées législatives, déploiements opérationnels et controverses sur les libertés publiques.</p>
+        <h2>La VSA en France : ce qui se passe en ce moment</h2>
+        <p>Pour ancrer cette veille dans l'actualité, j'ai sélectionné les événements les plus significatifs des 18 derniers mois concernant la <strong>vidéosurveillance algorithmique (VSA)</strong> en France. Ce sujet est particulièrement d'actualité car la loi qui encadrait son expérimentation aux JO de Paris 2024 est arrivée à échéance — et le gouvernement comme le Parlement débattent activement de son avenir.</p>
+        <p>Ces actualités illustrent que NASLE n'est pas un produit isolé : il s'inscrit dans un contexte législatif, technologique et éthique en pleine évolution, qui va directement conditionner son déploiement futur.</p>
 
         <!-- Filtres actualité -->
         <div class="news-filters">
-          <button class="news-filter-btn active" onclick="filterNews('tous', this)">Tous</button>
+          <button class="news-filter-btn active" onclick="filterNews('tous', this)">Tous (11)</button>
           <button class="news-filter-btn" onclick="filterNews('loi', this)">⚖️ Législatif</button>
           <button class="news-filter-btn" onclick="filterNews('terrain', this)">🚔 Terrain</button>
           <button class="news-filter-btn" onclick="filterNews('techno', this)">🤖 Technologie</button>
-          <button class="news-filter-btn" onclick="filterNews('ethique', this)">🔒 Éthique</button>
+          <button class="news-filter-btn" onclick="filterNews('ethique', this)">🔒 Éthique &amp; Droit</button>
         </div>
 
         <!-- Fil d'articles -->
         <div class="news-feed" id="news-feed">
 
-          <!-- Article 1 -->
           <article class="news-card" data-cat="loi">
             <div class="news-meta">
               <span class="news-tag tag-loi">⚖️ Législatif</span>
               <span class="news-date">Mars 2026</span>
             </div>
-            <h4 class="news-title">Le gouvernement veut étendre la VSA jusqu'en 2030</h4>
-            <p class="news-body">Le ministre de l'Intérieur Laurent Nuñez présente en Conseil des ministres un projet de loi visant à prolonger la vidéosurveillance algorithmique jusqu'en 2030, en l'étendant aux transports en commun, aux bâtiments sensibles et aux sites exposés à la menace terroriste. Une première expérimentation avait eu lieu lors des JO de Paris 2024.</p>
+            <h4 class="news-title">Le gouvernement veut pérenniser la VSA jusqu'en 2030</h4>
+            <p class="news-body">Le ministre de l'Intérieur Laurent Nuñez présente en Conseil des ministres un projet de loi pour étendre la vidéosurveillance algorithmique jusqu'en 2030. Le texte prévoit son déploiement dans les transports en commun, les bâtiments sensibles et les sites exposés au terrorisme — au-delà du périmètre expérimental des JO 2024.</p>
             <div class="news-source">
-              <span class="news-src-label">📰 France Info</span>
+              <span class="news-src-label">📰 France Info — Mars 2026</span>
               <span class="news-impact tag-high">Impact élevé</span>
             </div>
           </article>
 
-          <!-- Article 2 -->
           <article class="news-card" data-cat="loi">
             <div class="news-meta">
               <span class="news-tag tag-loi">⚖️ Législatif</span>
               <span class="news-date">Janvier 2026</span>
             </div>
-            <h4 class="news-title">VSA prolongée jusqu'à fin 2027 par la loi JO d'hiver 2030</h4>
-            <p class="news-body">L'Assemblée nationale adopte le projet de loi relatif aux JO d'hiver 2030. L'article 35 du texte étend la durée légale de la VSA — sur caméras fixes et drones — jusqu'au 31 décembre 2027 sur l'ensemble du territoire national, malgré un bilan jugé "mitigé" par le comité d'évaluation parlementaire des JO 2024.</p>
+            <h4 class="news-title">La loi JO d'hiver 2030 prolonge la VSA jusqu'à fin 2027</h4>
+            <p class="news-body">L'Assemblée nationale adopte le texte relatif aux JO d'hiver 2030. Son article 35 étend la VSA — caméras fixes et drones — jusqu'au 31 décembre 2027 sur tout le territoire. Le comité d'évaluation parlementaire des JO 2024 parle d'un bilan "mitigé", pointant des performances inégales selon les opérateurs et les types d'incidents.</p>
             <div class="news-source">
-              <span class="news-src-label">📰 Politis / 20 Minutes</span>
+              <span class="news-src-label">📰 Politis / 20 Minutes — Janv. 2026</span>
               <span class="news-impact tag-high">Impact élevé</span>
             </div>
           </article>
 
-          <!-- Article 3 -->
           <article class="news-card" data-cat="loi">
             <div class="news-meta">
               <span class="news-tag tag-loi">⚖️ Législatif</span>
               <span class="news-date">Janvier 2026</span>
             </div>
-            <h4 class="news-title">VSA dans les commerces : l'Assemblée autorise le test anti-vol jusqu'à fin 2027</h4>
-            <p class="news-body">Le député Paul Midy (Ensemble) défend une proposition de loi permettant aux commerçants d'utiliser la vidéosurveillance algorithmique pour détecter les vols à l'étalage. L'autorisation serait donnée par le préfet pour une durée de cinq ans. L'Assemblée approuve l'expérimentation jusqu'à fin 2027.</p>
+            <h4 class="news-title">VSA dans les commerces : l'Assemblée autorise un test anti-vol</h4>
+            <p class="news-body">Le député Paul Midy (Ensemble) défend une proposition de loi permettant aux commerçants d'utiliser la VSA pour détecter les vols à l'étalage. L'autorisation préfectorale serait accordée pour cinq ans. L'Assemblée approuve l'expérimentation jusqu'à fin 2027. Ce texte marque la première extension de la VSA au secteur privé commercial.</p>
             <div class="news-source">
-              <span class="news-src-label">📰 LCP / 20 Minutes</span>
+              <span class="news-src-label">📰 LCP / 20 Minutes — Janv. 2026</span>
               <span class="news-impact tag-medium">Impact modéré</span>
             </div>
           </article>
 
-          <!-- Article 4 -->
+          <article class="news-card" data-cat="loi">
+            <div class="news-meta">
+              <span class="news-tag tag-loi">⚖️ Législatif</span>
+              <span class="news-date">30 janvier 2026</span>
+            </div>
+            <h4 class="news-title">Conseil d'État : sans texte explicite, la VSA reste illégale</h4>
+            <p class="news-body">Dans un arrêt important du 30 janvier 2026, le Conseil d'État confirme que les articles du code de la sécurité intérieure sur la vidéosurveillance n'autorisent pas implicitement le traitement algorithmique des images. La ville de Vannes, qui souhaitait étendre sa VSA, se voit déboutée. Cet arrêt rappelle l'impératif d'une base légale explicite — un vide que la loi JO d'hiver tente de combler.</p>
+            <div class="news-source">
+              <span class="news-src-label">📰 Blog Landot Avocats — 30/03/2026</span>
+              <span class="news-impact tag-high">Impact élevé</span>
+            </div>
+          </article>
+
           <article class="news-card" data-cat="terrain">
             <div class="news-meta">
               <span class="news-tag tag-terrain">🚔 Terrain</span>
               <span class="news-date">Mars 2026</span>
             </div>
-            <h4 class="news-title">À Paris, l'IA suit les voleurs à la tire de métro en caméra en caméra</h4>
-            <p class="news-body">Des agents de la Préfecture de police de Paris utilisent déjà la VSA pour "cheminer" des suspects d'une caméra à l'autre dans le métro. Aujourd'hui, traquer un individu peut prendre six à sept heures ; avec l'IA, ce délai pourrait être drastiquement réduit. La détection des arcs électriques dans les gares est aussi citée comme cas d'usage prioritaire.</p>
+            <h4 class="news-title">À Paris, l'IA suit les pickpockets de caméra en caméra dans le métro</h4>
+            <p class="news-body">Des agents de la Préfecture de police de Paris utilisent déjà la VSA pour "cheminer" des suspects dans le réseau métropolitain. Traquer un individu manuellement prend aujourd'hui 6 à 7 heures ; avec l'IA, ce délai pourrait être réduit à quelques minutes. La détection des arcs électriques (risque d'électrocution) est aussi citée comme cas d'usage opérationnel prioritaire.</p>
             <div class="news-source">
-              <span class="news-src-label">📰 France Info — Reportage préfecture PP</span>
+              <span class="news-src-label">📰 France Info — Reportage Préfecture PP</span>
               <span class="news-impact tag-high">Impact élevé</span>
             </div>
           </article>
 
-          <!-- Article 5 -->
+          <article class="news-card" data-cat="terrain">
+            <div class="news-meta">
+              <span class="news-tag tag-terrain">🚔 Terrain</span>
+              <span class="news-date">Janvier 2026</span>
+            </div>
+            <h4 class="news-title">Le cambriolage du Louvre : l'IA aurait pu alerter en amont</h4>
+            <p class="news-body">Anne-Florence Canton, directrice de l'innovation à la Préfecture de police de Paris, cite le Louvre comme cas d'école : un monte-charge activé et une personne présente sur la façade en pleine nuit auraient déclenché une alerte automatique bien avant l'effraction, si la VSA avait été déployée. Cet exemple nourrit la demande d'extension aux grands musées nationaux.</p>
+            <div class="news-source">
+              <span class="news-src-label">📰 France Info — Janv. 2026</span>
+              <span class="news-impact tag-medium">Impact modéré</span>
+            </div>
+          </article>
+
           <article class="news-card" data-cat="terrain">
             <div class="news-meta">
               <span class="news-tag tag-terrain">🚔 Terrain</span>
               <span class="news-date">Juillet 2025</span>
             </div>
-            <h4 class="news-title">Toulouse lance un appel d'offres pour des caméras "augmentées" — légal ?</h4>
-            <p class="news-body">La ville de Toulouse émet un marché public pour des caméras capables de détecter les "comportements anormaux ou suspects". La CNIL rappelle que le traitement des images par IA dans l'espace public n'est, faute de cadre réglementaire, pas autorisé hors des cas prévus par la loi JO 2024 — dont l'expérimentation est arrivée à terme.</p>
+            <h4 class="news-title">Toulouse lance un appel d'offres VSA — la CNIL intervient</h4>
+            <p class="news-body">La ville de Toulouse émet un marché public pour des caméras capables de détecter les "comportements suspects". La CNIL rappelle publiquement qu'hors du cadre de la loi JO 2024 — dont l'expérimentation est terminée — aucune base légale ne permet ce type de traitement automatisé dans l'espace public. L'affaire illustre la tension entre besoins opérationnels locaux et vide législatif national.</p>
             <div class="news-source">
-              <span class="news-src-label">📰 France 3 Occitanie</span>
+              <span class="news-src-label">📰 France 3 Occitanie — Juil. 2025</span>
               <span class="news-impact tag-medium">Impact modéré</span>
             </div>
           </article>
 
-          <!-- Article 6 -->
-          <article class="news-card" data-cat="terrain">
-            <div class="news-meta">
-              <span class="news-tag tag-terrain">🚔 Terrain</span>
-              <span class="news-date">Janvier 2026</span>
-            </div>
-            <h4 class="news-title">Le "casse du Louvre" : l'IA aurait pu détecter l'anomalie en amont</h4>
-            <p class="news-body">Anne-Florence Canton, directrice de l'innovation à la Préfecture de police de Paris, illustre le potentiel de la VSA : lors du cambriolage du Louvre, un monte-charge et une personne présents sur la façade en pleine nuit auraient pu déclencher une alerte automatique bien avant l'effraction. Ce cas concret soutient la demande d'extension aux grands musées.</p>
-            <div class="news-source">
-              <span class="news-src-label">📰 France Info</span>
-              <span class="news-impact tag-medium">Impact modéré</span>
-            </div>
-          </article>
-
-          <!-- Article 7 -->
           <article class="news-card" data-cat="techno">
             <div class="news-meta">
               <span class="news-tag tag-techno">🤖 Technologie</span>
               <span class="news-date">2025–2026</span>
             </div>
-            <h4 class="news-title">Edge computing : l'IA embarquée dans la caméra, analyse en 200 ms</h4>
-            <p class="news-body">Les dernières caméras IA intègrent un NPU (Neural Processing Unit) qui analyse les images localement, sans envoyer les flux vers le cloud. Résultat : détection en 200 millisecondes, meilleure confidentialité des données, et fonctionnement même sans connexion internet. Cette tendance est identifiée comme la prochaine révolution hardware de la vidéosurveillance.</p>
+            <h4 class="news-title">Edge computing : l'IA désormais embarquée dans la caméra elle-même</h4>
+            <p class="news-body">La prochaine révolution hardware de la vidéosurveillance est l'intégration d'un NPU (Neural Processing Unit) directement dans la caméra. L'image est analysée localement en 200 millisecondes, sans transit vers un serveur central. Avantages : latence minimale, confidentialité améliorée, fonctionnement hors connexion. Inconvénients : coût et complexité de mise à jour des modèles sur le terrain.</p>
             <div class="news-source">
-              <span class="news-src-label">📰 Europ-Camera / JER Technology</span>
+              <span class="news-src-label">📰 Europ-Camera / JER Technology — 2025</span>
               <span class="news-impact tag-low">Tendance émergente</span>
             </div>
           </article>
 
-          <!-- Article 8 -->
           <article class="news-card" data-cat="techno">
             <div class="news-meta">
               <span class="news-tag tag-techno">🤖 Technologie</span>
               <span class="news-date">2025</span>
             </div>
-            <h4 class="news-title">Détection d'armes et de départs de feu : encore des lacunes selon le comité JO</h4>
-            <p class="news-body">Le comité d'évaluation post-JO 2024 pointe des "performances inégales selon les opérateurs". La détection des départs de feu reste complexe — l'IA confond flammes et reflets ou réverbères. La détection d'armes est également difficile à définir avec précision. Ces lacunes sont précisément les axes de travail de NASLE v1.1, qui intègre les deux fonctions.</p>
+            <h4 class="news-title">Rapport JO 2024 : détection d'armes et d'incendies, des lacunes confirmées</h4>
+            <p class="news-body">Le comité d'évaluation post-JO pointe des "performances inégales". La détection d'incendies reste complexe — l'IA confond flammes réelles et reflets de réverbères. La définition même d'"arme" pose problème : un couteau de cuisine et un couteau de combat ne sont pas traités de la même façon. Ce sont précisément les deux axes de travail de NASLE v1.1, qui démontre ainsi sa pertinence face aux lacunes identifiées.</p>
             <div class="news-source">
-              <span class="news-src-label">📰 France Info / Rapport parlementaire 2025</span>
+              <span class="news-src-label">📰 Rapport parlementaire 2025 / France Info</span>
               <span class="news-impact tag-medium">Impact modéré</span>
             </div>
           </article>
 
-          <!-- Article 9 -->
           <article class="news-card" data-cat="ethique">
             <div class="news-meta">
-              <span class="news-tag tag-ethique">🔒 Éthique</span>
+              <span class="news-tag tag-ethique">🔒 Éthique &amp; Droit</span>
               <span class="news-date">Mars 2026</span>
             </div>
-            <h4 class="news-title">Bilan mitigé des JO 2024 : des sans-abris confondus avec des colis abandonnés</h4>
-            <p class="news-body">Le rapport d'évaluation de la VSA aux JO de Paris révèle des failles préoccupantes : des personnes sans domicile fixe ont été identifiées par l'algorithme comme des "colis abandonnés". Ce type d'erreur illustre les biais des modèles d'IA et alimente le débat sur la nécessité d'un encadrement éthique strict avant tout déploiement pérenne.</p>
+            <h4 class="news-title">JO 2024 : des sans-abri confondus avec des colis abandonnés par l'algorithme</h4>
+            <p class="news-body">Le rapport d'évaluation de la VSA aux JO de Paris révèle une erreur systémique préoccupante : des personnes sans domicile fixe allongées au sol ont été régulièrement identifiées comme des "colis abandonnés suspects". Ce biais illustre une limite fondamentale des modèles entraînés : ils reconnaissent des formes, pas des situations. Le contexte humain échappe encore à la machine.</p>
             <div class="news-source">
-              <span class="news-src-label">📰 Amnesty France / La Quadrature du Net</span>
+              <span class="news-src-label">📰 Amnesty France / La Quadrature du Net — 2026</span>
               <span class="news-impact tag-warning">Point de vigilance</span>
             </div>
           </article>
 
-          <!-- Article 10 -->
           <article class="news-card" data-cat="ethique">
             <div class="news-meta">
-              <span class="news-tag tag-ethique">🔒 Éthique</span>
+              <span class="news-tag tag-ethique">🔒 Éthique &amp; Droit</span>
               <span class="news-date">Décembre 2024</span>
             </div>
-            <h4 class="news-title">La CNIL contrôle le ministère de l'Intérieur et des communes sur l'usage du logiciel BriefCam</h4>
-            <p class="news-body">La CNIL déploie des contrôles auprès du ministère de l'Intérieur et de plusieurs communes concernant l'utilisation du logiciel BriefCam — un outil de VSA qui permet notamment la reconnaissance de visages. La Commission rappelle que toute analyse automatisée des images dans l'espace public est plus intrusive et requiert une base légale explicite.</p>
+            <h4 class="news-title">La CNIL contrôle le ministère de l'Intérieur sur BriefCam</h4>
+            <p class="news-body">La CNIL engage des procédures de contrôle auprès du ministère de l'Intérieur et de plusieurs communes ayant utilisé le logiciel BriefCam, qui permet notamment la reconnaissance faciale dans des flux de vidéosurveillance. La Commission rappelle que tout traitement automatisé de données biométriques dans l'espace public est plus intrusif et exige une base légale spécifique — que BriefCam ne respectait pas.</p>
             <div class="news-source">
               <span class="news-src-label">📰 CNIL — Communiqué 05/12/2024</span>
               <span class="news-impact tag-warning">Point de vigilance</span>
-            </div>
-          </article>
-
-          <!-- Article 11 -->
-          <article class="news-card" data-cat="loi">
-            <div class="news-meta">
-              <span class="news-tag tag-loi">⚖️ Législatif</span>
-              <span class="news-date">Janvier 2026</span>
-            </div>
-            <h4 class="news-title">Conseil d'État : la VSA sans base légale reste illégale dans l'espace public</h4>
-            <p class="news-body">Dans un arrêt du 30 janvier 2026, le Conseil d'État confirme que les dispositions du code de la sécurité intérieure sur la vidéosurveillance des voies publiques n'autorisent pas implicitement les traitements algorithmiques automatisés. La ville de Vannes voulait étendre sa VSA — sa demande est rejetée, faute de cadre légal suffisant.</p>
-            <div class="news-source">
-              <span class="news-src-label">📰 Blog Landot Avocats — 30/03/2026</span>
-              <span class="news-impact tag-high">Impact élevé</span>
             </div>
           </article>
 
@@ -1041,15 +1041,15 @@
         <div class="news-summary">
           <div class="ns-item">
             <span class="ns-num">2027</span>
-            <span class="ns-label">Horizon légal actuel de la VSA en France</span>
+            <span class="ns-label">Horizon légal actuel de la VSA en France (loi JO d'hiver)</span>
           </div>
           <div class="ns-item">
             <span class="ns-num">8</span>
-            <span class="ns-label">Cas d'usage autorisés lors des JO 2024</span>
+            <span class="ns-label">Cas d'usage autorisés lors de l'expérimentation JO 2024</span>
           </div>
           <div class="ns-item">
             <span class="ns-num">2030</span>
-            <span class="ns-label">Objectif d'extension visé par le gouvernement</span>
+            <span class="ns-label">Objectif d'extension visé par le projet de loi Nuñez</span>
           </div>
         </div>
 
@@ -1073,7 +1073,7 @@
       <div class="footer-section">
         <h3>Contact</h3>
         <ul>
-          <li><a href="mailto:martinslourophilippe@gmail.com">📧 Email</a></li>
+          <li><a href="/cdn-cgi/l/email-protection#5e333f2c2a37302d32312b2c312e363732372e2e3b1e39333f3732703d3133">📧 Email</a></li>
           <li><a href="https://www.linkedin.com/in/philippe-martins-louro-31a974345/" target="_blank">💼 LinkedIn</a></li>
           <li><a href="https://github.com/portfolioIpssi" target="_blank">🐙 GitHub</a></li>
           <li><a href="tel:+33781501754">📱 Tél</a></li>
@@ -1096,7 +1096,7 @@
 
   <button class="back-to-top" id="back-to-top" onclick="backToTop()">⬆️</button>
 
-  <script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     function toggleMenu() {
       document.getElementById('hamburger').classList.toggle('active');
       document.getElementById('nav-menu').classList.toggle('active');
@@ -1154,10 +1154,4 @@
           });
           observer.unobserve(e.target);
         }
-      });
-    }, { threshold: 0.3 });
-
-    document.querySelectorAll('.perf-item').forEach(el => observer.observe(el.parentElement || el));
-  </script>
-</body>
-</html>
+      }
