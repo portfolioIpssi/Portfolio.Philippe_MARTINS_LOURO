@@ -938,4 +938,10 @@
       document.getElementById(projectType).classList.add('active');
     }
 
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    document.querySelector('.theme-toggle').textContent = savedTheme === 'light' ? '🌙' : '☀️';
+  </script>
+</body>
+</html>
+
     const savedTheme = localStorag
