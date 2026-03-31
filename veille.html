@@ -4,6 +4,8 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Veille Technologique - Philippe Martins Louro</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
   
   <style>
     :root {
@@ -23,491 +25,386 @@
       --transition: all 0.3s ease;
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
       background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
       background-attachment: fixed;
       color: var(--text-dark);
       line-height: 1.6;
     }
 
+    /* ─── NAVBAR ─── */
     .navbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 80px;
+      position: fixed; top: 0; left: 0; right: 0; height: 80px;
       background: linear-gradient(135deg, rgba(255,255,255,0.98), rgba(249,250,251,0.98));
       backdrop-filter: blur(10px);
       box-shadow: var(--shadow-sm);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 50px;
-      z-index: 1000;
-      border-bottom: 2px solid rgba(99, 102, 241, 0.1);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 50px; z-index: 1000;
+      border-bottom: 2px solid rgba(99,102,241,0.1);
     }
-
     .logo {
-      font-size: 1.6rem;
-      font-weight: 800;
+      font-family: 'Syne', sans-serif;
+      font-size: 1.6rem; font-weight: 800;
       background: linear-gradient(135deg, var(--primary), var(--secondary));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      text-decoration: none;
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text; text-decoration: none;
     }
-
-    .nav-container {
-      display: flex;
-      gap: 20px;
-      align-items: center;
-    }
-
-    .nav-menu {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      align-items: center;
-    }
-
+    .nav-container { display: flex; gap: 20px; align-items: center; }
+    .nav-menu { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
     .nav-btn {
-      background: transparent;
-      border: none;
-      color: var(--text-medium);
-      padding: 10px 16px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 0.85rem;
-      font-weight: 600;
-      transition: var(--transition);
-      text-decoration: none;
+      background: transparent; border: none; color: var(--text-medium);
+      padding: 10px 16px; border-radius: 8px; cursor: pointer;
+      font-size: 0.85rem; font-weight: 600; transition: var(--transition);
+      text-decoration: none; font-family: 'DM Sans', sans-serif;
     }
-
-    .nav-btn:hover,
-    .nav-btn.active {
+    .nav-btn:hover, .nav-btn.active {
       color: white;
       background: linear-gradient(135deg, var(--primary), var(--primary-dark));
       box-shadow: var(--shadow);
     }
-
     .theme-toggle {
-      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(236, 72, 153, 0.1));
-      border: 1px solid rgba(99, 102, 241, 0.2);
-      width: 44px;
-      height: 44px;
-      border-radius: 10px;
-      cursor: pointer;
-      font-size: 1.1rem;
-      transition: var(--transition);
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      background: linear-gradient(135deg, rgba(99,102,241,0.1), rgba(236,72,153,0.1));
+      border: 1px solid rgba(99,102,241,0.2);
+      width: 44px; height: 44px; border-radius: 10px;
+      cursor: pointer; font-size: 1.1rem; transition: var(--transition);
+      display: flex; align-items: center; justify-content: center;
     }
-
-    .theme-toggle:hover {
-      background: var(--primary);
-      color: white;
-      transform: scale(1.1);
-    }
-
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      gap: 6px;
-      cursor: pointer;
-    }
-
+    .theme-toggle:hover { background: var(--primary); color: white; transform: scale(1.1); }
+    .hamburger { display: none; flex-direction: column; gap: 6px; cursor: pointer; }
     .hamburger span {
-      width: 25px;
-      height: 3px;
+      width: 25px; height: 3px;
       background: linear-gradient(90deg, var(--primary), var(--secondary));
-      border-radius: 2px;
-      transition: var(--transition);
+      border-radius: 2px; transition: var(--transition);
     }
-
-    .hamburger.active span:nth-child(1) {
-      transform: rotate(45deg) translate(8px, 8px);
-    }
-
-    .hamburger.active span:nth-child(2) {
-      opacity: 0;
-    }
-
-    .hamburger.active span:nth-child(3) {
-      transform: rotate(-45deg) translate(8px, -8px);
-    }
+    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(8px,8px); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(8px,-8px); }
 
     .progress-bar {
-      position: fixed;
-      top: 79px;
-      left: 0;
-      height: 4px;
+      position: fixed; top: 79px; left: 0; height: 4px;
       background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
-      width: 0%;
-      z-index: 999;
+      width: 0%; z-index: 999;
     }
 
-    .main-container {
-      max-width: 1200px;
-      margin: 120px auto 100px;
-      padding: 0 30px;
-    }
+    /* ─── LAYOUT ─── */
+    .main-container { max-width: 1200px; margin: 120px auto 100px; padding: 0 30px; }
 
     .window {
-      background: white;
-      border-radius: var(--radius);
-      overflow: hidden;
-      box-shadow: var(--shadow);
-      border: 1px solid rgba(99, 102, 241, 0.1);
+      background: white; border-radius: var(--radius); overflow: hidden;
+      box-shadow: var(--shadow); border: 1px solid rgba(99,102,241,0.1);
       margin-bottom: 50px;
     }
-
     .window-header {
       padding: 40px;
-      background: linear-gradient(135deg, rgba(99, 102, 241, 0.08), rgba(236, 72, 153, 0.08));
-      border-bottom: 2px solid rgba(99, 102, 241, 0.1);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      background: linear-gradient(135deg, rgba(99,102,241,0.08), rgba(236,72,153,0.08));
+      border-bottom: 2px solid rgba(99,102,241,0.1);
+      display: flex; justify-content: space-between; align-items: center;
     }
-
     .window-title {
-      font-size: 2rem;
-      font-weight: 800;
+      font-family: 'Syne', sans-serif;
+      font-size: 2rem; font-weight: 800;
       background: linear-gradient(135deg, var(--primary), var(--secondary));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
       background-clip: text;
     }
-
-    .window-controls {
-      display: flex;
-      gap: 10px;
-    }
-
+    .window-controls { display: flex; gap: 10px; }
     .dot {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: rgba(99, 102, 241, 0.2);
-      cursor: pointer;
-      transition: var(--transition);
+      width: 12px; height: 12px; border-radius: 50%;
+      background: rgba(99,102,241,0.2); cursor: pointer; transition: var(--transition);
     }
+    .dot:hover { background: var(--primary); transform: scale(1.3); }
+    .window-content { padding: 50px; }
 
-    .dot:hover {
-      background: var(--primary);
-      transform: scale(1.3);
-    }
-
-    .window-content {
-      padding: 50px;
-    }
-
+    /* ─── TYPOGRAPHY ─── */
     h2 {
-      font-size: 2rem;
-      color: var(--primary);
-      margin-bottom: 20px;
-      padding-bottom: 15px;
-      border-bottom: 3px solid var(--accent);
-      font-weight: 800;
+      font-family: 'Syne', sans-serif;
+      font-size: 2rem; color: var(--primary);
+      margin-bottom: 20px; padding-bottom: 15px;
+      border-bottom: 3px solid var(--accent); font-weight: 800;
     }
-
     h3 {
-      font-size: 1.5rem;
-      color: var(--secondary);
-      margin: 35px 0 15px;
-      font-weight: 700;
+      font-family: 'Syne', sans-serif;
+      font-size: 1.5rem; color: var(--secondary);
+      margin: 35px 0 15px; font-weight: 700;
     }
-
     h4 {
-      font-size: 1.15rem;
-      color: var(--primary);
-      margin: 25px 0 12px;
-      font-weight: 700;
+      font-family: 'Syne', sans-serif;
+      font-size: 1.15rem; color: var(--primary);
+      margin: 25px 0 12px; font-weight: 700;
     }
+    p { color: var(--text-medium); font-size: 0.98rem; margin-bottom: 18px; line-height: 1.8; }
+    strong { color: var(--primary); font-weight: 700; }
+    ul { margin-left: 30px; margin-bottom: 20px; }
+    li { margin-bottom: 12px; color: var(--text-medium); }
+    a { color: var(--primary); text-decoration: none; font-weight: 600; transition: var(--transition); }
+    a:hover { color: var(--secondary); }
 
-    p {
-      color: var(--text-medium);
-      font-size: 0.98rem;
-      margin-bottom: 18px;
-      line-height: 1.8;
-    }
-
-    strong {
-      color: var(--primary);
-      font-weight: 700;
-    }
-
-    ul {
-      margin-left: 30px;
-      margin-bottom: 20px;
-    }
-
-    li {
-      margin-bottom: 12px;
-      color: var(--text-medium);
-    }
-
-    a {
-      color: var(--primary);
-      text-decoration: none;
-      font-weight: 600;
-      transition: var(--transition);
-    }
-
-    a:hover {
-      color: var(--secondary);
-    }
-
+    /* ─── GRID / CARDS ─── */
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 28px;
-      margin: 35px 0;
+      gap: 28px; margin: 35px 0;
     }
-
     .card {
       background: linear-gradient(135deg, var(--bg-light), var(--bg-gray));
-      padding: 35px;
-      border-radius: 12px;
-      transition: var(--transition);
-      border: 1px solid rgba(99, 102, 241, 0.1);
+      padding: 35px; border-radius: 12px; transition: var(--transition);
+      border: 1px solid rgba(99,102,241,0.1);
     }
+    .card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); border-color: var(--primary); }
+    .card-icon { font-size: 3rem; margin-bottom: 15px; }
+    .card-title { font-family: 'Syne', sans-serif; font-size: 1.3rem; color: var(--primary); margin-bottom: 12px; font-weight: 700; }
+    .card-desc { color: var(--text-medium); font-size: 0.95rem; }
 
-    .card:hover {
-      transform: translateY(-8px);
-      box-shadow: var(--shadow-lg);
-      border-color: var(--primary);
+    /* ─── TIMELINE (Méthodologie d'alerte) ─── */
+    .timeline { position: relative; padding: 10px 0; margin: 30px 0; }
+    .timeline::before {
+      content: '';
+      position: absolute; left: 28px; top: 0; bottom: 0; width: 3px;
+      background: linear-gradient(to bottom, var(--primary), var(--secondary), var(--accent));
+      border-radius: 3px;
     }
-
-    .card-icon {
-      font-size: 3rem;
-      margin-bottom: 15px;
+    .tl-step {
+      display: flex; gap: 24px; margin-bottom: 32px;
+      align-items: flex-start; position: relative;
     }
-
-    .card-title {
-      font-size: 1.3rem;
-      color: var(--primary);
-      margin-bottom: 12px;
-      font-weight: 700;
-    }
-
-    .card-desc {
-      color: var(--text-medium);
-      font-size: 0.95rem;
-    }
-
-    .download-section {
-      background: linear-gradient(135deg, rgba(99, 102, 241, 0.08), rgba(236, 72, 153, 0.08));
-      border: 1.5px solid rgba(99, 102, 241, 0.15);
-      padding: 30px;
-      border-radius: 12px;
-      margin: 30px 0;
-    }
-
-    .download-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      margin-top: 20px;
-    }
-
-    .download-item {
-      background: white;
-      padding: 20px;
-      border-radius: 8px;
-      border: 1px solid rgba(99, 102, 241, 0.1);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .download-item:hover {
-      border-color: var(--primary);
-      box-shadow: var(--shadow-sm);
-    }
-
-    .download-info {
-      flex: 1;
-    }
-
-    .download-name {
-      font-weight: 700;
-      color: var(--primary);
-      margin-bottom: 4px;
-    }
-
-    .download-size {
-      font-size: 0.8rem;
-      color: var(--text-light);
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 14px 32px;
+    .tl-badge {
+      min-width: 56px; height: 56px; border-radius: 50%;
       background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-      color: white;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem; box-shadow: 0 6px 18px rgba(99,102,241,0.35);
+      flex-shrink: 0; z-index: 1;
+    }
+    .tl-body {
+      background: linear-gradient(135deg, #fff, var(--bg-gray));
+      border: 1px solid rgba(99,102,241,0.12);
+      border-radius: 12px; padding: 22px 26px;
+      flex: 1; transition: var(--transition);
+    }
+    .tl-body:hover { box-shadow: var(--shadow); border-color: var(--primary); }
+    .tl-title { font-family: 'Syne', sans-serif; font-size: 1.05rem; font-weight: 700; color: var(--primary); margin-bottom: 6px; }
+    .tl-desc { font-size: 0.93rem; color: var(--text-medium); line-height: 1.7; margin: 0; }
+    .tl-meta {
+      display: inline-block; margin-top: 8px;
+      background: rgba(99,102,241,0.08); border-radius: 6px;
+      padding: 3px 10px; font-size: 0.78rem; color: var(--primary); font-weight: 600;
+    }
+
+    /* ─── STATS BAND ─── */
+    .stats-band {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 20px; margin: 30px 0;
+    }
+    .stat-box {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      border-radius: 14px; padding: 28px 20px; text-align: center;
+      color: white; box-shadow: 0 8px 24px rgba(99,102,241,0.28);
       transition: var(--transition);
-      text-decoration: none;
-      font-size: 0.95rem;
+    }
+    .stat-box:nth-child(2) { background: linear-gradient(135deg, var(--secondary), #db2777); }
+    .stat-box:nth-child(3) { background: linear-gradient(135deg, var(--accent), #0284c7); }
+    .stat-box:nth-child(4) { background: linear-gradient(135deg, #10b981, #059669); }
+    .stat-box:hover { transform: translateY(-5px) scale(1.03); }
+    .stat-value { font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800; line-height: 1; }
+    .stat-label { font-size: 0.82rem; opacity: 0.88; margin-top: 6px; font-weight: 500; }
+
+    /* ─── MODULE TABS ─── */
+    .module-tabs { display: flex; gap: 12px; margin-bottom: 30px; flex-wrap: wrap; }
+    .tab-btn {
+      padding: 10px 24px; border-radius: 50px; border: 2px solid rgba(99,102,241,0.2);
+      background: white; color: var(--text-medium); font-weight: 700;
+      cursor: pointer; transition: var(--transition); font-size: 0.9rem;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .tab-btn.active, .tab-btn:hover {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white; border-color: transparent; box-shadow: var(--shadow);
+    }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    /* ─── FUNCTION TABLE ─── */
+    .func-table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+    .func-table th {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white; padding: 14px 18px; text-align: left;
+      font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.9rem;
+    }
+    .func-table th:first-child { border-radius: 10px 0 0 0; }
+    .func-table th:last-child { border-radius: 0 10px 0 0; }
+    .func-table td {
+      padding: 12px 18px; border-bottom: 1px solid rgba(99,102,241,0.08);
+      color: var(--text-medium); font-size: 0.92rem;
+    }
+    .func-table tr:hover td { background: rgba(99,102,241,0.04); }
+    .badge-v {
+      display: inline-block; padding: 3px 10px; border-radius: 20px;
+      font-size: 0.75rem; font-weight: 700;
+    }
+    .badge-v10 { background: rgba(99,102,241,0.12); color: var(--primary); }
+    .badge-v11 { background: rgba(236,72,153,0.12); color: var(--secondary); }
+    .badge-fix { background: rgba(245,158,11,0.12); color: #d97706; }
+    .badge-ok { background: rgba(16,185,129,0.12); color: #059669; }
+
+    /* ─── INNOVATION SECTION ─── */
+    .innovation-hero {
+      background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #312e81 100%);
+      border-radius: 20px; padding: 50px; color: white; margin: 30px 0;
+      position: relative; overflow: hidden;
+    }
+    .innovation-hero::before {
+      content: '';
+      position: absolute; top: -60px; right: -60px;
+      width: 280px; height: 280px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(99,102,241,0.4) 0%, transparent 70%);
+    }
+    .innovation-hero::after {
+      content: '';
+      position: absolute; bottom: -40px; left: -40px;
+      width: 200px; height: 200px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(236,72,153,0.3) 0%, transparent 70%);
+    }
+    .inno-label {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--secondary), #db2777);
+      padding: 4px 14px; border-radius: 20px; font-size: 0.75rem;
+      font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+      margin-bottom: 16px; position: relative; z-index: 1;
+    }
+    .inno-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.8rem; font-weight: 800; margin-bottom: 14px;
+      position: relative; z-index: 1; line-height: 1.2;
+    }
+    .inno-desc { opacity: 0.85; line-height: 1.75; position: relative; z-index: 1; margin-bottom: 0; color: white; }
+    .inno-features {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px; margin-top: 30px; position: relative; z-index: 1;
+    }
+    .inno-feat {
+      background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 12px; padding: 18px; backdrop-filter: blur(4px);
+      transition: var(--transition);
+    }
+    .inno-feat:hover { background: rgba(255,255,255,0.13); transform: translateY(-3px); }
+    .inno-feat-icon { font-size: 1.8rem; margin-bottom: 10px; }
+    .inno-feat-title { font-family: 'Syne', sans-serif; font-size: 0.95rem; font-weight: 700; margin-bottom: 6px; }
+    .inno-feat-desc { font-size: 0.83rem; opacity: 0.75; line-height: 1.5; }
+
+    /* ─── ALERT FLOW DIAGRAM ─── */
+    .alert-flow {
+      display: flex; align-items: center; gap: 0;
+      margin: 30px 0; flex-wrap: wrap;
+    }
+    .flow-node {
+      background: white; border: 2px solid rgba(99,102,241,0.2);
+      border-radius: 12px; padding: 16px 20px; flex: 1; min-width: 120px;
+      text-align: center; transition: var(--transition);
+    }
+    .flow-node:hover { border-color: var(--primary); box-shadow: var(--shadow); transform: translateY(-4px); }
+    .flow-node-icon { font-size: 1.8rem; }
+    .flow-node-label { font-family: 'Syne', sans-serif; font-size: 0.82rem; font-weight: 700; color: var(--primary); margin-top: 6px; }
+    .flow-arrow {
+      font-size: 1.4rem; color: var(--primary); padding: 0 6px;
+      flex-shrink: 0; opacity: 0.5;
     }
 
-    .btn:hover {
-      transform: translateY(-3px);
-      box-shadow: var(--shadow-lg);
+    /* ─── PERF BARS ─── */
+    .perf-item { margin-bottom: 20px; }
+    .perf-header { display: flex; justify-content: space-between; margin-bottom: 7px; }
+    .perf-label { font-weight: 600; font-size: 0.9rem; color: var(--text-dark); }
+    .perf-value { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.9rem; color: var(--primary); }
+    .perf-track { height: 10px; background: rgba(99,102,241,0.1); border-radius: 10px; overflow: hidden; }
+    .perf-fill {
+      height: 100%; border-radius: 10px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      transition: width 1.2s cubic-bezier(.25,.8,.25,1);
     }
 
-    .btn-small {
-      padding: 10px 20px;
-      font-size: 0.85rem;
+    /* ─── DOWNLOAD SECTION ─── */
+    .download-section {
+      background: linear-gradient(135deg, rgba(99,102,241,0.08), rgba(236,72,153,0.08));
+      border: 1.5px solid rgba(99,102,241,0.15);
+      padding: 30px; border-radius: 12px; margin: 30px 0;
     }
-
-    .btn-download {
-      background: linear-gradient(135deg, #10b981, #059669);
+    .download-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px; margin-top: 20px;
     }
+    .download-item {
+      background: white; padding: 20px; border-radius: 8px;
+      border: 1px solid rgba(99,102,241,0.1);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .download-item:hover { border-color: var(--primary); box-shadow: var(--shadow-sm); }
+    .download-name { font-weight: 700; color: var(--primary); margin-bottom: 4px; }
+    .download-size { font-size: 0.8rem; color: var(--text-light); }
 
+    /* ─── BUTTONS ─── */
+    .btn {
+      display: inline-block; padding: 14px 32px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white; border: none; border-radius: 10px; cursor: pointer;
+      font-weight: 700; transition: var(--transition); text-decoration: none;
+      font-size: 0.95rem; font-family: 'DM Sans', sans-serif;
+    }
+    .btn:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); color: white; }
+    .btn-small { padding: 10px 20px; font-size: 0.85rem; }
+    .btn-download { background: linear-gradient(135deg, #10b981, #059669); }
+
+    /* ─── FOOTER ─── */
     .footer {
       background: linear-gradient(135deg, var(--primary), var(--secondary));
-      color: white;
-      padding: 70px 30px 35px;
-      margin-top: 100px;
-      text-align: center;
+      color: white; padding: 70px 30px 35px; margin-top: 100px; text-align: center;
     }
-
     .footer-grid {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 50px;
-      margin-bottom: 50px;
-      text-align: left;
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 50px; margin-bottom: 50px; text-align: left;
     }
-
-    .footer-section h3 {
-      color: white;
-      margin-bottom: 20px;
-      font-weight: 800;
-    }
-
-    .footer-section ul {
-      list-style: none;
-    }
-
-    .footer-section li {
-      margin-bottom: 12px;
-    }
-
-    .footer-section a {
-      color: white;
-      text-decoration: none;
-      font-weight: 600;
-      transition: var(--transition);
-    }
-
-    .footer-section a:hover {
-      color: rgba(255, 255, 255, 0.7);
-    }
-
-    .footer-bottom {
-      border-top: 1px solid rgba(255, 255, 255, 0.2);
-      padding-top: 25px;
-    }
+    .footer-section h3 { color: white; margin-bottom: 20px; font-weight: 800; }
+    .footer-section ul { list-style: none; }
+    .footer-section li { margin-bottom: 12px; }
+    .footer-section a { color: white; text-decoration: none; font-weight: 600; transition: var(--transition); }
+    .footer-section a:hover { color: rgba(255,255,255,0.7); }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.2); padding-top: 25px; }
 
     .back-to-top {
-      position: fixed;
-      bottom: 40px;
-      right: 40px;
-      width: 50px;
-      height: 50px;
+      position: fixed; bottom: 40px; right: 40px;
+      width: 50px; height: 50px;
       background: linear-gradient(135deg, var(--primary), var(--secondary));
-      border: none;
-      border-radius: 50%;
-      cursor: pointer;
-      color: white;
-      box-shadow: var(--shadow-lg);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 500;
-      font-size: 1.5rem;
-      transition: var(--transition);
+      border: none; border-radius: 50%; cursor: pointer; color: white;
+      box-shadow: var(--shadow-lg); display: none; align-items: center;
+      justify-content: center; z-index: 500; font-size: 1.5rem; transition: var(--transition);
     }
+    .back-to-top.show { display: flex; }
+    .back-to-top:hover { transform: translateY(-5px); }
 
-    .back-to-top.show {
-      display: flex;
-    }
-
-    .back-to-top:hover {
-      transform: translateY(-5px);
-    }
-
+    /* ─── RESPONSIVE ─── */
     @media (max-width: 768px) {
-      .navbar {
-        padding: 0 20px;
-      }
-
-      .hamburger {
-        display: flex;
-      }
-
+      .navbar { padding: 0 20px; }
+      .hamburger { display: flex; }
       .nav-menu {
-        position: fixed;
-        top: 80px;
-        left: 0;
-        right: 0;
-        background: white;
-        flex-direction: column;
-        padding: 20px;
-        max-height: 0;
-        overflow: hidden;
+        position: fixed; top: 80px; left: 0; right: 0; background: white;
+        flex-direction: column; padding: 20px; max-height: 0; overflow: hidden;
         transition: max-height 0.3s ease;
       }
-
-      .nav-menu.active {
-        max-height: 600px;
-      }
-
-      .main-container {
-        padding: 0 20px;
-      }
-
-      .window-content {
-        padding: 30px 20px;
-      }
-
-      .grid {
-        grid-template-columns: 1fr;
-      }
+      .nav-menu.active { max-height: 600px; }
+      .main-container { padding: 0 20px; }
+      .window-content { padding: 30px 20px; }
+      .grid { grid-template-columns: 1fr; }
+      .alert-flow { flex-direction: column; }
+      .flow-arrow { transform: rotate(90deg); }
+      .innovation-hero { padding: 32px 24px; }
+      .inno-title { font-size: 1.4rem; }
     }
-
     @media (max-width: 480px) {
-      .navbar {
-        height: 70px;
-      }
-
-      .logo {
-        font-size: 1.2rem;
-      }
-
-      .window-controls {
-        display: none;
-      }
+      .navbar { height: 70px; }
+      .logo { font-size: 1.2rem; }
+      .window-controls { display: none; }
     }
   </style>
 </head>
@@ -515,14 +412,10 @@
 <body>
   <nav class="navbar">
     <a href="index.html" class="logo">⚙️ Philippe Martins</a>
-    
     <div class="nav-container">
       <div class="hamburger" id="hamburger" onclick="toggleMenu()">
-        <span></span>
-        <span></span>
-        <span></span>
+        <span></span><span></span><span></span>
       </div>
-      
       <div class="nav-menu" id="nav-menu">
         <a href="index.html" class="nav-btn">📋 Accueil</a>
         <a href="projets.html" class="nav-btn">🚀 Projets</a>
@@ -539,75 +432,326 @@
   <div id="progress-bar" class="progress-bar"></div>
 
   <main class="main-container">
+
+    <!-- ══════════════════════════════════════════
+         SECTION 1 — PRÉSENTATION NASLE
+    ══════════════════════════════════════════ -->
     <section class="window">
       <div class="window-header">
         <div class="window-title">🔍 Veille Technologique</div>
         <div class="window-controls">
-          <span class="dot"></span>
-          <span class="dot"></span>
-          <span class="dot"></span>
+          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
         </div>
       </div>
       <div class="window-content">
-        <h2>NASLE - Intelligence Artificielle pour Vidéoprotection</h2>
+        <h2>NASLE — Intelligence Artificielle pour Vidéoprotection</h2>
 
-        <p><strong>NASLE</strong> est un logiciel révolutionnaire de vidéoprotection développé par Nepsis Engineering. Il utilise l'<strong>Intelligence Artificielle</strong> et la <strong>vision par ordinateur</strong> pour analyser les flux vidéo en temps réel et détecter automatiquement les situations dangereuses.</p>
+        <p><strong>NASLE</strong> est un logiciel de vidéoprotection développé par <strong>Nepsis Engineering</strong>. Il s'appuie sur l'<strong>Intelligence Artificielle</strong> et la <strong>vision par ordinateur</strong> pour analyser des flux vidéo en temps réel et détecter automatiquement les situations dangereuses, sans fatigue humaine.</p>
+        <p>NASLE se positionne comme un <strong>assistant personnel des opérateurs</strong> de centres de supervision urbaine (CSU), leur permettant de se concentrer sur leurs missions prioritaires pendant que l'IA surveille l'intégralité du parc caméras.</p>
 
+        <!-- Chiffres clés -->
+        <div class="stats-band">
+          <div class="stat-box">
+            <div class="stat-value">&gt;90%</div>
+            <div class="stat-label">Taux de reconnaissance</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-value">≤0,5</div>
+            <div class="stat-label">Faux positifs / caméra / jour</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-value">~1s</div>
+            <div class="stat-label">Temps de cycle / 100 caméras</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-value">14j</div>
+            <div class="stat-label">Historique des alertes glissant</div>
+          </div>
+        </div>
+
+        <!-- ── Modules ── -->
+        <h3>📦 Deux modules fonctionnels</h3>
+        <div class="module-tabs">
+          <button class="tab-btn active" onclick="switchTab('violence')">⚠️ Module Violence</button>
+          <button class="tab-btn" onclick="switchTab('smartcity')">🏙️ Module Smart City</button>
+        </div>
+
+        <!-- Violence -->
+        <div class="tab-panel active" id="tab-violence">
+          <p>Le module <strong>Violence</strong> scrute en permanence la totalité du parc caméras et détecte les actes d'agression potentiels, les personnes à terre, les rassemblements inhabituels et les départs de feu.</p>
+          <table class="func-table">
+            <thead>
+              <tr><th>Fonction</th><th>Version</th><th>Fréquence</th><th>Support caméra</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Violence &amp; personnes à terre</td><td><span class="badge-v badge-v10">v1.0</span></td><td>~1 seconde</td><td><span class="badge-ok">Fixe + PTZ</span></td></tr>
+              <tr><td>Incendie</td><td><span class="badge-v badge-v10">v1.0</span></td><td>Tous les 60 cycles (~1 min)</td><td><span class="badge-ok">Fixe + PTZ</span></td></tr>
+              <tr><td>Groupe de plus de N personnes</td><td><span class="badge-v badge-v10">v1.0</span></td><td>Toutes les minutes</td><td><span class="badge-ok">Fixe + PTZ</span></td></tr>
+              <tr><td>Présence d'armes</td><td><span class="badge-v badge-v11">v1.1</span></td><td>1 caméra / 5 sec</td><td><span class="badge-ok">Fixe + PTZ</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Smart City -->
+        <div class="tab-panel" id="tab-smartcity">
+          <p>Le module <strong>Smart City</strong> collecte des données urbaines en temps réel, agrégées dans une base de données pour l'analyse des infrastructures et la gestion de l'espace public.</p>
+          <table class="func-table">
+            <thead>
+              <tr><th>Fonction</th><th>Version</th><th>Limitation</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Comptage des personnes</td><td><span class="badge-v badge-v10">v1.0</span></td><td>Toutes les minutes</td></tr>
+              <tr><td>Stationnement dangereux (VSD)</td><td><span class="badge-v badge-v10">v1.0</span></td><td><span class="badge-fix">Caméras fixes uniquement</span> — alerte après 3 min</td></tr>
+              <tr><td>Véhicules « ventouses »</td><td><span class="badge-v badge-v10">v1.0</span></td><td><span class="badge-fix">Caméras fixes uniquement</span> — alerte après 7 jours</td></tr>
+              <tr><td>Dépôts sauvages V1</td><td><span class="badge-v badge-v11">v1.1</span></td><td><span class="badge-fix">Caméras fixes uniquement</span> — alerte après 30 sec</td></tr>
+              <tr><td>Dépôts sauvages V2</td><td><span class="badge-v badge-v11">v1.1</span></td><td><span class="badge-fix">Caméras fixes uniquement</span> — analyse sans arrêt de véhicule</td></tr>
+              <tr><td>Mesure trafic piétons</td><td><span class="badge-v badge-v10">v1.0</span></td><td><span class="badge-fix">Caméras fixes</span> — max 10 caméras simultanées</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Capacités principales -->
         <h3>🎯 Capacités Principales</h3>
         <div class="grid">
           <div class="card">
             <div class="card-icon">🚨</div>
             <div class="card-title">Détection Violence</div>
-            <div class="card-desc">Identification automatique des agressions, bagarres, personnes à terre, altercations physiques en temps réel.</div>
+            <div class="card-desc">Identification automatique des agressions, bagarres, personnes à terre et altercations physiques en temps réel avec un taux de reconnaissance supérieur à 90 %.</div>
           </div>
           <div class="card">
             <div class="card-icon">🔥</div>
             <div class="card-title">Détection Incendie</div>
-            <div class="card-desc">Détection précoce des départs de feu et de la fumée avant les systèmes traditionnels.</div>
+            <div class="card-desc">Détection précoce des départs de feu et de la fumée, déclenchée toutes les minutes sur l'ensemble du réseau caméras.</div>
           </div>
           <div class="card">
             <div class="card-icon">👥</div>
-            <div class="card-title">Comptage Personnes</div>
-            <div class="card-desc">Identification de regroupements suspects et dépassement de seuils de capacité.</div>
+            <div class="card-title">Comptage &amp; Groupes</div>
+            <div class="card-desc">Comptage des personnes présentes et identification de rassemblements suspects au-delà d'un seuil configurable par l'opérateur.</div>
           </div>
           <div class="card">
             <div class="card-icon">🔫</div>
             <div class="card-title">Détection Armes</div>
-            <div class="card-desc">Reconnaissance de pistolets, couteaux, objets dangereux et armes improvisées.</div>
+            <div class="card-desc">Reconnaissance d'armes de guerre, fusils, armes de poing et armes blanches à raison d'une caméra scrutée toutes les 5 secondes.</div>
           </div>
           <div class="card">
-            <div class="card-icon">📊</div>
-            <div class="card-title">Analyse Trafic</div>
-            <div class="card-desc">Comptage et suivi des mouvements piétons et véhiculaires.</div>
+            <div class="card-icon">🚗</div>
+            <div class="card-title">Gestion Stationnement</div>
+            <div class="card-desc">Détection de stationnement dangereux (alerte dès 3 min) et de véhicules ventouses immobilisés depuis plus de 7 jours au même emplacement.</div>
           </div>
           <div class="card">
-            <div class="card-icon">⚠️</div>
-            <div class="card-title">Anomalies</div>
-            <div class="card-desc">Détection de comportements inhabituels et alertes événements suspects.</div>
+            <div class="card-icon">🗑️</div>
+            <div class="card-title">Dépôts Sauvages</div>
+            <div class="card-desc">Détection d'objets incongrus (matelas, électroménager, meubles…) déposés sur la voie publique, en corrélation avec un arrêt de véhicule ou indépendamment (V2).</div>
           </div>
         </div>
 
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         SECTION 2 — MÉTHODOLOGIE D'ALERTE
+    ══════════════════════════════════════════ -->
+    <section class="window">
+      <div class="window-header">
+        <div class="window-title">⚡ Méthodologie d'Alerte</div>
+        <div class="window-controls">
+          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+        </div>
+      </div>
+      <div class="window-content">
+        <h2>Comment NASLE génère-t-il une alerte ?</h2>
+        <p>La chaîne d'alerte de NASLE suit un processus rigoureux en 6 étapes, de l'acquisition vidéo brute jusqu'à l'intervention humaine. Cette architecture est conçue pour <strong>minimiser les faux positifs</strong> tout en garantissant une <strong>réactivité maximale</strong>.</p>
+
+        <!-- Schéma de flux -->
+        <div class="alert-flow">
+          <div class="flow-node"><div class="flow-node-icon">📷</div><div class="flow-node-label">Acquisition flux vidéo</div></div>
+          <div class="flow-arrow">›</div>
+          <div class="flow-node"><div class="flow-node-icon">🧠</div><div class="flow-node-label">Analyse IA (vision)</div></div>
+          <div class="flow-arrow">›</div>
+          <div class="flow-node"><div class="flow-node-icon">📊</div><div class="flow-node-label">Calcul confiance</div></div>
+          <div class="flow-arrow">›</div>
+          <div class="flow-node"><div class="flow-node-icon">🔔</div><div class="flow-node-label">Déclenchement alerte</div></div>
+          <div class="flow-arrow">›</div>
+          <div class="flow-node"><div class="flow-node-icon">👁️</div><div class="flow-node-label">Affichage opérateur</div></div>
+          <div class="flow-arrow">›</div>
+          <div class="flow-node"><div class="flow-node-icon">✅</div><div class="flow-node-label">Acquittement / action</div></div>
+        </div>
+
+        <!-- Timeline détaillée -->
+        <h3>🔁 Détail des étapes</h3>
+        <div class="timeline">
+
+          <div class="tl-step">
+            <div class="tl-badge">📷</div>
+            <div class="tl-body">
+              <div class="tl-title">Étape 1 — Acquisition continue du flux vidéo</div>
+              <p class="tl-desc">NASLE se connecte aux caméras via leur URL RTSP (avec authentification si nécessaire). Il supporte les caméras fixes et les caméras PTZ (Pan-Tilt-Zoom). L'acquisition est permanente, 24h/24, 7j/7, sans interruption.</p>
+              <span class="tl-meta">⏱ Temps de cycle : ~1 seconde / 100 caméras (module violence)</span>
+            </div>
+          </div>
+
+          <div class="tl-step">
+            <div class="tl-badge">🧠</div>
+            <div class="tl-body">
+              <div class="tl-title">Étape 2 — Analyse par le modèle d'IA</div>
+              <p class="tl-desc">Chaque image est analysée par un modèle de <strong>vision par ordinateur</strong> (deep learning). Le modèle a été entraîné sur des milliers de situations réelles pour reconnaître des postures violentes, des armes, des départs de feu, des véhicules en anomalie, etc. L'analyse est effectuée séquentiellement ou en parallèle selon la fonction.</p>
+              <span class="tl-meta">🤖 Modèle basé sur le machine learning — s'améliore avec le retour terrain</span>
+            </div>
+          </div>
+
+          <div class="tl-step">
+            <div class="tl-badge">📊</div>
+            <div class="tl-body">
+              <div class="tl-title">Étape 3 — Calcul de l'indice de confiance</div>
+              <p class="tl-desc">Pour chaque détection, NASLE calcule un <strong>indice de confiance</strong> entre 0 et 100 %. Seules les détections dépassant le seuil configuré génèrent une alerte. Cet indice est affiché dans l'historique pour permettre à l'opérateur d'évaluer la pertinence de chaque alerte et de la noter (Pertinent / Non pertinent).</p>
+              <span class="tl-meta">🎯 Taux de reconnaissance &gt; 90 % — Faux positifs ≤ 10 PPM</span>
+            </div>
+          </div>
+
+          <div class="tl-step">
+            <div class="tl-badge">🔔</div>
+            <div class="tl-body">
+              <div class="tl-title">Étape 4 — Déclenchement et notification de l'alerte</div>
+              <p class="tl-desc">Lorsqu'une situation est détectée, NASLE enregistre l'alerte avec horodatage, capture l'image correspondante, et l'affiche dans le <strong>dock des alertes</strong> de l'interface. Un liseret rouge clignotant attire immédiatement l'attention de l'opérateur. Ce liseret disparaît automatiquement après 10 minutes.</p>
+              <span class="tl-meta">🔴 Signal visuel urgent — persistance 10 minutes</span>
+            </div>
+          </div>
+
+          <div class="tl-step">
+            <div class="tl-badge">👁️</div>
+            <div class="tl-body">
+              <div class="tl-title">Étape 5 — Affichage contextualisé pour l'opérateur</div>
+              <p class="tl-desc">L'opérateur voit l'alerte dans le dock gauche de l'interface cartographique. En fonction de son <strong>profil utilisateur</strong> (défini par l'administrateur), il peut ou non visualiser l'image de l'alerte. L'écran principal affiche la localisation GPS de la caméra sur la carte. Des filtres permettent de trier par type d'alerte, par date et par caméra.</p>
+              <span class="tl-meta">🗺️ Localisation cartographique + image contextuelle</span>
+            </div>
+          </div>
+
+          <div class="tl-step">
+            <div class="tl-badge">✅</div>
+            <div class="tl-body">
+              <div class="tl-title">Étape 6 — Acquittement et retour d'expérience</div>
+              <p class="tl-desc">L'opérateur acquitte l'alerte en cliquant sur le bouton dédié. Il peut la noter (pertinente ou non) et ajouter une remarque. Ces notations alimentent le <strong>retour d'expérience</strong> transmis à Nepsis Engineering pour améliorer le modèle d'IA. Les alertes sont conservées <strong>14 jours glissants</strong> dans l'historique, puis effacées automatiquement.</p>
+              <span class="tl-meta">📅 Historique 14 jours — notation pour amélioration continue du modèle</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Performances -->
+        <h3>📈 Performances techniques</h3>
+        <div class="perf-item">
+          <div class="perf-header"><span class="perf-label">Taux de reconnaissance (violence)</span><span class="perf-value">&gt; 90 %</span></div>
+          <div class="perf-track"><div class="perf-fill" style="width:92%"></div></div>
+        </div>
+        <div class="perf-item">
+          <div class="perf-header"><span class="perf-label">Précision détection d'armes</span><span class="perf-value">Dépend de la visibilité</span></div>
+          <div class="perf-track"><div class="perf-fill" style="width:78%; background: linear-gradient(90deg, var(--secondary), #f472b6)"></div></div>
+        </div>
+        <div class="perf-item">
+          <div class="perf-header"><span class="perf-label">Réduction des faux positifs</span><span class="perf-value">≤ 10 PPM</span></div>
+          <div class="perf-track"><div class="perf-fill" style="width:97%; background: linear-gradient(90deg, #10b981, var(--accent))"></div></div>
+        </div>
+        <div class="perf-item">
+          <div class="perf-header"><span class="perf-label">Disponibilité système (24/7)</span><span class="perf-value">100 % (objectif)</span></div>
+          <div class="perf-track"><div class="perf-fill" style="width:100%; background: linear-gradient(90deg, var(--accent), #0369a1)"></div></div>
+        </div>
+
+        <h3>⚠️ Gestion des faux positifs</h3>
+        <p>Les faux positifs sont inhérents à toute technologie d'IA. NASLE en génère en moyenne <strong>0,5 par caméra par jour</strong>, soit environ 10 PPM sur les 86 000 images analysées quotidiennement par caméra. Les principales sources identifiées sont :</p>
+        <ul>
+          <li>🧒 Chamailleries ou jeux entre enfants (postures ambiguës)</li>
+          <li>🚔 Interventions des forces de l'ordre (postures de contrainte)</li>
+          <li>🤷 Situations ambiguës ou contextes atypiques (éclairage, angle)</li>
+        </ul>
+        <p>Nepsis Engineering analyse régulièrement les faux positifs remontés par les opérateurs et développe des méthodes d'élimination pour améliorer le modèle en continu.</p>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         SECTION 3 — DERNIÈRE INNOVATION (v1.1)
+    ══════════════════════════════════════════ -->
+    <section class="window">
+      <div class="window-header">
+        <div class="window-title">🚀 Dernière Innovation — NASLE v1.1</div>
+        <div class="window-controls">
+          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+        </div>
+      </div>
+      <div class="window-content">
+        <h2>Les nouveautés de la version 1.1</h2>
+        <p>La version 1.1 de NASLE marque une évolution majeure en introduisant deux nouvelles fonctions à forte valeur ajoutée : la <strong>détection d'armes</strong> et la <strong>détection avancée de dépôts sauvages (V2)</strong>. Ces innovations s'appuient sur des architectures de modèles d'IA plus récentes et étendent les capacités du logiciel bien au-delà de la sécurité des personnes.</p>
+
+        <!-- Hero innovation -->
+        <div class="innovation-hero">
+          <div class="inno-label">🆕 Innovation clé — v1.1</div>
+          <div class="inno-title">Détection d'armes en temps réel par vision par ordinateur</div>
+          <p class="inno-desc">Pour la première fois dans NASLE, un système actif de détection d'armes permet aux opérateurs de lancer une surveillance ciblée sur une liste de caméras sélectionnées. Le modèle identifie en moins de 5 secondes par caméra la présence d'armes de guerre, de fusils, d'armes de poing et d'armes blanches — sous réserve d'une visibilité suffisante sur l'image.</p>
+          <div class="inno-features">
+            <div class="inno-feat">
+              <div class="inno-feat-icon">🔍</div>
+              <div class="inno-feat-title">4 catégories d'armes</div>
+              <div class="inno-feat-desc">Armes de guerre, fusils, armes de poing, armes blanches détectés par un même modèle unifié.</div>
+            </div>
+            <div class="inno-feat">
+              <div class="inno-feat-icon">⚡</div>
+              <div class="inno-feat-title">5 secondes / caméra</div>
+              <div class="inno-feat-desc">Chaque caméra de la liste est scrutée séquentiellement. La fréquence dépend du nombre de caméras sélectionnées.</div>
+            </div>
+            <div class="inno-feat">
+              <div class="inno-feat-icon">🎯</div>
+              <div class="inno-feat-title">Tâches configurables</div>
+              <div class="inno-feat-desc">L'opérateur crée et nomme ses propres tâches de détection via l'éditeur de tâches. Une seule tâche peut être active à la fois (limitation performance v1.1).</div>
+            </div>
+            <div class="inno-feat">
+              <div class="inno-feat-icon">📡</div>
+              <div class="inno-feat-title">Fixe + PTZ</div>
+              <div class="inno-feat-desc">Compatible avec toutes les caméras du parc, qu'elles soient fixes ou orientables.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dépôts sauvages V2 -->
+        <h3>🗑️ Dépôts sauvages V2 — Analyse autonome de zone</h3>
+        <p>La version V2 de la détection de dépôts sauvages représente un saut qualitatif significatif. Contrairement à la V1 qui nécessitait de détecter préalablement l'arrêt d'un véhicule, la <strong>V2 analyse en continu la zone surveillée</strong> à la recherche de tout objet incongruent nouveau apparu depuis la dernière analyse, sans corrélation obligatoire avec un véhicule.</p>
+        <div class="grid">
+          <div class="card">
+            <div class="card-icon">🔄</div>
+            <div class="card-title">Dépôts sauvages V1</div>
+            <div class="card-desc">Détection conditionnelle : un véhicule doit s'être arrêté au moins 30 secondes dans la zone pour que l'analyse soit déclenchée. Évite les faux positifs liés aux arrêts ponctuels.</div>
+          </div>
+          <div class="card">
+            <div class="card-icon">🆕</div>
+            <div class="card-title">Dépôts sauvages V2</div>
+            <div class="card-desc">Analyse autonome et permanente : NASLE compare l'état actuel de la zone à une référence et détecte l'apparition de nouveaux objets incongrus, indépendamment de tout arrêt de véhicule.</div>
+          </div>
+        </div>
+
+        <!-- Éditeur de tâches -->
+        <h3>🛠️ L'éditeur de tâches — Nouveau composant de l'IHM</h3>
+        <p>La version 1.1 introduit un nouvel écran dans l'interface : <strong>l'éditeur de tâches</strong>, accessible depuis le menu Réglage. Il permet de créer, nommer et activer des tâches de surveillance spécialisées (détection d'armes, recherche d'individus). Chaque tâche est associée à une liste de caméras et peut être activée ou désactivée à la demande.</p>
+        <ul>
+          <li>🏷️ <strong>Nommage libre</strong> des tâches pour une gestion intuitive</li>
+          <li>📷 <strong>Sélection multi-caméras</strong> parmi le parc disponible</li>
+          <li>✅ <strong>Activation / désactivation</strong> par bascule (icône Actif)</li>
+          <li>⚠️ <strong>Une seule tâche active</strong> à la fois pour des raisons de performance</li>
+          <li>📋 <strong>Onglets par type</strong> : Toutes / Reconnaissance / Armes</li>
+        </ul>
+
+        <!-- Cas d'usage -->
         <h3>💼 Cas d'Usage Professionnels</h3>
         <ul>
-          <li>🏙️ <strong>Villes & Collectivités</strong> : Centres supervision urbaine, vidéoprotection publique, sécurité espaces publics</li>
-          <li>🏢 <strong>Entreprises</strong> : Sécurité bâtiments, surveillance sites sensibles, prévention incidents</li>
-          <li>🏥 <strong>Santé & Éducation</strong> : Établissements publics, hôpitaux, universités, écoles</li>
+          <li>🏙️ <strong>Villes &amp; Collectivités</strong> : Centres de supervision urbaine, vidéoprotection publique, sécurité des espaces publics</li>
+          <li>🏢 <strong>Entreprises</strong> : Sécurité des bâtiments, surveillance de sites sensibles, prévention des incidents</li>
+          <li>🏥 <strong>Santé &amp; Éducation</strong> : Établissements publics, hôpitaux, universités, écoles</li>
           <li>🏦 <strong>Finance</strong> : Banques, centres commerciaux, points de retrait</li>
-          <li>🚀 <strong>Infrastructure Critique</strong> : Aéroports, gares, centrales électriques</li>
+          <li>🚀 <strong>Infrastructures Critiques</strong> : Aéroports, gares, centrales électriques</li>
         </ul>
 
-        <h3>✨ Avantages Clés</h3>
-        <ul>
-          <li>✅ <strong>Détection 24/7</strong> sans fatigue humaine</li>
-          <li>✅ <strong>Alertes temps réel</strong> permettant intervention rapide</li>
-          <li>✅ <strong>Réduction coûts</strong> de surveillance humaine</li>
-          <li>✅ <strong>Enregistrements sécurisés</strong> avec métadonnées d'événements</li>
-          <li>✅ <strong>Conformité légale</strong> RGPD et normes de sécurité</li>
-          <li>✅ <strong>Machine Learning</strong> : le système s'améliore avec l'expérience</li>
-        </ul>
-
-        <h3>🤔 Impact Sociétal</h3>
-        <p>L'IA de vidéoprotection NASLE représente un progrès majeur en sécurité publique et privée. Elle permet une surveillance plus efficace, une réaction plus rapide aux incidents, et une prévention plus intelligente. Cependant, des questions éthiques sur le respect de la vie privée demeurent importantes à considérer.</p>
+        <!-- Impact sociétal -->
+        <h3>🤔 Impact Sociétal &amp; Cadre Juridique</h3>
+        <p>L'IA de vidéoprotection NASLE représente un progrès majeur en sécurité publique et privée. Elle permet une surveillance plus efficace, une réaction plus rapide aux incidents, et une prévention plus intelligente. Cependant, des questions éthiques sur le <strong>respect de la vie privée</strong> demeurent importantes à considérer.</p>
+        <p>Sur le plan réglementaire, NASLE est un <strong>outil d'aide à la décision</strong>, non une référence juridique. L'image d'alerte captée reste à la seule interprétation de l'opérateur humain. Ce positionnement garantit une utilisation conforme au cadre légal dans l'acte policier et assure la <strong>conformité RGPD</strong>.</p>
 
         <div class="download-section">
           <h3>📥 Télécharger l'analyse complète</h3>
@@ -615,14 +759,16 @@
             <div class="download-item">
               <div class="download-info">
                 <div class="download-name">Veille Technologique NASLE</div>
-                <div class="download-size">PDF - Rapport détaillé</div>
+                <div class="download-size">PDF — Rapport détaillé</div>
               </div>
               <a href="veille technologique.pdf" download class="btn btn-small btn-download">📄 PDF</a>
             </div>
           </div>
         </div>
+
       </div>
     </section>
+
   </main>
 
   <footer class="footer">
@@ -637,7 +783,6 @@
           <li><a href="contact.html">Contact</a></li>
         </ul>
       </div>
-      
       <div class="footer-section">
         <h3>Contact</h3>
         <ul>
@@ -647,7 +792,6 @@
           <li><a href="tel:+33781501754">📱 Tél</a></li>
         </ul>
       </div>
-
       <div class="footer-section">
         <h3>Documents</h3>
         <ul>
@@ -658,9 +802,8 @@
         </ul>
       </div>
     </div>
-    
     <div class="footer-bottom">
-      <p>&copy; 2026 Philippe Martins Louro - Tous droits réservés</p>
+      <p>&copy; 2026 Philippe Martins Louro — Tous droits réservés</p>
     </div>
   </footer>
 
@@ -683,9 +826,7 @@
       backToTopBtn.classList.toggle('show', window.scrollY > 500);
     });
 
-    function backToTop() {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
+    function backToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
 
     function toggleTheme() {
       const theme = localStorage.getItem('theme') === 'dark' ? 'light' : 'dark';
@@ -695,6 +836,29 @@
 
     const savedTheme = localStorage.getItem('theme') || 'light';
     document.querySelector('.theme-toggle').textContent = savedTheme === 'light' ? '🌙' : '☀️';
+
+    function switchTab(tab) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      document.getElementById('tab-' + tab).classList.add('active');
+      event.currentTarget.classList.add('active');
+    }
+
+    // Animate perf bars on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.querySelectorAll('.perf-fill').forEach(bar => {
+            const w = bar.style.width;
+            bar.style.width = '0%';
+            setTimeout(() => { bar.style.width = w; }, 100);
+          });
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    document.querySelectorAll('.perf-item').forEach(el => observer.observe(el.parentElement || el));
   </script>
 </body>
 </html>
