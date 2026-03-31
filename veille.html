@@ -66,6 +66,18 @@
       background: linear-gradient(135deg, var(--primary), var(--primary-dark));
       box-shadow: var(--shadow);
     }
+    .hamburger { display: none; flex-direction: column; gap: 6px; cursor: pointer; }
+    .hamburger span {
+      width: 25px; height: 3px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      border-radius: 2px; transition: var(--transition);
+    }
+
+    .progress-bar {
+      position: fixed; top: 79px; left: 0; height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+      width: 0%; z-index: 999;
+    }
 
     /* ─── LAYOUT ─── */
     .main-container { max-width: 1200px; margin: 120px auto 100px; padding: 0 30px; }
@@ -93,41 +105,12 @@
       width: 12px; height: 12px; border-radius: 50%;
       background: rgba(99,102,241,0.2); cursor: pointer; transition: var(--transition);
     }
-    .dot:hover { background: var(--primary); transform: scale(1.3); }
     .window-content { padding: 50px; }
 
-    /* ─── TYPOGRAPHY ─── */
-    h2 {
-      font-family: 'Syne', sans-serif;
-      font-size: 2rem; color: var(--primary);
-      margin-bottom: 20px; padding-bottom: 15px;
-      border-bottom: 3px solid var(--accent); font-weight: 800;
-    }
-    h3 {
-      font-family: 'Syne', sans-serif;
-      font-size: 1.5rem; color: var(--secondary);
-      margin: 35px 0 15px; font-weight: 700;
-    }
+    h2 { font-family: 'Syne', sans-serif; font-size: 2rem; color: var(--primary); margin-bottom: 20px; border-bottom: 3px solid var(--accent); padding-bottom: 15px; font-weight: 800; }
+    h3 { font-family: 'Syne', sans-serif; font-size: 1.5rem; color: var(--secondary); margin: 35px 0 15px; font-weight: 700; }
     p { color: var(--text-medium); font-size: 0.98rem; margin-bottom: 18px; line-height: 1.8; }
     strong { color: var(--primary); font-weight: 700; }
-    
-    /* ─── GRID / CARDS ─── */
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 28px; margin: 35px 0;
-    }
-    .card {
-      background: linear-gradient(135deg, var(--bg-light), var(--bg-gray));
-      padding: 35px; border-radius: 12px; transition: var(--transition);
-      border: 1px solid rgba(99,102,241,0.1);
-      display: flex; flex-direction: column;
-    }
-    .card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); border-color: var(--primary); }
-    .card-icon { font-size: 3rem; margin-bottom: 15px; }
-    .card-title { font-family: 'Syne', sans-serif; font-size: 1.3rem; color: var(--primary); margin-bottom: 12px; font-weight: 700; }
-    .card-desc { color: var(--text-medium); font-size: 0.95rem; flex: 1; }
-    .card-date { font-size: 0.75rem; color: var(--text-light); margin-top: 15px; font-weight: bold; }
 
     /* ─── STATS BAND ─── */
     .stats-band {
@@ -138,15 +121,56 @@
       background: linear-gradient(135deg, var(--primary), var(--primary-dark));
       border-radius: 14px; padding: 28px 20px; text-align: center;
       color: white; box-shadow: 0 8px 24px rgba(99,102,241,0.28);
-      transition: var(--transition);
     }
-    .stat-value { font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800; line-height: 1; }
-    .stat-label { font-size: 0.82rem; opacity: 0.88; margin-top: 6px; font-weight: 500; }
+    .stat-value { font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800; }
+    .stat-label { font-size: 0.82rem; opacity: 0.88; margin-top: 6px; }
 
-    .badge-ok { background: rgba(16,185,129,0.12); color: #059669; padding: 3px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 700;}
+    /* ─── MODULE TABS ─── */
+    .module-tabs { display: flex; gap: 12px; margin-bottom: 30px; flex-wrap: wrap; }
+    .tab-btn {
+      padding: 10px 24px; border-radius: 50px; border: 2px solid rgba(99,102,241,0.2);
+      background: white; color: var(--text-medium); font-weight: 700; cursor: pointer; transition: var(--transition);
+    }
+    .tab-btn.active { background: var(--primary); color: white; border-color: transparent; }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
 
-    /* Style spécifique au RSS */
-    #rss-loader { text-align: center; padding: 40px; color: var(--primary); font-weight: bold; }
+    .func-table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+    .func-table th { background: var(--primary); color: white; padding: 14px; text-align: left; }
+    .func-table td { padding: 12px; border-bottom: 1px solid #eee; color: var(--text-medium); }
+
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 28px; margin: 35px 0; }
+    .card { background: white; padding: 35px; border-radius: 12px; border: 1px solid #eee; transition: var(--transition); }
+    .card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); }
+    .card-icon { font-size: 3rem; margin-bottom: 15px; }
+
+    /* ─── RSS LIVE FEED STYLE ─── */
+    .live-feed-container {
+        margin-top: 50px;
+        background: #fdfdfd;
+        border-radius: var(--radius);
+        padding: 40px;
+        border: 2px dashed var(--primary);
+    }
+    .rss-item {
+        background: white;
+        padding: 15px;
+        margin-bottom: 15px;
+        border-left: 4px solid var(--secondary);
+        box-shadow: var(--shadow-sm);
+    }
+    .rss-item a { color: var(--primary); font-weight: bold; text-decoration: none; }
+    .rss-item p { font-size: 0.85rem; margin: 5px 0; }
+
+    .footer {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white; padding: 50px 20px; margin-top: 100px; text-align: center;
+    }
+
+    @media (max-width: 768px) {
+      .navbar { padding: 0 20px; }
+      .nav-menu { display: none; }
+    }
   </style>
 </head>
 
@@ -162,86 +186,121 @@
     </div>
   </nav>
 
+  <div id="progress-bar" class="progress-bar"></div>
+
   <main class="main-container">
 
     <section class="window">
       <div class="window-header">
         <div class="window-title">🔍 Veille Technologique</div>
-        <div class="window-controls">
-          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-        </div>
+        <div class="window-controls"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
       </div>
       <div class="window-content">
         <h2>NASLE — Intelligence Artificielle pour Vidéoprotection</h2>
-        <p>Étude logicielle sur <strong>NASLE</strong> (Nepsis Engineering) liée à mon stage en supervision urbaine. L'IA analyse <strong>24h/24</strong> le parc caméras pour filtrer les événements critiques.</p>
+
+        <p>Pour cette veille technologique, j'ai choisi d'étudier <strong>NASLE</strong> de <strong>Nepsis Engineering</strong>. L'IA analyse en continu l'intégralité du parc caméras, <strong>24h/24 et 7j/7</strong>.</p>
 
         <div class="stats-band">
           <div class="stat-box"><div class="stat-value">>90%</div><div class="stat-label">Reconnaissance</div></div>
-          <div class="stat-box"><div class="stat-value">~1s</div><div class="stat-label">Cycle d'analyse</div></div>
+          <div class="stat-box"><div class="stat-value">~1s</div><div class="stat-label">Analyse cycle</div></div>
+          <div class="stat-box"><div class="stat-value">86k</div><div class="stat-label">Images/jour</div></div>
         </div>
+
+        <h3>📦 Architecture en deux modules</h3>
+        <div class="module-tabs">
+          <button class="tab-btn active" onclick="switchTab('violence')">⚠️ Module Violence</button>
+          <button class="tab-btn" onclick="switchTab('smartcity')">🏙️ Module Smart City</button>
+        </div>
+
+        <div class="tab-panel active" id="tab-violence">
+          <table class="func-table">
+            <thead><tr><th>Fonction</th><th>Version</th><th>Support</th></tr></thead>
+            <tbody>
+              <tr><td>Violence & personnes à terre</td><td>v1.0</td><td>Fixe + PTZ</td></tr>
+              <tr><td>Incendie et feux</td><td>v1.0</td><td>Fixe + PTZ</td></tr>
+              <tr><td>Présence d'armes</td><td>v1.1</td><td>Fixe + PTZ</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="tab-panel" id="tab-smartcity">
+          <table class="func-table">
+            <thead><tr><th>Fonction</th><th>Seuil</th></tr></thead>
+            <tbody>
+              <tr><td>Comptage personnes</td><td>Alerte si dépassement</td></tr>
+              <tr><td>Dépôts sauvages</td><td>Analyse autonome</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>🎯 Cas d'usages principaux</h3>
+        <div class="grid">
+          <div class="card"><div class="card-icon">🚨</div><div class="card-title">Violence</div><p>Reconnaît les postures d'agression et chutes.</p></div>
+          <div class="card"><div class="card-icon">🔥</div><div class="card-title">Incendie</div><p>Détection fumée et flammes par caméra.</p></div>
+          <div class="card"><div class="card-icon">🚗</div><div class="card-title">Stationnement</div><p>Alerte après 3 min d'immobilisation gênante.</p></div>
+        </div>
+
+        <div class="live-feed-container">
+            <h2 style="border-bottom-color: var(--secondary);">📡 Live Feed : Actualités IA & Police</h2>
+            <p>Ce flux en direct surveille les dernières publications concernant l'usage de l'intelligence artificielle par les services de police et de sécurité.</p>
+            <div id="rss-feed">Chargement des actualités en direct...</div>
+            <p style="font-size: 0.8rem; margin-top: 15px;"><i>Note : Ce flux est également synchronisé avec mon système d'alerte mail automatique.</i></p>
+        </div>
+
       </div>
     </section>
-
-    <section class="window">
-      <div class="window-header">
-        <div class="window-title">📡 Actualités IA & Police</div>
-        <div class="window-controls">
-            <span class="dot" title="Abonné: martinslourophilippe@gmail.com"></span>
-            <span class="dot"></span><span class="dot"></span>
-        </div>
-      </div>
-      <div class="window-content">
-        <h3>Veille en temps réel</h3>
-        <p>Dernières publications concernant l'usage de l'Intelligence Artificielle par les forces de l'ordre, la surveillance et la législation.</p>
-        
-        <div id="rss-loader">Connexion au flux de veille...</div>
-        <div class="grid" id="rss-grid">
-            </div>
-      </div>
-    </section>
-
   </main>
 
+  <footer class="footer">
+    <p>&copy; 2024 Philippe Martins Louro - Veille Technologique</p>
+  </footer>
+
   <script>
-    // Configuration de la veille pour Philippe Martins Louro
-    const RSS_QUERY = "caméras IA police reconnaissance faciale algorithmique";
-    const RSS_URL = `https://news.google.com/rss/search?q=${encodeURIComponent(RSS_QUERY)}&hl=fr&gl=FR&ceid=FR:fr`;
-    const API_CONVERTER = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(RSS_URL)}`;
-
-    async function fetchVeille() {
-        try {
-            const response = await fetch(API_CONVERTER);
-            const data = await response.json();
-            const grid = document.getElementById('rss-grid');
-            const loader = document.getElementById('rss-loader');
-
-            if (data.status === 'ok') {
-                loader.style.display = 'none';
-                let html = '';
-                
-                data.items.slice(0, 6).forEach(item => {
-                    const dateObj = new Date(item.pubDate);
-                    const formattedDate = dateObj.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
-                    
-                    html += `
-                        <div class="card">
-                            <div class="card-icon">🗞️</div>
-                            <div class="card-title">${item.title.split(' - ')[0]}</div>
-                            <p class="card-desc">${item.content.substring(0, 120).replace(/<[^>]*>?/gm, '')}...</p>
-                            <span class="badge-ok">${item.author || 'Actualité'}</span>
-                            <div class="card-date">Publié le ${formattedDate}</div>
-                            <a href="${item.link}" target="_blank" style="margin-top:15px; font-size:0.9rem;">Lire l'article →</a>
-                        </div>
-                    `;
-                });
-                grid.innerHTML = html;
-            }
-        } catch (error) {
-            document.getElementById('rss-loader').innerHTML = "⚠️ Erreur lors du chargement du flux.";
-        }
+    // Gestion des onglets
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById('tab-' + tabId).classList.add('active');
+      event.currentTarget.classList.add('active');
     }
 
-    // Lancement
+    // Barre de progression
+    window.onscroll = function() {
+      let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      let scrolled = (winScroll / height) * 100;
+      document.getElementById("progress-bar").style.width = scrolled + "%";
+    };
+
+    // RÉCUPÉRATION DU FLUX RSS EN DIRECT
+    async function fetchRSS() {
+        const RSS_URL = `https://news.google.com/rss/search?q=caméras+IA+police+vidéoprotection&hl=fr&gl=FR&ceid=FR:fr`;
+        const API_URL = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(RSS_URL)}`;
+        
+        try {
+            const response = await fetch(API_URL);
+            const data = await response.json();
+            const container = document.getElementById('rss-feed');
+            container.innerHTML = '';
+
+            data.items.slice(0, 5).forEach(item => {
+                const article = document.createElement('div');
+                article.className = 'rss-item';
+                article.innerHTML = `
+                    <a href="${item.link}" target="_blank">${item.title}</a>
+                    <p>${new Date(item.pubDate).toLocaleDateString('fr-FR')} - Source: Google News</p>
+                `;
+                container.appendChild(article);
+            });
+        } catch (error) {
+            console.error("Erreur flux RSS:", error);
+            document.getElementById('rss-feed').innerHTML = "Impossible de charger le flux en direct.";
+        }
+    }
+    fetchRSS();
+  </script>
+</body>
+</html>
     window.onload = fetchVeille;
   </script>
 </body>
