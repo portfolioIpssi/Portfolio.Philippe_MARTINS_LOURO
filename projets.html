@@ -419,6 +419,38 @@
       gap: 8px;
     }
 
+    /* Homelab architecture block */
+    .arch-block {
+      background: #1e1e2e;
+      color: #cdd6f4;
+      border-radius: 10px;
+      padding: 24px 28px;
+      font-family: 'Courier New', monospace;
+      font-size: 0.85rem;
+      line-height: 1.7;
+      margin: 20px 0;
+      overflow-x: auto;
+      border: 1px solid rgba(99, 102, 241, 0.3);
+    }
+
+    .arch-block .comment { color: #6c7086; }
+    .arch-block .highlight { color: #89b4fa; font-weight: 700; }
+    .arch-block .ok { color: #a6e3a1; }
+    .arch-block .warn { color: #fab387; }
+
+    .machine-badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      margin-right: 8px;
+      margin-bottom: 6px;
+    }
+    .badge-always { background: rgba(16,185,129,0.15); color: #059669; border: 1px solid #059669; }
+    .badge-hyper  { background: rgba(99,102,241,0.15); color: #6366f1; border: 1px solid #6366f1; }
+    .badge-ws     { background: rgba(236,72,153,0.15); color: #ec4899; border: 1px solid #ec4899; }
+
     .footer {
       background: linear-gradient(135deg, var(--primary), var(--secondary));
       color: white;
@@ -580,8 +612,8 @@
         <h2>Projets Scolaires & Personnels</h2>
 
         <div class="project-tabs">
-          <button class="project-tab active" onclick="switchProject('scolaire')">🎓 Projets Scolaires</button>
-          <button class="project-tab" onclick="switchProject('personnel')">🎮 Projets Personnels</button>
+          <button class="project-tab active" onclick="switchProject('scolaire', event)">🎓 Projets Scolaires</button>
+          <button class="project-tab" onclick="switchProject('personnel', event)">🎮 Projets Personnels</button>
         </div>
 
         <!-- PROJETS SCOLAIRES -->
@@ -669,7 +701,9 @@
 
         <!-- PROJETS PERSONNELS -->
         <div id="personnel" class="project-content">
-          <h3>1️⃣ Minecraft en Python ���</h3>
+
+          <!-- PROJET 1 : MINECRAFT -->
+          <h3>1️⃣ Minecraft en Python 🎮</h3>
           <p>Jeu de type Minecraft avec moteur graphique, terrain procédural Perlin Noise et gameplay complet.</p>
           
           <div class="grid">
@@ -702,7 +736,126 @@
               </div>
             </div>
           </div>
+
+          <!-- PROJET 2 : HOMELAB -->
+          <h3 style="margin-top: 55px;">2️⃣ Homelab — Infrastructure Personnelle 🖥️</h3>
+          <p>
+            Conception et déploiement d'une <strong>infrastructure réseau personnelle</strong> composée de 3 machines physiques, 
+            avec virtualisation, services auto-hébergés, VLANs et sécurité avancée. Un véritable lab pour apprendre 
+            l'administration système et réseau en conditions réelles.
+          </p>
+
+          <div style="margin: 10px 0 25px;">
+            <span class="machine-badge badge-always">Dell OptiPlex — Always-On</span>
+            <span class="machine-badge badge-hyper">Acer PB63 — Hyperviseur</span>
+            <span class="machine-badge badge-ws">Acer Nitro — Workstation</span>
+          </div>
+
+          <div class="grid">
+            <div class="card">
+              <div class="card-icon">🌐</div>
+              <div class="card-title">Réseau & Sécurité</div>
+              <div class="card-desc">Switch manageable, VLANs isolés, Pi-hole DNS, Wireguard VPN, IDS/IPS, Wazuh SIEM.</div>
+            </div>
+            <div class="card">
+              <div class="card-icon">🖥️</div>
+              <div class="card-title">Virtualisation</div>
+              <div class="card-desc">Proxmox VE sur Acer PB63 : 4 à 6 VMs/conteneurs LXC — Nextcloud, Gitea, Jellyfin, CI/CD.</div>
+            </div>
+            <div class="card">
+              <div class="card-icon">☁️</div>
+              <div class="card-title">Services auto-hébergés</div>
+              <div class="card-desc">Nextcloud, Vaultwarden, Jellyfin, Grafana, Home Assistant — 100% sur serveur local.</div>
+            </div>
+          </div>
+
+          <h4>🏗️ Architecture réseau</h4>
+          <div class="arch-block">
+<span class="comment">── Topologie physique & logique ──────────────────────</span>
+
+               INTERNET
+                  │
+              [Box FAI]
+                  │
+    <span class="highlight">[Switch manageable TL-SG1005P V2]</span>
+         /          |          \
+        /           |           \
+<span class="ok">[Dell OptiPlex]</span>   <span class="highlight">[Acer PB63]</span>    <span class="warn">[Acer Nitro]</span>
+ Pi-hole / DNS    Proxmox VE    PC Perso
+ Wireguard VPN    Nextcloud
+ Monitoring       Jellyfin
+ Home Assistant   Vaultwarden
+                  Wazuh SIEM
+
+<span class="comment">VLAN 10 : Réseau    VLAN 20 : VMs    VLAN 30 : Perso</span>
+          </div>
+
+          <h4>⚙️ Services déployés</h4>
+          <ul>
+            <li>🔒 <strong>Pi-hole + Unbound</strong> — Blocage DNS des pubs sur tout le réseau, résolveur récursif local</li>
+            <li>🔑 <strong>Wireguard VPN</strong> — Accès sécurisé au réseau depuis l'extérieur (chiffrement AES-256)</li>
+            <li>📊 <strong>Prometheus + Grafana</strong> — Monitoring CPU, RAM, réseau de toutes les machines</li>
+            <li>🏠 <strong>Home Assistant</strong> — Domotique centralisée</li>
+            <li>📁 <strong>Nextcloud</strong> — Alternative à Google Drive/Photos, auto-hébergée</li>
+            <li>🔐 <strong>Vaultwarden</strong> — Gestionnaire de mots de passe (compatible Bitwarden)</li>
+            <li>🎬 <strong>Jellyfin</strong> — Serveur de streaming média (films, séries, musique)</li>
+            <li>🛡️ <strong>Wazuh SIEM</strong> — Centralisation et analyse des logs de sécurité</li>
+            <li>🗂️ <strong>Gitea + Woodpecker CI</strong> — Forge Git et pipeline CI/CD privés</li>
+          </ul>
+
+          <h4>🗺️ Plan de mise en œuvre</h4>
+          <div class="grid">
+            <div class="card">
+              <div class="card-icon">1️⃣</div>
+              <div class="card-title">Phase 1 — Base réseau</div>
+              <div class="card-desc">Ubuntu Server sur Dell, SSH, Pi-hole + Unbound, Wireguard VPN opérationnel.</div>
+            </div>
+            <div class="card">
+              <div class="card-icon">2️⃣</div>
+              <div class="card-title">Phase 2 — Virtualisation</div>
+              <div class="card-desc">Proxmox VE sur PB63, première VM Debian, Nextcloud + Traefik reverse proxy, Vaultwarden.</div>
+            </div>
+            <div class="card">
+              <div class="card-icon">3️⃣</div>
+              <div class="card-title">Phase 3 — Monitoring & Dev</div>
+              <div class="card-desc">Prometheus + Grafana, Gitea + Woodpecker CI pour les projets personnels.</div>
+            </div>
+            <div class="card">
+              <div class="card-icon">4️⃣</div>
+              <div class="card-title">Phase 4 — Sécurité</div>
+              <div class="card-desc">Ansible depuis le Nitro, Wazuh SIEM avec agents sur toutes les machines.</div>
+            </div>
+            <div class="card">
+              <div class="card-icon">5️⃣</div>
+              <div class="card-title">Phase 5 — VLANs & k3s</div>
+              <div class="card-desc">Configuration des VLANs sur le switch manageable, cluster Kubernetes k3s.</div>
+            </div>
+          </div>
+
+          <h4>💡 Compétences mobilisées</h4>
+          <p style="color: #6b7280;">
+            <strong>🔧 Virtualisation :</strong> Proxmox VE • KVM • LXC &nbsp;|&nbsp;
+            <strong>🌐 Réseau :</strong> VLANs • DNS • VPN • Reverse Proxy (Traefik) &nbsp;|&nbsp;
+            <strong>🛡️ Sécurité :</strong> SIEM • IDS/IPS • Fail2ban • UFW &nbsp;|&nbsp;
+            <strong>📦 DevOps :</strong> Docker • Gitea • CI/CD • Ansible
+          </p>
+
+          <div class="download-section">
+            <h4>📥 Documentation</h4>
+            <div class="download-grid">
+              <div class="download-item">
+                <div class="download-info">
+                  <div class="download-name">Projet Infra Homelab</div>
+                  <div class="download-size">PDF — Architecture & Rôles</div>
+                </div>
+                <a href="Projet_infra.pdf" download class="btn btn-small btn-download">📄 PDF</a>
+              </div>
+            </div>
+          </div>
+
         </div>
+        <!-- FIN PROJETS PERSONNELS -->
+
       </div>
     </section>
   </main>
@@ -777,7 +930,7 @@
       document.querySelector('.theme-toggle').textContent = theme === 'light' ? '🌙' : '☀️';
     }
 
-    function switchProject(projectType) {
+    function switchProject(projectType, event) {
       document.querySelectorAll('.project-tab').forEach(tab => tab.classList.remove('active'));
       document.querySelectorAll('.project-content').forEach(content => content.classList.remove('active'));
       
