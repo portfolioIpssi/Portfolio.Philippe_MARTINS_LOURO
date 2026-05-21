@@ -3,18 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Compétences techniques et transversales de Philippe Martins Louro, étudiant en BTS SIO option SISR.">
   <title>Compétences — Philippe Martins Louro</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Figtree:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
-    /* CSS Universel */
+    /* CSS Universel (inchangé, fourni par l'utilisateur) */
     :root { --bg: #ffffff; --bg2: #f7f9fc; --bg3: #eef2f8; --border: #dde3ed; --border-dk: #c4cfe0; --blue: #2563eb; --blue-lt: #eff4ff; --blue-mid: #bfcfff; --sky: #0ea5e9; --green: #059669; --amber: #d97706; --red: #dc2626; --ink: #0d1526; --text: #1e293b; --text-muted: #64748b; --font-head: 'Syne', sans-serif; --font-body: 'Figtree', sans-serif; --font-mono: 'DM Mono', monospace; --radius: 12px; --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05); --shadow-md: 0 10px 15px -3px rgb(0 0 0 / 0.1); }
     [data-theme="dark"] { --bg: #0b0f19; --bg2: #111827; --bg3: #1f2937; --border: #374151; --border-dk: #4b5563; --blue: #3b82f6; --blue-lt: #1e293b; --ink: #f9fafb; --text: #e5e7eb; --text-muted: #9ca3af; }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { background-color: var(--bg); color: var(--text); font-family: var(--font-body); line-height: 1.6; overflow-x: hidden; transition: 0.3s; }
     #progress-bar { position: fixed; top: 0; left: 0; height: 4px; background: linear-gradient(90deg, var(--blue), var(--sky)); z-index: 1000; width: 0%; }
-    
+
     header { position: sticky; top: 0; background: var(--bg); border-bottom: 1px solid var(--border); z-index: 900; transition: 0.3s; }
     nav { max-width: 1200px; margin: 0 auto; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; position: relative; }
     .nav-logo { font-family: var(--font-head); font-weight: 700; font-size: 1.25rem; color: var(--ink); text-decoration: none; }
@@ -25,7 +26,7 @@
     .theme-toggle { background: none; border: 1px solid var(--border); border-radius: 8px; font-size: 1.1rem; cursor: pointer; padding: 0.4rem 0.6rem; color: var(--text); transition: 0.2s; margin-left: 1rem;}
     .hamburger { display: none; flex-direction: column; gap: 4px; background: none; border: none; cursor: pointer; padding: 0.5rem; }
     .hamburger span { display: block; width: 22px; height: 2px; background-color: var(--text); transition: 0.3s; }
-    
+
     .main-container { max-width: 1100px; margin: 3rem auto; padding: 0 1.5rem; min-height: calc(100vh - 250px); display: flex; flex-direction: column; gap: 2.5rem; }
     .window { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow-md); overflow: hidden; transition: 0.3s; }
     .window-header { background: var(--bg2); border-bottom: 1px solid var(--border); padding: 0.75rem 1.25rem; display: flex; align-items: center; justify-content: space-between; }
@@ -59,7 +60,7 @@
     .footer-bottom { text-align: center; color: var(--text-muted); font-size: 0.9rem; border-top: 1px solid var(--border); padding-top: 2rem; max-width: 1100px; margin: 0 auto; }
     .back-to-top { position: fixed; bottom: 2rem; right: 2rem; width: 45px; height: 45px; background: var(--bg); border: 1px solid var(--border); border-radius: 50%; font-size: 1.2rem; cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: 0.3s; z-index: 100; box-shadow: var(--shadow); color: var(--text); }
     .back-to-top.show { opacity: 1; visibility: visible; }
-    
+
     @media (max-width: 768px) {
       .hamburger { display: flex; }
       #nav-menu { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--bg); border-bottom: 1px solid var(--border); flex-direction: column; padding: 1rem; box-shadow: var(--shadow-md); align-items: flex-start; }
@@ -71,92 +72,262 @@
   </style>
 </head>
 <body>
-  <div id="progress-bar"></div>
+  <div id="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-label="Barre de progression du défilement"></div>
+
   <header>
-    <nav>
-  <a href="index.html" class="nav-logo">Philippe M. Louro</a>
-  <div class="nav-right">
-    <ul id="nav-menu">
-      <li><a href="index.html">Accueil</a></li>
-      <li><a href="projets.html">Projets</a></li>
-      <li><a href="experience.html">Expérience</a></li>
-      <li><a href="competences.html">Compétences</a></li>
-      <li><a href="veille.html">Veille</a></li>
-      <li><a href="synthese.html">Synthèse</a></li>
-      <li><a href="e6.html">E6</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-    <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
-    <button class="hamburger" id="hamburger" onclick="toggleMenu()">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-</nav>
+    <nav aria-label="Navigation principale">
+      <a href="index.html" class="nav-logo" aria-label="Accueil Philippe M. Louro">Philippe M. Louro</a>
+      <div class="nav-right">
+        <ul id="nav-menu" role="list">
+          <li role="listitem"><a href="index.html">Accueil</a></li>
+          <li role="listitem"><a href="projets.html">Projets</a></li>
+          <li role="listitem"><a href="experience.html">Expérience</a></li>
+          <li role="listitem"><a href="competences.html" class="active" aria-current="page">Compétences</a></li>
+          <li role="listitem"><a href="veille.html">Veille</a></li>
+          <li role="listitem"><a href="synthese.html">Synthèse</a></li>
+          <li role="listitem"><a href="e6.html">E6</a></li>
+          <li role="listitem"><a href="contact.html">Contact</a></li>
+        </ul>
+        <button class="theme-toggle" onclick="toggleTheme()" aria-label="Basculer le thème sombre/clair">🌙</button>
+        <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-expanded="false" aria-controls="nav-menu" aria-label="Menu de navigation">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
   </header>
 
   <main class="main-container">
-    <section class="window">
+    <!-- Fenêtre 1 : Expertises Techniques (contenu enrichi) -->
+    <section class="window" aria-labelledby="expertise-heading">
       <div class="window-header">
         <div class="window-title">skills_matrix.json</div>
         <div class="window-controls"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
       </div>
       <div class="window-content">
-        <h2>Expertises Techniques</h2>
+        <h2 id="expertise-heading">Expertises Techniques</h2>
         <p>Aperçu de mes compétences acquises en formation et en milieu professionnel, classées par domaines fonctionnels.</p>
-        
+
         <div class="grid">
-          <div class="card">
-            <div class="card-icon">🐧</div>
-            <div class="card-title">Systèmes d'Exploitation</div>
-            <div class="card-desc">Maîtrise des environnements Windows (Server, Active Directory, WDS, GPO) et des systèmes Linux. Affinité particulière pour <strong>Arch Linux</strong> (Wayland, scripts de configuration) et Debian.</div>
-          </div>
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">🐧</div>
+            <h3 class="card-title">Systèmes d'Exploitation</h3>
+            <div class="card-desc">
+              Maîtrise des environnements <strong>Windows Server</strong> (Active Directory, WDS, GPO) et des systèmes <strong>Linux</strong>. Affinité particulière pour <strong>Arch Linux</strong> (Wayland, scripts de configuration) et <strong>Debian</strong>. Gestion multi-plateforme au quotidien.
+            </div>
+          </article>
 
-          <div class="card">
-            <div class="card-icon">🖥️</div>
-            <div class="card-title">Virtualisation & Réseau</div>
-            <div class="card-desc">Déploiement de serveurs virtuels et de conteneurs LXC via l'hyperviseur <strong>Proxmox VE</strong>. Gestion avancée du routage, des VLANs et du filtrage avec <strong>pfSense</strong> et équipements Cisco. Services DNS/DHCP.</div>
-          </div>
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">🖥️</div>
+            <h3 class="card-title">Virtualisation & Réseau</h3>
+            <div class="card-desc">
+              Déploiement de serveurs virtuels et de conteneurs <strong>LXC</strong> via l'hyperviseur <strong>Proxmox VE</strong>. Gestion avancée du routage, des <strong>VLANs</strong> et du filtrage avec <strong>pfSense</strong> et équipements Cisco. Services DNS/DHCP et supervision réseau.
+            </div>
+          </article>
 
-          <div class="card">
-            <div class="card-icon">🛡️</div>
-            <div class="card-title">Cybersécurité</div>
-            <div class="card-desc">Veille active et pratique via des plateformes comme TryHackMe. Connaissance des outils de sécurité offensifs (BlackArch), déploiement de solutions de monitoring défensif (Wazuh SIEM) et règles de pare-feux.</div>
-          </div>
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">🛡️</div>
+            <h3 class="card-title">Cybersécurité</h3>
+            <div class="card-desc">
+              Veille active et pratique via des plateformes comme <strong>TryHackMe</strong>. Connaissance des outils offensifs (<strong>BlackArch</strong>), déploiement de solutions de monitoring défensif (<strong>Wazuh SIEM</strong>) et mise en place de règles de pare-feux.
+            </div>
+          </article>
 
-          <div class="card">
-            <div class="card-icon">📦</div>
-            <div class="card-title">Outils IT & DevOps</div>
-            <div class="card-desc">Administration d'outils de gestion de parc et helpdesk comme GLPI (version Cloud). Maîtrise des outils collaboratifs, versioning de code (Git), et déploiement de services auto-hébergés (Docker/Traefik).</div>
-          </div>
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">📦</div>
+            <h3 class="card-title">Outils IT & DevOps</h3>
+            <div class="card-desc">
+              Administration d'outils de gestion de parc et helpdesk comme <strong>GLPI</strong> (version Cloud). Maîtrise des outils collaboratifs, versioning de code (<strong>Git</strong>), et déploiement de services auto-hébergés (<strong>Docker / Traefik</strong>).
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Fenêtre 2 : Langages & Programmation -->
+    <section class="window" aria-labelledby="langages-heading">
+      <div class="window-header">
+        <div class="window-title">~/code/languages.sh</div>
+        <div class="window-controls"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+      </div>
+      <div class="window-content">
+        <h2 id="langages-heading">Langages & Programmation</h2>
+        <p>Compétences en développement et scripting pour l'automatisation, le web et la data.</p>
+        <div class="grid">
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">🐍</div>
+            <h3 class="card-title">Python</h3>
+            <div class="card-desc">Automatisation de tâches, parsing de logs, scripting réseau et initiation à l'analyse de données avec <strong>Pandas</strong>.</div>
+          </article>
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">🌐</div>
+            <h3 class="card-title">Web (HTML, CSS, JS)</h3>
+            <div class="card-desc">Création de sites statiques et dynamiques, maîtrise des bases du développement front-end et accessibilité.</div>
+          </article>
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">⚙️</div>
+            <h3 class="card-title">Bash / PowerShell</h3>
+            <div class="card-desc">Écriture de scripts d'administration système, déploiement automatisé et gestion de configurations.</div>
+          </article>
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">🗃️</div>
+            <h3 class="card-title">SQL</h3>
+            <div class="card-desc">Requêtes avancées, procédures stockées, administration de bases <strong>MySQL / MariaDB</strong> et <strong>PostgreSQL</strong>.</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Fenêtre 3 : Certifications & Formations -->
+    <section class="window" aria-labelledby="certifications-heading">
+      <div class="window-header">
+        <div class="window-title">certifications.md</div>
+        <div class="window-controls"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+      </div>
+      <div class="window-content">
+        <h2 id="certifications-heading">Certifications & Apprentissage continu</h2>
+        <p>Validation des acquis et formations complémentaires suivies durant mon parcours.</p>
+        <div class="grid">
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">📜</div>
+            <h3 class="card-title">MOOC ANSSI / CNIL</h3>
+            <div class="card-desc">Sensibilisation à la cybersécurité et à la protection des données personnelles (RGPD).</div>
+          </article>
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">🎓</div>
+            <h3 class="card-title">BTS SIO option SISR</h3>
+            <div class="card-desc">Formation diplomante en cours : administration des systèmes et réseaux, cybersécurité, support.</div>
+          </article>
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">🔐</div>
+            <h3 class="card-title">TryHackMe – Parcours Offensif</h3>
+            <div class="card-desc">Complétion de rooms dédiées à l'intrusion, escalade de privilèges et forensic.</div>
+          </article>
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">☁️</div>
+            <h3 class="card-title">Sensibilisation Cloud</h3>
+            <div class="card-desc">Notions fondamentales sur les modèles IaaS, PaaS, SaaS et initiation à <strong>AWS / Azure</strong>.</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Fenêtre 4 : Savoir-être (Soft Skills) -->
+    <section class="window" aria-labelledby="soft-heading">
+      <div class="window-header">
+        <div class="window-title">softskills.yaml</div>
+        <div class="window-controls"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+      </div>
+      <div class="window-content">
+        <h2 id="soft-heading">Aptitudes transversales</h2>
+        <p>Qualités humaines et organisationnelles développées lors de mes expériences professionnelles et projets.</p>
+        <div class="grid">
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">🗣️</div>
+            <h3 class="card-title">Communication</h3>
+            <div class="card-desc">Aisance relationnelle, vulgarisation technique auprès d'utilisateurs non-initiés et travail en équipe.</div>
+          </article>
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">🧩</div>
+            <h3 class="card-title">Résolution de problèmes</h3>
+            <div class="card-desc">Approche méthodique du diagnostic, esprit d'analyse et persévérance jusqu'à la résolution.</div>
+          </article>
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">⏳</div>
+            <h3 class="card-title">Gestion du temps</h3>
+            <div class="card-desc">Priorisation des tâches, respect des délais et organisation en environnement multitâche.</div>
+          </article>
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">🌱</div>
+            <h3 class="card-title">Adaptabilité & Veille</h3>
+            <div class="card-desc">Apprentissage continu, curiosité technologique et adaptation rapide aux nouveaux outils.</div>
+          </article>
         </div>
       </div>
     </section>
   </main>
 
-  <footer class="footer">
+  <footer class="footer" role="contentinfo">
     <div class="footer-grid">
-      <div class="footer-section"><h3>Navigation</h3><ul><li><a href="index.html">Accueil</a></li><li><a href="projets.html">Projets</a></li><li><a href="veille.html">Veille</a></li><li><a href="synthese.html">Synthèse</a></li></ul></div>
-      <div class="footer-section"><h3>Contact</h3><ul><li><a href="contact.html">📧 Me contacter</a></li><li><a href="https://www.linkedin.com/in/philippe-martins-louro-31a974345/" target="_blank">💼 LinkedIn</a></li><li><a href="https://github.com/portfolioIpssi" target="_blank">🐙 GitHub</a></li></ul></div>
-      <div class="footer-section"><h3>Documents</h3><ul><li><a href="cv.pdf" download>📄 CV</a></li><li><a href="8-1 - BTS SIO - 2025 - Tableau de synthese.pdf" download>📊 Synthèse BTS</a></li></ul></div>
+      <div class="footer-section">
+        <h3>Navigation</h3>
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="projets.html">Projets</a></li>
+          <li><a href="veille.html">Veille</a></li>
+          <li><a href="synthese.html">Synthèse</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Contact</h3>
+        <ul>
+          <li><a href="contact.html">📧 Me contacter</a></li>
+          <li><a href="https://www.linkedin.com/in/philippe-martins-louro-31a974345/" target="_blank" rel="noopener">💼 LinkedIn</a></li>
+          <li><a href="https://github.com/portfolioIpssi" target="_blank" rel="noopener">🐙 GitHub</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Documents</h3>
+        <ul>
+          <li><a href="cv.pdf" download>📄 CV</a></li>
+          <li><a href="8-1 - BTS SIO - 2025 - Tableau de synthese.pdf" download>📊 Synthèse BTS</a></li>
+        </ul>
+      </div>
     </div>
-    <div class="footer-bottom"><p>&copy; 2026 Philippe Martins Louro — Tous droits réservés</p></div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Philippe Martins Louro — Tous droits réservés</p>
+    </div>
   </footer>
 
-  <button class="back-to-top" id="back-to-top" onclick="backToTop()">⬆️</button>
+  <button class="back-to-top" id="back-to-top" onclick="backToTop()" aria-label="Retour en haut de la page">⬆️</button>
 
   <script>
-    function toggleMenu() { document.getElementById('hamburger').classList.toggle('active'); document.getElementById('nav-menu').classList.toggle('active'); }
-    window.addEventListener('scroll', () => { document.getElementById('progress-bar').style.width = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100 + '%'; document.getElementById('back-to-top').classList.toggle('show', window.scrollY > 400); });
-    function backToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
-    function toggleTheme() {
-      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-      document.documentElement.setAttribute('data-theme', theme); localStorage.setItem('theme', theme);
-      document.querySelector('.theme-toggle').textContent = theme === 'light' ? '🌙' : '☀️';
+    /* Amélioration : gestion correcte de l'état du menu hamburger (aria-expanded) */
+    function toggleMenu() {
+      const hamburger = document.getElementById('hamburger');
+      const navMenu = document.getElementById('nav-menu');
+      const isActive = navMenu.classList.toggle('active');
+      hamburger.classList.toggle('active');
+      hamburger.setAttribute('aria-expanded', isActive);
     }
+
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progressBar = document.getElementById('progress-bar');
+      if (scrollHeight > 0) {
+        const progress = (scrollTop / scrollHeight) * 100;
+        progressBar.style.width = progress + '%';
+        progressBar.setAttribute('aria-valuenow', Math.round(progress));
+      }
+      document.getElementById('back-to-top').classList.toggle('show', scrollTop > 400);
+    });
+
+    function backToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function toggleTheme() {
+      const currentTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', currentTheme);
+      localStorage.setItem('theme', currentTheme);
+      document.querySelector('.theme-toggle').textContent = currentTheme === 'light' ? '🌙' : '☀️';
+    }
+
+    /* Appliquer le thème sauvegardé au chargement */
     const savedTheme = localStorage.getItem('theme') || 'light';
     document.documentElement.setAttribute('data-theme', savedTheme);
     document.querySelector('.theme-toggle').textContent = savedTheme === 'light' ? '🌙' : '☀️';
+
+    /* Fermer le menu si clic en dehors (amélioration UX) */
+    document.addEventListener('click', function(event) {
+      const navMenu = document.getElementById('nav-menu');
+      const hamburger = document.getElementById('hamburger');
+      if (!hamburger.contains(event.target) && !navMenu.contains(event.target)) {
+        navMenu.classList.remove('active');
+        hamburger.classList.remove('active');
+        hamburger.setAttribute('aria-expanded', 'false');
+      }
+    });
   </script>
 </body>
-</html>
 </html>
