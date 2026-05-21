@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Figtree:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
-    /* CSS Universel (conservé à l'identique) */
+    /* CSS Universel (inchangé) */
     :root { --bg: #ffffff; --bg2: #f7f9fc; --bg3: #eef2f8; --border: #dde3ed; --border-dk: #c4cfe0; --blue: #2563eb; --blue-lt: #eff4ff; --blue-mid: #bfcfff; --sky: #0ea5e9; --green: #059669; --amber: #d97706; --red: #dc2626; --ink: #0d1526; --text: #1e293b; --text-muted: #64748b; --font-head: 'Syne', sans-serif; --font-body: 'Figtree', sans-serif; --font-mono: 'DM Mono', monospace; --radius: 12px; --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05); --shadow-md: 0 10px 15px -3px rgb(0 0 0 / 0.1); }
     [data-theme="dark"] { --bg: #0b0f19; --bg2: #111827; --bg3: #1f2937; --border: #374151; --border-dk: #4b5563; --blue: #3b82f6; --blue-lt: #1e293b; --ink: #f9fafb; --text: #e5e7eb; --text-muted: #9ca3af; }
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -77,11 +77,12 @@
 
     /* Grid & Cards */
     .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin: 1.5rem 0; }
-    .card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; transition: 0.2s; }
+    .card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; transition: 0.2s; display: flex; flex-direction: column; }
     .card:hover { border-color: var(--blue-mid); transform: translateY(-3px); box-shadow: var(--shadow); }
     .card-icon { font-size: 2rem; margin-bottom: 1rem; }
     .card-title { font-family: var(--font-head); font-size: 1.1rem; font-weight: 700; color: var(--ink); margin-bottom: 0.5rem; }
-    .card-desc { color: var(--text-muted); font-size: 0.9rem; }
+    .card-desc { color: var(--text-muted); font-size: 0.9rem; flex: 1; }
+    .card .btn-outline { margin-top: 1rem; align-self: flex-start; } /* alignement du bouton */
 
     /* Alert Flow & Timeline */
     .alert-flow { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin: 2rem 0; padding: 1.5rem; background: var(--bg2); border-radius: var(--radius); border: 1px solid var(--border); justify-content: center;}
@@ -110,6 +111,10 @@
 
     .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.6rem 1.2rem; border-radius: 8px; font-weight: 600; text-decoration: none; transition: 0.2s; border: none; font-size: 0.9rem; font-family: var(--font-body); background: var(--green); color: white;}
     .btn:hover { opacity: 0.9; transform: translateY(-2px); }
+    
+    /* style du bouton outline (existant) */
+    .btn-outline { display: inline-block; background: transparent; border: 1.5px solid var(--border-dk); color: var(--text); padding: 0.6rem 1.2rem; border-radius: 8px; text-decoration: none; font-weight: 600; transition: 0.2s; font-size: 0.9rem; }
+    .btn-outline:hover { border-color: var(--blue); color: var(--blue); background: var(--blue-lt); }
 
     /* Footer */
     .footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 4rem 2rem 2rem; margin-top: 4rem; }
@@ -136,7 +141,7 @@
   </style>
 </head>
 <body>
-  <div id="progress-bar"></div>
+  <div id="progress-bar" role="progressbar" aria-label="Barre de progression"></div>
   <header>
     <nav aria-label="Navigation principale">
       <a href="index.html" class="nav-logo">Philippe M. Louro</a>
@@ -177,28 +182,35 @@
           <div class="stat-box"><div class="stat-value">0,3s</div><div class="stat-label">Latence moyenne d'alerte</div></div>
         </div>
 
-        <!-- Dernières actualités (flux) -->
+        <!-- Dernières actualités (flux) avec LIENS CLIQUABLES -->
         <h3>📰 Dernières actualités</h3>
         <div class="grid">
           <article class="card">
             <div class="card-icon" aria-hidden="true">🚨</div>
             <h3 class="card-title">Paris : 500 nouvelles caméras avec analyse comportementale</h3>
             <p class="card-desc">La Préfecture de Police a annoncé l'installation d'ici fin 2026 de caméras capables de détecter automatiquement les mouvements de foule suspects et les bagarres. Le logiciel <strong>NASLE</strong> est au cœur du dispositif.</p>
+            <a href="https://www.institutmontaigne.org/municipales-2026/paris/installer-500-cameras-de-videosurveillance/" target="_blank" rel="noopener" class="btn-outline">📎 Voir l'article</a>
           </article>
+
           <article class="card">
             <div class="card-icon" aria-hidden="true">🔍</div>
             <h3 class="card-title">Londres : reconnaissance faciale en temps réel dans le métro</h3>
             <p class="card-desc">La police britannique teste un système croisant les flux vidéo avec le fichier des personnes recherchées. Plus de 15 interpellations réussies en phase pilote.</p>
+            <a href="https://www.franceinfo.fr/sciences/high-tech/reconnaissance-faciale-les-controles-de-pointe-de-la-police-de-londres-capitale-la-plus-surveillee-d-europe_7740019.html" target="_blank" rel="noopener" class="btn-outline">📎 Voir l'article</a>
           </article>
+
           <article class="card">
             <div class="card-icon" aria-hidden="true">🧪</div>
             <h3 class="card-title">Allemagne : IA pour prévenir les agressions sur la voie publique</h3>
             <p class="card-desc">Berlin expérimente un algorithme détectant les postures d'agression avant même le contact physique. Taux de fausses alertes inférieur à 2 %.</p>
+            <a href="https://www.rbb24.de/panorama/beitrag/2026/03/videoueberwachung-ki-auswertung-berlin-test.html" target="_blank" rel="noopener" class="btn-outline">📎 Voir l'article</a>
           </article>
+
           <article class="card">
             <div class="card-icon" aria-hidden="true">⚖️</div>
             <h3 class="card-title">La CNIL émet de nouvelles recommandations</h3>
             <p class="card-desc">Encadrement strict de l'analyse automatisée : conservation limitée, transparence algorithmique et droit de contestation pour les citoyens.</p>
+            <a href="https://cnil.fr/fr/cameras-augmentees-espaces-publics" target="_blank" rel="noopener" class="btn-outline">📎 Voir l'article</a>
           </article>
         </div>
 
@@ -343,7 +355,6 @@
       document.getElementById('tab-' + tabId).classList.add('active');
     }
 
-    // Animation des barres de performance au scroll
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(e => {
         if (e.isIntersecting) {
@@ -369,7 +380,6 @@
     document.documentElement.setAttribute('data-theme', savedTheme);
     document.querySelector('.theme-toggle').textContent = savedTheme === 'light' ? '🌙' : '☀️';
 
-    // Fermer le menu mobile si clic en dehors
     document.addEventListener('click', function(event) {
       const navMenu = document.getElementById('nav-menu');
       const hamburger = document.getElementById('hamburger');
