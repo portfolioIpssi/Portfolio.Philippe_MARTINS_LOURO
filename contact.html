@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Compétences — Philippe Martins Louro</title>
+  <title>Contact — Philippe Martins Louro</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Figtree:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -34,11 +34,11 @@
     .window-controls .dot:nth-child(3) { background-color: #27c93f; }
     .window-content { padding: 2.5rem; }
     .window-content h2 { font-family: var(--font-head); font-size: 2rem; color: var(--ink); margin-bottom: 1.5rem; }
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
-    .card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.75rem; }
-    .card-icon { font-size: 2rem; margin-bottom: 1rem; }
-    .card-title { font-family: var(--font-head); font-size: 1.25rem; font-weight: 700; color: var(--ink); margin-bottom: 0.5rem; }
-    .card-desc { color: var(--text-muted); font-size: 0.95rem; }
+    form { display: flex; flex-direction: column; gap: 1rem; max-width: 500px; margin-top: 1.5rem; }
+    input, textarea { width: 100%; padding: 0.75rem; border: 1px solid var(--border); background: var(--bg2); color: var(--text); font-family: var(--font-body); border-radius: var(--radius); outline: none; }
+    input:focus, textarea:focus { border-color: var(--blue); }
+    .btn { display: inline-flex; align-items: center; justify-content: center; padding: 0.75rem 1.5rem; border-radius: var(--radius); font-weight: 600; text-decoration: none; transition: 0.2s; cursor: pointer; font-family: var(--font-body); font-size: 1rem; border: none; }
+    .btn-primary { background-color: var(--blue); color: white; }
     footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 3rem 2rem; margin-top: 4rem; }
     .footer-bottom { text-align: center; color: var(--text-muted); font-size: 0.9rem; }
   </style>
@@ -53,10 +53,10 @@
           <li><a href="index.html">Accueil</a></li>
           <li><a href="projets.html">Projets</a></li>
           <li><a href="experience.html">Expérience</a></li>
-          <li><a href="competences.html" class="active">Compétences</a></li>
+          <li><a href="competences.html">Compétences</a></li>
           <li><a href="veille.html">Veille</a></li>
           <li><a href="synthese.html">Synthèse</a></li>
-          <li><a href="contact.html">Contact</a></li>
+          <li><a href="contact.html" class="active">Contact</a></li>
         </ul>
         <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
         <button class="hamburger" onclick="toggleMenu()">
@@ -69,31 +69,19 @@
   <main class="main-container">
     <section class="window">
       <div class="window-header">
-        <div class="window-title">skills_matrix.json</div>
+        <div class="window-title">send_message.sh</div>
         <div class="window-controls"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
       </div>
       <div class="window-content">
-        <h2>Compétences Techniques</h2>
+        <h2>Formulaire de Contact</h2>
+        <p>Une question, une opportunité ou besoin d'échanger sur un projet d'infrastructure informatique ? Laissez un message via le formulaire ci-dessous.</p>
         
-        <div class="grid">
-          <div class="card">
-            <div class="card-icon">🐧</div>
-            <div class="card-title">Systèmes</div>
-            <div class="card-desc">Administration d'environnements hétérogènes. Serveurs Windows (Active Directory, DNS, DHCP) et systèmes Linux (Debian, Arch Linux). Scripting système de base en Bash et PowerShell.</div>
-          </div>
-
-          <div class="card">
-            <div class="card-icon">🌐</div>
-            <div class="card-title">Réseaux & Sécurité</div>
-            <div class="card-desc">Configuration d'équipements actifs Cisco (VLANs, routage). Déploiement et paramétrage de pare-feux logiciels pfSense. Sensibilisation aux bonnes pratiques de sécurité et initiation aux outils de test de pénétration.</div>
-          </div>
-
-          <div class="card">
-            <div class="card-icon">📦</div>
-            <div class="card-title">Solutions & Outils</div>
-            <div class="card-desc">Virtualisation de serveurs avec l'hyperviseur Proxmox VE. Maîtrise opérationnelle de la gestion de parc et des demandes d'assistance avec l'outil de helpdesk GLPI. Versioning de code via Git.</div>
-          </div>
-        </div>
+        <form onsubmit="event.preventDefault(); alert('Message simulé avec succès !');">
+          <input type="text" placeholder="Votre nom" required />
+          <input type="email" placeholder="Votre adresse email" required />
+          <textarea placeholder="Votre message" rows="5" required></textarea>
+          <button type="submit" class="btn btn-primary" style="align-self: flex-start;">Envoyer</button>
+        </form>
       </div>
     </section>
   </main>
@@ -112,5 +100,4 @@
     document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') || 'light');
   </script>
 </body>
-</html>
 </html>
