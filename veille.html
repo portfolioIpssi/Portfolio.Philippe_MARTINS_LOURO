@@ -8,40 +8,130 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Figtree:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
-    /* Style CSS global identique */
     :root { --bg: #ffffff; --bg2: #f7f9fc; --bg3: #eef2f8; --border: #dde3ed; --border-dk: #c4cfe0; --blue: #2563eb; --blue-lt: #eff4ff; --blue-mid: #bfcfff; --sky: #0ea5e9; --green: #059669; --amber: #d97706; --red: #dc2626; --ink: #0d1526; --text: #1e293b; --text-muted: #64748b; --font-head: 'Syne', sans-serif; --font-body: 'Figtree', sans-serif; --font-mono: 'DM Mono', monospace; --radius: 12px; --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05); --shadow-md: 0 10px 15px -3px rgb(0 0 0 / 0.1); }
     [data-theme="dark"] { --bg: #0b0f19; --bg2: #111827; --bg3: #1f2937; --border: #374151; --border-dk: #4b5563; --blue: #3b82f6; --blue-lt: #1e293b; --ink: #f9fafb; --text: #e5e7eb; --text-muted: #9ca3af; }
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { background-color: var(--bg); color: var(--text); font-family: var(--font-body); line-height: 1.6; overflow-x: hidden; transition: background-color 0.3s, color 0.3s; }
+    body { background-color: var(--bg); color: var(--text); font-family: var(--font-body); line-height: 1.6; overflow-x: hidden; transition: 0.3s; }
     #progress-bar { position: fixed; top: 0; left: 0; height: 4px; background: linear-gradient(90deg, var(--blue), var(--sky)); z-index: 1000; width: 0%; }
-    header { position: sticky; top: 0; background: var(--bg); border-bottom: 1px solid var(--border); z-index: 900; }
+    
+    header { position: sticky; top: 0; background: var(--bg); border-bottom: 1px solid var(--border); z-index: 900; transition: 0.3s; }
     nav { max-width: 1200px; margin: 0 auto; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; position: relative; }
     .nav-logo { font-family: var(--font-head); font-weight: 700; font-size: 1.25rem; color: var(--ink); text-decoration: none; }
-    #nav-menu { display: flex; gap: 1rem; list-style: none; align-items: center; }
-    #nav-menu a { color: var(--text-muted); text-decoration: none; font-weight: 500; font-size: 0.95rem; transition: 0.2s; padding: 0.5rem 0.75rem; border-radius: 6px; }
+    .nav-right { display: flex; align-items: center; gap: 0.5rem; }
+    #nav-menu { display: flex; gap: 0.5rem; list-style: none; align-items: center; }
+    #nav-menu a { color: var(--text-muted); text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: 0.2s; padding: 0.5rem 0.8rem; border-radius: 6px; }
     #nav-menu a:hover, #nav-menu a.active { color: var(--blue); background-color: var(--blue-lt); }
-    .theme-toggle { background: none; border: none; font-size: 1.2rem; cursor: pointer; padding: 0.5rem; color: var(--text); }
+    .theme-toggle { background: none; border: 1px solid var(--border); border-radius: 8px; font-size: 1.1rem; cursor: pointer; padding: 0.4rem 0.6rem; color: var(--text); transition: 0.2s; margin-left: 1rem;}
     .hamburger { display: none; flex-direction: column; gap: 4px; background: none; border: none; cursor: pointer; padding: 0.5rem; }
-    .hamburger span { display: block; width: 20px; height: 2px; background-color: var(--text); transition: 0.3s; }
-    .main-container { max-width: 1200px; margin: 2rem auto; padding: 0 2rem; min-height: calc(100vh - 250px); }
-    .window { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow-md); margin-bottom: 3rem; overflow: hidden; }
+    .hamburger span { display: block; width: 22px; height: 2px; background-color: var(--text); transition: 0.3s; }
+    
+    .main-container { max-width: 1100px; margin: 3rem auto; padding: 0 1.5rem; min-height: calc(100vh - 250px); display: flex; flex-direction: column; gap: 2.5rem; }
+    .window { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow-md); overflow: hidden; transition: 0.3s; }
     .window-header { background: var(--bg2); border-bottom: 1px solid var(--border); padding: 0.75rem 1.25rem; display: flex; align-items: center; justify-content: space-between; }
-    .window-title { font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-muted); }
+    .window-title { font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-muted); font-weight: 500; }
     .window-controls { display: flex; gap: 6px; }
     .window-controls .dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; }
     .window-controls .dot:nth-child(1) { background-color: #ff5f56; }
     .window-controls .dot:nth-child(2) { background-color: #ffbd2e; }
     .window-controls .dot:nth-child(3) { background-color: #27c93f; }
     .window-content { padding: 2.5rem; }
-    .window-content h2 { font-family: var(--font-head); font-size: 2rem; color: var(--ink); margin-bottom: 1.5rem; }
-    .news-card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.25rem; margin-bottom: 1rem; }
-    .news-meta { display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 0.5rem; }
-    .news-tag { font-weight: 700; text-transform: uppercase; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem; }
-    .news-tag.cyber { background-color: #fee2e2; color: var(--red); }
-    .news-tag.infra { background-color: #dbeafe; color: var(--blue); }
-    .news-title { font-family: var(--font-head); font-weight: 700; font-size: 1.1rem; margin-bottom: 0.5rem; color: var(--ink); }
-    footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 3rem 2rem; margin-top: 4rem; }
-    .footer-bottom { text-align: center; color: var(--text-muted); font-size: 0.9rem; }
+    h2 { font-family: var(--font-head); font-size: 1.8rem; color: var(--ink); margin-bottom: 1.2rem; }
+    h3 { font-family: var(--font-head); font-size: 1.3rem; color: var(--ink); margin: 2rem 0 1rem; }
+    p { margin-bottom: 1rem; color: var(--text); }
+    ul { margin-left: 1.5rem; margin-bottom: 1rem; }
+    li { margin-bottom: 0.5rem; }
+    strong { color: var(--ink); }
+
+    /* Stats Band */
+    .stats-band { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin: 2rem 0; }
+    .stat-box { background: var(--blue); border-radius: var(--radius); padding: 1.5rem; text-align: center; color: white; transition: 0.2s; }
+    .stat-box:nth-child(2) { background: #ec4899; }
+    .stat-box:nth-child(3) { background: #06b6d4; }
+    .stat-box:nth-child(4) { background: #10b981; }
+    .stat-box:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+    .stat-value { font-family: var(--font-head); font-size: 1.8rem; font-weight: 800; margin-bottom: 0.3rem; }
+    .stat-label { font-size: 0.85rem; opacity: 0.9; }
+
+    /* Tabs */
+    .module-tabs { display: flex; gap: 0.5rem; margin: 1.5rem 0 1rem; flex-wrap: wrap; }
+    .tab-btn { background: var(--bg2); border: 1px solid var(--border); padding: 0.6rem 1.2rem; font-family: var(--font-body); font-weight: 600; cursor: pointer; color: var(--text-muted); border-radius: 50px; transition: 0.2s; }
+    .tab-btn:hover { border-color: var(--blue); color: var(--blue); }
+    .tab-btn.active { background: var(--blue); color: white; border-color: var(--blue); }
+    .tab-panel { display: none; animation: fadeIn 0.3s; }
+    .tab-panel.active { display: block; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* Tables & Badges */
+    .func-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9rem; }
+    .func-table th, .func-table td { padding: 0.8rem; border-bottom: 1px solid var(--border); text-align: left; }
+    .func-table th { background: var(--bg2); font-family: var(--font-head); color: var(--ink); font-weight: 700; }
+    .badge-v { padding: 2px 8px; border-radius: 20px; font-size: 0.75rem; font-family: var(--font-mono); font-weight: 600; display: inline-block; }
+    .badge-v10 { background: var(--blue-lt); color: var(--blue); }
+    .badge-v11 { background: #fdf2f8; color: #db2777; border: 1px solid #fbcfe8;}
+    .badge-ok { background: #ecfdf5; color: var(--green); padding: 2px 8px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; }
+    .badge-fix { background: #fffbeb; color: var(--amber); padding: 2px 8px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; }
+    [data-theme="dark"] .badge-v11 { background: #831843; color: #fbcfe8; border: none;}
+    [data-theme="dark"] .badge-ok { background: #064e3b; color: #6ee7b7; }
+    [data-theme="dark"] .badge-fix { background: #78350f; color: #fcd34d; }
+
+    /* Grid & Cards */
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin: 1.5rem 0; }
+    .card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; transition: 0.2s; }
+    .card:hover { border-color: var(--blue-mid); transform: translateY(-3px); box-shadow: var(--shadow); }
+    .card-icon { font-size: 2rem; margin-bottom: 1rem; }
+    .card-title { font-family: var(--font-head); font-size: 1.1rem; font-weight: 700; color: var(--ink); margin-bottom: 0.5rem; }
+    .card-desc { color: var(--text-muted); font-size: 0.9rem; }
+
+    /* Alert Flow & Timeline */
+    .alert-flow { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin: 2rem 0; padding: 1.5rem; background: var(--bg2); border-radius: var(--radius); border: 1px solid var(--border); justify-content: center;}
+    .flow-node { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; min-width: 80px; text-align: center; }
+    .flow-node-icon { width: 50px; height: 50px; background: var(--bg); border: 1px solid var(--border); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; box-shadow: var(--shadow-sm); }
+    .flow-node-label { font-size: 0.7rem; color: var(--text-muted); font-weight: 600; }
+    .flow-arrow { color: var(--border-dk); font-size: 1.2rem; margin-top: -20px; }
+
+    .timeline { position: relative; padding-left: 2rem; border-left: 2px solid var(--border); display: flex; flex-direction: column; gap: 2.5rem; margin-top: 2rem; }
+    .timeline-item { position: relative; }
+    .timeline-item::before { content: ''; position: absolute; left: calc(-2rem - 6px); top: 6px; width: 10px; height: 10px; border-radius: 50%; background-color: var(--blue); border: 2px solid var(--bg); }
+    .timeline-title { font-family: var(--font-head); font-size: 1.1rem; font-weight: 700; color: var(--ink); margin-bottom: 0.5rem;}
+    .timeline-meta { display: inline-block; background-color: var(--blue-lt); color: var(--blue); padding: 4px 10px; border-radius: 6px; font-weight: 600; font-size: 0.8rem; margin-top: 0.5rem;}
+
+    /* Perfs */
+    .perf-item { margin: 1.2rem 0; }
+    .perf-header { display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-size: 0.9rem; font-weight: 600; }
+    .perf-value { color: var(--blue); font-family: var(--font-mono); }
+    .perf-track { height: 8px; background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+    .perf-fill { height: 100%; background: linear-gradient(90deg, var(--blue), var(--sky)); transition: width 1s ease-out; }
+
+    /* Innovation */
+    .innovation-hero { background: linear-gradient(135deg, var(--blue-lt), var(--bg2)); border: 1px solid var(--blue-mid); border-radius: var(--radius); padding: 2rem; margin: 2rem 0; }
+    .inno-label { display: inline-block; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; background: var(--blue); color: white; padding: 4px 10px; border-radius: 20px; margin-bottom: 1rem; }
+    .inno-title { font-family: var(--font-head); font-size: 1.5rem; color: var(--ink); margin-bottom: 1rem; font-weight: 800; }
+
+    .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.6rem 1.2rem; border-radius: 8px; font-weight: 600; text-decoration: none; transition: 0.2s; border: none; font-size: 0.9rem; font-family: var(--font-body); background: var(--green); color: white;}
+    .btn:hover { opacity: 0.9; transform: translateY(-2px); }
+
+    /* Footer */
+    .footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 4rem 2rem 2rem; margin-top: 4rem; }
+    .footer-grid { max-width: 1100px; margin: 0 auto 3rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; }
+    .footer-section h3 { font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; margin: 0 0 1rem 0; }
+    .footer-section ul { list-style: none; margin: 0; padding: 0; }
+    .footer-section li { margin-bottom: 0.5rem; }
+    .footer-section a { color: var(--text); text-decoration: none; font-size: 0.95rem; transition: 0.2s; }
+    .footer-section a:hover { color: var(--blue); }
+    .footer-bottom { text-align: center; color: var(--text-muted); font-size: 0.9rem; border-top: 1px solid var(--border); padding-top: 2rem; max-width: 1100px; margin: 0 auto; }
+    .back-to-top { position: fixed; bottom: 2rem; right: 2rem; width: 45px; height: 45px; background: var(--bg); border: 1px solid var(--border); border-radius: 50%; font-size: 1.2rem; cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: 0.3s; z-index: 100; box-shadow: var(--shadow); color: var(--text); }
+    .back-to-top.show { opacity: 1; visibility: visible; }
+    
+    @media (max-width: 768px) {
+      .hamburger { display: flex; }
+      #nav-menu { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--bg); border-bottom: 1px solid var(--border); flex-direction: column; padding: 1rem; box-shadow: var(--shadow-md); align-items: flex-start; }
+      #nav-menu.active { display: flex; }
+      #nav-menu a { width: 100%; }
+      .theme-toggle { margin-left: auto; }
+      .window-content { padding: 1.5rem; }
+      .alert-flow { flex-direction: column; }
+      .flow-arrow { transform: rotate(90deg); margin: 0; }
+    }
   </style>
 </head>
 <body>
@@ -60,7 +150,7 @@
           <li><a href="contact.html">Contact</a></li>
         </ul>
         <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
-        <button class="hamburger" onclick="toggleMenu()">
+        <button class="hamburger" id="hamburger" onclick="toggleMenu()">
           <span></span><span></span><span></span>
         </button>
       </div>
@@ -70,46 +160,144 @@
   <main class="main-container">
     <section class="window">
       <div class="window-header">
-        <div class="window-title">tech_radar.md</div>
+        <div class="window-title">veille_techno_nasle.md</div>
         <div class="window-controls"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
       </div>
       <div class="window-content">
-        <h2>Veille Technologique</h2>
-        <p style="margin-bottom: 1.5rem;">Sujet d'étude : <strong>La sécurisation des architectures systèmes et réseaux face aux menaces persistantes et l'évolution des outils de détection open source (SIEM, Pare-feu applicatifs).</strong></p>
-        
-        <div class="news-card">
-          <div class="news-meta">
-            <span class="news-tag cyber">Sécurité</span>
-            <span class="news-date">Flux Actuel</span>
-          </div>
-          <div class="news-title">Outils de détection et SIEM Open Source</div>
-          <p>Suivi et documentation sur les solutions de surveillance de sécurité à l'image de Wazuh. Analyse de logs centralisés pour identifier les comportements anormaux au sein d'une infrastructure réseau.</p>
+        <h2>NASLE — IA pour Vidéoprotection</h2>
+        <p>Pour cette veille technologique, j'ai choisi d'étudier <strong>NASLE</strong>, un logiciel développé par la société française <strong>Nepsis Engineering</strong>. Ce sujet m'a particulièrement intéressé car il est directement lié à mon stage au sein d'un service utilisant des outils de supervision urbaine.</p>
+        <p>NASLE signifie <em>Navigateur d'Analyse et de Supervision en Ligne d'Événements</em>. Le principe : c'est l'IA qui analyse en continu l'intégralité du parc caméras, <strong>24h/24 et 7j/7</strong>, et n'alerte l'opérateur qu'en cas d'événement détecté. L'humain reste décisionnaire ; la machine filtre le bruit.</p>
+
+        <div class="stats-band">
+          <div class="stat-box"><div class="stat-value">&gt;90%</div><div class="stat-label">Taux de reconnaissance</div></div>
+          <div class="stat-box"><div class="stat-value">≤0,5</div><div class="stat-label">Faux positifs / caméra / jour</div></div>
+          <div class="stat-box"><div class="stat-value">~1s</div><div class="stat-label">Cycle d'analyse / 100 caméras</div></div>
+          <div class="stat-box"><div class="stat-value">86 000</div><div class="stat-label">Images analysées / caméra</div></div>
         </div>
 
-        <div class="news-card">
-          <div class="news-meta">
-            <span class="news-tag infra">Infrastructure</span>
-            <span class="news-date">Flux Actuel</span>
+        <h3>📦 Architecture en modules</h3>
+        <div class="module-tabs">
+          <button class="tab-btn active" onclick="switchTab('violence')">⚠️ Module Violence</button>
+          <button class="tab-btn" onclick="switchTab('smartcity')">🏙️ Module Smart City</button>
+        </div>
+
+        <div class="tab-panel active" id="tab-violence">
+          <div style="overflow-x: auto;">
+            <table class="func-table">
+              <thead><tr><th>Fonction</th><th>Version</th><th>Fréquence</th><th>Caméra</th></tr></thead>
+              <tbody>
+                <tr><td>Violence &amp; personnes à terre</td><td><span class="badge-v badge-v10">v1.0</span></td><td>1 sec par cycle</td><td><span class="badge-ok">Fixe + PTZ</span></td></tr>
+                <tr><td>Incendie et départs de feu</td><td><span class="badge-v badge-v10">v1.0</span></td><td>1 min</td><td><span class="badge-ok">Fixe + PTZ</span></td></tr>
+                <tr><td>Présence d'armes</td><td><span class="badge-v badge-v11">v1.1</span></td><td>1 cam / 5 sec</td><td><span class="badge-ok">Fixe + PTZ</span></td></tr>
+              </tbody>
+            </table>
           </div>
-          <div class="news-title">Méthodologie de Veille</div>
-          <p>Collecte automatisée d'informations via des flux RSS agrégés sur Feedly, suivi régulier des bulletins du CERT-FR, et veille active sur des communautés techniques spécialisées en administration système et cybersécurité.</p>
+        </div>
+
+        <div class="tab-panel" id="tab-smartcity">
+          <div style="overflow-x: auto;">
+            <table class="func-table">
+              <thead><tr><th>Fonction</th><th>Version</th><th>Comportement &amp; seuil</th></tr></thead>
+              <tbody>
+                <tr><td>Stationnement dangereux</td><td><span class="badge-v badge-v10">v1.0</span></td><td><span class="badge-fix">Fixes</span> — 3 min d'immobilisation</td></tr>
+                <tr><td>Dépôts sauvages V2</td><td><span class="badge-v badge-v11">v1.1</span></td><td><span class="badge-fix">Fixes</span> — Analyse autonome</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <h3>🎯 Cas d'usage concrets</h3>
+        <div class="grid">
+          <div class="card"><div class="card-icon">🚨</div><div class="card-title">Détection de violence</div><div class="card-desc">L'IA reconnaît les postures d'agression, chutes, altercations et alerte en moins d'une seconde.</div></div>
+          <div class="card"><div class="card-icon">🔥</div><div class="card-title">Incendies</div><div class="card-desc">Détection de fumée et flammes devançant les détecteurs thermiques.</div></div>
+          <div class="card"><div class="card-icon">🔫</div><div class="card-title">Armes (v1.1)</div><div class="card-desc">Inspection séquentielle pour identifier les armes visibles (guerre, poing, blanches).</div></div>
+          <div class="card"><div class="card-icon">🗑️</div><div class="card-title">Dépôts sauvages</div><div class="card-desc">Détection d'objets incongrus sans attendre l'arrêt d'un véhicule (V2).</div></div>
+        </div>
+
+        <h3>⚡ Méthodologie d'Alerte</h3>
+        <div class="alert-flow">
+          <div class="flow-node"><div class="flow-node-icon">📷</div><div class="flow-node-label">Flux vidéo</div></div><div class="flow-arrow">›</div>
+          <div class="flow-node"><div class="flow-node-icon">🧠</div><div class="flow-node-label">Analyse IA</div></div><div class="flow-arrow">›</div>
+          <div class="flow-node"><div class="flow-node-icon">📊</div><div class="flow-node-label">Confiance</div></div><div class="flow-arrow">›</div>
+          <div class="flow-node"><div class="flow-node-icon">🔔</div><div class="flow-node-label">Alerte</div></div><div class="flow-arrow">›</div>
+          <div class="flow-node"><div class="flow-node-icon">👁️</div><div class="flow-node-label">Opérateur</div></div>
+        </div>
+
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-title">1. Modèle de vision par ordinateur</div>
+            <p>Traitement par Deep Learning entraîné sur des données de terrain (agressions, chutes, feux).</p>
+            <span class="timeline-meta">🤖 IA entraînée sur le réel</span>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-title">2. Notification & Contextualisation</div>
+            <p>Signal rouge clignotant, localisation GPS et affichage de l'image selon le profil de l'opérateur.</p>
+            <span class="timeline-meta">🔴 Signal visuel + 🗺️ Localisation</span>
+          </div>
+        </div>
+
+        <h3>📈 Performances</h3>
+        <div class="perf-item">
+          <div class="perf-header"><span>Reconnaissance violence</span><span class="perf-value">&gt; 90 %</span></div>
+          <div class="perf-track"><div class="perf-fill" style="width:92%"></div></div>
+        </div>
+        <div class="perf-item">
+          <div class="perf-header"><span>Taux de faux positifs</span><span class="perf-value">≤ 10 PPM</span></div>
+          <div class="perf-track"><div class="perf-fill" style="width:97%"></div></div>
+        </div>
+
+        <div class="innovation-hero" style="margin-top: 3rem;">
+          <div class="inno-label">Bilan & Éthique</div>
+          <div class="inno-title">Apports et Limites</div>
+          <p>Avancée réelle pour réduire la fatigue des opérateurs. Cependant, la dépendance à la visibilité et les risques de biais algorithmiques imposent que NASLE reste un outil d'aide à la décision humaine, jamais une preuve légale absolue.</p>
+          <div style="margin-top: 1rem;">
+            <a href="veille technologique.pdf" download class="btn">📄 Télécharger la Veille Complète (PDF)</a>
+          </div>
         </div>
       </div>
     </section>
   </main>
 
-  <footer>
-    <div class="footer-bottom"><p>&copy; 2026 Philippe Martins Louro - Tous droits réservés</p></div>
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-section"><h3>Navigation</h3><ul><li><a href="index.html">Accueil</a></li><li><a href="projets.html">Projets</a></li><li><a href="veille.html">Veille</a></li><li><a href="synthese.html">Synthèse</a></li></ul></div>
+      <div class="footer-section"><h3>Contact</h3><ul><li><a href="contact.html">📧 Me contacter</a></li><li><a href="https://www.linkedin.com/in/philippe-martins-louro-31a974345/" target="_blank">💼 LinkedIn</a></li><li><a href="https://github.com/portfolioIpssi" target="_blank">🐙 GitHub</a></li></ul></div>
+      <div class="footer-section"><h3>Documents</h3><ul><li><a href="cv.pdf" download>📄 CV</a></li><li><a href="8-1 - BTS SIO - 2025 - Tableau de synthese.pdf" download>📊 Synthèse BTS</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><p>&copy; 2026 Philippe Martins Louro — Tous droits réservés</p></div>
   </footer>
 
+  <button class="back-to-top" id="back-to-top" onclick="backToTop()">⬆️</button>
+
   <script>
-    function toggleMenu() { document.getElementById('nav-menu').classList.toggle('active'); }
+    function toggleMenu() { document.getElementById('hamburger').classList.toggle('active'); document.getElementById('nav-menu').classList.toggle('active'); }
+    window.addEventListener('scroll', () => { document.getElementById('progress-bar').style.width = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100 + '%'; document.getElementById('back-to-top').classList.toggle('show', window.scrollY > 400); });
+    function backToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.tab-panel').forEach(panel => panel.classList.remove('active'));
+      event.target.classList.add('active');
+      document.getElementById('tab-' + tabId).classList.add('active');
+    }
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.querySelectorAll('.perf-fill').forEach(bar => {
+            const w = bar.style.width; bar.style.width = '0%'; setTimeout(() => { bar.style.width = w; }, 100);
+          });
+          observer.unobserve(e.target);
+        }
+      });
+    });
+    document.querySelectorAll('.perf-item').forEach(el => observer.observe(el));
     function toggleTheme() {
       const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-      document.documentElement.setAttribute('data-theme', theme);
-      localStorage.setItem('theme', theme);
+      document.documentElement.setAttribute('data-theme', theme); localStorage.setItem('theme', theme);
+      document.querySelector('.theme-toggle').textContent = theme === 'light' ? '🌙' : '☀️';
     }
-    document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') || 'light');
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    document.querySelector('.theme-toggle').textContent = savedTheme === 'light' ? '🌙' : '☀️';
   </script>
 </body>
 </html>
