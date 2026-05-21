@@ -8,119 +8,91 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Figtree:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --bg: #ffffff;
-      --bg2: #f7f9fc;
-      --bg3: #eef2f8;
-      --border: #dde3ed;
-      --border-dk: #c4cfe0;
-      --blue: #2563eb;
-      --blue-lt: #eff4ff;
-      --blue-mid: #bfcfff;
-      --sky: #0ea5e9;
-      --green: #059669;
-      --amber: #d97706;
-      --red: #dc2626;
-      --ink: #0d1526;
-      --text: #1e293b;
-      --text-muted: #64748b;
-      --font-head: 'Syne', sans-serif;
-      --font-body: 'Figtree', sans-serif;
-      --font-mono: 'DM Mono', monospace;
-      --radius: 12px;
-      --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05);
-      --shadow-md: 0 10px 15px -3px rgb(0 0 0 / 0.1);
-    }
-    
-    [data-theme="dark"] {
-      --bg: #0b0f19;
-      --bg2: #111827;
-      --bg3: #1f2937;
-      --border: #374151;
-      --border-dk: #4b5563;
-      --blue: #3b82f6;
-      --blue-lt: #1e293b;
-      --ink: #f9fafb;
-      --text: #e5e7eb;
-      --text-muted: #9ca3af;
-    }
-    
+    :root { --bg: #ffffff; --bg2: #f7f9fc; --bg3: #eef2f8; --border: #dde3ed; --border-dk: #c4cfe0; --blue: #2563eb; --blue-lt: #eff4ff; --blue-mid: #bfcfff; --sky: #0ea5e9; --green: #059669; --amber: #d97706; --red: #dc2626; --ink: #0d1526; --text: #1e293b; --text-muted: #64748b; --font-head: 'Syne', sans-serif; --font-body: 'Figtree', sans-serif; --font-mono: 'DM Mono', monospace; --radius: 12px; --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05); --shadow-md: 0 10px 15px -3px rgb(0 0 0 / 0.1); }
+    [data-theme="dark"] { --bg: #0b0f19; --bg2: #111827; --bg3: #1f2937; --border: #374151; --border-dk: #4b5563; --blue: #3b82f6; --blue-lt: #1e293b; --ink: #f9fafb; --text: #e5e7eb; --text-muted: #9ca3af; }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { background-color: var(--bg); color: var(--text); font-family: var(--font-body); line-height: 1.6; overflow-x: hidden; transition: background-color 0.3s, color 0.3s; }
     #progress-bar { position: fixed; top: 0; left: 0; height: 4px; background: linear-gradient(90deg, var(--blue), var(--sky)); z-index: 1000; width: 0%; }
-    header { position: sticky; top: 0; background: var(--bg); border-bottom: 1px solid var(--border); z-index: 900; }
+    
+    /* Navigation */
+    header { position: sticky; top: 0; background: var(--bg); border-bottom: 1px solid var(--border); z-index: 900; transition: background-color 0.3s, border-color 0.3s; }
     nav { max-width: 1200px; margin: 0 auto; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; position: relative; }
     .nav-logo { font-family: var(--font-head); font-weight: 700; font-size: 1.25rem; color: var(--ink); text-decoration: none; }
     .nav-right { display: flex; align-items: center; gap: 0.5rem; }
-    #nav-menu { display: flex; gap: 1rem; list-style: none; align-items: center; }
-    #nav-menu a { color: var(--text-muted); text-decoration: none; font-weight: 500; font-size: 0.95rem; transition: 0.2s; padding: 0.5rem 0.75rem; border-radius: 6px; }
+    #nav-menu { display: flex; gap: 0.5rem; list-style: none; align-items: center; }
+    #nav-menu a { color: var(--text-muted); text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: 0.2s; padding: 0.5rem 0.8rem; border-radius: 6px; }
     #nav-menu a:hover, #nav-menu a.active { color: var(--blue); background-color: var(--blue-lt); }
-    .theme-toggle { background: none; border: none; font-size: 1.2rem; cursor: pointer; padding: 0.5rem; color: var(--text); }
+    .theme-toggle { background: none; border: 1px solid var(--border); border-radius: 8px; font-size: 1.1rem; cursor: pointer; padding: 0.4rem 0.6rem; color: var(--text); transition: 0.2s; margin-left: 1rem;}
+    .theme-toggle:hover { border-color: var(--blue); color: var(--blue); }
     .hamburger { display: none; flex-direction: column; gap: 4px; background: none; border: none; cursor: pointer; padding: 0.5rem; }
-    .hamburger span { display: block; width: 20px; height: 2px; background-color: var(--text); transition: 0.3s; }
-    .main-container { max-width: 1200px; margin: 2rem auto; padding: 0 2rem; min-height: calc(100vh - 250px); }
-    .hero { padding: 4rem 0; text-align: center; }
-    .hero h1 { font-family: var(--font-head); font-size: 3.5rem; font-weight: 800; color: var(--ink); line-height: 1.1; margin-bottom: 1rem; }
-    .hero-subtitle { font-size: 1.5rem; color: var(--blue); font-weight: 600; margin-bottom: 1.5rem; }
-    .hero-description { max-width: 700px; margin: 0 auto 2rem; color: var(--text-muted); font-size: 1.1rem; }
-    .hero-cta { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-    .btn { display: inline-flex; align-items: center; justify-content: center; padding: 0.75rem 1.5rem; border-radius: var(--radius); font-weight: 600; text-decoration: none; transition: 0.2s; cursor: pointer; font-family: var(--font-body); font-size: 1rem; border: none; }
-    .btn-primary { background-color: var(--blue); color: white; }
-    .btn-primary:hover { background-color: #1d4ed8; }
-    .btn-outline { background: transparent; border: 2px solid var(--border); color: var(--text); }
-    .btn-outline:hover { background-color: var(--bg2); border-color: var(--text-muted); }
-    .window { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow-md); margin-bottom: 3rem; overflow: hidden; }
+    .hamburger span { display: block; width: 22px; height: 2px; background-color: var(--text); transition: 0.3s; }
+    
+    /* Global Layout & Windows */
+    .main-container { max-width: 1100px; margin: 3rem auto; padding: 0 1.5rem; min-height: calc(100vh - 250px); display: flex; flex-direction: column; gap: 2.5rem; }
+    .window { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow-md); overflow: hidden; transition: border-color 0.3s, background-color 0.3s; }
     .window-header { background: var(--bg2); border-bottom: 1px solid var(--border); padding: 0.75rem 1.25rem; display: flex; align-items: center; justify-content: space-between; }
-    .window-title { font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-muted); }
+    .window-title { font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-muted); font-weight: 500; }
     .window-controls { display: flex; gap: 6px; }
     .window-controls .dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; }
     .window-controls .dot:nth-child(1) { background-color: #ff5f56; }
     .window-controls .dot:nth-child(2) { background-color: #ffbd2e; }
     .window-controls .dot:nth-child(3) { background-color: #27c93f; }
     .window-content { padding: 2.5rem; }
-    .window-content h2 { font-family: var(--font-head); font-size: 2rem; color: var(--ink); margin-bottom: 1.5rem; }
-    .window-content h3 { font-family: var(--font-head); font-size: 1.4rem; color: var(--ink); margin-top: 2rem; margin-bottom: 1rem; }
-    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
-    .stat-box { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; text-align: center; }
-    .stat-number { font-family: var(--font-head); font-size: 2.5rem; font-weight: 800; color: var(--blue); }
-    .stat-label { font-size: 0.9rem; color: var(--text-muted); font-weight: 500; }
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
-    .card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.75rem; transition: transform 0.2s, box-shadow 0.2s; text-decoration: none; color: inherit; }
-    .card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
-    .card-icon { font-size: 2rem; margin-bottom: 1rem; }
-    .card-title { font-family: var(--font-head); font-size: 1.25rem; font-weight: 700; color: var(--ink); margin-bottom: 0.5rem; }
-    .card-desc { color: var(--text-muted); font-size: 0.95rem; }
-    .timeline { position: relative; padding-left: 2rem; border-left: 2px solid var(--border); display: flex; flex-direction: column; gap: 2.5rem; margin-top: 1.5rem; }
-    .timeline-item { position: relative; }
-    .timeline-item::before { content: ''; position: absolute; left: calc(-2rem - 6px); top: 6px; width: 10px; height: 10px; border-radius: 50%; background-color: var(--blue); border: 2px solid var(--bg); }
-    .timeline-title { font-family: var(--font-head); font-size: 1.25rem; font-weight: 700; color: var(--ink); }
-    .timeline-meta { display: flex; gap: 1rem; font-size: 0.85rem; color: var(--text-muted); margin: 0.25rem 0 0.75rem; }
-    .timeline-tag { background-color: var(--blue-lt); color: var(--blue); padding: 2px 8px; border-radius: 4px; font-weight: 600; }
-    .project-tabs { display: flex; gap: 0.5rem; margin-bottom: 2rem; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
-    .project-tab { background: none; border: none; padding: 0.5rem 1rem; font-family: var(--font-body); font-weight: 600; cursor: pointer; color: var(--text-muted); border-radius: var(--radius); transition: 0.2s; }
-    .project-tab.active { background: var(--blue); color: white; }
-    .project-content { display: none; }
-    .project-content.active { display: block; }
-    table { width: 100%; border-collapse: collapse; margin-top: 1.5rem; font-size: 0.95rem; }
-    th, td { border: 1px solid var(--border); padding: 0.75rem 1rem; text-align: left; }
-    th { background-color: var(--bg2); color: var(--ink); font-family: var(--font-head); font-weight: 700; }
-    tr:nth-child(even) { background-color: var(--bg2); }
-    .news-card { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.25rem; margin-bottom: 1rem; }
-    .news-meta { display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 0.5rem; }
-    .news-tag { font-weight: 700; text-transform: uppercase; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem; }
-    .news-tag.cyber { background-color: #fee2e2; color: var(--red); }
-    .news-tag.infra { background-color: #dbeafe; color: var(--blue); }
-    .news-title { font-family: var(--font-head); font-weight: 700; font-size: 1.1rem; margin-bottom: 0.5rem; color: var(--ink); }
-    footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 3rem 2rem; margin-top: 4rem; }
-    .footer-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 2rem; }
-    .footer-bottom { text-align: center; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border); color: var(--text-muted); font-size: 0.9rem; }
-    .back-to-top { position: fixed; bottom: 2rem; right: 2rem; background: var(--blue); color: white; border: none; width: 45px; height: 45px; border-radius: 50%; cursor: pointer; box-shadow: var(--shadow-md); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; opacity: 0; visibility: hidden; transition: 0.3s; z-index: 999; }
+    h2 { font-family: var(--font-head); font-size: 1.8rem; color: var(--ink); margin-bottom: 1.2rem; }
+    h3 { font-family: var(--font-head); font-size: 1.3rem; color: var(--ink); margin: 2rem 0 1rem; }
+    p { margin-bottom: 1rem; color: var(--text); }
+    ul { margin-left: 1.5rem; margin-bottom: 1rem; }
+    li { margin-bottom: 0.5rem; }
+    strong { color: var(--ink); font-weight: 700; }
+    
+    /* Components */
+    .hero { text-align: center; padding: 3rem 0; }
+    .hero h1 { font-family: var(--font-head); font-size: clamp(2.5rem, 5vw, 3.5rem); font-weight: 800; background: linear-gradient(135deg, var(--ink) 0%, var(--blue) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 1rem; }
+    .hero-subtitle { font-family: var(--font-head); font-size: 1.4rem; font-weight: 700; color: var(--ink); margin-bottom: 1rem; }
+    .hero-description { color: var(--text-muted); max-width: 600px; margin: 0 auto 2rem; font-size: 1.05rem; }
+    .hero-cta { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    
+    .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; border-radius: 10px; font-weight: 600; text-decoration: none; transition: 0.2s; cursor: pointer; border: none; font-size: 0.95rem; font-family: var(--font-body); }
+    .btn-primary { background-color: var(--blue); color: #fff; box-shadow: 0 4px 12px rgba(37,99,235,0.2); }
+    .btn-primary:hover { background-color: #1d4ed8; transform: translateY(-2px); }
+    .btn-outline { background: transparent; border: 1.5px solid var(--border-dk); color: var(--text); }
+    .btn-outline:hover { border-color: var(--blue); color: var(--blue); background: var(--blue-lt); }
+    .btn-secondary { background: var(--ink); color: var(--bg); }
+    .btn-small { padding: 0.4rem 1rem; font-size: 0.85rem; }
+    
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1rem; margin: 2rem 0; }
+    .stat-box { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem 1rem; text-align: center; transition: 0.2s; }
+    .stat-box:hover { border-color: var(--blue-mid); transform: translateY(-2px); box-shadow: var(--shadow); }
+    .stat-number { font-family: var(--font-head); font-size: 2.2rem; font-weight: 800; color: var(--blue); line-height: 1; margin-bottom: 0.5rem; }
+    .stat-label { font-size: 0.85rem; color: var(--text-muted); font-weight: 500; }
+    
+    .achievement-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+    .achievement { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem 1rem; text-align: center; }
+    .achievement-icon { font-size: 1.8rem; margin-bottom: 0.5rem; }
+    .achievement-value { font-family: var(--font-head); font-weight: 700; color: var(--ink); margin-bottom: 0.2rem; }
+    .achievement-label { font-size: 0.8rem; color: var(--text-muted); }
+
+    /* Footer */
+    .footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 4rem 2rem 2rem; margin-top: 4rem; }
+    .footer-grid { max-width: 1100px; margin: 0 auto 3rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; }
+    .footer-section h3 { font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; margin: 0 0 1rem 0; }
+    .footer-section ul { list-style: none; margin: 0; padding: 0; }
+    .footer-section li { margin-bottom: 0.5rem; }
+    .footer-section a { color: var(--text); text-decoration: none; font-size: 0.95rem; transition: 0.2s; }
+    .footer-section a:hover { color: var(--blue); }
+    .footer-bottom { text-align: center; color: var(--text-muted); font-size: 0.9rem; border-top: 1px solid var(--border); padding-top: 2rem; max-width: 1100px; margin: 0 auto; }
+    
+    .back-to-top { position: fixed; bottom: 2rem; right: 2rem; width: 45px; height: 45px; background: var(--bg); border: 1px solid var(--border); border-radius: 50%; font-size: 1.2rem; cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: 0.3s; z-index: 100; box-shadow: var(--shadow); color: var(--text); }
     .back-to-top.show { opacity: 1; visibility: visible; }
+    .back-to-top:hover { border-color: var(--blue); color: var(--blue); }
+
     @media (max-width: 768px) {
-      #nav-menu { display: none; position: absolute; top: 100%; left: 0; width: 100%; background: var(--bg); border-bottom: 1px solid var(--border); flex-direction: column; padding: 1rem; gap: 0.5rem; box-shadow: var(--shadow-md); }
-      #nav-menu.active { display: flex; }
       .hamburger { display: flex; }
-      .hero h1 { font-size: 2.5rem; }
+      #nav-menu { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--bg); border-bottom: 1px solid var(--border); flex-direction: column; padding: 1rem; box-shadow: var(--shadow-md); align-items: flex-start; }
+      #nav-menu.active { display: flex; }
+      #nav-menu a { width: 100%; }
+      .theme-toggle { margin-left: auto; }
+      .window-content { padding: 1.5rem; }
     }
   </style>
 </head>
@@ -139,8 +111,8 @@
           <li><a href="synthese.html">Synthèse</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
-        <button class="theme-toggle" onclick="toggleTheme()" aria-label="Changer le thème">🌙</button>
-        <button class="hamburger" onclick="toggleMenu()" aria-label="Menu principal">
+        <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+        <button class="hamburger" id="hamburger" onclick="toggleMenu()">
           <span></span><span></span><span></span>
         </button>
       </div>
@@ -149,53 +121,99 @@
 
   <main class="main-container">
     <section class="hero">
-      <h1>Bienvenue sur mon Portfolio ! 👋</h1>
-      <p class="hero-subtitle">Philippe Martins Louro</p>
-      <p class="hero-description">Étudiant en deuxième année de <strong>BTS SIO option SISR</strong>, spécialisé en administration des infrastructures, systèmes, réseaux et cybersécurité. Actuellement apprenti au sein de la DSI de la Mairie de Bagnolet.</p>
-      <div class="hero-cta">
-        <a href="projets.html" class="btn btn-primary">🚀 Découvrir mes projets</a>
-        <a href="contact.html" class="btn btn-outline">📧 Me contacter</a>
+      <div class="hero-content">
+        <h1>Bienvenue ! 👋</h1>
+        <p class="hero-subtitle">Je suis Philippe Martins Louro</p>
+        <p class="hero-description">Étudiant passionné en <strong>BTS SIO option SISR</strong>, spécialisé en administration système, réseaux informatiques et cybersécurité. Actuellement en alternance à la Mairie de Bagnolet.</p>
+        <div class="hero-cta">
+          <a href="projets.html" class="btn btn-primary">🚀 Voir mes projets</a>
+          <a href="contact.html" class="btn btn-outline">📧 Me contacter</a>
+          <a href="cv.pdf" download class="btn btn-secondary">📥 Télécharger CV</a>
+        </div>
       </div>
     </section>
 
     <section class="window">
       <div class="window-header">
-        <div class="window-title">about_me.sh</div>
-        <div class="window-controls"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+        <div class="window-title">📋 À Propos de Moi</div>
+        <div class="window-controls">
+          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+        </div>
       </div>
       <div class="window-content">
-        <h2>À propos de moi</h2>
-        <p>Passionné par l'informatique, les architectures système et la sécurité, j'ai développé une expertise technique solide au cours de ma formation à l'<strong>IPSSI Serris</strong> et de mes projets en entreprise.</p>
-        <p>Curieux de nature, j'administre mon propre laboratoire personnel (Homelab) et je m'investis activement dans la veille technologique autour de l'écosystème open source et Linux (notamment via des distributions avancées comme Arch Linux).</p>
-        
+        <h2>Qui suis-je ?</h2>
+        <p>Je m'appelle <strong>Philippe Martins Louro</strong>, j'ai <strong>19 ans</strong> et je suis actuellement en deuxième année de <strong>BTS SIO</strong>, option <strong>SISR</strong> à l'IPSSI Serris.</p>
+        <p>Sérieux, curieux et motivé, je me forme aux métiers de l'<strong>administration système et réseau</strong>. J'ai acquis des compétences solides en environnements <strong>Windows et Linux</strong>, virtualisation, et déploiement d'infrastructure.</p>
+
+        <h3>📊 Statistiques Clés</h3>
         <div class="stats-grid">
-          <div class="stat-box"><div class="stat-number">300+</div><div class="stat-label">Postes administrés</div></div>
-          <div class="stat-box"><div class="stat-number">5+</div><div class="stat-label">Projets d'infrastructure</div></div>
-          <div class="stat-box"><div class="stat-number">2 Ans</div><div class="stat-label">D'expérience alternance/stage</div></div>
+          <div class="stat-box"><div class="stat-number">300+</div><div class="stat-label">Postes gérés</div></div>
+          <div class="stat-box"><div class="stat-number">5+</div><div class="stat-label">Projets réalisés</div></div>
+          <div class="stat-box"><div class="stat-number">20+</div><div class="stat-label">Technologies</div></div>
+          <div class="stat-box"><div class="stat-number">2+</div><div class="stat-label">Ans d'expérience</div></div>
+        </div>
+
+        <h3>🎯 Mes Forces</h3>
+        <div class="achievement-grid">
+          <div class="achievement"><div class="achievement-icon">⚡</div><div class="achievement-value">Autonome</div><div class="achievement-label">Je prends des initiatives</div></div>
+          <div class="achievement"><div class="achievement-icon">🎯</div><div class="achievement-value">Rigoureux</div><div class="achievement-label">Attention aux détails</div></div>
+          <div class="achievement"><div class="achievement-icon">💡</div><div class="achievement-value">Créatif</div><div class="achievement-label">Trouve des solutions</div></div>
+          <div class="achievement"><div class="achievement-icon">👥</div><div class="achievement-value">Teamplayer</div><div class="achievement-label">Travaille bien en équipe</div></div>
+        </div>
+
+        <div style="margin-top:40px;display:flex;gap:15px;flex-wrap:wrap;">
+          <a href="projets.html" class="btn btn-primary">🚀 Voir les projets</a>
+          <a href="experience.html" class="btn btn-outline">💼 Mon expérience</a>
         </div>
       </div>
     </section>
   </main>
 
-  <footer>
-    <div class="footer-content">
-      <p>Philippe Martins Louro — Portfolio Professionnel</p>
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-section">
+        <h3>Navigation</h3>
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="projets.html">Projets</a></li>
+          <li><a href="experience.html">Expérience</a></li>
+          <li><a href="competences.html">Compétences</a></li>
+          <li><a href="veille.html">Veille</a></li>
+          <li><a href="synthese.html">Synthèse</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Contact</h3>
+        <ul>
+          <li><a href="contact.html">📧 Me contacter</a></li>
+          <li><a href="https://www.linkedin.com/in/philippe-martins-louro-31a974345/" target="_blank">💼 LinkedIn</a></li>
+          <li><a href="https://github.com/portfolioIpssi" target="_blank">🐙 GitHub</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Documents</h3>
+        <ul>
+          <li><a href="cv.pdf" download>📄 CV</a></li>
+          <li><a href="Rapport de stage.pdf" download>📋 Rapport de Stage</a></li>
+          <li><a href="8-1 - BTS SIO - 2025 - Tableau de synthese.pdf" download>📊 Synthèse BTS</a></li>
+        </ul>
+      </div>
     </div>
     <div class="footer-bottom">
-      <p>&copy; 2026 Philippe Martins Louro - Tous droits réservés</p>
+      <p>&copy; 2026 Philippe Martins Louro — Tous droits réservés</p>
     </div>
   </footer>
 
   <button class="back-to-top" id="back-to-top" onclick="backToTop()">⬆️</button>
 
   <script>
-    function toggleMenu() { document.getElementById('nav-menu').classList.toggle('active'); }
-    function backToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
+    function toggleMenu() { document.getElementById('hamburger').classList.toggle('active'); document.getElementById('nav-menu').classList.toggle('active'); }
     window.addEventListener('scroll', () => {
       const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
       document.getElementById('progress-bar').style.width = scrollHeight > 0 ? (window.scrollY / scrollHeight) * 100 + '%' : '0%';
       document.getElementById('back-to-top').classList.toggle('show', window.scrollY > 400);
     });
+    function backToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
     function toggleTheme() {
       const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
       document.documentElement.setAttribute('data-theme', theme);
