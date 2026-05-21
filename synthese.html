@@ -8,38 +8,76 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Figtree:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
-    /* Style CSS global identique */
+    /* CSS Universel */
     :root { --bg: #ffffff; --bg2: #f7f9fc; --bg3: #eef2f8; --border: #dde3ed; --border-dk: #c4cfe0; --blue: #2563eb; --blue-lt: #eff4ff; --blue-mid: #bfcfff; --sky: #0ea5e9; --green: #059669; --amber: #d97706; --red: #dc2626; --ink: #0d1526; --text: #1e293b; --text-muted: #64748b; --font-head: 'Syne', sans-serif; --font-body: 'Figtree', sans-serif; --font-mono: 'DM Mono', monospace; --radius: 12px; --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05); --shadow-md: 0 10px 15px -3px rgb(0 0 0 / 0.1); }
     [data-theme="dark"] { --bg: #0b0f19; --bg2: #111827; --bg3: #1f2937; --border: #374151; --border-dk: #4b5563; --blue: #3b82f6; --blue-lt: #1e293b; --ink: #f9fafb; --text: #e5e7eb; --text-muted: #9ca3af; }
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { background-color: var(--bg); color: var(--text); font-family: var(--font-body); line-height: 1.6; overflow-x: hidden; transition: background-color 0.3s, color 0.3s; }
+    body { background-color: var(--bg); color: var(--text); font-family: var(--font-body); line-height: 1.6; overflow-x: hidden; transition: 0.3s; }
     #progress-bar { position: fixed; top: 0; left: 0; height: 4px; background: linear-gradient(90deg, var(--blue), var(--sky)); z-index: 1000; width: 0%; }
-    header { position: sticky; top: 0; background: var(--bg); border-bottom: 1px solid var(--border); z-index: 900; }
+    
+    header { position: sticky; top: 0; background: var(--bg); border-bottom: 1px solid var(--border); z-index: 900; transition: 0.3s; }
     nav { max-width: 1200px; margin: 0 auto; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; position: relative; }
     .nav-logo { font-family: var(--font-head); font-weight: 700; font-size: 1.25rem; color: var(--ink); text-decoration: none; }
-    #nav-menu { display: flex; gap: 1rem; list-style: none; align-items: center; }
-    #nav-menu a { color: var(--text-muted); text-decoration: none; font-weight: 500; font-size: 0.95rem; transition: 0.2s; padding: 0.5rem 0.75rem; border-radius: 6px; }
+    .nav-right { display: flex; align-items: center; gap: 0.5rem; }
+    #nav-menu { display: flex; gap: 0.5rem; list-style: none; align-items: center; }
+    #nav-menu a { color: var(--text-muted); text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: 0.2s; padding: 0.5rem 0.8rem; border-radius: 6px; }
     #nav-menu a:hover, #nav-menu a.active { color: var(--blue); background-color: var(--blue-lt); }
-    .theme-toggle { background: none; border: none; font-size: 1.2rem; cursor: pointer; padding: 0.5rem; color: var(--text); }
+    .theme-toggle { background: none; border: 1px solid var(--border); border-radius: 8px; font-size: 1.1rem; cursor: pointer; padding: 0.4rem 0.6rem; color: var(--text); transition: 0.2s; margin-left: 1rem;}
     .hamburger { display: none; flex-direction: column; gap: 4px; background: none; border: none; cursor: pointer; padding: 0.5rem; }
-    .hamburger span { display: block; width: 20px; height: 2px; background-color: var(--text); transition: 0.3s; }
-    .main-container { max-width: 1200px; margin: 2rem auto; padding: 0 2rem; min-height: calc(100vh - 250px); }
-    .window { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow-md); margin-bottom: 3rem; overflow: hidden; }
+    .hamburger span { display: block; width: 22px; height: 2px; background-color: var(--text); transition: 0.3s; }
+    
+    .main-container { max-width: 1100px; margin: 3rem auto; padding: 0 1.5rem; min-height: calc(100vh - 250px); display: flex; flex-direction: column; gap: 2.5rem; }
+    .window { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow-md); overflow: hidden; transition: 0.3s; }
     .window-header { background: var(--bg2); border-bottom: 1px solid var(--border); padding: 0.75rem 1.25rem; display: flex; align-items: center; justify-content: space-between; }
-    .window-title { font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-muted); }
+    .window-title { font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-muted); font-weight: 500; }
     .window-controls { display: flex; gap: 6px; }
     .window-controls .dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; }
     .window-controls .dot:nth-child(1) { background-color: #ff5f56; }
     .window-controls .dot:nth-child(2) { background-color: #ffbd2e; }
     .window-controls .dot:nth-child(3) { background-color: #27c93f; }
-    .window-content { padding: 2.5rem; overflow-x: auto; }
-    .window-content h2 { font-family: var(--font-head); font-size: 2rem; color: var(--ink); margin-bottom: 1.5rem; }
-    table { width: 100%; border-collapse: collapse; margin-top: 1.5rem; font-size: 0.95rem; min-width: 600px; }
-    th, td { border: 1px solid var(--border); padding: 0.75rem 1rem; text-align: left; }
-    th { background-color: var(--bg2); color: var(--ink); font-family: var(--font-head); font-weight: 700; }
-    tr:nth-child(even) { background-color: var(--bg2); }
-    footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 3rem 2rem; margin-top: 4rem; }
-    .footer-bottom { text-align: center; color: var(--text-muted); font-size: 0.9rem; }
+    .window-content { padding: 2.5rem; }
+    h2 { font-family: var(--font-head); font-size: 1.8rem; color: var(--ink); margin-bottom: 1.2rem; }
+    h3 { font-family: var(--font-head); font-size: 1.3rem; color: var(--ink); margin: 2rem 0 1rem; }
+    p { margin-bottom: 1rem; color: var(--text); }
+    ul { margin-left: 1.5rem; margin-bottom: 1rem; }
+    li { margin-bottom: 0.5rem; }
+    strong { color: var(--ink); font-weight: 700;}
+
+    /* Download section */
+    .download-section { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; margin-top: 2rem; }
+    .download-grid { display: grid; gap: 1rem; margin-top: 1rem; }
+    .download-item { display: flex; align-items: center; justify-content: space-between; padding: 1rem; background: var(--bg); border: 1px solid var(--border); border-radius: 8px; }
+    .download-name { font-weight: 600; color: var(--ink); }
+    .download-size { font-size: 0.8rem; color: var(--text-muted); }
+    .btn-small { padding: 0.4rem 1rem; font-size: 0.85rem; background: var(--green); color: white; border-radius: 8px; text-decoration: none; font-weight: 600;}
+    .btn-small:hover { opacity: 0.9; }
+
+    /* Stats Grid */
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1rem; margin: 2rem 0; }
+    .stat-box { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem 1rem; text-align: center; transition: 0.2s; }
+    .stat-number { font-family: var(--font-head); font-size: 2.2rem; font-weight: 800; color: var(--blue); line-height: 1; margin-bottom: 0.5rem; }
+    .stat-label { font-size: 0.85rem; color: var(--text-muted); font-weight: 500; }
+
+    .footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 4rem 2rem 2rem; margin-top: 4rem; }
+    .footer-grid { max-width: 1100px; margin: 0 auto 3rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; }
+    .footer-section h3 { font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; margin: 0 0 1rem 0; }
+    .footer-section ul { list-style: none; margin: 0; padding: 0; }
+    .footer-section li { margin-bottom: 0.5rem; }
+    .footer-section a { color: var(--text); text-decoration: none; font-size: 0.95rem; transition: 0.2s; }
+    .footer-section a:hover { color: var(--blue); }
+    .footer-bottom { text-align: center; color: var(--text-muted); font-size: 0.9rem; border-top: 1px solid var(--border); padding-top: 2rem; max-width: 1100px; margin: 0 auto; }
+    .back-to-top { position: fixed; bottom: 2rem; right: 2rem; width: 45px; height: 45px; background: var(--bg); border: 1px solid var(--border); border-radius: 50%; font-size: 1.2rem; cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: 0.3s; z-index: 100; box-shadow: var(--shadow); color: var(--text); }
+    .back-to-top.show { opacity: 1; visibility: visible; }
+    
+    @media (max-width: 768px) {
+      .hamburger { display: flex; }
+      #nav-menu { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--bg); border-bottom: 1px solid var(--border); flex-direction: column; padding: 1rem; box-shadow: var(--shadow-md); align-items: flex-start; }
+      #nav-menu.active { display: flex; }
+      #nav-menu a { width: 100%; }
+      .theme-toggle { margin-left: auto; }
+      .window-content { padding: 1.5rem; }
+      .download-item { flex-direction: column; gap: 0.8rem; align-items: flex-start;}
+    }
   </style>
 </head>
 <body>
@@ -58,7 +96,7 @@
           <li><a href="contact.html">Contact</a></li>
         </ul>
         <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
-        <button class="hamburger" onclick="toggleMenu()">
+        <button class="hamburger" id="hamburger" onclick="toggleMenu()">
           <span></span><span></span><span></span>
         </button>
       </div>
@@ -68,55 +106,76 @@
   <main class="main-container">
     <section class="window">
       <div class="window-header">
-        <div class="window-title">competency_matrix.csv</div>
+        <div class="window-title">tableau_synthese.xlsx</div>
         <div class="window-controls"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
       </div>
       <div class="window-content">
-        <h2>Tableau de Synthèse BTS SIO SISR</h2>
-        <p>Ce tableau récapitule les compétences obligatoires validées à travers mes différentes réalisations professionnelles et académiques.</p>
-        
-        <table>
-          <thead>
-            <tr>
-              <th>Réalisation</th>
-              <th>Description Technique</th>
-              <th>Compétences Visées</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Projet E6</strong></td>
-              <td>Mise en œuvre d'AD DS, DNS et pfSense dans Proxmox VE.</td>
-              <td>Gérer le patrimoine informatique, Administrer les systèmes et les réseaux.</td>
-            </tr>
-            <tr>
-              <td><strong>Migration GLPI</strong></td>
-              <td>Passage réussi d'une infrastructure locale vers une offre SaaS.</td>
-              <td>Répondre aux incidents, Travailler en mode projet.</td>
-            </tr>
-            <tr>
-              <td><strong>Infra 480 Postes</strong></td>
-              <td>Configuration de commutateurs Cisco, VLANs et liaisons trunks.</td>
-              <td>Administrer les systèmes et les réseaux, Sécuriser les équipements.</td>
-            </tr>
-          </tbody>
-        </table>
+        <h2>Tableau de Synthèse BTS SIO</h2>
+        <p>Le tableau de synthèse est un document officiel du BTS SIO qui récapitule l'ensemble de mon parcours de formation, mes projets, mon expérience professionnelle et mes acquis pédagogiques.</p>
+
+        <h3>📑 Contenu du Tableau</h3>
+        <ul>
+          <li>✅ <strong>Liste complète des projets SLAM et SISR</strong> avec descriptions détaillées et résultats</li>
+          <li>✅ <strong>Expériences professionnelles</strong> : stage + alternance avec détails des missions</li>
+          <li>✅ <strong>Compétences développées</strong> par domaine (technique, interpersonnel, managérial)</li>
+          <li>✅ <strong>Résultats académiques</strong> et notation des projets</li>
+        </ul>
+
+        <h3>🎯 Valeur Ajoutée</h3>
+        <p>Ce document démontre ma <strong>progression professionnelle</strong> et mes capacités à gérer des projets informatiques en environnement réel. Il constitue le fil rouge de mon épreuve d'examen E4/E6.</p>
+
+        <div class="download-section">
+          <h4 style="margin-top:0;">📥 Télécharger le tableau complet</h4>
+          <div class="download-grid">
+            <div class="download-item">
+              <div>
+                <div class="download-name">Tableau Synthèse PDF</div>
+                <div class="download-size">Document officiel BTS</div>
+              </div>
+              <a href="8-1 - BTS SIO - 2025 - Tableau de synthese.pdf" download class="btn-small">📄 PDF</a>
+            </div>
+            <div class="download-item">
+              <div>
+                <div class="download-name">Tableau Excel</div>
+                <div class="download-size">Format XLSX éditable</div>
+              </div>
+              <a href="8-1 - BTS SIO - 2025 - Tableau de synthese.xlsx" download class="btn-small">📊 XLSX</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="stats-grid" style="margin-top: 3rem;">
+          <div class="stat-box"><div class="stat-number">5</div><div class="stat-label">Projets réalisés</div></div>
+          <div class="stat-box"><div class="stat-number">2</div><div class="stat-label">Expériences pro</div></div>
+          <div class="stat-box"><div class="stat-number">15+</div><div class="stat-label">Technologies validées</div></div>
+        </div>
       </div>
     </section>
   </main>
 
-  <footer>
-    <div class="footer-bottom"><p>&copy; 2026 Philippe Martins Louro - Tous droits réservés</p></div>
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-section"><h3>Navigation</h3><ul><li><a href="index.html">Accueil</a></li><li><a href="projets.html">Projets</a></li><li><a href="veille.html">Veille</a></li><li><a href="synthese.html">Synthèse</a></li></ul></div>
+      <div class="footer-section"><h3>Contact</h3><ul><li><a href="contact.html">📧 Me contacter</a></li><li><a href="https://www.linkedin.com/in/philippe-martins-louro-31a974345/" target="_blank">💼 LinkedIn</a></li><li><a href="https://github.com/portfolioIpssi" target="_blank">🐙 GitHub</a></li></ul></div>
+      <div class="footer-section"><h3>Documents</h3><ul><li><a href="cv.pdf" download>📄 CV</a></li><li><a href="8-1 - BTS SIO - 2025 - Tableau de synthese.pdf" download>📊 Synthèse BTS</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><p>&copy; 2026 Philippe Martins Louro — Tous droits réservés</p></div>
   </footer>
 
+  <button class="back-to-top" id="back-to-top" onclick="backToTop()">⬆️</button>
+
   <script>
-    function toggleMenu() { document.getElementById('nav-menu').classList.toggle('active'); }
+    function toggleMenu() { document.getElementById('hamburger').classList.toggle('active'); document.getElementById('nav-menu').classList.toggle('active'); }
+    window.addEventListener('scroll', () => { document.getElementById('progress-bar').style.width = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100 + '%'; document.getElementById('back-to-top').classList.toggle('show', window.scrollY > 400); });
+    function backToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
     function toggleTheme() {
       const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-      document.documentElement.setAttribute('data-theme', theme);
-      localStorage.setItem('theme', theme);
+      document.documentElement.setAttribute('data-theme', theme); localStorage.setItem('theme', theme);
+      document.querySelector('.theme-toggle').textContent = theme === 'light' ? '🌙' : '☀️';
     }
-    document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') || 'light');
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    document.querySelector('.theme-toggle').textContent = savedTheme === 'light' ? '🌙' : '☀️';
   </script>
 </body>
 </html>
