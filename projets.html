@@ -8,47 +8,93 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Figtree:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
-    /* Intègre exactement le même CSS que l'index.html ci-dessus pour la cohérence */
+    /* Intégration du CSS Universel */
     :root { --bg: #ffffff; --bg2: #f7f9fc; --bg3: #eef2f8; --border: #dde3ed; --border-dk: #c4cfe0; --blue: #2563eb; --blue-lt: #eff4ff; --blue-mid: #bfcfff; --sky: #0ea5e9; --green: #059669; --amber: #d97706; --red: #dc2626; --ink: #0d1526; --text: #1e293b; --text-muted: #64748b; --font-head: 'Syne', sans-serif; --font-body: 'Figtree', sans-serif; --font-mono: 'DM Mono', monospace; --radius: 12px; --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05); --shadow-md: 0 10px 15px -3px rgb(0 0 0 / 0.1); }
     [data-theme="dark"] { --bg: #0b0f19; --bg2: #111827; --bg3: #1f2937; --border: #374151; --border-dk: #4b5563; --blue: #3b82f6; --blue-lt: #1e293b; --ink: #f9fafb; --text: #e5e7eb; --text-muted: #9ca3af; }
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { background-color: var(--bg); color: var(--text); font-family: var(--font-body); line-height: 1.6; overflow-x: hidden; transition: background-color 0.3s, color 0.3s; }
+    body { background-color: var(--bg); color: var(--text); font-family: var(--font-body); line-height: 1.6; overflow-x: hidden; transition: 0.3s; }
     #progress-bar { position: fixed; top: 0; left: 0; height: 4px; background: linear-gradient(90deg, var(--blue), var(--sky)); z-index: 1000; width: 0%; }
-    header { position: sticky; top: 0; background: var(--bg); border-bottom: 1px solid var(--border); z-index: 900; }
+    
+    header { position: sticky; top: 0; background: var(--bg); border-bottom: 1px solid var(--border); z-index: 900; transition: 0.3s; }
     nav { max-width: 1200px; margin: 0 auto; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; position: relative; }
     .nav-logo { font-family: var(--font-head); font-weight: 700; font-size: 1.25rem; color: var(--ink); text-decoration: none; }
     .nav-right { display: flex; align-items: center; gap: 0.5rem; }
-    #nav-menu { display: flex; gap: 1rem; list-style: none; align-items: center; }
-    #nav-menu a { color: var(--text-muted); text-decoration: none; font-weight: 500; font-size: 0.95rem; transition: 0.2s; padding: 0.5rem 0.75rem; border-radius: 6px; }
+    #nav-menu { display: flex; gap: 0.5rem; list-style: none; align-items: center; }
+    #nav-menu a { color: var(--text-muted); text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: 0.2s; padding: 0.5rem 0.8rem; border-radius: 6px; }
     #nav-menu a:hover, #nav-menu a.active { color: var(--blue); background-color: var(--blue-lt); }
-    .theme-toggle { background: none; border: none; font-size: 1.2rem; cursor: pointer; padding: 0.5rem; color: var(--text); }
+    .theme-toggle { background: none; border: 1px solid var(--border); border-radius: 8px; font-size: 1.1rem; cursor: pointer; padding: 0.4rem 0.6rem; color: var(--text); transition: 0.2s; margin-left: 1rem;}
     .hamburger { display: none; flex-direction: column; gap: 4px; background: none; border: none; cursor: pointer; padding: 0.5rem; }
-    .hamburger span { display: block; width: 20px; height: 2px; background-color: var(--text); transition: 0.3s; }
-    .main-container { max-width: 1200px; margin: 2rem auto; padding: 0 2rem; min-height: calc(100vh - 250px); }
-    .window { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow-md); margin-bottom: 3rem; overflow: hidden; }
+    .hamburger span { display: block; width: 22px; height: 2px; background-color: var(--text); transition: 0.3s; }
+    
+    .main-container { max-width: 1100px; margin: 3rem auto; padding: 0 1.5rem; min-height: calc(100vh - 250px); display: flex; flex-direction: column; gap: 2.5rem; }
+    .window { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow-md); overflow: hidden; transition: 0.3s; }
     .window-header { background: var(--bg2); border-bottom: 1px solid var(--border); padding: 0.75rem 1.25rem; display: flex; align-items: center; justify-content: space-between; }
-    .window-title { font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-muted); }
+    .window-title { font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-muted); font-weight: 500; }
     .window-controls { display: flex; gap: 6px; }
     .window-controls .dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; }
     .window-controls .dot:nth-child(1) { background-color: #ff5f56; }
     .window-controls .dot:nth-child(2) { background-color: #ffbd2e; }
     .window-controls .dot:nth-child(3) { background-color: #27c93f; }
     .window-content { padding: 2.5rem; }
-    .window-content h2 { font-family: var(--font-head); font-size: 2rem; color: var(--ink); margin-bottom: 1.5rem; }
-    .project-tabs { display: flex; gap: 0.5rem; margin-bottom: 2rem; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
-    .project-tab { background: none; border: none; padding: 0.5rem 1rem; font-family: var(--font-body); font-weight: 600; cursor: pointer; color: var(--text-muted); border-radius: var(--radius); transition: 0.2s; }
-    .project-tab.active { background: var(--blue); color: white; }
-    .project-content { display: none; }
+    h2 { font-family: var(--font-head); font-size: 1.8rem; color: var(--ink); margin-bottom: 1.2rem; }
+    h3 { font-family: var(--font-head); font-size: 1.3rem; color: var(--ink); margin: 2.5rem 0 1rem; }
+    h4 { font-family: var(--font-head); font-size: 1.1rem; color: var(--ink); margin: 1.5rem 0 0.8rem; }
+    p { margin-bottom: 1rem; color: var(--text); }
+    ul { margin-left: 1.5rem; margin-bottom: 1rem; }
+    li { margin-bottom: 0.5rem; }
+    strong { color: var(--ink); font-weight: 700; }
+
+    .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; border-radius: 10px; font-weight: 600; text-decoration: none; transition: 0.2s; cursor: pointer; border: none; font-size: 0.95rem; font-family: var(--font-body); }
+    .btn-small { padding: 0.4rem 1rem; font-size: 0.85rem; background: var(--green); color: white; border-radius: 8px;}
+    .btn-small:hover { opacity: 0.9; }
+
+    /* Project Specific Styles */
+    .project-tabs { display: flex; gap: 0.5rem; margin-bottom: 2rem; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; overflow-x: auto; }
+    .project-tab { background: none; border: none; padding: 0.6rem 1.2rem; font-family: var(--font-body); font-weight: 600; cursor: pointer; color: var(--text-muted); border-radius: var(--radius); transition: 0.2s; white-space: nowrap; }
+    .project-tab:hover { background: var(--bg2); color: var(--blue); }
+    .project-tab.active { background: var(--blue-lt); color: var(--blue); }
+    .project-content { display: none; animation: fadeIn 0.3s; }
     .project-content.active { display: block; }
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
-    .card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.75rem; }
-    .card-title { font-family: var(--font-head); font-size: 1.25rem; font-weight: 700; color: var(--ink); margin-bottom: 0.5rem; }
-    .card-desc { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1rem; }
-    .badge { display: inline-block; padding: 2px 8px; background: var(--blue-lt); color: var(--blue); border-radius: 4px; font-size: 0.8rem; font-weight: 600; margin-right: 0.5rem; }
-    footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 3rem 2rem; margin-top: 4rem; }
-    .footer-bottom { text-align: center; color: var(--text-muted); font-size: 0.9rem; }
-    .back-to-top { position: fixed; bottom: 2rem; right: 2rem; background: var(--blue); color: white; border: none; width: 45px; height: 45px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: 0.3s; z-index: 999; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin: 1.5rem 0; }
+    .card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; transition: 0.2s; }
+    .card:hover { border-color: var(--blue-mid); transform: translateY(-3px); box-shadow: var(--shadow); }
+    .card-icon { font-size: 2rem; margin-bottom: 1rem; }
+    .card-title { font-family: var(--font-head); font-size: 1.1rem; font-weight: 700; color: var(--ink); margin-bottom: 0.5rem; }
+    .card-desc { color: var(--text-muted); font-size: 0.9rem; }
+
+    .download-section { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; margin-top: 2rem; }
+    .download-grid { display: grid; gap: 1rem; margin-top: 1rem; }
+    .download-item { display: flex; align-items: center; justify-content: space-between; padding: 1rem; background: var(--bg); border: 1px solid var(--border); border-radius: 8px; }
+    .download-name { font-weight: 600; color: var(--ink); }
+    .download-size { font-size: 0.8rem; color: var(--text-muted); }
+
+    .machine-badge { display: inline-block; padding: 0.3rem 0.8rem; border-radius: 6px; font-size: 0.85rem; font-weight: 600; margin: 0 0.5rem 0.5rem 0; border: 1px solid var(--border); }
+    .arch-block { background: var(--bg2); border: 1px solid var(--border); padding: 1.5rem; border-radius: 8px; font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-muted); overflow-x: auto; white-space: pre; line-height: 1.4; margin: 1.5rem 0; }
+    .highlight { color: var(--blue); font-weight: bold; }
+    .ok { color: var(--green); }
+
+    /* Footer & Universal */
+    .footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 4rem 2rem 2rem; margin-top: 4rem; }
+    .footer-grid { max-width: 1100px; margin: 0 auto 3rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; }
+    .footer-section h3 { font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; margin: 0 0 1rem 0; }
+    .footer-section ul { list-style: none; margin: 0; padding: 0; }
+    .footer-section li { margin-bottom: 0.5rem; }
+    .footer-section a { color: var(--text); text-decoration: none; font-size: 0.95rem; transition: 0.2s; }
+    .footer-section a:hover { color: var(--blue); }
+    .footer-bottom { text-align: center; color: var(--text-muted); font-size: 0.9rem; border-top: 1px solid var(--border); padding-top: 2rem; max-width: 1100px; margin: 0 auto; }
+    .back-to-top { position: fixed; bottom: 2rem; right: 2rem; width: 45px; height: 45px; background: var(--bg); border: 1px solid var(--border); border-radius: 50%; font-size: 1.2rem; cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: 0.3s; z-index: 100; box-shadow: var(--shadow); color: var(--text); }
     .back-to-top.show { opacity: 1; visibility: visible; }
+    @media (max-width: 768px) {
+      .hamburger { display: flex; }
+      #nav-menu { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--bg); border-bottom: 1px solid var(--border); flex-direction: column; padding: 1rem; box-shadow: var(--shadow-md); align-items: flex-start; }
+      #nav-menu.active { display: flex; }
+      #nav-menu a { width: 100%; }
+      .theme-toggle { margin-left: auto; }
+      .window-content { padding: 1.5rem; }
+      .download-item { flex-direction: column; align-items: flex-start; gap: 0.8rem; }
+    }
   </style>
 </head>
 <body>
@@ -67,7 +113,7 @@
           <li><a href="contact.html">Contact</a></li>
         </ul>
         <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
-        <button class="hamburger" onclick="toggleMenu()">
+        <button class="hamburger" id="hamburger" onclick="toggleMenu()">
           <span></span><span></span><span></span>
         </button>
       </div>
@@ -77,46 +123,120 @@
   <main class="main-container">
     <section class="window">
       <div class="window-header">
-        <div class="window-title">projects_list.conf</div>
+        <div class="window-title">🚀 Mes Projets</div>
         <div class="window-controls"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
       </div>
       <div class="window-content">
-        <h2>Mes Réalisations</h2>
-        
+        <h2>Projets Scolaires & Personnels</h2>
+
         <div class="project-tabs">
-          <button class="project-tab active" onclick="switchProject(this, 'all')">Tous</button>
-          <button class="project-tab" onclick="switchProject(this, 'pro')">Professionnels</button>
-          <button class="project-tab" onclick="switchProject(this, 'academique')">Académiques</button>
+          <button class="project-tab active" onclick="switchProject(this, 'scolaire')">🎓 Projets Scolaires</button>
+          <button class="project-tab" onclick="switchProject(this, 'personnel')">🎮 Projets Personnels</button>
         </div>
 
-        <div class="grid">
-          <div class="card project-content all academique active">
-            <div class="card-title">Projet E6 — Infrastructure Réseau Sécurisée</div>
-            <div class="card-desc">Maquettaire d'une infrastructure complète virtuelle sous Proxmox VE intégrant un contrôleur de domaine Active Directory, des serveurs DNS redondants et un pare-feu pfSense filtrant les accès réseau inter-VLAN.</div>
-            <div>
-              <span class="badge">Proxmox</span>
-              <span class="badge">Active Directory</span>
-              <span class="badge">pfSense</span>
+        <div id="scolaire" class="project-content active">
+          <h3>1️⃣ Infrastructure pour 480 Postes (SISR)</h3>
+          <p>Projet majeur : conception d'infrastructure informatique pour une entreprise pharmaceutique. Déploiement de <strong>480 postes</strong> sécurisés.</p>
+          
+          <div class="grid">
+            <div class="card"><div class="card-icon">🎯</div><div class="card-title">Le Défi</div><div class="card-desc">Équiper 480 visiteurs médicaux, budget limité (299€/poste), réseau segmenté par services.</div></div>
+            <div class="card"><div class="card-icon">⚙️</div><div class="card-title">Solution</div><div class="card-desc">12 VLANs, Active Directory centralisé, déploiement automatisé, sécurité.</div></div>
+            <div class="card"><div class="card-icon">✅</div><div class="card-title">Résultats</div><div class="card-desc">480 postes déployés, budget respecté, zéro incident.</div></div>
+          </div>
+          <p style="color: var(--text-muted); margin-top: 1rem;"><strong>🔧 Tech :</strong> Windows 11 • Active Directory • Cisco • VPN • WDS</p>
+
+          <div class="download-section">
+            <h4 style="margin-top:0;">📥 Télécharger</h4>
+            <div class="download-grid">
+              <div class="download-item">
+                <div>
+                  <div class="download-name">Projet SISR</div>
+                  <div class="download-size">ZIP - Doc + schémas</div>
+                </div>
+                <a href="Projet-Sisr.zip" download class="btn-small">📥 ZIP</a>
+              </div>
             </div>
           </div>
 
-          <div class="card project-content all academique active">
-            <div class="card-title">Conception Infra 480 Postes</div>
-            <div class="card-desc">Étude de cas théorique et pratique pour la mise en place du routage inter-VLAN, d'architectures de commutation Cisco sécurisées (Port-Security) et de l'attribution dynamique d'adresses DHCP de manière centralisée.</div>
-            <div>
-              <span class="badge">Cisco IOS</span>
-              <span class="badge">VLANs</span>
-              <span class="badge">DHCP</span>
+          <h3>2️⃣ Gestion de Bibliothèque (SLAM)</h3>
+          <p>Projet web complet : inscription, recherche, emprunts, réservations, administration.</p>
+          <div class="grid">
+            <div class="card"><div class="card-icon">💻</div><div class="card-title">Frontend</div><div class="card-desc">HTML/CSS responsive.</div></div>
+            <div class="card"><div class="card-icon">🔧</div><div class="card-title">Backend</div><div class="card-desc">PHP sécurisé.</div></div>
+            <div class="card"><div class="card-icon">🗄️</div><div class="card-title">BD</div><div class="card-desc">MySQL normalisée.</div></div>
+          </div>
+
+          <div class="download-section">
+            <h4 style="margin-top:0;">📥 Télécharger</h4>
+            <div class="download-grid">
+              <div class="download-item">
+                <div>
+                  <div class="download-name">Projet SLAM</div>
+                  <div class="download-size">ZIP - Code</div>
+                </div>
+                <a href="Projet-Slam.zip" download class="btn-small">📥 ZIP</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="personnel" class="project-content">
+          <h3>1️⃣ Minecraft en Python 🎮</h3>
+          <p>Jeu de type Minecraft avec moteur graphique, terrain procédural Perlin Noise et gameplay complet.</p>
+          <div class="grid">
+            <div class="card"><div class="card-icon">🎮</div><div class="card-title">Gameplay</div><div class="card-desc">Exploration 3D, inventaire.</div></div>
+            <div class="card"><div class="card-icon">🏗️</div><div class="card-title">Terrain</div><div class="card-desc">Génération procédurale.</div></div>
+            <div class="card"><div class="card-icon">⚙️</div><div class="card-title">Engine</div><div class="card-desc">Pygame custom.</div></div>
+          </div>
+          
+          <div class="download-section">
+            <h4 style="margin-top:0;">📥 Télécharger</h4>
+            <div class="download-item">
+              <div>
+                <div class="download-name">Minecraft Python</div>
+                <div class="download-size">PDF - Doc</div>
+              </div>
+              <a href="Projet_server_minecraft.pdf" download class="btn-small">📄 PDF</a>
             </div>
           </div>
 
-          <div class="card project-content all pro active">
-            <div class="card-title">Migration GLPI Cloud/SaaS</div>
-            <div class="card-desc">Projet réalisé en entreprise visant à migrer l'outil d'inventaire de parc informatique et de gestion des tickets GLPI depuis une instance locale vieillissante vers la solution Cloud/SaaS centralisée.</div>
-            <div>
-              <span class="badge">GLPI</span>
-              <span class="badge">Migration SaaS</span>
-              <span class="badge">Gestion ITAM</span>
+          <h3>2️⃣ Homelab — Infrastructure Personnelle 🖥️</h3>
+          <p>Conception et déploiement d'une <strong>infrastructure réseau personnelle</strong> composée de 3 machines physiques, avec virtualisation, services auto-hébergés, VLANs et sécurité avancée.</p>
+          
+          <div style="margin: 1rem 0;">
+            <span class="machine-badge">Dell OptiPlex — Always-On</span>
+            <span class="machine-badge">Acer PB63 — Hyperviseur</span>
+            <span class="machine-badge">Acer Nitro — Workstation</span>
+          </div>
+
+          <div class="grid">
+            <div class="card"><div class="card-icon">🌐</div><div class="card-title">Réseau & Sécu</div><div class="card-desc">Switch manageable, VLANs isolés, Pi-hole DNS, Wireguard VPN, Wazuh SIEM.</div></div>
+            <div class="card"><div class="card-icon">🖥️</div><div class="card-title">Virtualisation</div><div class="card-desc">Proxmox VE : 4 à 6 VMs/conteneurs LXC.</div></div>
+            <div class="card"><div class="card-icon">☁️</div><div class="card-title">Services</div><div class="card-desc">Nextcloud, Vaultwarden, Jellyfin, Grafana, Home Assistant.</div></div>
+          </div>
+
+          <h4>🏗️ Architecture réseau</h4>
+          <div class="arch-block">
+── Topologie logique ─────────────────────────────
+              INTERNET
+                 │
+             [Box FAI]
+                 │
+   <span class="highlight">[Switch manageable TL-SG1005P]</span>
+        /        |        \
+<span class="ok">[OptiPlex]</span>  <span class="highlight">[Acer PB63]</span>   [Nitro]
+ Pi-hole    Proxmox VE   PC Perso
+ VPN        Nextcloud
+          </div>
+
+          <div class="download-section">
+            <h4 style="margin-top:0;">📥 Documentation</h4>
+            <div class="download-item">
+              <div>
+                <div class="download-name">Projet Infra Homelab</div>
+                <div class="download-size">PDF — Architecture</div>
+              </div>
+              <a href="Projet_infra.pdf" download class="btn-small">📄 PDF</a>
             </div>
           </div>
         </div>
@@ -124,35 +244,35 @@
     </section>
   </main>
 
-  <footer>
-    <div class="footer-bottom"><p>&copy; 2026 Philippe Martins Louro - Tous droits réservés</p></div>
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-section"><h3>Navigation</h3><ul><li><a href="index.html">Accueil</a></li><li><a href="projets.html">Projets</a></li><li><a href="veille.html">Veille</a></li><li><a href="synthese.html">Synthèse</a></li></ul></div>
+      <div class="footer-section"><h3>Contact</h3><ul><li><a href="contact.html">📧 Me contacter</a></li><li><a href="https://www.linkedin.com/in/philippe-martins-louro-31a974345/" target="_blank">💼 LinkedIn</a></li><li><a href="https://github.com/portfolioIpssi" target="_blank">🐙 GitHub</a></li></ul></div>
+      <div class="footer-section"><h3>Documents</h3><ul><li><a href="cv.pdf" download>📄 CV</a></li><li><a href="8-1 - BTS SIO - 2025 - Tableau de synthese.pdf" download>📊 Synthèse BTS</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><p>&copy; 2026 Philippe Martins Louro — Tous droits réservés</p></div>
   </footer>
 
   <button class="back-to-top" id="back-to-top" onclick="backToTop()">⬆️</button>
 
   <script>
-    function toggleMenu() { document.getElementById('nav-menu').classList.toggle('active'); }
+    function toggleMenu() { document.getElementById('hamburger').classList.toggle('active'); document.getElementById('nav-menu').classList.toggle('active'); }
+    window.addEventListener('scroll', () => { document.getElementById('progress-bar').style.width = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100 + '%'; document.getElementById('back-to-top').classList.toggle('show', window.scrollY > 400); });
     function backToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
-    window.addEventListener('scroll', () => {
-      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-      document.getElementById('progress-bar').style.width = scrollHeight > 0 ? (window.scrollY / scrollHeight) * 100 + '%' : '0%';
-      document.getElementById('back-to-top').classList.toggle('show', window.scrollY > 400);
-    });
-    function switchProject(btn, type) {
+    function switchProject(btn, projectType) {
       document.querySelectorAll('.project-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.project-content').forEach(c => c.classList.remove('active'));
       btn.classList.add('active');
-      document.querySelectorAll('.project-content').forEach(c => {
-        if(type === 'all' || c.classList.contains(type)) { c.style.display = 'block'; }
-        else { c.style.display = 'none'; }
-      });
+      document.getElementById(projectType).classList.add('active');
     }
     function toggleTheme() {
       const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-      document.documentElement.setAttribute('data-theme', theme);
-      localStorage.setItem('theme', theme);
+      document.documentElement.setAttribute('data-theme', theme); localStorage.setItem('theme', theme);
+      document.querySelector('.theme-toggle').textContent = theme === 'light' ? '🌙' : '☀️';
     }
-    document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') || 'light');
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    document.querySelector('.theme-toggle').textContent = savedTheme === 'light' ? '🌙' : '☀️';
   </script>
 </body>
-</html>
 </html>
