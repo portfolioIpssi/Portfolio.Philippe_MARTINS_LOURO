@@ -3,18 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Contactez Philippe Martins Louro, étudiant en BTS SIO option SISR.">
   <title>Contact — Philippe Martins Louro</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Figtree:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
-    /* CSS Universel */
+    /* CSS Universel (inchangé) */
     :root { --bg: #ffffff; --bg2: #f7f9fc; --bg3: #eef2f8; --border: #dde3ed; --border-dk: #c4cfe0; --blue: #2563eb; --blue-lt: #eff4ff; --blue-mid: #bfcfff; --sky: #0ea5e9; --green: #059669; --amber: #d97706; --red: #dc2626; --ink: #0d1526; --text: #1e293b; --text-muted: #64748b; --font-head: 'Syne', sans-serif; --font-body: 'Figtree', sans-serif; --font-mono: 'DM Mono', monospace; --radius: 12px; --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05); --shadow-md: 0 10px 15px -3px rgb(0 0 0 / 0.1); }
     [data-theme="dark"] { --bg: #0b0f19; --bg2: #111827; --bg3: #1f2937; --border: #374151; --border-dk: #4b5563; --blue: #3b82f6; --blue-lt: #1e293b; --ink: #f9fafb; --text: #e5e7eb; --text-muted: #9ca3af; }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { background-color: var(--bg); color: var(--text); font-family: var(--font-body); line-height: 1.6; overflow-x: hidden; transition: 0.3s; }
     #progress-bar { position: fixed; top: 0; left: 0; height: 4px; background: linear-gradient(90deg, var(--blue), var(--sky)); z-index: 1000; width: 0%; }
-    
+
     header { position: sticky; top: 0; background: var(--bg); border-bottom: 1px solid var(--border); z-index: 900; transition: 0.3s; }
     nav { max-width: 1200px; margin: 0 auto; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; position: relative; }
     .nav-logo { font-family: var(--font-head); font-weight: 700; font-size: 1.25rem; color: var(--ink); text-decoration: none; }
@@ -25,7 +26,7 @@
     .theme-toggle { background: none; border: 1px solid var(--border); border-radius: 8px; font-size: 1.1rem; cursor: pointer; padding: 0.4rem 0.6rem; color: var(--text); transition: 0.2s; margin-left: 1rem;}
     .hamburger { display: none; flex-direction: column; gap: 4px; background: none; border: none; cursor: pointer; padding: 0.5rem; }
     .hamburger span { display: block; width: 22px; height: 2px; background-color: var(--text); transition: 0.3s; }
-    
+
     .main-container { max-width: 1100px; margin: 3rem auto; padding: 0 1.5rem; min-height: calc(100vh - 250px); display: flex; flex-direction: column; gap: 2.5rem; }
     .window { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow-md); overflow: hidden; transition: 0.3s; }
     .window-header { background: var(--bg2); border-bottom: 1px solid var(--border); padding: 0.75rem 1.25rem; display: flex; align-items: center; justify-content: space-between; }
@@ -47,10 +48,20 @@
     .btn-outline:hover { border-color: var(--blue); color: var(--blue); background: var(--blue-lt); }
 
     form { display: flex; flex-direction: column; gap: 1.2rem; max-width: 600px; }
+    .form-group { display: flex; flex-direction: column; gap: 0.3rem; }
+    label { font-weight: 600; font-size: 0.9rem; color: var(--ink); }
     input, textarea { width: 100%; padding: 0.9rem; border: 1px solid var(--border-dk); background: var(--bg2); color: var(--text); font-family: var(--font-body); border-radius: 8px; outline: none; transition: 0.2s;}
     input:focus, textarea:focus { border-color: var(--blue); box-shadow: 0 0 0 3px var(--blue-lt); }
-    .btn-primary { display: inline-flex; justify-content: center; background-color: var(--blue); color: white; border: none; padding: 0.8rem 1.5rem; border-radius: 8px; font-weight: 600; font-family: var(--font-body); font-size: 1rem; cursor: pointer; transition: 0.2s; }
-    .btn-primary:hover { background-color: #1d4ed8; transform: translateY(-2px); }
+    .btn-primary { display: inline-flex; justify-content: center; align-items: center; gap: 0.5rem; background-color: var(--blue); color: white; border: none; padding: 0.8rem 1.5rem; border-radius: 8px; font-weight: 600; font-family: var(--font-body); font-size: 1rem; cursor: pointer; transition: 0.2s; }
+    .btn-primary:hover:not(:disabled) { background-color: #1d4ed8; transform: translateY(-2px); }
+    .btn-primary:disabled { opacity: 0.6; cursor: not-allowed; }
+
+    /* Message de statut */
+    .form-status { margin-top: 1rem; padding: 1rem; border-radius: 8px; font-weight: 500; display: none; }
+    .form-status.success { display: block; background: #ecfdf5; border: 1px solid #a7f3d0; color: #065f46; }
+    .form-status.error { display: block; background: #fef2f2; border: 1px solid #fecaca; color: #991b1b; }
+    [data-theme="dark"] .form-status.success { background: #064e3b20; border-color: #065f46; color: #6ee7b7; }
+    [data-theme="dark"] .form-status.error { background: #7f1d1d20; border-color: #991b1b; color: #fca5a5; }
 
     /* Footer */
     .footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 4rem 2rem 2rem; margin-top: 4rem; }
@@ -63,7 +74,7 @@
     .footer-bottom { text-align: center; color: var(--text-muted); font-size: 0.9rem; border-top: 1px solid var(--border); padding-top: 2rem; max-width: 1100px; margin: 0 auto; }
     .back-to-top { position: fixed; bottom: 2rem; right: 2rem; width: 45px; height: 45px; background: var(--bg); border: 1px solid var(--border); border-radius: 50%; font-size: 1.2rem; cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: 0.3s; z-index: 100; box-shadow: var(--shadow); color: var(--text); }
     .back-to-top.show { opacity: 1; visibility: visible; }
-    
+
     @media (max-width: 768px) {
       .hamburger { display: flex; }
       #nav-menu { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--bg); border-bottom: 1px solid var(--border); flex-direction: column; padding: 1rem; box-shadow: var(--shadow-md); align-items: flex-start; }
@@ -76,83 +87,179 @@
   </style>
 </head>
 <body>
-  <div id="progress-bar"></div>
+  <div id="progress-bar" role="progressbar" aria-label="Barre de progression"></div>
+
   <header>
-    <nav>
-  <a href="index.html" class="nav-logo">Philippe M. Louro</a>
-  <div class="nav-right">
-    <ul id="nav-menu">
-      <li><a href="index.html">Accueil</a></li>
-      <li><a href="projets.html">Projets</a></li>
-      <li><a href="experience.html">Expérience</a></li>
-      <li><a href="competences.html">Compétences</a></li>
-      <li><a href="veille.html">Veille</a></li>
-      <li><a href="synthese.html">Synthèse</a></li>
-      <li><a href="e6.html">E6</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-    <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
-    <button class="hamburger" id="hamburger" onclick="toggleMenu()">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-</nav>
+    <nav aria-label="Navigation principale">
+      <a href="index.html" class="nav-logo">Philippe M. Louro</a>
+      <div class="nav-right">
+        <ul id="nav-menu" role="list">
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="projets.html">Projets</a></li>
+          <li><a href="experience.html">Expérience</a></li>
+          <li><a href="competences.html">Compétences</a></li>
+          <li><a href="veille.html">Veille</a></li>
+          <li><a href="synthese.html">Synthèse</a></li>
+          <li><a href="e6.html">E6</a></li>
+          <li><a href="contact.html" class="active" aria-current="page">Contact</a></li>
+        </ul>
+        <button class="theme-toggle" onclick="toggleTheme()" aria-label="Basculer le thème">🌙</button>
+        <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-expanded="false" aria-controls="nav-menu" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
   </header>
 
   <main class="main-container">
-    <section class="window">
+    <section class="window" aria-labelledby="contact-heading">
       <div class="window-header">
         <div class="window-title">send_message.sh</div>
         <div class="window-controls"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
       </div>
       <div class="window-content">
-        <h2>Discutons de vos projets !</h2>
+        <h2 id="contact-heading">Discutons de vos projets !</h2>
         <p>Vous recherchez un profil en administration système et réseau ? N'hésitez pas à me contacter via le formulaire ci-dessous ou directement sur mes réseaux.</p>
-        
+
         <div class="grid">
           <div class="card">
-            <div class="card-icon">💼</div>
-            <a href="https://www.linkedin.com/in/philippe-martins-louro-31a974345/" target="_blank" class="btn-outline">Mon LinkedIn</a>
+            <div class="card-icon" aria-hidden="true">💼</div>
+            <a href="https://www.linkedin.com/in/philippe-martins-louro-31a974345/" target="_blank" rel="noopener" class="btn-outline">Mon LinkedIn</a>
           </div>
           <div class="card">
-            <div class="card-icon">🐙</div>
-            <a href="https://github.com/portfolioIpssi" target="_blank" class="btn-outline">Mon GitHub</a>
+            <div class="card-icon" aria-hidden="true">🐙</div>
+            <a href="https://github.com/portfolioIpssi" target="_blank" rel="noopener" class="btn-outline">Mon GitHub</a>
           </div>
         </div>
 
-        <form onsubmit="event.preventDefault(); alert('Message simulé avec succès ! Je vous recontacterai très bientôt.');">
-          <input type="text" placeholder="Votre nom complet" required />
-          <input type="email" placeholder="Votre adresse email" required />
-          <textarea placeholder="Votre message ou besoin..." rows="5" required></textarea>
-          <button type="submit" class="btn-primary" style="align-self: flex-start;">Envoyer le message</button>
+        <!-- ✅ Formulaire fonctionnel avec envoi réel -->
+        <form id="contact-form" novalidate>
+          <div class="form-group">
+            <label for="name">Votre nom complet</label>
+            <input type="text" id="name" name="name" placeholder="Jean Dupont" required autocomplete="name" />
+          </div>
+          <div class="form-group">
+            <label for="email">Votre adresse email</label>
+            <input type="email" id="email" name="email" placeholder="jean@exemple.fr" required autocomplete="email" />
+          </div>
+          <div class="form-group">
+            <label for="message">Votre message ou besoin</label>
+            <textarea id="message" name="message" placeholder="Décrivez votre projet, poste ou question..." rows="5" required></textarea>
+          </div>
+          <button type="submit" class="btn-primary" id="submit-btn">
+            <span id="btn-text">Envoyer le message</span>
+            <span id="btn-spinner" style="display: none;">⏳</span>
+          </button>
         </form>
+        <div id="form-status" class="form-status" role="alert"></div>
       </div>
     </section>
   </main>
 
-  <footer class="footer">
+  <footer class="footer" role="contentinfo">
     <div class="footer-grid">
       <div class="footer-section"><h3>Navigation</h3><ul><li><a href="index.html">Accueil</a></li><li><a href="projets.html">Projets</a></li><li><a href="veille.html">Veille</a></li><li><a href="synthese.html">Synthèse</a></li></ul></div>
-      <div class="footer-section"><h3>Contact</h3><ul><li><a href="contact.html">📧 Me contacter</a></li><li><a href="https://www.linkedin.com/in/philippe-martins-louro-31a974345/" target="_blank">💼 LinkedIn</a></li><li><a href="https://github.com/portfolioIpssi" target="_blank">🐙 GitHub</a></li></ul></div>
+      <div class="footer-section"><h3>Contact</h3><ul><li><a href="contact.html">📧 Me contacter</a></li><li><a href="https://www.linkedin.com/in/philippe-martins-louro-31a974345/" target="_blank" rel="noopener">💼 LinkedIn</a></li><li><a href="https://github.com/portfolioIpssi" target="_blank" rel="noopener">🐙 GitHub</a></li></ul></div>
       <div class="footer-section"><h3>Documents</h3><ul><li><a href="cv.pdf" download>📄 CV</a></li><li><a href="8-1 - BTS SIO - 2025 - Tableau de synthese.pdf" download>📊 Synthèse BTS</a></li></ul></div>
     </div>
     <div class="footer-bottom"><p>&copy; 2026 Philippe Martins Louro — Tous droits réservés</p></div>
   </footer>
 
-  <button class="back-to-top" id="back-to-top" onclick="backToTop()">⬆️</button>
+  <button class="back-to-top" id="back-to-top" onclick="backToTop()" aria-label="Retour en haut">⬆️</button>
 
   <script>
-    function toggleMenu() { document.getElementById('hamburger').classList.toggle('active'); document.getElementById('nav-menu').classList.toggle('active'); }
-    window.addEventListener('scroll', () => { document.getElementById('progress-bar').style.width = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100 + '%'; document.getElementById('back-to-top').classList.toggle('show', window.scrollY > 400); });
-    function backToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
-    function toggleTheme() {
-      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-      document.documentElement.setAttribute('data-theme', theme); localStorage.setItem('theme', theme);
-      document.querySelector('.theme-toggle').textContent = theme === 'light' ? '🌙' : '☀️';
+    /* ---------- CONFIGURATION ---------- */
+    /* 🔴 REMPLACE par ton URL Formspree : https://formspree.io/f/TON_ID */
+    const FORMSPREE_URL = "https://formspree.io/f/TON_ID_ICI";
+    /* ----------------------------------- */
+
+    const form = document.getElementById("contact-form");
+    const statusDiv = document.getElementById("form-status");
+    const submitBtn = document.getElementById("submit-btn");
+    const btnText = document.getElementById("btn-text");
+    const btnSpinner = document.getElementById("btn-spinner");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      // Validation HTML5
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      // Désactiver le bouton
+      submitBtn.disabled = true;
+      btnText.textContent = "Envoi en cours…";
+      btnSpinner.style.display = "inline";
+      statusDiv.className = "form-status";
+      statusDiv.textContent = "";
+
+      const formData = new FormData(form);
+
+      try {
+        const response = await fetch(FORMSPREE_URL, {
+          method: "POST",
+          body: formData,
+          headers: { Accept: "application/json" },
+        });
+
+        if (response.ok) {
+          statusDiv.className = "form-status success";
+          statusDiv.textContent = "✅ Message envoyé avec succès ! Je vous recontacterai très bientôt.";
+          form.reset();
+        } else {
+          const data = await response.json();
+          throw new Error(data.error || "Erreur lors de l'envoi.");
+        }
+      } catch (error) {
+        statusDiv.className = "form-status error";
+        statusDiv.textContent = "❌ Oups, une erreur est survenue. Veuillez réessayer ou me contacter directement par email.";
+        console.error("Erreur Formspree :", error);
+      } finally {
+        submitBtn.disabled = false;
+        btnText.textContent = "Envoyer le message";
+        btnSpinner.style.display = "none";
+      }
+    });
+
+    /* Navigation & thème */
+    function toggleMenu() {
+      const hamburger = document.getElementById("hamburger");
+      const navMenu = document.getElementById("nav-menu");
+      const isActive = navMenu.classList.toggle("active");
+      hamburger.classList.toggle("active");
+      hamburger.setAttribute("aria-expanded", isActive);
     }
-    const savedTheme = localStorage.getItem('theme') || 'light';
-    document.documentElement.setAttribute('data-theme', savedTheme);
-    document.querySelector('.theme-toggle').textContent = savedTheme === 'light' ? '🌙' : '☀️';
+    window.addEventListener("scroll", () => {
+      const scrollTop = window.scrollY;
+      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progressBar = document.getElementById("progress-bar");
+      if (scrollHeight > 0) {
+        progressBar.style.width = (scrollTop / scrollHeight) * 100 + "%";
+      }
+      document.getElementById("back-to-top").classList.toggle("show", scrollTop > 400);
+    });
+    function backToTop() { window.scrollTo({ top: 0, behavior: "smooth" }); }
+    function toggleTheme() {
+      const theme = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+      document.documentElement.setAttribute("data-theme", theme);
+      localStorage.setItem("theme", theme);
+      document.querySelector(".theme-toggle").textContent = theme === "light" ? "🌙" : "☀️";
+    }
+    const savedTheme = localStorage.getItem("theme") || "light";
+    document.documentElement.setAttribute("data-theme", savedTheme);
+    document.querySelector(".theme-toggle").textContent = savedTheme === "light" ? "🌙" : "☀️";
+
+    document.addEventListener("click", (event) => {
+      const navMenu = document.getElementById("nav-menu");
+      const hamburger = document.getElementById("hamburger");
+      if (!hamburger.contains(event.target) && !navMenu.contains(event.target)) {
+        navMenu.classList.remove("active");
+        hamburger.classList.remove("active");
+        hamburger.setAttribute("aria-expanded", "false");
+      }
+    });
   </script>
 </body>
 </html>
