@@ -3,582 +3,114 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Philippe Martins Louro — Portfolio BTS SIO SISR</title>
-
+  <title>Compétences — Philippe Martins Louro</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Figtree:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-
   <style>
-    :root {
-      --bg:       #ffffff;
-      --bg2:      #f7f9fc;
-      --bg3:      #eef2f8;
-      --border:   #dde3ed;
-      --border-dk:#c4cfe0;
-      --blue:     #2563eb;
-      --blue-lt:  #eff4ff;
-      --blue-mid: #bfcfff;
-      --sky:      #0ea5e9;
-      --green:    #059669;
-      --amber:    #d97706;
-      --red:      #dc2626;
-      --ink:      #0d1526;
-      --text:     #1e293b;
-      --muted:    #64748b;
-      --light:    #94a3b8;
-      --r:        12px;
-      --rlg:      18px;
-      --sh-sm:    0 1px 4px rgba(13,21,38,.06),0 2px 12px rgba(13,21,38,.04);
-      --sh:       0 4px 20px rgba(13,21,38,.08),0 1px 4px rgba(13,21,38,.04);
-      --sh-lg:    0 12px 40px rgba(13,21,38,.10),0 2px 8px rgba(13,21,38,.06);
-      --fh:       'Syne', sans-serif;
-      --fb:       'Figtree', sans-serif;
-      --fm:       'DM Mono', monospace;
-    }
-
-    *,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
-    html { scroll-behavior:smooth; }
-
-    body {
-      background:var(--bg);
-      color:var(--text);
-      font-family:var(--fb);
-      font-weight:400;
-      line-height:1.72;
-      min-height:100vh;
-      overflow-x:hidden;
-      -webkit-font-smoothing:antialiased;
-    }
-    body::before {
-      content:''; position:fixed; inset:0;
-      background:
-        radial-gradient(ellipse 70% 40% at 90% 10%,rgba(37,99,235,.04) 0%,transparent 60%),
-        radial-gradient(ellipse 50% 30% at 10% 90%,rgba(14,165,233,.04) 0%,transparent 60%);
-      pointer-events:none; z-index:0;
-    }
-    main,header,nav,footer,section { position:relative; z-index:1; }
-
-    h1,h2,h3,h4 { font-family:var(--fh); font-weight:700; line-height:1.2; color:var(--ink); letter-spacing:-.02em; }
-    h1 { font-size:clamp(2rem,5vw,3.2rem); }
-    h2 { font-size:clamp(1.35rem,3vw,1.8rem); margin-bottom:1rem; }
-    h3 {
-      font-size:.72rem; font-family:var(--fm); font-weight:500;
-      color:var(--blue); text-transform:uppercase; letter-spacing:.12em; margin:2rem 0 .85rem;
-    }
-    p { margin-bottom:1rem; color:var(--text); }
-    ul { padding-left:1.25rem; }
-    li { margin-bottom:.4rem; color:var(--text); }
-    a { color:var(--blue); text-decoration:none; transition:color .18s; }
-    a:hover { color:var(--sky); }
-    strong { color:var(--ink); font-weight:600; }
-
-    /* Barre progression */
-    #progress-bar {
-      position:fixed; top:0; left:0; height:3px; width:0%;
-      background:linear-gradient(90deg,var(--blue),var(--sky));
-      z-index:9999; transition:width .1s;
-    }
-
-    /* Navigation */
-    nav {
-      position:fixed; top:0; left:0; right:0;
-      z-index:1000; height:64px;
-      display:flex; align-items:center; justify-content:space-between;
-      padding:0 2.5rem;
-      background:rgba(255,255,255,.92);
-      backdrop-filter:blur(20px);
-      border-bottom:1px solid var(--border);
-    }
-    .nav-logo {
-      font-family:var(--fh); font-size:1rem; font-weight:800;
-      color:var(--ink); letter-spacing:-.03em;
-    }
-    #nav-menu { display:flex; gap:.15rem; list-style:none; }
-    #nav-menu a {
-      display:block; padding:.4rem .95rem; border-radius:8px;
-      font-size:.88rem; font-weight:500; color:var(--muted); transition:all .18s;
-    }
-    #nav-menu a:hover, #nav-menu a.active { color:var(--blue); background:var(--blue-lt); }
-
-    .theme-toggle {
-      background:none; border:1px solid var(--border); border-radius:8px;
-      padding:.35rem .65rem; cursor:pointer; font-size:1rem; color:var(--muted); transition:all .18s;
-    }
-    .theme-toggle:hover { border-color:var(--blue); color:var(--blue); }
-
-    .hamburger {
-      display:none; flex-direction:column; gap:5px;
-      cursor:pointer; padding:.5rem; background:none; border:none;
-    }
-    .hamburger span { display:block; width:22px; height:2px; background:var(--muted); border-radius:2px; transition:all .3s; }
-
-    /* Container */
-    .main-container {
-      max-width:1060px; margin:0 auto;
-      padding:80px 1.5rem 3rem;
-      display:flex; flex-direction:column; gap:2rem;
-    }
-
-    /* Hero */
-    .hero { padding:5rem 0 2.5rem; text-align:center; }
-    .hero-content { max-width:680px; margin:0 auto; }
-    .hero h1 {
-      background:linear-gradient(135deg,var(--ink) 0%,var(--blue) 100%);
-      -webkit-background-clip:text; -webkit-text-fill-color:transparent;
-      background-clip:text; margin-bottom:.6rem;
-    }
-    .hero-subtitle { font-family:var(--fh); font-size:1.35rem; font-weight:700; color:var(--ink); margin-bottom:.75rem; }
-    .hero-description { font-size:1.05rem; color:var(--muted); max-width:540px; margin:0 auto 2.5rem; }
-    .hero-cta { display:flex; gap:.75rem; justify-content:center; flex-wrap:wrap; }
-
-    /* Boutons */
-    .btn {
-      display:inline-flex; align-items:center; gap:.45rem;
-      padding:.68rem 1.45rem; border-radius:10px;
-      font-family:var(--fb); font-size:.88rem; font-weight:600;
-      cursor:pointer; text-decoration:none; transition:all .22s; border:none;
-      background:var(--blue); color:#fff;
-      box-shadow:0 2px 8px rgba(37,99,235,.25);
-    }
-    .btn:hover { background:#1d4ed8; transform:translateY(-1px); box-shadow:0 6px 20px rgba(37,99,235,.3); color:#fff; }
-    .btn-outline { background:transparent; border:1.5px solid var(--border-dk); color:var(--text)!important; box-shadow:var(--sh-sm); }
-    .btn-outline:hover { border-color:var(--blue); color:var(--blue)!important; background:var(--blue-lt); }
-    .btn-secondary { background:var(--ink); color:#fff!important; box-shadow:0 2px 8px rgba(13,21,38,.2); }
-    .btn-secondary:hover { background:#1e293b; }
-    .btn-small { padding:.38rem .9rem; font-size:.8rem; border-radius:8px; }
-    .btn-download { background:var(--green)!important; color:#fff!important; }
-    .btn-download:hover { background:#047857!important; }
-
-    /* Fenêtres */
-    .window {
-      background:#fff; border:1px solid var(--border);
-      border-radius:var(--rlg); overflow:hidden;
-      box-shadow:var(--sh); transition:box-shadow .3s;
-    }
-    .window:hover { box-shadow:var(--sh-lg); }
-    .window-header {
-      display:flex; align-items:center; justify-content:space-between;
-      padding:.85rem 1.4rem; background:var(--bg2); border-bottom:1px solid var(--border);
-    }
-    .window-title { font-family:var(--fm); font-size:.8rem; color:var(--muted); font-weight:500; letter-spacing:.02em; }
-    .window-controls { display:flex; gap:7px; }
-    .dot { width:12px; height:12px; border-radius:50%; }
-    .dot:nth-child(1) { background:#ff5f57; }
-    .dot:nth-child(2) { background:#febc2e; }
-    .dot:nth-child(3) { background:#28c840; }
-    .window-content { padding:2.25rem 2rem; }
-
-    /* Stats */
-    .stats-grid {
-      display:grid; grid-template-columns:repeat(auto-fit,minmax(130px,1fr));
-      gap:1rem; margin:1.75rem 0;
-    }
-    .stats-band {
-      display:grid; grid-template-columns:repeat(auto-fit,minmax(130px,1fr));
-      gap:1rem; margin:1.75rem 0; padding:1.5rem;
-      background:var(--bg2); border-radius:var(--r); border:1px solid var(--border);
-    }
-    .stat-box {
-      background:#fff; border:1px solid var(--border);
-      border-radius:var(--r); padding:1.35rem 1rem; text-align:center; transition:all .22s;
-    }
-    .stat-box:hover { border-color:var(--blue-mid); box-shadow:0 4px 16px rgba(37,99,235,.08); transform:translateY(-2px); }
-    .stat-number,.stat-value {
-      font-family:var(--fh); font-size:2rem; font-weight:800; color:var(--blue);
-      display:block; line-height:1; margin-bottom:.35rem; letter-spacing:-.04em;
-    }
-    .stat-label { font-size:.78rem; color:var(--muted); font-weight:500; line-height:1.4; }
-
-    /* Achievements */
-    .achievement-grid {
-      display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
-      gap:1rem; margin:1.75rem 0;
-    }
-    .achievement {
-      background:var(--bg2); border:1px solid var(--border);
-      border-radius:var(--r); padding:1.35rem 1rem; text-align:center; transition:all .22s;
-    }
-    .achievement:hover { border-color:var(--blue-mid); background:var(--blue-lt); transform:translateY(-2px); }
-    .achievement-icon { font-size:1.6rem; margin-bottom:.6rem; }
-    .achievement-value { font-family:var(--fh); font-weight:700; font-size:1rem; color:var(--ink); margin-bottom:.25rem; }
-    .achievement-label { font-size:.75rem; color:var(--muted); line-height:1.4; }
-
-    /* Timeline parcours */
-    .timeline { position:relative; padding-left:2rem; margin:1.75rem 0; border-left:2px solid var(--border); }
-    .timeline-item { position:relative; margin-bottom:2rem; padding-left:1rem; }
-    .timeline-item::before {
-      content:''; position:absolute; left:-2.4rem; top:.3rem;
-      width:10px; height:10px; border-radius:50%;
-      background:var(--blue); border:2px solid #fff; box-shadow:0 0 0 3px var(--blue-mid);
-    }
-    .timeline-title { font-family:var(--fh); font-weight:700; font-size:1rem; color:var(--ink); margin-bottom:.4rem; }
-    .timeline-meta { display:flex; gap:.6rem; flex-wrap:wrap; margin-bottom:.5rem; }
-    .timeline-date { font-family:var(--fm); font-size:.77rem; color:var(--muted); }
-    .timeline-tag {
-      font-size:.72rem; background:var(--blue-lt); color:var(--blue);
-      padding:.15rem .65rem; border-radius:20px; font-weight:600; border:1px solid var(--blue-mid);
-    }
-
-    /* Timeline steps (méthodologie) */
-    .tl-step { display:flex; gap:1.25rem; margin-bottom:2rem; align-items:flex-start; }
-    .tl-badge {
-      flex-shrink:0; width:44px; height:44px;
-      background:var(--blue-lt); border:1.5px solid var(--blue-mid);
-      border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:1.2rem;
-    }
-    .tl-body { flex:1; }
-    .tl-title { font-family:var(--fh); font-weight:700; font-size:.95rem; color:var(--ink); margin-bottom:.4rem; }
-    .tl-desc { color:var(--muted); font-size:.9rem; margin-bottom:.5rem; line-height:1.65; }
-    .tl-meta {
-      display:inline-block; font-family:var(--fm); font-size:.73rem; color:var(--blue);
-      background:var(--blue-lt); padding:.28rem .8rem; border-radius:8px; border:1px solid var(--blue-mid);
-    }
-
-    /* Alert flow */
-    .alert-flow {
-      display:flex; align-items:center; gap:.5rem; flex-wrap:wrap;
-      margin:1.75rem 0; padding:1.5rem;
-      background:var(--bg2); border:1px solid var(--border); border-radius:var(--r); overflow-x:auto;
-    }
-    .flow-node { display:flex; flex-direction:column; align-items:center; gap:.45rem; min-width:78px; }
-    .flow-node-icon {
-      width:50px; height:50px; background:#fff; border:1.5px solid var(--border);
-      border-radius:12px; display:flex; align-items:center; justify-content:center;
-      font-size:1.35rem; box-shadow:var(--sh-sm); transition:all .2s;
-    }
-    .flow-node:hover .flow-node-icon { border-color:var(--blue); box-shadow:0 4px 14px rgba(37,99,235,.12); }
-    .flow-node-label { font-size:.68rem; text-align:center; color:var(--muted); max-width:78px; line-height:1.35; font-weight:500; }
-    .flow-arrow { color:var(--border-dk); font-size:1.4rem; margin-top:-18px; }
-
-    /* Module tabs */
-    .module-tabs {
-      display:flex; gap:.5rem; margin:1.5rem 0 1rem; flex-wrap:wrap;
-      padding:.35rem; background:var(--bg2); border:1px solid var(--border);
-      border-radius:var(--r); width:fit-content;
-    }
-    .tab-btn {
-      padding:.5rem 1.2rem; border:none; border-radius:8px;
-      background:transparent; color:var(--muted);
-      font-family:var(--fb); font-size:.87rem; font-weight:600; cursor:pointer; transition:all .2s;
-    }
-    .tab-btn:hover { color:var(--blue); background:var(--blue-lt); }
-    .tab-btn.active { background:#fff; color:var(--blue); box-shadow:var(--sh-sm); }
-    .tab-panel { display:none; }
-    .tab-panel.active { display:block; }
-
-    /* Tables */
-    .func-table {
-      width:100%; border-collapse:collapse; margin:1.25rem 0; font-size:.87rem;
-      border-radius:var(--r); overflow:hidden; border:1px solid var(--border);
-    }
-    .func-table thead tr { background:var(--bg2); }
-    .func-table th {
-      padding:.8rem 1rem; text-align:left; font-family:var(--fm); font-size:.72rem;
-      color:var(--muted); font-weight:500; letter-spacing:.08em; text-transform:uppercase;
-      border-bottom:1px solid var(--border);
-    }
-    .func-table td { padding:.75rem 1rem; border-bottom:1px solid var(--border); color:var(--text); vertical-align:middle; }
-    .func-table tr:last-child td { border-bottom:none; }
-    .func-table tbody tr:hover { background:var(--bg2); }
-
-    /* Badges */
-    .badge-v { font-family:var(--fm); font-size:.7rem; padding:.18rem .55rem; border-radius:20px; font-weight:500; }
-    .badge-v10 { background:var(--blue-lt); color:var(--blue); border:1px solid var(--blue-mid); }
-    .badge-v11 { background:#ecfdf5; color:var(--green); border:1px solid #6ee7b7; }
-    .badge-ok  { background:#ecfdf5; color:var(--green); border:1px solid #6ee7b7; font-family:var(--fm); font-size:.7rem; padding:.18rem .55rem; border-radius:20px; font-weight:500; }
-    .badge-fix { background:#fffbeb; color:var(--amber); border:1px solid #fcd34d; font-family:var(--fm); font-size:.7rem; padding:.18rem .55rem; border-radius:20px; font-weight:500; }
-
-    /* Cards */
-    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:1.25rem; margin:1.75rem 0; }
-    .card { background:#fff; border:1px solid var(--border); border-radius:var(--r); padding:1.6rem; transition:all .22s; }
-    .card:hover { border-color:var(--blue-mid); box-shadow:0 8px 24px rgba(37,99,235,.08); transform:translateY(-3px); }
-    .card-icon { font-size:1.8rem; margin-bottom:.85rem; }
-    .card-title { font-family:var(--fh); font-weight:700; font-size:.97rem; color:var(--ink); margin-bottom:.5rem; letter-spacing:-.01em; }
-    .card-desc { font-size:.86rem; color:var(--muted); line-height:1.65; }
-
-    /* Perf bars */
-    .perf-item { margin:1.1rem 0; }
-    .perf-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:.45rem; }
-    .perf-label { font-size:.87rem; color:var(--text); font-weight:500; }
-    .perf-value { font-family:var(--fm); font-size:.8rem; color:var(--blue); background:var(--blue-lt); padding:.15rem .55rem; border-radius:6px; }
-    .perf-track { height:8px; background:var(--bg3); border-radius:10px; overflow:hidden; }
-    .perf-fill { height:100%; border-radius:10px; background:linear-gradient(90deg,var(--blue),var(--sky)); transition:width 1s cubic-bezier(.4,0,.2,1); }
-
-    /* Innovation hero */
-    .innovation-hero {
-      background:linear-gradient(135deg,var(--blue-lt),#f0f7ff);
-      border:1.5px solid var(--blue-mid); border-radius:var(--rlg); padding:2rem; margin:1.75rem 0;
-    }
-    .inno-label { font-family:var(--fm); font-size:.72rem; color:var(--blue); font-weight:500; text-transform:uppercase; letter-spacing:.12em; margin-bottom:.5rem; }
-    .inno-title { font-family:var(--fh); font-size:1.4rem; font-weight:800; color:var(--ink); margin-bottom:.75rem; letter-spacing:-.03em; }
-    .inno-desc { font-size:.91rem; color:var(--muted); margin-bottom:1.5rem; line-height:1.7; }
-    .inno-features { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:1rem; }
-    .inno-feat { background:#fff; border:1px solid var(--border); border-radius:var(--r); padding:1.1rem; box-shadow:var(--sh-sm); transition:all .2s; }
-    .inno-feat:hover { border-color:var(--blue-mid); }
-    .inno-feat-icon { font-size:1.3rem; margin-bottom:.45rem; }
-    .inno-feat-title { font-weight:700; font-size:.87rem; color:var(--ink); margin-bottom:.3rem; }
-    .inno-feat-desc { font-size:.79rem; color:var(--muted); line-height:1.55; }
-
-    /* Download */
-    .download-section { background:var(--bg2); border:1px solid var(--border); border-radius:var(--r); padding:1.5rem; margin-top:2rem; }
-    .download-section h3 { margin-top:0; }
-    .download-grid { display:flex; flex-direction:column; gap:.75rem; }
-    .download-item {
-      display:flex; align-items:center; justify-content:space-between; gap:1rem;
-      padding:.85rem 1.1rem; background:#fff; border:1px solid var(--border);
-      border-radius:var(--r); box-shadow:var(--sh-sm); transition:all .2s;
-    }
-    .download-item:hover { border-color:var(--blue-mid); }
-    .download-name { font-weight:600; font-size:.9rem; color:var(--ink); }
-    .download-size { font-size:.76rem; color:var(--light); }
-
-    /* News */
-    .news-feed { display:flex; flex-direction:column; gap:1.1rem; margin-top:1.5rem; }
-    .news-card {
-      background:#fff; border:1px solid var(--border); border-radius:var(--r);
-      padding:1.35rem; box-shadow:var(--sh-sm); transition:all .22s;
-      animation:fadeUp .4s ease forwards; opacity:0;
-    }
-    .news-card:hover { border-color:var(--blue-mid); box-shadow:0 8px 24px rgba(37,99,235,.08); transform:translateY(-2px); }
-    @keyframes fadeUp { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
-    .news-meta { display:flex; align-items:center; gap:.6rem; margin-bottom:.65rem; }
-    .news-tag { font-size:.68rem; font-weight:700; padding:.18rem .65rem; border-radius:20px; text-transform:uppercase; letter-spacing:.06em; }
-    .tag-techno { background:var(--blue-lt); color:var(--blue); border:1px solid var(--blue-mid); }
-    .tag-police { background:#fef2f2; color:var(--red); border:1px solid #fca5a5; }
-    .tag-ethique { background:#f5f3ff; color:#7c3aed; border:1px solid #c4b5fd; }
-    .news-date { font-family:var(--fm); font-size:.74rem; color:var(--light); }
-    .news-title { font-family:var(--fh); font-weight:700; font-size:.97rem; color:var(--ink); margin-bottom:.45rem; letter-spacing:-.01em; }
-    .news-body { font-size:.86rem; color:var(--muted); margin-bottom:.85rem; line-height:1.6; }
-    .news-source { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:.5rem; padding-top:.75rem; border-top:1px solid var(--border); }
-    .news-src-label { font-size:.74rem; color:var(--light); font-style:italic; }
-    .news-card.hidden { display:none!important; }
-
-    /* Footer */
-    .footer { background:var(--bg2); border-top:1px solid var(--border); padding:3.5rem 1.5rem 2rem; margin-top:3rem; }
-    .footer-grid { max-width:1060px; margin:0 auto 2.5rem; display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:2rem; }
-    .footer-section h3 { font-family:var(--fm); font-size:.7rem; color:var(--muted); text-transform:uppercase; letter-spacing:.12em; margin-bottom:1rem; margin-top:0; }
-    .footer-section ul { list-style:none; padding:0; }
-    .footer-section li { margin-bottom:.5rem; }
-    .footer-section a { color:var(--muted); font-size:.87rem; transition:color .18s; }
-    .footer-section a:hover { color:var(--blue); }
-    .footer-bottom { max-width:1060px; margin:0 auto; padding-top:1.5rem; border-top:1px solid var(--border); text-align:center; }
-    .footer-bottom p { color:var(--light); font-size:.82rem; margin:0; }
-
-    /* Back to top */
-    .back-to-top {
-      position:fixed; bottom:2rem; right:2rem;
-      width:44px; height:44px; background:#fff;
-      border:1.5px solid var(--border); border-radius:50%;
-      font-size:1rem; cursor:pointer;
-      display:flex; align-items:center; justify-content:center;
-      opacity:0; transform:translateY(16px); transition:all .3s;
-      z-index:100; box-shadow:var(--sh);
-    }
-    .back-to-top.show { opacity:1; transform:translateY(0); }
-    .back-to-top:hover { border-color:var(--blue); }
-
-    .hidden { display:none!important; }
-
-    /* Responsive */
-    @media (max-width:768px) {
-      .hamburger { display:flex; }
-      #nav-menu {
-        display:none; position:absolute; top:64px; left:0; right:0;
-        flex-direction:column; background:#fff; border-bottom:1px solid var(--border);
-        padding:1rem; gap:.2rem; box-shadow:var(--sh);
-      }
-      #nav-menu.active { display:flex; }
-      nav { padding:0 1.25rem; }
-      .window-content { padding:1.5rem 1.25rem; }
-      .grid { grid-template-columns:1fr; }
-      .stats-grid,.achievement-grid,.stats-band { grid-template-columns:repeat(2,1fr); }
-      .module-tabs { width:100%; }
-      .inno-features { grid-template-columns:1fr; }
-      .hero { padding:2.5rem 0 1rem; }
-      .func-table { font-size:.79rem; }
-      .func-table th,.func-table td { padding:.55rem .65rem; }
-      .tl-step { flex-direction:column; }
-      .download-item { flex-direction:column; align-items:flex-start; }
-    }
-    @media (max-width:480px) {
-      .hero-cta { flex-direction:column; align-items:stretch; }
-      .hero-cta .btn { text-align:center; justify-content:center; }
-    }
+    /* Style CSS global identique */
+    :root { --bg: #ffffff; --bg2: #f7f9fc; --bg3: #eef2f8; --border: #dde3ed; --border-dk: #c4cfe0; --blue: #2563eb; --blue-lt: #eff4ff; --blue-mid: #bfcfff; --sky: #0ea5e9; --green: #059669; --amber: #d97706; --red: #dc2626; --ink: #0d1526; --text: #1e293b; --text-muted: #64748b; --font-head: 'Syne', sans-serif; --font-body: 'Figtree', sans-serif; --font-mono: 'DM Mono', monospace; --radius: 12px; --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05); --shadow-md: 0 10px 15px -3px rgb(0 0 0 / 0.1); }
+    [data-theme="dark"] { --bg: #0b0f19; --bg2: #111827; --bg3: #1f2937; --border: #374151; --border-dk: #4b5563; --blue: #3b82f6; --blue-lt: #1e293b; --ink: #f9fafb; --text: #e5e7eb; --text-muted: #9ca3af; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background-color: var(--bg); color: var(--text); font-family: var(--font-body); line-height: 1.6; overflow-x: hidden; transition: background-color 0.3s, color 0.3s; }
+    #progress-bar { position: fixed; top: 0; left: 0; height: 4px; background: linear-gradient(90deg, var(--blue), var(--sky)); z-index: 1000; width: 0%; }
+    header { position: sticky; top: 0; background: var(--bg); border-bottom: 1px solid var(--border); z-index: 900; }
+    nav { max-width: 1200px; margin: 0 auto; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; position: relative; }
+    .nav-logo { font-family: var(--font-head); font-weight: 700; font-size: 1.25rem; color: var(--ink); text-decoration: none; }
+    #nav-menu { display: flex; gap: 1rem; list-style: none; align-items: center; }
+    #nav-menu a { color: var(--text-muted); text-decoration: none; font-weight: 500; font-size: 0.95rem; transition: 0.2s; padding: 0.5rem 0.75rem; border-radius: 6px; }
+    #nav-menu a:hover, #nav-menu a.active { color: var(--blue); background-color: var(--blue-lt); }
+    .theme-toggle { background: none; border: none; font-size: 1.2rem; cursor: pointer; padding: 0.5rem; color: var(--text); }
+    .hamburger { display: none; flex-direction: column; gap: 4px; background: none; border: none; cursor: pointer; padding: 0.5rem; }
+    .hamburger span { display: block; width: 20px; height: 2px; background-color: var(--text); transition: 0.3s; }
+    .main-container { max-width: 1200px; margin: 2rem auto; padding: 0 2rem; min-height: calc(100vh - 250px); }
+    .window { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow-md); margin-bottom: 3rem; overflow: hidden; }
+    .window-header { background: var(--bg2); border-bottom: 1px solid var(--border); padding: 0.75rem 1.25rem; display: flex; align-items: center; justify-content: space-between; }
+    .window-title { font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-muted); }
+    .window-controls { display: flex; gap: 6px; }
+    .window-controls .dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; }
+    .window-controls .dot:nth-child(1) { background-color: #ff5f56; }
+    .window-controls .dot:nth-child(2) { background-color: #ffbd2e; }
+    .window-controls .dot:nth-child(3) { background-color: #27c93f; }
+    .window-content { padding: 2.5rem; }
+    .window-content h2 { font-family: var(--font-head); font-size: 2rem; color: var(--ink); margin-bottom: 1.5rem; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+    .card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.75rem; }
+    .card-icon { font-size: 2rem; margin-bottom: 1rem; }
+    .card-title { font-family: var(--font-head); font-size: 1.25rem; font-weight: 700; color: var(--ink); margin-bottom: 0.5rem; }
+    .card-desc { color: var(--text-muted); font-size: 0.95rem; }
+    footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 3rem 2rem; margin-top: 4rem; }
+    .footer-bottom { text-align: center; color: var(--text-muted); font-size: 0.9rem; }
   </style>
 </head>
 <body>
-
-  <!-- Barre de progression -->
   <div id="progress-bar"></div>
-
-  <!-- Navigation -->
-  <nav>
-    <span class="nav-logo">Philippe M. Louro</span>
-    <ul id="nav-menu">
-      <li><a href="index.html" class="active">Accueil</a></li>
-      <li><a href="projets.html">Projets</a></li>
-      <li><a href="experience.html">Expérience</a></li>
-      <li><a href="competences.html">Compétences</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-    <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
-    <button class="hamburger" id="hamburger" onclick="toggleMenu()">
-      <span></span><span></span><span></span>
-    </button>
-  </nav>
-
-  <!-- MAIN -->
-  <main class="main-container">
-
-    <!-- HERO -->
-    <section class="hero">
-      <div class="hero-content">
-        <h1>Bienvenue ! 👋</h1>
-        <p class="hero-subtitle">Je suis Philippe Martins Louro</p>
-        <p class="hero-description">Étudiant passionné en <strong>BTS SIO option SISR</strong>, spécialisé en administration système et réseaux informatiques. Actuellement en alternance à Bagnolet.</p>
-        <div class="hero-cta">
-          <a href="projets.html" class="btn">🚀 Voir mes projets</a>
-          <a href="contact.html" class="btn btn-outline">📧 Me contacter</a>
-          <a href="cv.pdf" download class="btn btn-secondary">📥 Télécharger CV</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- À PROPOS -->
-    <section class="window">
-      <div class="window-header">
-        <div class="window-title">📋 À Propos de Moi</div>
-        <div class="window-controls">
-          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-        </div>
-      </div>
-      <div class="window-content">
-        <h2>Qui suis-je ?</h2>
-        <p>Je m'appelle <strong>Philippe Martins Louro</strong>, j'ai <strong>20 ans</strong> et je suis actuellement en deuxième année de <strong>BTS SIO</strong>, option <strong>SISR</strong> à l'IPSSI Marne-la-Vallée.</p>
-        <p>Sérieux, curieux et motivé, je me forme aux métiers de l'<strong>administration système et réseau</strong>. J'ai acquis des compétences solides en environnements <strong>Windows et Linux</strong>, virtualisation, et déploiement d'infrastructure.</p>
-
-        <h3>📊 Statistiques Clés</h3>
-        <div class="stats-grid">
-          <div class="stat-box"><div class="stat-number">300+</div><div class="stat-label">Postes gérés</div></div>
-          <div class="stat-box"><div class="stat-number">5+</div><div class="stat-label">Projets réalisés</div></div>
-          <div class="stat-box"><div class="stat-number">20+</div><div class="stat-label">Technologies</div></div>
-          <div class="stat-box"><div class="stat-number">2+</div><div class="stat-label">Ans d'expérience</div></div>
-        </div>
-
-        <h3>🎯 Mes Forces</h3>
-        <div class="achievement-grid">
-          <div class="achievement"><div class="achievement-icon">⚡</div><div class="achievement-value">Autonome</div><div class="achievement-label">Je prends des initiatives</div></div>
-          <div class="achievement"><div class="achievement-icon">🎯</div><div class="achievement-value">Rigoureux</div><div class="achievement-label">Attention aux détails</div></div>
-          <div class="achievement"><div class="achievement-icon">💡</div><div class="achievement-value">Créatif</div><div class="achievement-label">Trouve des solutions</div></div>
-          <div class="achievement"><div class="achievement-icon">👥</div><div class="achievement-value">Teamplayer</div><div class="achievement-label">Travaille bien en équipe</div></div>
-        </div>
-
-        <h3>📅 Mon Parcours</h3>
-        <div class="timeline">
-          <div class="timeline-item">
-            <div class="timeline-title">🎓 BTS SIO en cours</div>
-            <div class="timeline-meta"><span class="timeline-date">2023 - 2025</span><span class="timeline-tag">IPSSI Paris</span></div>
-            <p>Formation complète en informatique avec spécialisation infrastructure et réseaux. Apprentissage des meilleures pratiques en administration système, virtualisation, et sécurité.</p>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-title">💼 Alternance en cours</div>
-            <div class="timeline-meta"><span class="timeline-date">2024 - 2025</span><span class="timeline-tag">Mairie Bagnolet</span></div>
-            <p>Technicien IT responsable de la gestion de 300+ postes Windows, migrations système, déploiement logiciel, support utilisateurs et maintenance infrastructure.</p>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-title">📚 Stage initial</div>
-            <div class="timeline-meta"><span class="timeline-date">2023</span><span class="timeline-tag">Mairie Chelles</span></div>
-            <p>8 semaines : déploiement Windows, gestion du parc informatique, gestion des accès utilisateurs et support technique.</p>
-          </div>
-        </div>
-
-        <div style="margin-top:40px;display:flex;gap:15px;flex-wrap:wrap;">
-          <a href="projets.html" class="btn">🚀 Voir les projets</a>
-          <a href="experience.html" class="btn btn-outline">💼 Mon expérience</a>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <footer class="footer">
-    <div class="footer-grid">
-      <div class="footer-section">
-        <h3>Navigation</h3>
-        <ul>
+  <header>
+    <nav>
+      <a href="index.html" class="nav-logo">Philippe M. Louro</a>
+      <div class="nav-right">
+        <ul id="nav-menu">
           <li><a href="index.html">Accueil</a></li>
           <li><a href="projets.html">Projets</a></li>
           <li><a href="experience.html">Expérience</a></li>
-          <li><a href="competences.html">Compétences</a></li>
+          <li><a href="competences.html" class="active">Compétences</a></li>
+          <li><a href="veille.html">Veille</a></li>
+          <li><a href="synthese.html">Synthèse</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
+        <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+        <button class="hamburger" onclick="toggleMenu()">
+          <span></span><span></span><span></span>
+        </button>
       </div>
-      
-      <div class="footer-section">
-        <h3>Contact Direct</h3>
-        <ul>
-          <li><a href="mailto:martinslourophilippe@gmail.com">📧 Email</a></li>
-          <li><a href="https://www.linkedin.com/in/philippe-martins-louro-31a974345/" target="_blank">💼 LinkedIn</a></li>
-          <li><a href="https://github.com/portfolioIpssi" target="_blank">🐙 GitHub</a></li>
-          <li><a href="tel:+33781501754">📱 Téléphone</a></li>
-        </ul>
-      </div>
+    </nav>
+  </header>
 
-      <div class="footer-section">
-        <h3>Documents</h3>
-        <ul>
-          <li><a href="cv.pdf" download>📄 CV PDF</a></li>
-          <li><a href="Rapport de stage.pdf" download>📋 Rapport Stage</a></li>
-          <li><a href="8-1 - BTS SIO - 2025 - Tableau de synthese.pdf" download>📊 Synthèse BTS</a></li>
-          <li><a href="veille technologique.pdf" download>🔍 Veille Tech</a></li>
-        </ul>
+  <main class="main-container">
+    <section class="window">
+      <div class="window-header">
+        <div class="window-title">skills_matrix.json</div>
+        <div class="window-controls"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
       </div>
-    </div>
-    
-    <div class="footer-bottom">
-      <p>&copy; 2026 Philippe Martins Louro - Tous droits réservés</p>
-      <p>Portfolio v2.0 | Dernière mise à jour : Mars 2026</p>
-    </div>
+      <div class="window-content">
+        <h2>Compétences Techniques</h2>
+        
+        <div class="grid">
+          <div class="card">
+            <div class="card-icon">🐧</div>
+            <div class="card-title">Systèmes</div>
+            <div class="card-desc">Administration d'environnements hétérogènes. Serveurs Windows (Active Directory, DNS, DHCP) et systèmes Linux (Debian, Arch Linux). Scripting système de base en Bash et PowerShell.</div>
+          </div>
+
+          <div class="card">
+            <div class="card-icon">🌐</div>
+            <div class="card-title">Réseaux & Sécurité</div>
+            <div class="card-desc">Configuration d'équipements actifs Cisco (VLANs, routage). Déploiement et paramétrage de pare-feux logiciels pfSense. Sensibilisation aux bonnes pratiques de sécurité et initiation aux outils de test de pénétration.</div>
+          </div>
+
+          <div class="card">
+            <div class="card-icon">📦</div>
+            <div class="card-title">Solutions & Outils</div>
+            <div class="card-desc">Virtualisation de serveurs avec l'hyperviseur Proxmox VE. Maîtrise opérationnelle de la gestion de parc et des demandes d'assistance avec l'outil de helpdesk GLPI. Versioning de code via Git.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-bottom"><p>&copy; 2026 Philippe Martins Louro - Tous droits réservés</p></div>
   </footer>
 
-  <button class="back-to-top" id="back-to-top" onclick="backToTop()">⬆️</button>
-
   <script>
-    function toggleMenu() {
-      document.getElementById('hamburger').classList.toggle('active');
-      document.getElementById('nav-menu').classList.toggle('active');
-    }
-
-    window.addEventListener('scroll', () => {
-      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const scrolled = (window.scrollY / scrollHeight) * 100;
-      document.getElementById('progress-bar').style.width = scrolled + '%';
-    });
-
-    const backToTopBtn = document.getElementById('back-to-top');
-    window.addEventListener('scroll', () => {
-      backToTopBtn.classList.toggle('show', window.scrollY > 500);
-    });
-
-    function backToTop() {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
+    function toggleMenu() { document.getElementById('nav-menu').classList.toggle('active'); }
     function toggleTheme() {
-      const theme = localStorage.getItem('theme') === 'dark' ? 'light' : 'dark';
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', theme);
       localStorage.setItem('theme', theme);
-      document.querySelector('.theme-toggle').textContent = theme === 'light' ? '🌙' : '☀️';
     }
-
-    function handleSubmit(event) {
-      event.preventDefault();
-      alert('✅ Merci pour votre message ! Je vous recontacterai très bientôt.');
-      event.target.reset();
-    }
-
-    const savedTheme = localStorage.getItem('theme') || 'light';
-    document.querySelector('.theme-toggle').textContent = savedTheme === 'light' ? '🌙' : '☀️';
+    document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') || 'light');
   </script>
 </body>
+</html>
 </html>
