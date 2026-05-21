@@ -8,39 +8,71 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Figtree:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
-    /* Style CSS global identique */
+    /* CSS Universel */
     :root { --bg: #ffffff; --bg2: #f7f9fc; --bg3: #eef2f8; --border: #dde3ed; --border-dk: #c4cfe0; --blue: #2563eb; --blue-lt: #eff4ff; --blue-mid: #bfcfff; --sky: #0ea5e9; --green: #059669; --amber: #d97706; --red: #dc2626; --ink: #0d1526; --text: #1e293b; --text-muted: #64748b; --font-head: 'Syne', sans-serif; --font-body: 'Figtree', sans-serif; --font-mono: 'DM Mono', monospace; --radius: 12px; --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05); --shadow-md: 0 10px 15px -3px rgb(0 0 0 / 0.1); }
     [data-theme="dark"] { --bg: #0b0f19; --bg2: #111827; --bg3: #1f2937; --border: #374151; --border-dk: #4b5563; --blue: #3b82f6; --blue-lt: #1e293b; --ink: #f9fafb; --text: #e5e7eb; --text-muted: #9ca3af; }
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { background-color: var(--bg); color: var(--text); font-family: var(--font-body); line-height: 1.6; overflow-x: hidden; transition: background-color 0.3s, color 0.3s; }
+    body { background-color: var(--bg); color: var(--text); font-family: var(--font-body); line-height: 1.6; overflow-x: hidden; transition: 0.3s; }
     #progress-bar { position: fixed; top: 0; left: 0; height: 4px; background: linear-gradient(90deg, var(--blue), var(--sky)); z-index: 1000; width: 0%; }
-    header { position: sticky; top: 0; background: var(--bg); border-bottom: 1px solid var(--border); z-index: 900; }
+    
+    header { position: sticky; top: 0; background: var(--bg); border-bottom: 1px solid var(--border); z-index: 900; transition: 0.3s; }
     nav { max-width: 1200px; margin: 0 auto; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; position: relative; }
     .nav-logo { font-family: var(--font-head); font-weight: 700; font-size: 1.25rem; color: var(--ink); text-decoration: none; }
-    #nav-menu { display: flex; gap: 1rem; list-style: none; align-items: center; }
-    #nav-menu a { color: var(--text-muted); text-decoration: none; font-weight: 500; font-size: 0.95rem; transition: 0.2s; padding: 0.5rem 0.75rem; border-radius: 6px; }
+    .nav-right { display: flex; align-items: center; gap: 0.5rem; }
+    #nav-menu { display: flex; gap: 0.5rem; list-style: none; align-items: center; }
+    #nav-menu a { color: var(--text-muted); text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: 0.2s; padding: 0.5rem 0.8rem; border-radius: 6px; }
     #nav-menu a:hover, #nav-menu a.active { color: var(--blue); background-color: var(--blue-lt); }
-    .theme-toggle { background: none; border: none; font-size: 1.2rem; cursor: pointer; padding: 0.5rem; color: var(--text); }
+    .theme-toggle { background: none; border: 1px solid var(--border); border-radius: 8px; font-size: 1.1rem; cursor: pointer; padding: 0.4rem 0.6rem; color: var(--text); transition: 0.2s; margin-left: 1rem;}
     .hamburger { display: none; flex-direction: column; gap: 4px; background: none; border: none; cursor: pointer; padding: 0.5rem; }
-    .hamburger span { display: block; width: 20px; height: 2px; background-color: var(--text); transition: 0.3s; }
-    .main-container { max-width: 1200px; margin: 2rem auto; padding: 0 2rem; min-height: calc(100vh - 250px); }
-    .window { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow-md); margin-bottom: 3rem; overflow: hidden; }
+    .hamburger span { display: block; width: 22px; height: 2px; background-color: var(--text); transition: 0.3s; }
+    
+    .main-container { max-width: 1100px; margin: 3rem auto; padding: 0 1.5rem; min-height: calc(100vh - 250px); display: flex; flex-direction: column; gap: 2.5rem; }
+    .window { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow-md); overflow: hidden; transition: 0.3s; }
     .window-header { background: var(--bg2); border-bottom: 1px solid var(--border); padding: 0.75rem 1.25rem; display: flex; align-items: center; justify-content: space-between; }
-    .window-title { font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-muted); }
+    .window-title { font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-muted); font-weight: 500; }
     .window-controls { display: flex; gap: 6px; }
     .window-controls .dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; }
     .window-controls .dot:nth-child(1) { background-color: #ff5f56; }
     .window-controls .dot:nth-child(2) { background-color: #ffbd2e; }
     .window-controls .dot:nth-child(3) { background-color: #27c93f; }
     .window-content { padding: 2.5rem; }
-    .window-content h2 { font-family: var(--font-head); font-size: 2rem; color: var(--ink); margin-bottom: 1.5rem; }
-    form { display: flex; flex-direction: column; gap: 1rem; max-width: 500px; margin-top: 1.5rem; }
-    input, textarea { width: 100%; padding: 0.75rem; border: 1px solid var(--border); background: var(--bg2); color: var(--text); font-family: var(--font-body); border-radius: var(--radius); outline: none; }
-    input:focus, textarea:focus { border-color: var(--blue); }
-    .btn { display: inline-flex; align-items: center; justify-content: center; padding: 0.75rem 1.5rem; border-radius: var(--radius); font-weight: 600; text-decoration: none; transition: 0.2s; cursor: pointer; font-family: var(--font-body); font-size: 1rem; border: none; }
-    .btn-primary { background-color: var(--blue); color: white; }
-    footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 3rem 2rem; margin-top: 4rem; }
-    .footer-bottom { text-align: center; color: var(--text-muted); font-size: 0.9rem; }
+    h2 { font-family: var(--font-head); font-size: 1.8rem; color: var(--ink); margin-bottom: 1.2rem; }
+    p { margin-bottom: 1rem; color: var(--text); }
+
+    /* Form & Links */
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
+    .card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; text-align: center; transition: 0.2s; }
+    .card-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+    .btn-outline { display: inline-block; background: transparent; border: 1.5px solid var(--border-dk); color: var(--text); padding: 0.6rem 1.2rem; border-radius: 8px; text-decoration: none; font-weight: 600; transition: 0.2s;}
+    .btn-outline:hover { border-color: var(--blue); color: var(--blue); background: var(--blue-lt); }
+
+    form { display: flex; flex-direction: column; gap: 1.2rem; max-width: 600px; }
+    input, textarea { width: 100%; padding: 0.9rem; border: 1px solid var(--border-dk); background: var(--bg2); color: var(--text); font-family: var(--font-body); border-radius: 8px; outline: none; transition: 0.2s;}
+    input:focus, textarea:focus { border-color: var(--blue); box-shadow: 0 0 0 3px var(--blue-lt); }
+    .btn-primary { display: inline-flex; justify-content: center; background-color: var(--blue); color: white; border: none; padding: 0.8rem 1.5rem; border-radius: 8px; font-weight: 600; font-family: var(--font-body); font-size: 1rem; cursor: pointer; transition: 0.2s; }
+    .btn-primary:hover { background-color: #1d4ed8; transform: translateY(-2px); }
+
+    /* Footer */
+    .footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 4rem 2rem 2rem; margin-top: 4rem; }
+    .footer-grid { max-width: 1100px; margin: 0 auto 3rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; }
+    .footer-section h3 { font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; margin: 0 0 1rem 0; }
+    .footer-section ul { list-style: none; margin: 0; padding: 0; }
+    .footer-section li { margin-bottom: 0.5rem; }
+    .footer-section a { color: var(--text); text-decoration: none; font-size: 0.95rem; transition: 0.2s; }
+    .footer-section a:hover { color: var(--blue); }
+    .footer-bottom { text-align: center; color: var(--text-muted); font-size: 0.9rem; border-top: 1px solid var(--border); padding-top: 2rem; max-width: 1100px; margin: 0 auto; }
+    .back-to-top { position: fixed; bottom: 2rem; right: 2rem; width: 45px; height: 45px; background: var(--bg); border: 1px solid var(--border); border-radius: 50%; font-size: 1.2rem; cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: 0.3s; z-index: 100; box-shadow: var(--shadow); color: var(--text); }
+    .back-to-top.show { opacity: 1; visibility: visible; }
+    
+    @media (max-width: 768px) {
+      .hamburger { display: flex; }
+      #nav-menu { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--bg); border-bottom: 1px solid var(--border); flex-direction: column; padding: 1rem; box-shadow: var(--shadow-md); align-items: flex-start; }
+      #nav-menu.active { display: flex; }
+      #nav-menu a { width: 100%; }
+      .theme-toggle { margin-left: auto; }
+      .window-content { padding: 1.5rem; }
+      .btn-primary { width: 100%; }
+    }
   </style>
 </head>
 <body>
@@ -59,7 +91,7 @@
           <li><a href="contact.html" class="active">Contact</a></li>
         </ul>
         <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
-        <button class="hamburger" onclick="toggleMenu()">
+        <button class="hamburger" id="hamburger" onclick="toggleMenu()">
           <span></span><span></span><span></span>
         </button>
       </div>
@@ -73,31 +105,53 @@
         <div class="window-controls"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
       </div>
       <div class="window-content">
-        <h2>Formulaire de Contact</h2>
-        <p>Une question, une opportunité ou besoin d'échanger sur un projet d'infrastructure informatique ? Laissez un message via le formulaire ci-dessous.</p>
+        <h2>Discutons de vos projets !</h2>
+        <p>Vous recherchez un profil en administration système et réseau ? N'hésitez pas à me contacter via le formulaire ci-dessous ou directement sur mes réseaux.</p>
         
-        <form onsubmit="event.preventDefault(); alert('Message simulé avec succès !');">
-          <input type="text" placeholder="Votre nom" required />
+        <div class="grid">
+          <div class="card">
+            <div class="card-icon">💼</div>
+            <a href="https://www.linkedin.com/in/philippe-martins-louro-31a974345/" target="_blank" class="btn-outline">Mon LinkedIn</a>
+          </div>
+          <div class="card">
+            <div class="card-icon">🐙</div>
+            <a href="https://github.com/portfolioIpssi" target="_blank" class="btn-outline">Mon GitHub</a>
+          </div>
+        </div>
+
+        <form onsubmit="event.preventDefault(); alert('Message simulé avec succès ! Je vous recontacterai très bientôt.');">
+          <input type="text" placeholder="Votre nom complet" required />
           <input type="email" placeholder="Votre adresse email" required />
-          <textarea placeholder="Votre message" rows="5" required></textarea>
-          <button type="submit" class="btn btn-primary" style="align-self: flex-start;">Envoyer</button>
+          <textarea placeholder="Votre message ou besoin..." rows="5" required></textarea>
+          <button type="submit" class="btn-primary" style="align-self: flex-start;">Envoyer le message</button>
         </form>
       </div>
     </section>
   </main>
 
-  <footer>
-    <div class="footer-bottom"><p>&copy; 2026 Philippe Martins Louro - Tous droits réservés</p></div>
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-section"><h3>Navigation</h3><ul><li><a href="index.html">Accueil</a></li><li><a href="projets.html">Projets</a></li><li><a href="veille.html">Veille</a></li><li><a href="synthese.html">Synthèse</a></li></ul></div>
+      <div class="footer-section"><h3>Contact</h3><ul><li><a href="contact.html">📧 Me contacter</a></li><li><a href="https://www.linkedin.com/in/philippe-martins-louro-31a974345/" target="_blank">💼 LinkedIn</a></li><li><a href="https://github.com/portfolioIpssi" target="_blank">🐙 GitHub</a></li></ul></div>
+      <div class="footer-section"><h3>Documents</h3><ul><li><a href="cv.pdf" download>📄 CV</a></li><li><a href="8-1 - BTS SIO - 2025 - Tableau de synthese.pdf" download>📊 Synthèse BTS</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><p>&copy; 2026 Philippe Martins Louro — Tous droits réservés</p></div>
   </footer>
 
+  <button class="back-to-top" id="back-to-top" onclick="backToTop()">⬆️</button>
+
   <script>
-    function toggleMenu() { document.getElementById('nav-menu').classList.toggle('active'); }
+    function toggleMenu() { document.getElementById('hamburger').classList.toggle('active'); document.getElementById('nav-menu').classList.toggle('active'); }
+    window.addEventListener('scroll', () => { document.getElementById('progress-bar').style.width = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100 + '%'; document.getElementById('back-to-top').classList.toggle('show', window.scrollY > 400); });
+    function backToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
     function toggleTheme() {
       const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-      document.documentElement.setAttribute('data-theme', theme);
-      localStorage.setItem('theme', theme);
+      document.documentElement.setAttribute('data-theme', theme); localStorage.setItem('theme', theme);
+      document.querySelector('.theme-toggle').textContent = theme === 'light' ? '🌙' : '☀️';
     }
-    document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') || 'light');
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    document.querySelector('.theme-toggle').textContent = savedTheme === 'light' ? '🌙' : '☀️';
   </script>
 </body>
 </html>
